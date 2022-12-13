@@ -1,0 +1,26 @@
+using Gtk 4.0;
+using Adw 1;
+
+template MainWindow: Adw.ApplicationWindow {
+  default-height: 480;
+  default-width: 854;
+
+  Box {
+    orientation: vertical;
+
+    .HeaderBar {}
+
+    Image video_image {
+      css-name: "video";
+      hexpand: true;
+      vexpand: true;
+    }
+
+    Scale scale {
+      adjustment: Adjustment volume_adj {
+        lower: 0;
+        upper: 1;
+      };
+    }
+  }
+}

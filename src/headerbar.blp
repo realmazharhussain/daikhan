@@ -1,0 +1,21 @@
+using Gtk 4.0;
+using Adw 1;
+
+template HeaderBar: Adw.Bin {
+  accessible-role: group;
+
+  Gtk.HeaderBar {
+    [start] MenuButton {
+      icon-name: 'open-menu';
+      menu-model: app_menu;
+      styles ["circular"]
+    }
+  }
+}
+
+menu app_menu {
+  section {
+    item (_("About"), "win.about")
+    item (_("Quit"), "app.quit")
+  }
+}
