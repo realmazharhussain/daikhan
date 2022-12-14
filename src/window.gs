@@ -30,7 +30,8 @@ class MainWindow : Adw.ApplicationWindow
             print "Could not create playbin!"
             return
 
-        playbin.bind_property("volume", volume_adj, "value", BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL)
+        playbin.bind_property("volume", volume_adj, "value",
+                              BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL)
 
         var bus = playbin.get_bus()
         bus.add_signal_watch()
