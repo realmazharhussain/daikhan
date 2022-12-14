@@ -4,6 +4,7 @@ project('envision', 'vala',
 gnome = import('gnome')
 adw_dep = dependency('libadwaita-1')
 gst_dep = dependency('gstreamer-1.0')
+dependency('gstgtk4')
 
 subdir('src')
 
