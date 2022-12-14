@@ -13,7 +13,7 @@ class MainWindow : Adw.ApplicationWindow
     [GtkChild]
     volume_adj:  unowned Gtk.Adjustment
 
-    _playbin: Gst.Element
+    playbin: Gst.Element
 
     construct (app: Gtk.Application)
         application = app
@@ -25,36 +25,44 @@ class MainWindow : Adw.ApplicationWindow
         about_act.activate.connect(about_cb)
         add_action(about_act)
 
-        _playbin = Gst.ElementFactory.make("playbin", "playbin")
-        if _playbin is null
+        playbin = Gst.ElementFactory.make("playbin", "playbin")
+        if playbin is null
             print "Could not create playbin!"
             return
 
-        _playbin.bind_property("volume", volume_adj, "value", BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL)
+        playbin.bind_property("volume", volume_adj, "value", BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL)
 
-        var bus = _playbin.get_bus()
+        var bus = playbin.get_bus()
         bus.add_signal_watch()
         bus.message["error"].connect(gst_error_cb)
 
-        var videosink = Gst.ElementFactory.make("gtk4paintablesink", "videosink")
-        if videosink is null
+        var gtksink = Gst.ElementFactory.make("gtk4paintablesink", "videosink")
+        if gtksink is null
             print "Could not create Video Sink!"
             return
 
         paintable: Gdk.Paintable
-        videosink.get("paintable", out paintable)
+        gtksink.get("paintable", out paintable)
         video_image.paintable = paintable
 
-        _playbin.set("uri", "file:///mnt/Data/gitapps/skipper/build/src/test.mp4",
-                    "video-sink", videosink)
+        playbin.set("uri", "file:///mnt/Data/gitapps/skipper/build/src/test.mp4")
 
-        var result = _playbin.set_state(Gst.State.PLAYING)
+        gl_context: Gdk.GLContext
+        paintable.get("gl-context", out gl_context)
+        if gl_context is not null
+            var glsink = Gst.ElementFactory.make("glsinkbin", "glsinkbin")
+            glsink.set("sink", gtksink)
+            playbin.set("video-sink", glsink)
+        else
+            playbin.set("video-sink", gtksink)
+
+        var result = playbin.set_state(Gst.State.PLAYING)
         if result is Gst.StateChangeReturn.FAILURE
             printerr("Cannot play!")
             return
 
     final
-        _playbin.set_state(Gst.State.NULL)
+        playbin.set_state(Gst.State.NULL)
 
     def about_cb (action: SimpleAction, type: Variant?)
         show_about_window(self)
