@@ -5,6 +5,7 @@ class HeaderBar: Adw.Bin
     init
         pass
 
+
 [GtkTemplate (ui = "/ui/window.ui")]
 class MainWindow : Adw.ApplicationWindow
 
@@ -46,8 +47,6 @@ class MainWindow : Adw.ApplicationWindow
         gtksink.get("paintable", out paintable)
         video_image.paintable = paintable
 
-        playbin.set("uri", "file:///mnt/Data/gitapps/skipper/build/src/test.mp4")
-
         gl_context: Gdk.GLContext
         paintable.get("gl-context", out gl_context)
         if gl_context is not null
@@ -57,13 +56,29 @@ class MainWindow : Adw.ApplicationWindow
         else
             playbin.set("video-sink", gtksink)
 
-        var result = playbin.set_state(Gst.State.PLAYING)
+    final
+        playbin.set_state(Gst.State.NULL)
+
+    def open_file(file: File)
+        result: int
+
+        result = playbin.set_state(Gst.State.NULL)
+        if result is Gst.StateChangeReturn.FAILURE
+            printerr("Cannot reset playback!")
+            return
+
+        playbin.set("uri", file.get_uri())
+
+        result = playbin.set_state(Gst.State.PLAYING)
         if result is Gst.StateChangeReturn.FAILURE
             printerr("Cannot play!")
             return
 
-    final
-        playbin.set_state(Gst.State.NULL)
+        try
+            var info = file.query_info("standard::display-name", FileQueryInfoFlags.NONE)
+            title = info.get_display_name()
+        except err: Error
+            printerr(err.message)
 
     def about_cb (action: SimpleAction, type: Variant?)
         show_about_window(self)
