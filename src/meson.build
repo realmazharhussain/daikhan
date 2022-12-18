@@ -18,10 +18,11 @@ sources = files(
   'main.gs',
   'app.gs',
   'window.gs',
+  'volume.gs',
   'about.gs',
 ) + resources
 
 executable(meson.project_name(), sources,
-           dependencies: [adw_dep, gst_dep],
+           dependencies: [adw_dep, gst_dep, math_dep],
            vala_args: ['--gresourcesdir', meson.current_build_dir()],
            install: true)

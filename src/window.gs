@@ -15,6 +15,7 @@ class MainWindow : Adw.ApplicationWindow
     volume_adj:  unowned Gtk.Adjustment
 
     playbin: Gst.Element
+    volume: AudioVolume
 
     construct (app: Gtk.Application)
         application = app
@@ -31,7 +32,10 @@ class MainWindow : Adw.ApplicationWindow
             print "Could not create playbin!"
             return
 
-        playbin.bind_property("volume", volume_adj, "value",
+        volume = new AudioVolume
+        volume.bind_property("logarithmic", volume_adj, "value",
+                             BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL)
+        playbin.bind_property("volume", volume, "linear",
                               BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL)
 
         var bus = playbin.get_bus()
