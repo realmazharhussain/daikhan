@@ -21,7 +21,7 @@ class MediaPlayer: Adw.Application
 
     def override startup()
         super.startup()
-        typeof(HeaderBar).ensure()
+        ensure_types()
         add_actions()
 
     def private add_actions()
@@ -29,3 +29,7 @@ class MediaPlayer: Adw.Application
         quit_action.activate.connect(quit)
         add_action(quit_action)
         set_accels_for_action("app.quit", {"<Ctrl>q"})
+
+    // Ensure that types are initialized in correct order
+    def private ensure_types()
+        typeof(HeaderBar).ensure()
