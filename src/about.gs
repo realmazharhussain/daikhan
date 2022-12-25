@@ -10,6 +10,7 @@ def show_about_window(parent: Gtk.Window)
     Adw.show_about_window(parent,
         "issue_url", "https://gitlab.com/envision/media-player/-/issues/new",
         "website", "https://gitlab.com/envision/media-player",
+        "application_icon", "io.gitlab.Envision.MediaPlayer",
         "application_name", "Envision Media Player",
         "copyright", "Copyright 2022 Mazhar Hussain",
         "license_type", Gtk.License.AGPL_3_0,
