@@ -9,7 +9,7 @@ dependency('gstgtk4')
 cc = meson.get_compiler('c')
 math_dep = cc.find_library('m', required: false)
 
-subdir('data/icons')
+subdir('data')
 subdir('src')
 
 gnome.post_install(
