@@ -1,3 +1,4 @@
 /io.gitlab.*.json
 /subprojects/*/
-.vscode
+.flatpak-builder/
+.vscode/
