@@ -22,7 +22,9 @@ class MediaPlayer: Adw.Application
     def override startup()
         super.startup()
         typeof(HeaderBar).ensure()
+        add_actions()
 
+    def private add_actions()
         var quit_action = new SimpleAction("quit", null)
         quit_action.activate.connect(quit)
         add_action(quit_action)
