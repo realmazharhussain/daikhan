@@ -3,7 +3,7 @@
 class MediaPlayer: Adw.Application
 
     init
-        application_id = "com.gitlab.Envision.MediaPlayer"
+        application_id = "io.gitlab.Envision.MediaPlayer"
         flags |= ApplicationFlags.HANDLES_OPEN
 
     def override activate()
