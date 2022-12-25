@@ -1,0 +1,4 @@
+option('profile',
+       type: 'combo',
+       choices: [ 'stable', 'beta', 'devel' ],
+       value: 'devel')
