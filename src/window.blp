@@ -21,8 +21,17 @@ template MainWindow: Adw.ApplicationWindow {
 
       .PlayButton play_btn {}
 
-      Scale scale {
+      Scale progress_scale {
         hexpand: true;
+        sensitive: false;
+
+        adjustment: Adjustment progress_adj {
+          lower: 0;
+          upper: 1;
+          value: 0;
+        };
+
+        change-value => progress_scale_clicked_cb();
       }
 
       VolumeButton {
