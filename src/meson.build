@@ -16,10 +16,11 @@ resources = gnome.compile_resources('envision-ui', gresource_xml,
 
 sources = files(
   'main.gs',
+  'about.gs',
   'app.gs',
   'window.gs',
   'volume.gs',
-  'about.gs',
+  'media-controls.gs',
 ) + resources
 
 executable(meson.project_name(), sources,

@@ -33,3 +33,4 @@ class MediaPlayer: Adw.Application
     // Ensure that types are initialized in correct order
     def private ensure_types()
         typeof(HeaderBar).ensure()
+        typeof(PlayButton).ensure()

@@ -13,6 +13,8 @@ class MainWindow : Adw.ApplicationWindow
     video_image: unowned Gtk.Image
     [GtkChild]
     volume_adj:  unowned Gtk.Adjustment
+    [GtkChild]
+    play_btn:    unowned PlayButton
 
     playbin: Gst.Element
     volume: AudioVolume
@@ -32,6 +34,8 @@ class MainWindow : Adw.ApplicationWindow
             print "Could not create playbin!"
             return
 
+        play_btn.pipeline = (Gst.Pipeline)playbin
+
         volume = new AudioVolume
         volume.bind_property("logarithmic", volume_adj, "value",
                              BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL)
@@ -40,6 +44,7 @@ class MainWindow : Adw.ApplicationWindow
 
         var bus = playbin.get_bus()
         bus.add_signal_watch()
+        bus.message["eos"].connect(gst_eos_cb)
         bus.message["error"].connect(gst_error_cb)
 
         var gtksink = Gst.ElementFactory.make("gtk4paintablesink", "videosink")
@@ -87,7 +92,11 @@ class MainWindow : Adw.ApplicationWindow
     def about_cb (action: SimpleAction, type: Variant?)
         show_about_window(self)
 
-    def static gst_error_cb (bus: Gst.Bus, msg: Gst.Message)
+    def gst_eos_cb (bus: Gst.Bus, msg: Gst.Message)
+        playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH|Gst.SeekFlags.KEY_UNIT, 0)
+        playbin.set_state(Gst.State.PAUSED)
+
+    def gst_error_cb (bus: Gst.Bus, msg: Gst.Message)
         err: Error
         debug_info: string
 
