@@ -10,7 +10,7 @@ class HeaderBar: Adw.Bin
 class MainWindow : Adw.ApplicationWindow
 
     [GtkChild]
-    video_image:    unowned Gtk.Image
+    video:          unowned Gtk.Picture
     [GtkChild]
     volume_adj:     unowned Gtk.Adjustment
     [GtkChild]
@@ -62,7 +62,7 @@ class MainWindow : Adw.ApplicationWindow
 
         paintable: Gdk.Paintable
         gtksink.get("paintable", out paintable)
-        video_image.paintable = paintable
+        video.paintable = paintable
 
         gl_context: Gdk.GLContext
         paintable.get("gl-context", out gl_context)
