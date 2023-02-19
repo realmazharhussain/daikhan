@@ -44,7 +44,7 @@ class MainWindow : Adw.ApplicationWindow
 
         play_btn.pipeline = (Gst.Pipeline)playbin
 
-        volume = new AudioVolume
+        volume = new AudioVolume()
         volume.bind_property("logarithmic", volume_adj, "value",
                              BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL)
         playbin.bind_property("volume", volume, "linear",
