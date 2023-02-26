@@ -1,4 +1,4 @@
-desktop_file = 'io.gitlab.Envision.MediaPlayer.desktop'
+desktop_file = files('io.gitlab.Envision.MediaPlayer.desktop')
 install_data(desktop_file,
   install_dir: get_option('datadir') / 'applications',
 )
