@@ -6,6 +6,13 @@ class HeaderBar: Adw.Bin
         pass
 
 
+[Flags]
+enum Gst.PlayFlags
+    VIDEO
+    AUDIO
+    SUBTITLES
+
+
 [GtkTemplate (ui = "/ui/window.ui")]
 class MainWindow : Adw.ApplicationWindow
 
@@ -47,6 +54,12 @@ class MainWindow : Adw.ApplicationWindow
         if playbin is null
             print "Could not create playbin!"
             return
+
+        // Disable Subtitles
+        play_flags: Gst.PlayFlags
+        playbin.get("flags", out play_flags)
+        play_flags &= ~Gst.PlayFlags.SUBTITLES
+        playbin.set("flags", play_flags)
 
         play_btn.pipeline = (Gst.Pipeline)playbin
 
