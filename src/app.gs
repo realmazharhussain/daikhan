@@ -15,10 +15,8 @@ class MediaPlayer: Adw.Application
 
     def override open(files: array of File, hint: string)
         var file = files[files.length-1]
+        activate()
         var win = get_active_window()
-        if win is null
-            activate()
-        win = get_active_window()
         if win isa MainWindow
           win.open_file(file)
 
