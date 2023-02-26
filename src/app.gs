@@ -7,7 +7,10 @@ class MediaPlayer: Adw.Application
         flags |= ApplicationFlags.HANDLES_OPEN
 
     def override activate()
-        var win = new MainWindow(self)
+        // Single instance (window)
+        var win = self.get_active_window()
+        if win is null
+          win = new MainWindow(self)
         win.present()
 
     def override open(files: array of File, hint: string)
