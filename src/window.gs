@@ -38,10 +38,6 @@ class MainWindow : Adw.ApplicationWindow
         application = app
 
     init
-        title = "Envision Media Player"
-
-        notify["fullscreened"].connect(notify_fullscreened_cb)
-
         var fullscreen_act = new SimpleAction("toggle_fullscreen", null)
         fullscreen_act.activate.connect(toggle_fullscreen_cb)
         add_action(fullscreen_act)
@@ -153,6 +149,7 @@ class MainWindow : Adw.ApplicationWindow
     def toggle_fullscreen_cb (action: SimpleAction, type: Variant?)
         fullscreened = not(fullscreened)
 
+    [GtkCallback]
     def notify_fullscreened_cb ()
         var cursor_name = fullscreened ? "none": "default"
         set_cursor_from_name(cursor_name)

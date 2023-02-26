@@ -2,8 +2,11 @@ using Gtk 4.0;
 using Adw 1;
 
 template MainWindow: Adw.ApplicationWindow {
+  title: "Envision Media Player";
   default-height: 430;
   default-width: 600;
+
+  notify::fullscreened => notify_fullscreened_cb();
 
   Box {
     orientation: vertical;
