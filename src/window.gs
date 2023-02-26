@@ -122,6 +122,8 @@ class MainWindow : Adw.ApplicationWindow
         except err: Error
             printerr(err.message)
 
+        fullscreened = true
+
     def progress_update_cb (): bool
         if duration is -1
             if not playbin.query_duration(Gst.Format.TIME, out duration)
@@ -161,6 +163,7 @@ class MainWindow : Adw.ApplicationWindow
     def gst_eos_cb (bus: Gst.Bus, msg: Gst.Message)
         playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH|Gst.SeekFlags.KEY_UNIT, 0)
         playbin.set_state(Gst.State.PAUSED)
+        fullscreened = false
         //progress_scale.sensitive = false
         //if timeout_source_id is not 0
         //    Source.remove(timeout_source_id)
