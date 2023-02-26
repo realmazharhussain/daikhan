@@ -23,14 +23,18 @@ class MediaPlayer: Adw.Application
         super.startup()
         ensure_types()
         add_actions()
-
-    def private add_actions()
-        var quit_action = new SimpleAction("quit", null)
-        quit_action.activate.connect(quit)
-        add_action(quit_action)
-        set_accels_for_action("app.quit", {"<Ctrl>q"})
+        assign_keyboard_shortcuts()
 
     // Ensure that types are initialized in correct order
     def private ensure_types()
         typeof(HeaderBar).ensure()
         typeof(PlayButton).ensure()
+
+    def private add_actions()
+        var quit_action = new SimpleAction("quit", null)
+        quit_action.activate.connect(quit)
+        add_action(quit_action)
+
+    def private assign_keyboard_shortcuts()
+        set_accels_for_action("win.toggle_fullscreen", {"f"})
+        set_accels_for_action("app.quit", {"<Ctrl>q"})

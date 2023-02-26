@@ -33,6 +33,10 @@ class MainWindow : Adw.ApplicationWindow
     init
         title = "Envision Media Player"
 
+        var fullscreen_act = new SimpleAction("toggle_fullscreen", null)
+        fullscreen_act.activate.connect(toggle_fullscreen_cb)
+        add_action(fullscreen_act)
+
         var about_act = new SimpleAction("about", null)
         about_act.activate.connect(about_cb)
         add_action(about_act)
@@ -128,6 +132,9 @@ class MainWindow : Adw.ApplicationWindow
         playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH|Gst.SeekFlags.KEY_UNIT, (int64)value)
 
         return true
+
+    def toggle_fullscreen_cb (action: SimpleAction, type: Variant?)
+        fullscreened = not(fullscreened)
 
     def about_cb (action: SimpleAction, type: Variant?)
         show_about_window(self)
