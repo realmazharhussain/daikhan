@@ -15,7 +15,7 @@ resources = gnome.compile_resources('envision-ui', gresource_xml,
 )
 
 sources = files(
-  'main.gs',
+  'main.vala',
   'about.gs',
   'app.gs',
   'window.gs',
