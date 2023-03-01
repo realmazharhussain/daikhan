@@ -21,7 +21,7 @@ sources = files(
   'window.gs',
   'volume.gs',
   'playback.gs',
-  'media-controls.gs',
+  'media-controls.vala',
 ) + resources
 
 executable(meson.project_name(), sources,
