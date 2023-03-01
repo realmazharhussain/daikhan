@@ -6,13 +6,6 @@ class HeaderBar: Adw.Bin
         pass
 
 
-[Flags]
-enum Gst.PlayFlags
-    VIDEO
-    AUDIO
-    SUBTITLES
-
-
 [GtkTemplate (ui = "/ui/window.ui")]
 class MainWindow : Adw.ApplicationWindow
 
@@ -27,8 +20,8 @@ class MainWindow : Adw.ApplicationWindow
     [GtkChild]
     play_btn:       unowned PlayButton
 
-    playbin: Gst.Element
-    volume: AudioVolume
+    playback: Playback = new Playback()
+    volume: AudioVolume = new AudioVolume()
 
     timeout_source_id: uint = 0
     duration: int64 = -1
@@ -46,29 +39,12 @@ class MainWindow : Adw.ApplicationWindow
         about_act.activate.connect(about_cb)
         add_action(about_act)
 
-        playbin = Gst.ElementFactory.make("playbin", "playbin")
-        if playbin is null
-            print "Could not create playbin!"
-            return
+        play_btn.playback = playback
 
-        // Disable Subtitles
-        play_flags: Gst.PlayFlags
-        playbin.get("flags", out play_flags)
-        play_flags &= ~Gst.PlayFlags.SUBTITLES
-        playbin.set("flags", play_flags)
-
-        play_btn.pipeline = (Gst.Pipeline)playbin
-
-        volume = new AudioVolume()
         volume.bind_property("logarithmic", volume_adj, "value",
                              BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL)
-        playbin.bind_property("volume", volume, "linear",
-                              BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL)
-
-        var bus = playbin.get_bus()
-        bus.add_signal_watch()
-        bus.message["eos"].connect(gst_eos_cb)
-        bus.message["error"].connect(gst_error_cb)
+        playback.pipeline.bind_property("volume", volume, "linear",
+                             BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL)
 
         var gtksink = Gst.ElementFactory.make("gtk4paintablesink", "videosink")
         if gtksink is null
@@ -84,30 +60,16 @@ class MainWindow : Adw.ApplicationWindow
         if gl_context is not null
             var glsink = Gst.ElementFactory.make("glsinkbin", "glsinkbin")
             glsink.set("sink", gtksink)
-            playbin.set("video-sink", glsink)
+            playback.pipeline.set("video-sink", glsink)
         else
-            playbin.set("video-sink", gtksink)
-
-    final
-        playbin.set_state(Gst.State.NULL)
+            playback.pipeline.set("video-sink", gtksink)
 
     def open_file(file: File)
         if timeout_source_id is not 0
             Source.remove(timeout_source_id)
             timeout_source_id = 0
-
-        result: int
-
-        result = playbin.set_state(Gst.State.NULL)
-        if result is Gst.StateChangeReturn.FAILURE
-            printerr("Cannot reset playback!")
-            return
-
-        playbin.set("uri", file.get_uri())
-
-        result = playbin.set_state(Gst.State.PLAYING)
-        if result is Gst.StateChangeReturn.FAILURE
-            printerr("Cannot play!")
+        
+        if not playback.open_file(file)
             return
 
         timeout_source_id = Timeout.add(100, progress_update_cb)
@@ -118,17 +80,15 @@ class MainWindow : Adw.ApplicationWindow
         except err: Error
             printerr(err.message)
 
-        fullscreened = true
-
     def progress_update_cb (): bool
         if duration is -1
-            if not playbin.query_duration(Gst.Format.TIME, out duration)
+            if not playback.pipeline.query_duration(Gst.Format.TIME, out duration)
                 return true
             progress_adj.lower = 0
             progress_adj.upper = duration
 
         position: int64 = -1
-        if not playbin.query_position(Gst.Format.TIME, out position)
+        if not playback.pipeline.query_position(Gst.Format.TIME, out position)
             return true
 
         progress_adj.value = position
@@ -142,7 +102,7 @@ class MainWindow : Adw.ApplicationWindow
             return true
         last_progress_change = value
 
-        playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH|Gst.SeekFlags.KEY_UNIT, (int64)value)
+        playback.pipeline.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH|Gst.SeekFlags.KEY_UNIT, (int64)value)
 
         return true
 
@@ -156,21 +116,3 @@ class MainWindow : Adw.ApplicationWindow
 
     def about_cb (action: SimpleAction, type: Variant?)
         show_about_window(self)
-
-    def gst_eos_cb (bus: Gst.Bus, msg: Gst.Message)
-        playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH|Gst.SeekFlags.KEY_UNIT, 0)
-        playbin.set_state(Gst.State.PAUSED)
-        fullscreened = false
-        //progress_scale.sensitive = false
-        //if timeout_source_id is not 0
-        //    Source.remove(timeout_source_id)
-        //    timeout_source_id = 0
-
-    def gst_error_cb (bus: Gst.Bus, msg: Gst.Message)
-        err: Error
-        debug_info: string
-
-        msg.parse_error(out err, out debug_info)
-
-        printerr(@"Error message received from $(msg.src.name): $(err.message)")
-        printerr(@"Debugging info: $(debug_info)")

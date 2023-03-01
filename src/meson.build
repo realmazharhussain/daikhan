@@ -20,6 +20,7 @@ sources = files(
   'app.gs',
   'window.gs',
   'volume.gs',
+  'playback.gs',
   'media-controls.gs',
 ) + resources
 
