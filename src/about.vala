@@ -1,11 +1,10 @@
-[indent=4]
+namespace Adw {
+    extern void show_about_window(Gtk.Window parent,
+                                  string first_property_name, ...);
+}
 
-namespace Adw
-    def extern show_about_window(parent: Gtk.Window,
-                                 first_property_name: string, ...)
-
-def show_about_window(parent: Gtk.Window)
-    developers: array of string = {"Mazhar Hussain"}
+void show_about_window(Gtk.Window parent) {
+    string[] developers = {"Mazhar Hussain"};
 
     Adw.show_about_window(parent,
         "issue_url", "https://gitlab.com/envision/media-player/-/issues/new",
@@ -19,4 +18,5 @@ def show_about_window(parent: Gtk.Window)
         "documenters", developers,
         "developers", developers,
         "designers", developers
-    )
+    );
+}
