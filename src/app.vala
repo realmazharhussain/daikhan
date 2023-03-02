@@ -4,16 +4,21 @@ class MediaPlayer : Adw.Application {
         flags |= ApplicationFlags.HANDLES_OPEN;
     }
 
+    MainWindow get_main_window() {
+        var window = get_active_window() as MainWindow;
+        window = window ?? new MainWindow(this);
+        return window;
+    }
+
     public override void activate() {
-        var win = get_active_window() ?? new MainWindow(this);
-        win.present();
+        get_main_window().present();
     }
 
     public override void open(File[] files, string hint) {
-        activate();
         var file = files[files.length-1];
-        var win = get_active_window() as MainWindow;
+        var win = get_main_window();
         win.open_file(file);
+        win.present();
     }
 
     public override void startup() {
