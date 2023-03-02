@@ -18,7 +18,7 @@ sources = files(
   'main.vala',
   'about.vala',
   'app.vala',
-  'window.gs',
+  'window.vala',
   'volume.vala',
   'playback.gs',
   'media-controls.vala',
