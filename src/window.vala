@@ -17,14 +17,18 @@ class MainWindow : Adw.ApplicationWindow {
     int64 duration = -1;
     double last_progress_change = 0;
 
-    public MainWindow (Gtk.Application app) {
-        application = app;
+    static construct {
+        typeof(HeaderBar).ensure();
+        typeof(PlayButton).ensure();
     }
 
-    construct {
+    public MainWindow (Gtk.Application app) {
+        application = app;
+
         var fullscreen_act = new SimpleAction("toggle_fullscreen", null);
         fullscreen_act.activate.connect(toggle_fullscreen_cb);
         add_action(fullscreen_act);
+        app.set_accels_for_action("win.toggle_fullscreen", {"f"});
 
         var about_act = new SimpleAction("about", null);
         about_act.activate.connect(about_cb);
