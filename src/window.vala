@@ -10,9 +10,7 @@ class MainWindow : Adw.ApplicationWindow {
     [GtkChild] unowned Gtk.Scale      progress_scale;
     [GtkChild] unowned PlayButton     play_btn;
 
-    Playback    playback = new Playback();
-    AudioVolume volume   = new AudioVolume();
-
+    Playback playback = new Playback();
     uint timeout_source_id = 0;
     int64 duration = -1;
     double last_progress_change = 0;
@@ -36,11 +34,6 @@ class MainWindow : Adw.ApplicationWindow {
 
         play_btn.playback = playback;
 
-        volume.bind_property("logarithmic", volume_adj, "value",
-                             BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL);
-        playback.pipeline.bind_property("volume", volume, "linear",
-                             BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL);
-
         var gtksink = Gst.ElementFactory.make("gtk4paintablesink", "videosink");
         if (gtksink == null) {
             printerr("Could not create Video Sink!");
@@ -63,6 +56,8 @@ class MainWindow : Adw.ApplicationWindow {
         }
 
         playback.notify["playing"].connect(notify_playing_cb);
+        playback.bind_property("volume", volume_adj, "value",
+                               BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL);
     }
 
     public void open_file(File file) {

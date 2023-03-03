@@ -6,9 +6,24 @@ enum Gst.PlayFlags {
 }
 
 
+namespace AudioVolume {
+    bool linear_to_logarithmic (Binding binding, Value linear, ref Value logarithmic) {
+        logarithmic = Math.cbrt((double)linear);
+        return true;
+    }
+
+    bool logarithmic_to_linear (Binding binding, Value logarithmic, ref Value linear) {
+        linear = Math.pow((double)logarithmic, 3);
+        return true;
+    }
+}
+
+
 public class Playback : Object {
     Gst.State _pipeline_state = Gst.State.NULL;
     ulong _pipeline_state_handler_id = 0;
+
+    public double volume { get; set; default=1; }
 
     private Gst.Pipeline? _pipeline;
     public Gst.Pipeline? pipeline {
@@ -53,6 +68,11 @@ public class Playback : Object {
         pipeline.get("flags", out play_flags);
         play_flags &= ~Gst.PlayFlags.SUBTITLES;
         pipeline.set("flags", play_flags);
+
+        pipeline.bind_property("volume", this, "volume",
+                               BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL,
+                               AudioVolume.linear_to_logarithmic,
+                               AudioVolume.logarithmic_to_linear);
     }
 
     ~Playback() {
