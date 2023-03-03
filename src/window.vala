@@ -57,6 +57,8 @@ class MainWindow : Adw.ApplicationWindow {
         else {
             playback.pipeline.set("video-sink", gtksink);
         }
+
+        playback.notify["playing"].connect(notify_playing_cb);
     }
 
     public void open_file(File file) {
@@ -74,6 +76,17 @@ class MainWindow : Adw.ApplicationWindow {
             title = info.get_display_name();
         } catch (Error err) {
             printerr(err.message);
+        }
+    }
+
+    uint inhibit_id = 0;
+    void notify_playing_cb() {
+        if (playback.playing) {
+            inhibit_id = application.inhibit(this, Gtk.ApplicationInhibitFlags.IDLE,
+                                             "Media is playing");
+        } else {
+            application.uninhibit(inhibit_id);
+
         }
     }
 
