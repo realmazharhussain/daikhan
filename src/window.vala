@@ -56,6 +56,7 @@ class MainWindow : Adw.ApplicationWindow {
     }
 
     public void open_file(File file) {
+        duration = -1;
         if (timeout_source_id != 0) {
             Source.remove(timeout_source_id);
             timeout_source_id = 0;
