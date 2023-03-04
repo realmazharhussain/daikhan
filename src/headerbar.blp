@@ -5,6 +5,8 @@ template HeaderBar: Adw.Bin {
   accessible-role: group;
 
   Gtk.HeaderBar {
+    styles ["flat"]
+
     [start] MenuButton {
       icon-name: 'open-menu';
       menu-model: app_menu;
