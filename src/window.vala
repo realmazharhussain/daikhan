@@ -4,7 +4,7 @@ class HeaderBar : Adw.Bin {}
 
 [GtkTemplate (ui = "/ui/window.ui")]
 class MainWindow : Adw.ApplicationWindow {
-    [GtkChild] unowned Gtk.Picture    video;
+    [GtkChild] unowned Video          video;
     [GtkChild] unowned Gtk.Adjustment volume_adj;
     [GtkChild] unowned Gtk.Adjustment progress_adj;
     [GtkChild] unowned Gtk.Scale      progress_scale;
@@ -17,33 +17,14 @@ class MainWindow : Adw.ApplicationWindow {
 
     static construct {
         typeof(HeaderBar).ensure();
+        typeof(Video).ensure();
         typeof(PlayButton).ensure();
     }
 
     public MainWindow (Gtk.Application app) {
         application = app;
 
-        var gtksink = Gst.ElementFactory.make("gtk4paintablesink", "videosink");
-        if (gtksink == null) {
-            printerr("Could not create Video Sink!");
-            return;
-        }
-
-        Gdk.Paintable paintable;
-        gtksink.get("paintable", out paintable);
-        video.paintable = paintable;
-
-        Gdk.GLContext gl_context;
-        paintable.get("gl-context", out gl_context);
-        if (gl_context != null) {
-            var glsink = Gst.ElementFactory.make("glsinkbin", "glsinkbin");
-            glsink.set("sink", gtksink);
-            playback.pipeline.set("video-sink", glsink);
-        }
-        else {
-            playback.pipeline.set("video-sink", gtksink);
-        }
-
+        video.playback = playback;
         play_btn.playback = playback;
         playback.notify["playing"].connect(notify_playing_cb);
         playback.bind_property("volume", volume_adj, "value",

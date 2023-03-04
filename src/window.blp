@@ -13,11 +13,7 @@ template MainWindow: Adw.ApplicationWindow {
 
     .HeaderBar { visible: bind MainWindow.fullscreened inverted; }
 
-    Picture video {
-      css-name: "video";
-      hexpand: true;
-      vexpand: true;
-    }
+    .Video video {}
 
     Box {
       orientation: horizontal;
