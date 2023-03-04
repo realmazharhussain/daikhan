@@ -6,7 +6,12 @@ public class PlayButton : Gtk.Button {
     Playback? _playback = null;
     public Playback? playback {
         get { return _playback; }
-        set { _playback = value;
+        set {
+            if (_playback == value) {
+                return;
+            }
+
+            _playback = value;
             _playback.bind_property("playing", this, "icon-name",
                                     BindingFlags.SYNC_CREATE,
                                     playing_to_icon_name);

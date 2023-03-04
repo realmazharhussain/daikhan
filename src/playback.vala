@@ -29,6 +29,10 @@ public class Playback : Object {
     public Gst.Pipeline? pipeline {
         get { return _pipeline; }
         set {
+            if (_pipeline == value) {
+                return;
+            }
+
             disconnect_pipeline();
             _pipeline = value;
             connect_pipeline();
@@ -39,6 +43,10 @@ public class Playback : Object {
     public bool playing {
         get { return _playing; }
         set {
+            if (_playing == value) {
+                return;
+            }
+
             _playing = value;
 
             if (pipeline != null) {
