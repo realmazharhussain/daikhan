@@ -21,7 +21,7 @@ sources = files(
   'video.vala',
   'window.vala',
   'playback.vala',
-  'media-controls.vala',
+  'media-controls/play-button.vala',
 ) + resources
 
 executable(meson.project_name(), sources,
