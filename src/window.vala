@@ -59,6 +59,11 @@ class MainWindow : Adw.ApplicationWindow {
         add_action(volume_down_act);
         app.set_accels_for_action("win.volume_down", {"j"});
 
+        var play_pause_act = new SimpleAction("play_pause", null);
+        play_pause_act.activate.connect(play_pause_cb);
+        add_action(play_pause_act);
+        app.set_accels_for_action("win.play_pause", {"space"});
+
         var fullscreen_act = new SimpleAction("toggle_fullscreen", null);
         fullscreen_act.activate.connect(toggle_fullscreen_cb);
         add_action(fullscreen_act);
@@ -143,6 +148,10 @@ class MainWindow : Adw.ApplicationWindow {
 
     void volume_down_cb () {
         playback.volume -= 0.05;
+    }
+
+    void play_pause_cb () {
+        playback.playing = !playback.playing;
     }
 
     void toggle_fullscreen_cb (SimpleAction action, Variant? type) {
