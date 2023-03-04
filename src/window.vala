@@ -62,7 +62,9 @@ class MainWindow : Adw.ApplicationWindow {
             timeout_source_id = 0;
         }
         
-        if (!(playback.open_file(file))) return;
+        if (!playback.open_file(file)) {
+            return;
+        }
 
         timeout_source_id = Timeout.add(100, progress_update_cb);
 
