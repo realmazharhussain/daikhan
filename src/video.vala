@@ -26,8 +26,6 @@ class Video : Adw.Bin {
         hexpand = true;
         vexpand = true;
 
-        add_css_class("video");
-
         var gtksink = Gst.ElementFactory.make("gtk4paintablesink", "null");
         if (gtksink == null) {
             printerr("Could not create Video Sink!");
