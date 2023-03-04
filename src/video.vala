@@ -17,11 +17,8 @@ class Video : Adw.Bin {
         }
     }
 
-    public Video () {
-        Object(css_name: "video");
-    }
-
     construct {
+        set("css_name", "video");
         child = new Gtk.Picture();
         hexpand = true;
         vexpand = true;
