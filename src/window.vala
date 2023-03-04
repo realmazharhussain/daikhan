@@ -99,7 +99,6 @@ class MainWindow : Adw.ApplicationWindow {
                                              "Media is playing");
         } else {
             application.uninhibit(inhibit_id);
-
         }
     }
 
