@@ -137,7 +137,7 @@ public class Playback : Object {
         _pipeline_state_handler_id = bus.message["state-changed"].connect(on_pipeline_state_changed);
     }
 
-    void gst_eos_cb (Gst.Bus bus, Gst.Message msg) {
+    void gst_eos_cb () {
         if (!pipeline.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH|Gst.SeekFlags.KEY_UNIT, 0)) {
             critical("Failed to seek!");
         }

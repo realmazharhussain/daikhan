@@ -153,7 +153,7 @@ class MainWindow : Adw.ApplicationWindow {
         playback.playing = !playback.playing;
     }
 
-    void toggle_fullscreen_cb (SimpleAction action, Variant? type) {
+    void toggle_fullscreen_cb () {
         fullscreened = !fullscreened;
     }
 
@@ -163,7 +163,7 @@ class MainWindow : Adw.ApplicationWindow {
         set_cursor_from_name(cursor_name);
     }
 
-    void about_cb (SimpleAction action, Variant? type) {
+    void about_cb () {
         show_about_window(this);
     }
 }
