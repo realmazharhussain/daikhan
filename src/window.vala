@@ -9,12 +9,10 @@ class PlayerWindow : Adw.ApplicationWindow {
     [GtkChild] unowned HeaderBar      headerbar;
     [GtkChild] unowned Video          video;
     [GtkChild] unowned Gtk.Adjustment volume_adj;
-    [GtkChild] unowned Gtk.Adjustment progress_adj;
-    [GtkChild] unowned Gtk.Scale      progress_scale;
+    [GtkChild] unowned ProgressBar    progress_bar;
     [GtkChild] unowned PlayButton     play_btn;
 
     Playback playback;
-    double last_progress_change = 0;
 
     static construct {
         typeof(HeaderBar).ensure();
@@ -30,16 +28,10 @@ class PlayerWindow : Adw.ApplicationWindow {
 
         video.playback = playback;
         play_btn.playback = playback;
+        progress_bar.playback = playback;
 
-        playback.bind_property("duration", progress_adj, "upper", BindingFlags.SYNC_CREATE);
-        playback.bind_property("progress", progress_adj, "value", BindingFlags.SYNC_CREATE);
         playback.bind_property("volume", volume_adj, "value",
                                BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL);
-        playback.bind_property("state", progress_scale, "sensitive", BindingFlags.SYNC_CREATE,
-                               (binding, state, ref sensitive) => {
-                                    sensitive = (state != Gst.State.NULL);
-                                    return true;
-                               });
         playback.bind_property("title", headerbar, "title", BindingFlags.SYNC_CREATE,
                                (binding, playback_title, ref headerbar_title) => {
                                     if (playback_title != "") {
@@ -87,25 +79,6 @@ class PlayerWindow : Adw.ApplicationWindow {
         } else {
             application.uninhibit(inhibit_id);
         }
-    }
-
-    [GtkCallback]
-    bool progress_scale_clicked_cb(Gtk.Range      range,
-                                   Gtk.ScrollType scrl_type,
-                                   double         value)
-    {
-        if (last_progress_change == value) {
-            return true;
-        }
-        last_progress_change = value;
-
-        playback.pipeline.seek_simple(
-            Gst.Format.TIME,
-            Gst.SeekFlags.FLUSH|Gst.SeekFlags.KEY_UNIT,
-            (int64)value
-        );
-
-        return true;
     }
 
     void volume_up_cb () {

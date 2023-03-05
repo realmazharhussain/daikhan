@@ -21,21 +21,10 @@ template PlayerWindow: Adw.ApplicationWindow {
       styles ["toolbar"]
 
       .PlayButton play_btn {}
-
-      Scale progress_scale {
-        hexpand: true;
-
-        adjustment: Adjustment progress_adj {
-          lower: 0;
-          upper: 1;
-          value: 0;
-        };
-
-        change-value => progress_scale_clicked_cb();
-      }
+      .ProgressBar progress_bar {}
 
       VolumeButton volume_btn {
-        sensitive: bind progress_scale.sensitive bidirectional;
+        sensitive: bind progress_bar.sensitive bidirectional;
         adjustment: Adjustment volume_adj {
           lower: 0;
           upper: 1;

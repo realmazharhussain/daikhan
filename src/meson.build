@@ -22,6 +22,7 @@ sources = files(
   'window.vala',
   'playback.vala',
   'media-controls/play-button.vala',
+  'media-controls/progress-scale.vala',
 ) + resources
 
 executable(meson.project_name(), sources,
