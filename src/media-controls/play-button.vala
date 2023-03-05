@@ -3,6 +3,8 @@ public class PlayButton : Gtk.Button {
         clicked.connect(clicked_cb);
     }
 
+    Binding? can_play_binding = null;
+    Binding? playing_binding = null;
     Playback? _playback = null;
     public Playback? playback {
         get { return _playback; }
@@ -11,15 +13,21 @@ public class PlayButton : Gtk.Button {
                 return;
             }
 
-            _playback = value;
-            _playback.bind_property("playing", this, "icon-name",
-                                    BindingFlags.SYNC_CREATE,
-                                    playing_to_icon_name);
-        }
-    }
+            if (_playback != null) {
+                can_play_binding.unbind();
+                playing_binding.unbind();
+            }
 
-    void toggle_playing() {
-        playback.playing = !(playback.playing);
+            if (value != null) {
+                can_play_binding = value.bind_property("can_play", this, "sensitive",
+                                                       BindingFlags.SYNC_CREATE);
+                playing_binding = value.bind_property("playing", this, "icon-name",
+                                                      BindingFlags.SYNC_CREATE,
+                                                      playing_to_icon_name);
+            }
+
+            _playback = value;
+        }
     }
 
     bool playing_to_icon_name (Binding binding, Value playing, ref Value icon_name) {
@@ -29,6 +37,6 @@ public class PlayButton : Gtk.Button {
     }
 
     void clicked_cb() {
-        toggle_playing();
+        playback.toggle_playing();
     }
 }

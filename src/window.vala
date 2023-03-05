@@ -1,18 +1,19 @@
 [GtkTemplate (ui = "/ui/headerbar.ui")]
-class HeaderBar : Adw.Bin {}
+class HeaderBar : Adw.Bin {
+    public string title { get; set construct; default = ""; }
+}
 
 
 [GtkTemplate (ui = "/ui/window.ui")]
 class MainWindow : Adw.ApplicationWindow {
+    [GtkChild] unowned HeaderBar      headerbar;
     [GtkChild] unowned Video          video;
     [GtkChild] unowned Gtk.Adjustment volume_adj;
     [GtkChild] unowned Gtk.Adjustment progress_adj;
     [GtkChild] unowned Gtk.Scale      progress_scale;
     [GtkChild] unowned PlayButton     play_btn;
 
-    Playback playback = new Playback();
-    uint timeout_source_id = 0;
-    int64 duration = -1;
+    Playback playback;
     double last_progress_change = 0;
 
     static construct {
@@ -24,11 +25,30 @@ class MainWindow : Adw.ApplicationWindow {
     public MainWindow (Gtk.Application app) {
         application = app;
 
+        playback = new Playback();
+        playback.notify["playing"].connect(notify_playing_cb);
+
         video.playback = playback;
         play_btn.playback = playback;
-        playback.notify["playing"].connect(notify_playing_cb);
+
+        playback.bind_property("duration", progress_adj, "upper", BindingFlags.SYNC_CREATE);
+        playback.bind_property("progress", progress_adj, "value", BindingFlags.SYNC_CREATE);
         playback.bind_property("volume", volume_adj, "value",
                                BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL);
+        playback.bind_property("state", progress_scale, "sensitive", BindingFlags.SYNC_CREATE,
+                               (binding, state, ref sensitive) => {
+                                    sensitive = (state != Gst.State.NULL);
+                                    return true;
+                               });
+        playback.bind_property("title", headerbar, "title", BindingFlags.SYNC_CREATE,
+                               (binding, playback_title, ref headerbar_title) => {
+                                    if (playback_title != "") {
+                                        headerbar_title = playback_title;
+                                    } else {
+                                        headerbar_title = this.title;
+                                    }
+                                    return true;
+                               });
 
         var volume_up_act = new SimpleAction("volume_up", null);
         volume_up_act.activate.connect(volume_up_cb);
@@ -55,25 +75,8 @@ class MainWindow : Adw.ApplicationWindow {
         add_action(about_act);
     }
 
-    public void open_file(File file) {
-        duration = -1;
-        if (timeout_source_id != 0) {
-            Source.remove(timeout_source_id);
-            timeout_source_id = 0;
-        }
-        
-        if (!playback.open_file(file)) {
-            return;
-        }
-
-        timeout_source_id = Timeout.add(100, progress_update_cb);
-
-        try {
-            var info = file.query_info("standard::display-name", FileQueryInfoFlags.NONE);
-            title = info.get_display_name();
-        } catch (Error err) {
-            printerr(err.message);
-        }
+    public bool open_file(File file) {
+        return playback.open_file(file);
     }
 
     uint inhibit_id = 0;
@@ -84,26 +87,6 @@ class MainWindow : Adw.ApplicationWindow {
         } else {
             application.uninhibit(inhibit_id);
         }
-    }
-
-    bool progress_update_cb() {
-        if (duration == -1) {
-            if (!(playback.pipeline.query_duration(Gst.Format.TIME, out duration))) {
-                return true;
-            }
-            progress_adj.lower = 0;
-            progress_adj.upper = duration;
-        }
-
-        int64 position = -1;
-        if (!(playback.pipeline.query_position(Gst.Format.TIME, out position))) {
-            return true;
-        }
-
-        progress_adj.value = position;
-        progress_scale.sensitive = true;
-
-        return true;
     }
 
     [GtkCallback]
@@ -134,7 +117,7 @@ class MainWindow : Adw.ApplicationWindow {
     }
 
     void play_pause_cb () {
-        playback.playing = !playback.playing;
+        playback.toggle_playing();
     }
 
     void toggle_fullscreen_cb () {

@@ -1,22 +1,6 @@
 class Video : Adw.Bin {
     Gst.Element? video_sink = null;
 
-    private Playback? _playback = null;
-    public Playback? playback {
-        get { return _playback; }
-        set {
-            if (_playback == value) {
-                return;
-            }
-
-            if (value != null && value.pipeline != null) {
-                value.pipeline.set("video-sink", video_sink);
-            }
-
-            _playback = value;
-        }
-    }
-
     construct {
         set("css_name", "video");
         child = new Gtk.Picture();
@@ -43,5 +27,37 @@ class Video : Adw.Bin {
         else {
             video_sink = gtksink;
         }
+    }
+
+    private Playback? _playback = null;
+    public Playback? playback {
+        get { return _playback; }
+        set {
+            if (_playback == value) {
+                return;
+            }
+
+            if (_playback != null) {
+                _playback.notify["pipeline"].disconnect(notify_pipeline_cb);
+            }
+
+            if (value != null) {
+                value.notify["pipeline"].connect(notify_pipeline_cb);
+            }
+
+            _playback = value;
+        }
+    }
+
+    Gst.Pipeline? last_pipeline = null;
+    void notify_pipeline_cb() {
+        if (last_pipeline != null) {
+            last_pipeline.set("video-sink", null);
+        }
+        if (playback.pipeline != null) {
+            playback.pipeline.set("video-sink", video_sink);
+        }
+
+        last_pipeline = playback.pipeline;
     }
 }

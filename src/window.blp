@@ -11,7 +11,7 @@ template MainWindow: Adw.ApplicationWindow {
   Box {
     orientation: vertical;
 
-    .HeaderBar { visible: bind MainWindow.fullscreened inverted; }
+    .HeaderBar headerbar { visible: bind MainWindow.fullscreened inverted; }
 
     .Video video {}
 
@@ -24,7 +24,6 @@ template MainWindow: Adw.ApplicationWindow {
 
       Scale progress_scale {
         hexpand: true;
-        sensitive: false;
 
         adjustment: Adjustment progress_adj {
           lower: 0;
@@ -35,7 +34,8 @@ template MainWindow: Adw.ApplicationWindow {
         change-value => progress_scale_clicked_cb();
       }
 
-      VolumeButton {
+      VolumeButton volume_btn {
+        sensitive: bind progress_scale.sensitive bidirectional;
         adjustment: Adjustment volume_adj {
           lower: 0;
           upper: 1;

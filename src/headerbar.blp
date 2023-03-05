@@ -7,6 +7,11 @@ template HeaderBar: Adw.Bin {
   Gtk.HeaderBar {
     styles ["flat"]
 
+    title-widget: Label {
+      label: bind HeaderBar.title;
+      styles ["title"]
+    };
+
     [start] MenuButton {
       icon-name: 'open-menu-symbolic';
       menu-model: app_menu;
