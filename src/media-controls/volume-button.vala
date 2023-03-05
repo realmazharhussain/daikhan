@@ -10,6 +10,7 @@ public class VolumeButton : Adw.Bin {
     void notify_root() {
         assert (root is PlaybackWindow);
         playback = ((PlaybackWindow)root).playback;
+        notify["root"].disconnect(notify_root);
 
         var flags = BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL;
         playback.bind_property("volume", adjustment, "value", flags);

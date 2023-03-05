@@ -36,6 +36,7 @@ class Video : Adw.Bin {
         assert (root is PlaybackWindow);
         playback = ((PlaybackWindow)root).playback;
         playback.notify["pipeline"].connect(notify_pipeline_cb);
+        notify["root"].disconnect(notify_root);
     }
 
     Gst.Pipeline? last_pipeline = null;

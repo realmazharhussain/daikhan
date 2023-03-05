@@ -14,6 +14,7 @@ public class ProgressBar : Gtk.Scale {
     void notify_root() {
         assert (root is PlaybackWindow);
         playback = ((PlaybackWindow)root).playback;
+        notify["root"].disconnect(notify_root);
 
         playback.bind_property("duration", adjustment, "upper", BindingFlags.SYNC_CREATE);
         playback.bind_property("progress", adjustment, "value", BindingFlags.SYNC_CREATE);

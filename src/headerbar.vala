@@ -12,6 +12,7 @@ public class HeaderBar : Adw.Bin {
         assert (root is PlaybackWindow);
         root_window = (PlaybackWindow)root;
         playback = root_window.playback;
+        notify["root"].disconnect(notify_root);
 
         playback.bind_property("title", this, "title", BindingFlags.SYNC_CREATE,
                                playback_title_to_title);

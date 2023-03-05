@@ -9,6 +9,7 @@ public class PlayButton : Gtk.Button {
     void notify_root() {
         assert (root is PlaybackWindow);
         playback = ((PlaybackWindow)root).playback;
+        notify["root"].disconnect(notify_root);
 
         playback.bind_property("can_play", this, "sensitive", BindingFlags.SYNC_CREATE);
         playback.bind_property("playing", this, "icon-name", BindingFlags.SYNC_CREATE,
