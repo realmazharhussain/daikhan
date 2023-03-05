@@ -6,13 +6,6 @@ class PlayerWindow : Adw.ApplicationWindow {
 
     Playback playback;
 
-    static construct {
-        typeof(HeaderBar).ensure();
-        typeof(Video).ensure();
-        typeof(VolumeButton).ensure();
-        typeof(PlayButton).ensure();
-    }
-
     public PlayerWindow (Gtk.Application app) {
         application = app;
 
