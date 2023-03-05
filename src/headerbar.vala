@@ -1,8 +1,8 @@
 [GtkTemplate (ui = "/ui/headerbar.ui")]
 public class HeaderBar : Adw.Bin {
     public string title { get; set construct; default = ""; }
-    PlaybackWindow root_window;
-    Playback playback;
+    unowned PlaybackWindow root_window;
+    unowned Playback playback;
 
     construct {
         notify["root"].connect(notify_root);

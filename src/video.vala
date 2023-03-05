@@ -1,6 +1,6 @@
 class Video : Adw.Bin {
     Gst.Element? video_sink;
-    Playback playback;
+    unowned Playback playback;
 
     construct {
         set("css_name", "video");

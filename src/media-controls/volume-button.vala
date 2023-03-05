@@ -1,7 +1,7 @@
 [GtkTemplate (ui = "/ui/media-controls/volume-button.ui")]
 public class VolumeButton : Adw.Bin {
     [GtkChild] unowned Gtk.Adjustment adjustment;
-    Playback playback;
+    unowned Playback playback;
 
     construct {
         notify["root"].connect(notify_root);

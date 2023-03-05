@@ -1,5 +1,5 @@
 public class ProgressBar : Gtk.Scale {
-    Playback playback;
+    unowned Playback playback;
 
     construct {
         adjustment.lower = 0;
