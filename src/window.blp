@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template MainWindow: Adw.ApplicationWindow {
+template PlayerWindow: Adw.ApplicationWindow {
   title: "Envision Media Player";
   default-height: 430;
   default-width: 600;
@@ -11,13 +11,13 @@ template MainWindow: Adw.ApplicationWindow {
   Box {
     orientation: vertical;
 
-    .HeaderBar headerbar { visible: bind MainWindow.fullscreened inverted; }
+    .HeaderBar headerbar { visible: bind PlayerWindow.fullscreened inverted; }
 
     .Video video {}
 
     Box {
       orientation: horizontal;
-      visible: bind MainWindow.fullscreened inverted;
+      visible: bind PlayerWindow.fullscreened inverted;
       styles ["toolbar"]
 
       .PlayButton play_btn {}

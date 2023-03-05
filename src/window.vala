@@ -5,7 +5,7 @@ class HeaderBar : Adw.Bin {
 
 
 [GtkTemplate (ui = "/ui/window.ui")]
-class MainWindow : Adw.ApplicationWindow {
+class PlayerWindow : Adw.ApplicationWindow {
     [GtkChild] unowned HeaderBar      headerbar;
     [GtkChild] unowned Video          video;
     [GtkChild] unowned Gtk.Adjustment volume_adj;
@@ -22,7 +22,7 @@ class MainWindow : Adw.ApplicationWindow {
         typeof(PlayButton).ensure();
     }
 
-    public MainWindow (Gtk.Application app) {
+    public PlayerWindow (Gtk.Application app) {
         application = app;
 
         playback = new Playback();

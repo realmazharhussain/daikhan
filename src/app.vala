@@ -4,9 +4,9 @@ class MediaPlayer : Adw.Application {
         flags |= ApplicationFlags.HANDLES_OPEN;
     }
 
-    MainWindow get_main_window() {
-        var window = get_active_window() as MainWindow;
-        window = window ?? new MainWindow(this);
+    PlayerWindow get_main_window() {
+        var window = get_active_window() as PlayerWindow;
+        window = window ?? new PlayerWindow(this);
         return window;
     }
 
