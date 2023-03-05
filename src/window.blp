@@ -11,18 +11,14 @@ template PlayerWindow: Adw.ApplicationWindow {
   Box {
     orientation: vertical;
 
-    .HeaderBar headerbar { visible: bind PlayerWindow.fullscreened inverted; }
+    .HeaderBar headerbar {
+      visible: bind PlayerWindow.fullscreened inverted;
+    }
 
     .Video video {}
 
-    Box {
-      orientation: horizontal;
+    .MediaControls media_ctrls {
       visible: bind PlayerWindow.fullscreened inverted;
-      styles ["toolbar"]
-
-      .PlayButton play_btn {}
-      .ProgressBar progress_bar {}
-      .VolumeButton volume_btn {}
     }
   }
 }

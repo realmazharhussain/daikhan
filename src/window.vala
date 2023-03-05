@@ -6,11 +6,9 @@ class HeaderBar : Adw.Bin {
 
 [GtkTemplate (ui = "/ui/window.ui")]
 class PlayerWindow : Adw.ApplicationWindow {
-    [GtkChild] unowned HeaderBar    headerbar;
-    [GtkChild] unowned Video        video;
-    [GtkChild] unowned VolumeButton volume_btn;
-    [GtkChild] unowned ProgressBar  progress_bar;
-    [GtkChild] unowned PlayButton   play_btn;
+    [GtkChild] unowned HeaderBar     headerbar;
+    [GtkChild] unowned Video         video;
+    [GtkChild] unowned MediaControls media_ctrls;
 
     Playback playback;
 
@@ -28,9 +26,7 @@ class PlayerWindow : Adw.ApplicationWindow {
         playback.notify["playing"].connect(notify_playing_cb);
 
         video.playback = playback;
-        play_btn.playback = playback;
-        volume_btn.playback = playback;
-        progress_bar.playback = playback;
+        media_ctrls.playback = playback;
 
         playback.bind_property("title", headerbar, "title", BindingFlags.SYNC_CREATE,
                                (binding, playback_title, ref headerbar_title) => {
