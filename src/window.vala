@@ -1,6 +1,45 @@
 [GtkTemplate (ui = "/ui/headerbar.ui")]
 class HeaderBar : Adw.Bin {
     public string title { get; set construct; default = ""; }
+
+    Binding? title_binding;
+
+    private Playback? _playback;
+    public Playback? playback {
+        get {
+            return _playback;
+        }
+
+        set {
+            if (_playback == value) {
+                return;
+            }
+
+            if (_playback != null) {
+                title_binding.unbind();
+            }
+
+            if (value != null) {
+                title_binding = value.bind_property("title", this, "title",
+                                                    BindingFlags.SYNC_CREATE,
+                                                    playback_title_to_title);
+            }
+
+            _playback = value;
+        }
+    }
+
+    bool playback_title_to_title(Binding binding, Value playback_title, ref Value title) {
+        if ((string)playback_title != "") {
+            title = playback_title;
+        } else {
+            var win = root as PlayerWindow;
+            if (win != null) {
+                title = win.title;
+            }
+        }
+        return true;
+    }
 }
 
 
@@ -25,18 +64,9 @@ class PlayerWindow : Adw.ApplicationWindow {
         playback = new Playback();
         playback.notify["playing"].connect(notify_playing_cb);
 
+        headerbar.playback = playback;
         video.playback = playback;
         media_ctrls.playback = playback;
-
-        playback.bind_property("title", headerbar, "title", BindingFlags.SYNC_CREATE,
-                               (binding, playback_title, ref headerbar_title) => {
-                                    if (playback_title != "") {
-                                        headerbar_title = playback_title;
-                                    } else {
-                                        headerbar_title = this.title;
-                                    }
-                                    return true;
-                               });
 
         var volume_up_act = new SimpleAction("volume_up", null);
         volume_up_act.activate.connect(volume_up_cb);
