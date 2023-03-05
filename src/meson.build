@@ -23,6 +23,7 @@ sources = files(
   'video.vala',
   'window.vala',
   'playback.vala',
+  'headerbar.vala',
   'media-controls.vala',
   'media-controls/play-button.vala',
   'media-controls/progress-scale.vala',
