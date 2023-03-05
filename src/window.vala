@@ -1,20 +1,23 @@
 [GtkTemplate (ui = "/ui/window.ui")]
-class PlayerWindow : Adw.ApplicationWindow {
-    [GtkChild] unowned HeaderBar     headerbar;
-    [GtkChild] unowned Video         video;
-    [GtkChild] unowned MediaControls media_ctrls;
+class PlayerWindow : Adw.ApplicationWindow, PlaybackWindow {
+    private Playback _playback;
+    public Playback playback {
+        get {
+            _playback = _playback ?? new Playback();
+            return _playback;
+        }
+    }
 
-    Playback playback;
+    static construct {
+        typeof(HeaderBar).ensure();
+        typeof(Video).ensure();
+        typeof(MediaControls).ensure();
+    }
 
     public PlayerWindow (Gtk.Application app) {
         application = app;
 
-        playback = new Playback();
         playback.notify["playing"].connect(notify_playing_cb);
-
-        headerbar.playback = playback;
-        video.playback = playback;
-        media_ctrls.playback = playback;
 
         var volume_up_act = new SimpleAction("volume_up", null);
         volume_up_act.activate.connect(volume_up_cb);

@@ -1,42 +1,27 @@
 [GtkTemplate (ui = "/ui/headerbar.ui")]
 public class HeaderBar : Adw.Bin {
     public string title { get; set construct; default = ""; }
+    PlaybackWindow root_window;
+    Playback playback;
 
-    Binding? title_binding;
+    construct {
+        notify["root"].connect(notify_root);
+    }
 
-    private Playback? _playback;
-    public Playback? playback {
-        get {
-            return _playback;
-        }
+    void notify_root() {
+        assert (root is PlaybackWindow);
+        root_window = (PlaybackWindow)root;
+        playback = root_window.playback;
 
-        set {
-            if (_playback == value) {
-                return;
-            }
-
-            if (_playback != null) {
-                title_binding.unbind();
-            }
-
-            if (value != null) {
-                title_binding = value.bind_property("title", this, "title",
-                                                    BindingFlags.SYNC_CREATE,
-                                                    playback_title_to_title);
-            }
-
-            _playback = value;
-        }
+        playback.bind_property("title", this, "title", BindingFlags.SYNC_CREATE,
+                               playback_title_to_title);
     }
 
     bool playback_title_to_title(Binding binding, Value playback_title, ref Value title) {
         if ((string)playback_title != "") {
             title = playback_title;
         } else {
-            var win = root as PlayerWindow;
-            if (win != null) {
-                title = win.title;
-            }
+            title = root_window.title;
         }
         return true;
     }

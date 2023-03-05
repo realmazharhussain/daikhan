@@ -1,46 +1,24 @@
 public class ProgressBar : Gtk.Scale {
+    Playback playback;
+
     construct {
         adjustment.lower = 0;
         adjustment.value = 0;
         adjustment.upper = 1;
         hexpand = true;
 
+        notify["root"].connect(notify_root);
         change_value.connect(change_value_cb);
     }
 
-    Binding? duration_binding;
-    Binding? progress_binding;
-    Binding? state_binding;
+    void notify_root() {
+        assert (root is PlaybackWindow);
+        playback = ((PlaybackWindow)root).playback;
 
-    private Playback? _playback;
-    public Playback? playback {
-        get {
-            return _playback;
-        }
-
-        set {
-            if (value == _playback) {
-                return;
-            }
-
-            if (_playback != null) {
-                duration_binding.unbind();
-                progress_binding.unbind();
-                state_binding.unbind();
-            }
-
-            if (value != null) {
-                duration_binding = value.bind_property("duration", adjustment, "upper",
-                                                       BindingFlags.SYNC_CREATE);
-                progress_binding = value.bind_property("progress", adjustment, "value",
-                                                       BindingFlags.SYNC_CREATE);
-                state_binding = value.bind_property("state", this, "sensitive",
-                                                    BindingFlags.SYNC_CREATE,
-                                                    playback_state_to_sensitive);
-            }
-
-            _playback = value;
-        }
+        playback.bind_property("duration", adjustment, "upper", BindingFlags.SYNC_CREATE);
+        playback.bind_property("progress", adjustment, "value", BindingFlags.SYNC_CREATE);
+        playback.bind_property("state", this, "sensitive", BindingFlags.SYNC_CREATE,
+                               playback_state_to_sensitive);
     }
 
     bool playback_state_to_sensitive (Binding binding, Value state, ref Value sensitive) {

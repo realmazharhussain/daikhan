@@ -19,6 +19,11 @@ namespace AudioVolume {
 }
 
 
+public interface PlaybackWindow: Gtk.Window {
+    public abstract Playback playback { get; }
+}
+
+
 public class Playback : Object {
     public File? last_opened_file { get; private set; }
     public string title { get; private set; default = ""; }

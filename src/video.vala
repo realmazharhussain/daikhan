@@ -1,5 +1,6 @@
 class Video : Adw.Bin {
-    Gst.Element? video_sink = null;
+    Gst.Element? video_sink;
+    Playback playback;
 
     construct {
         set("css_name", "video");
@@ -27,26 +28,14 @@ class Video : Adw.Bin {
         else {
             video_sink = gtksink;
         }
+
+        notify["root"].connect(notify_root);
     }
 
-    private Playback? _playback = null;
-    public Playback? playback {
-        get { return _playback; }
-        set {
-            if (_playback == value) {
-                return;
-            }
-
-            if (_playback != null) {
-                _playback.notify["pipeline"].disconnect(notify_pipeline_cb);
-            }
-
-            if (value != null) {
-                value.notify["pipeline"].connect(notify_pipeline_cb);
-            }
-
-            _playback = value;
-        }
+    void notify_root() {
+        assert (root is PlaybackWindow);
+        playback = ((PlaybackWindow)root).playback;
+        playback.notify["pipeline"].connect(notify_pipeline_cb);
     }
 
     Gst.Pipeline? last_pipeline = null;

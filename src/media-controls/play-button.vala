@@ -1,33 +1,18 @@
 public class PlayButton : Gtk.Button {
+    unowned Playback playback;
+
     construct {
         clicked.connect(clicked_cb);
+        notify["root"].connect(notify_root);
     }
 
-    Binding? can_play_binding = null;
-    Binding? playing_binding = null;
-    Playback? _playback = null;
-    public Playback? playback {
-        get { return _playback; }
-        set {
-            if (_playback == value) {
-                return;
-            }
+    void notify_root() {
+        assert (root is PlaybackWindow);
+        playback = ((PlaybackWindow)root).playback;
 
-            if (_playback != null) {
-                can_play_binding.unbind();
-                playing_binding.unbind();
-            }
-
-            if (value != null) {
-                can_play_binding = value.bind_property("can_play", this, "sensitive",
-                                                       BindingFlags.SYNC_CREATE);
-                playing_binding = value.bind_property("playing", this, "icon-name",
-                                                      BindingFlags.SYNC_CREATE,
-                                                      playing_to_icon_name);
-            }
-
-            _playback = value;
-        }
+        playback.bind_property("can_play", this, "sensitive", BindingFlags.SYNC_CREATE);
+        playback.bind_property("playing", this, "icon-name", BindingFlags.SYNC_CREATE,
+                               playing_to_icon_name);
     }
 
     bool playing_to_icon_name (Binding binding, Value playing, ref Value icon_name) {
