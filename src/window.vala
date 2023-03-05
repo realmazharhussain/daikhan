@@ -6,17 +6,18 @@ class HeaderBar : Adw.Bin {
 
 [GtkTemplate (ui = "/ui/window.ui")]
 class PlayerWindow : Adw.ApplicationWindow {
-    [GtkChild] unowned HeaderBar      headerbar;
-    [GtkChild] unowned Video          video;
-    [GtkChild] unowned Gtk.Adjustment volume_adj;
-    [GtkChild] unowned ProgressBar    progress_bar;
-    [GtkChild] unowned PlayButton     play_btn;
+    [GtkChild] unowned HeaderBar    headerbar;
+    [GtkChild] unowned Video        video;
+    [GtkChild] unowned VolumeButton volume_btn;
+    [GtkChild] unowned ProgressBar  progress_bar;
+    [GtkChild] unowned PlayButton   play_btn;
 
     Playback playback;
 
     static construct {
         typeof(HeaderBar).ensure();
         typeof(Video).ensure();
+        typeof(VolumeButton).ensure();
         typeof(PlayButton).ensure();
     }
 
@@ -28,10 +29,9 @@ class PlayerWindow : Adw.ApplicationWindow {
 
         video.playback = playback;
         play_btn.playback = playback;
+        volume_btn.playback = playback;
         progress_bar.playback = playback;
 
-        playback.bind_property("volume", volume_adj, "value",
-                               BindingFlags.SYNC_CREATE|BindingFlags.BIDIRECTIONAL);
         playback.bind_property("title", headerbar, "title", BindingFlags.SYNC_CREATE,
                                (binding, playback_title, ref headerbar_title) => {
                                     if (playback_title != "") {

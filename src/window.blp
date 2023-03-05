@@ -22,16 +22,7 @@ template PlayerWindow: Adw.ApplicationWindow {
 
       .PlayButton play_btn {}
       .ProgressBar progress_bar {}
-
-      VolumeButton volume_btn {
-        sensitive: bind progress_bar.sensitive bidirectional;
-        adjustment: Adjustment volume_adj {
-          lower: 0;
-          upper: 1;
-          step-increment: 0.01;
-          page-increment: 0.05;
-        };
-      }
+      .VolumeButton volume_btn {}
     }
   }
 }

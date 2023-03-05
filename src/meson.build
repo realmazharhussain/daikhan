@@ -2,6 +2,7 @@ gresource_xml = files('envision.gresource.xml')
 
 blp_sources = files('window.blp',
                     'headerbar.blp',
+                    'media-controls/volume-button.blp',
                     )
 
 blueprints = custom_target('blueprints',
@@ -23,6 +24,7 @@ sources = files(
   'playback.vala',
   'media-controls/play-button.vala',
   'media-controls/progress-scale.vala',
+  'media-controls/volume-button.vala',
 ) + resources
 
 executable(meson.project_name(), sources,
