@@ -24,9 +24,11 @@ class MediaPlayer : Adw.Application {
     public override void startup() {
         base.startup();
 
-        var quit_action = new SimpleAction("quit", null);
-        quit_action.activate.connect(quit);
-        add_action(quit_action);
-        set_accels_for_action("app.quit", {"<Ctrl>q"});
+        ActionEntry[] entries = {
+            {"quit", quit},
+        };
+
+        add_action_entries(entries, this);
+        set_accels_for_action("app.quit", {"<Ctrl>q", "q"});
     }
 }
