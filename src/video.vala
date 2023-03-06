@@ -3,26 +3,20 @@ class Video : Adw.Bin {
     unowned Playback playback;
 
     construct {
+        var image = new Gtk.Picture();
+
         set("css_name", "video");
-        child = new Gtk.Picture();
+        child = image;
         hexpand = true;
         vexpand = true;
 
-        var gtksink = Gst.ElementFactory.make("gtk4paintablesink", "null");
-        if (gtksink == null) {
-            printerr("Could not create Video Sink!");
-            return;
-        }
+        dynamic var gtksink = Gst.ElementFactory.make("gtk4paintablesink", "null");
+        dynamic Gdk.Paintable paintable = gtksink.paintable;
+        image.paintable = paintable;
 
-        Gdk.Paintable paintable;
-        gtksink.get("paintable", out paintable);
-        ((Gtk.Picture)child).paintable = paintable;
-
-        Gdk.GLContext gl_context;
-        paintable.get("gl-context", out gl_context);
-        if (gl_context != null) {
+        if (paintable.gl_context != null) {
             var glsink = Gst.ElementFactory.make("glsinkbin", "glsinkbin");
-            glsink.set("sink", gtksink);
+            glsink["sink"] = gtksink;
             video_sink = glsink;
         }
         else {
@@ -42,10 +36,10 @@ class Video : Adw.Bin {
     Gst.Pipeline? last_pipeline = null;
     void notify_pipeline_cb() {
         if (last_pipeline != null) {
-            last_pipeline.set("video-sink", null);
+            last_pipeline["video-sink"] = null;
         }
         if (playback.pipeline != null) {
-            playback.pipeline.set("video-sink", video_sink);
+            playback.pipeline["video-sink"] = video_sink;
         }
 
         last_pipeline = playback.pipeline;

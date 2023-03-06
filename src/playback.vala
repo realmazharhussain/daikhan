@@ -69,10 +69,8 @@ public class Playback : Object {
                                                      AudioVolume.logarithmic_to_linear);
 
                 // Disable Subtitles
-                PipelinePlayFlags play_flags;
-                value.get("flags", out play_flags);
-                play_flags &= ~PipelinePlayFlags.SUBTITLES;
-                value.set("flags", play_flags);
+                dynamic Object _value = value;
+                _value.flags = (PipelinePlayFlags) _value.flags & ~PipelinePlayFlags.SUBTITLES;
             }
 
             _pipeline = value;
@@ -129,7 +127,7 @@ public class Playback : Object {
             return false;
         }
 
-        pipeline.set("uri", file.get_uri());
+        pipeline["uri"] = file.get_uri();
 
         if (!play()) {
             critical("Cannot play!");
