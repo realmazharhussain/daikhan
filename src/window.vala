@@ -22,12 +22,12 @@ class PlayerWindow : Adw.ApplicationWindow, PlaybackWindow {
         var volume_up_act = new SimpleAction("volume_up", null);
         volume_up_act.activate.connect(volume_up_cb);
         add_action(volume_up_act);
-        app.set_accels_for_action("win.volume_up", {"k"});
+        app.set_accels_for_action("win.volume_up", {"Up", "k"});
 
         var volume_down_act = new SimpleAction("volume_down", null);
         volume_down_act.activate.connect(volume_down_cb);
         add_action(volume_down_act);
-        app.set_accels_for_action("win.volume_down", {"j"});
+        app.set_accels_for_action("win.volume_down", {"Down", "j"});
 
         var play_pause_act = new SimpleAction("play_pause", null);
         play_pause_act.activate.connect(play_pause_cb);
