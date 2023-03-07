@@ -29,6 +29,10 @@ class Video : Adw.Bin {
         target.drop.connect (drop_cb);
         add_controller(target);
 
+        var gesture = new Gtk.GestureDrag();
+        gesture.drag_update.connect(drag_gesture_update_cb);
+        add_controller(gesture);
+
         notify["root"].connect(notify_root_cb);
     }
 
@@ -88,5 +92,52 @@ class Video : Adw.Bin {
     bool drop_cb(Gtk.DropTarget target, Value value, double x, double y) {
         var file = ((Gdk.FileList) value).get_files().last().data;
         return playback.open_file(file);
+    }
+
+    void drag_gesture_update_cb(Gtk.GestureDrag gesture,
+                                double offset_x, double offset_y)
+    {
+        /* FIXME: I do not understand how all this works. I copied it from source code of
+         * GtkWindowHandle <gtk/gtkwindowhandle.c>. I commented what I understood but I am
+         * confident that I am wrong about some (or lot) of this stuff. I also renamed
+         * variables to what I thought are more appropriate names in order to make the code
+         * easier to understand.
+         */
+
+        var threshold = this.get_settings().gtk_dnd_drag_threshold;
+        // Don't do anything if threshold hasn't been crossed in any direction yet.
+        if (offset_x.abs() < threshold && offset_y.abs() < threshold)
+            return;
+
+        gesture.set_state(CLAIMED);
+
+        // Start point of Drag Gesture (relative to self i.e. Video widget)
+        double start_x_video, start_y_video;
+        gesture.get_start_point(out start_x_video, out start_y_video);
+
+        var native = get_native();
+
+        // Start point of Drag Gesture (relative to Gtk.Native of self i.e. Window)
+        double start_x_native, start_y_native;
+        translate_coordinates(native, start_x_video, start_y_video,
+                              out start_x_native, out start_y_native);
+
+        // Widget Coordinates of the Window itself
+        double native_x, native_y;
+        native.get_surface_transform(out native_x, out native_y);
+
+        // Surface Coordinates of Drag Gesture's start point
+        var start_x = native_x + start_x_native;
+        var start_y = native_y + start_y_native;
+
+        var toplevel = native.get_surface() as Gdk.Toplevel;
+        if (toplevel != null) {
+            toplevel.begin_move(gesture.get_device(),
+                                (int) gesture.get_current_button(),
+                                start_x, start_y,
+                                gesture.get_current_event_time());
+        }
+
+        gesture.reset();
     }
 }
