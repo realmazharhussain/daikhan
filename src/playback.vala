@@ -178,6 +178,22 @@ public class Playback : Object {
         title = "";
     }
 
+    public bool seek(int64 seconds) {
+        var absolute_time = progress + (seconds * Gst.SECOND);
+
+        if (absolute_time < 0) {
+            absolute_time = 0;
+        }
+        else if (absolute_time > duration) {
+            absolute_time = duration;
+        }
+        return seek_absolute((Gst.ClockTime) absolute_time);
+    }
+
+    public bool seek_absolute(Gst.ClockTime nano_seconds) {
+        return pipeline.seek_simple(TIME, FLUSH, (int64)nano_seconds);
+    }
+
     bool update_progress() {
         if (duration == -1 ) {
             int64 duration;

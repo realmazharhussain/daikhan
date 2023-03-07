@@ -36,11 +36,7 @@ public class ProgressBar : Gtk.Scale {
 
         last_progress_change = value;
 
-        playback.pipeline.seek_simple(
-            Gst.Format.TIME,
-            Gst.SeekFlags.FLUSH|Gst.SeekFlags.KEY_UNIT,
-            (int64)value
-        );
+        playback.seek_absolute((Gst.ClockTime) value);
 
         return true;
     }

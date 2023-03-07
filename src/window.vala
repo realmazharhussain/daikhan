@@ -16,6 +16,7 @@ class PlayerWindow : Adw.ApplicationWindow, PlaybackWindow {
 
     construct {
         ActionEntry[] entries = {
+            {"seek", seek_cb, "i"},
             {"volume_step", volume_step_cb, "d"},
             {"play_pause", play_pause_cb},
             {"toggle_fullscreen", toggle_fullscreen_cb},
@@ -31,6 +32,10 @@ class PlayerWindow : Adw.ApplicationWindow, PlaybackWindow {
 
         app.set_accels_for_action("win.toggle_fullscreen", {"f"});
         app.set_accels_for_action("win.play_pause", {"space"});
+        app.set_accels_for_action("win.seek(+10)", {"Right", "l"});
+        app.set_accels_for_action("win.seek(-10)", {"Left", "h"});
+        app.set_accels_for_action("win.seek(+3)", {"<Shift>Right", "<Shift>l"});
+        app.set_accels_for_action("win.seek(-3)", {"<Shift>Left", "<Shift>h"});
         app.set_accels_for_action("win.volume_step(+0.05)", {"Up", "k"});
         app.set_accels_for_action("win.volume_step(-0.05)", {"Down", "j"});
         app.set_accels_for_action("win.volume_step(+0.01)", {"<Shift>Up", "<Shift>k"});
@@ -49,6 +54,10 @@ class PlayerWindow : Adw.ApplicationWindow, PlaybackWindow {
         } else {
             application.uninhibit(inhibit_id);
         }
+    }
+
+    void seek_cb (SimpleAction action, Variant? step) {
+        playback.seek(step.get_int32());
     }
 
     void volume_step_cb (SimpleAction action, Variant? step) {
