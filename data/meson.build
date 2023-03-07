@@ -31,4 +31,14 @@ if appstream_util.found()
   )
 endif
 
+configure_file(
+          input: 'io.gitlab.Envision.MediaPlayer.service.in',
+         output: 'io.gitlab.Envision.MediaPlayer.service',
+        install: true,
+    install_dir: get_option('datadir') / 'dbus-1/services',
+  configuration: configuration_data({
+    'bindir': get_option('prefix') / get_option('bindir'),
+  }),
+)
+
 subdir('icons')

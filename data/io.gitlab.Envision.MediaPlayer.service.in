@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=io.gitlab.Envision.MediaPlayer
+Exec=@bindir@/envision --gapplication-service
