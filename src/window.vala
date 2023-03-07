@@ -38,8 +38,8 @@ class PlayerWindow : Adw.ApplicationWindow, PlaybackWindow {
         app.set_accels_for_action("win.seek(-3)", {"<Shift>Left", "<Shift>h"});
         app.set_accels_for_action("win.volume_step(+0.05)", {"Up", "k"});
         app.set_accels_for_action("win.volume_step(-0.05)", {"Down", "j"});
-        app.set_accels_for_action("win.volume_step(+0.01)", {"<Shift>Up", "<Shift>k"});
-        app.set_accels_for_action("win.volume_step(-0.01)", {"<Shift>Down", "<Shift>j"});
+        app.set_accels_for_action("win.volume_step(+0.02)", {"<Shift>Up", "<Shift>k"});
+        app.set_accels_for_action("win.volume_step(-0.02)", {"<Shift>Down", "<Shift>j"});
     }
 
     public bool open_file(File file) {
