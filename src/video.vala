@@ -29,9 +29,14 @@ class Video : Adw.Bin {
         target.drop.connect (drop_cb);
         add_controller(target);
 
-        var gesture = new Gtk.GestureDrag();
-        gesture.drag_update.connect(drag_gesture_update_cb);
-        add_controller(gesture);
+        var drag_gesture = new Gtk.GestureDrag();
+        drag_gesture.drag_update.connect(drag_gesture_update_cb);
+        add_controller(drag_gesture);
+
+        var click_gesture = new Gtk.GestureClick();
+        click_gesture.button = Gdk.BUTTON_PRIMARY;
+        click_gesture.pressed.connect(click_gesture_pressed_cb);
+        add_controller(click_gesture);
 
         notify["root"].connect(notify_root_cb);
     }
@@ -139,6 +144,20 @@ class Video : Adw.Bin {
                             start_x, start_y,
                             gesture.get_current_event_time());
 
+        gesture.reset();
+    }
+
+    void click_gesture_pressed_cb(Gtk.GestureClick gesture,
+                                  int n_press, double x, double y)
+    {
+        var window = this.get_root() as PlayerWindow;
+        assert(window != null);
+
+        if (n_press != 2)
+            return;
+
+        gesture.set_state(CLAIMED);
+        window.activate_action("toggle_fullscreen", null);
         gesture.reset();
     }
 }
