@@ -23,14 +23,14 @@ class Video : Adw.Bin {
             video_sink = gtksink;
         }
 
-        notify["root"].connect(notify_root);
+        notify["root"].connect(notify_root_cb);
     }
 
-    void notify_root() {
+    void notify_root_cb() {
         assert (root is PlaybackWindow);
         playback = ((PlaybackWindow)root).playback;
         playback.notify["pipeline"].connect(notify_pipeline_cb);
-        notify["root"].disconnect(notify_root);
+        notify["root"].disconnect(notify_root_cb);
     }
 
     Gst.Pipeline? last_pipeline = null;
