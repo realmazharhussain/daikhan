@@ -104,10 +104,16 @@ class Video : Adw.Bin {
          * easier to understand.
          */
 
+        // We only recognize the gesture if the threshold has been crossed in any direction.
         var threshold = this.get_settings().gtk_dnd_drag_threshold;
-        // Don't do anything if threshold hasn't been crossed in any direction yet.
         if (offset_x.abs() < threshold && offset_y.abs() < threshold)
             return;
+
+        var native = get_native();
+        var toplevel = native.get_surface() as Gdk.Toplevel;
+
+        // If toplevel is NULL, it means something went really wrong.
+        assert(toplevel != null);
 
         gesture.set_state(CLAIMED);
 
@@ -115,28 +121,23 @@ class Video : Adw.Bin {
         double start_x_video, start_y_video;
         gesture.get_start_point(out start_x_video, out start_y_video);
 
-        var native = get_native();
-
         // Start point of Drag Gesture (relative to Gtk.Native of self i.e. Window)
         double start_x_native, start_y_native;
         translate_coordinates(native, start_x_video, start_y_video,
                               out start_x_native, out start_y_native);
 
-        // Widget Coordinates of the Window itself
+        // Surface Coordinates of the Window itself
         double native_x, native_y;
         native.get_surface_transform(out native_x, out native_y);
 
-        // Surface Coordinates of Drag Gesture's start point
+        // Surface Coordinates of Gesture's start point
         var start_x = native_x + start_x_native;
         var start_y = native_y + start_y_native;
 
-        var toplevel = native.get_surface() as Gdk.Toplevel;
-        if (toplevel != null) {
-            toplevel.begin_move(gesture.get_device(),
-                                (int) gesture.get_current_button(),
-                                start_x, start_y,
-                                gesture.get_current_event_time());
-        }
+        toplevel.begin_move(gesture.get_device(),
+                            (int) gesture.get_current_button(),
+                            start_x, start_y,
+                            gesture.get_current_event_time());
 
         gesture.reset();
     }
