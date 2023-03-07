@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.gitlab.Envision.MediaPlayer</id>
+  <launchable type="desktop-id">io.gitlab.Envision.MediaPlayer.desktop</launchable>
+
+  <name>Envision Media Player</name>
+  <summary>Play Videos/Music with style</summary>
+  <developer_name>Mazhar Hussain</developer_name>
+  <description>
+    <p>
+      A simple media player with beautiful interface.
+    </p>
+  </description>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://gitlab.com/envision-play/envision-media-player/-/raw/screenshots/latest-dev.png</image>
+    </screenshot>
+  </screenshots>
+
+  <provides>
+    <binary>envision</binary>
+  </provides>
+
+  <!-- Minimum display length required -->
+  <requires>
+    <display_length>300</display_length>
+  </requires>
+
+  <!-- Minimum display length recommended -->
+  <recommends>
+    <display_length>500</display_length>
+  </recommends>
+
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </supports>
+
+  <content_rating type="oars-1.1"/>
+
+  <releases>
+    <release version="0.1.alpha" date="2023-03-07">
+      <description>
+        <p>Not rleased yet.</p>
+      </description>
+    </release>
+  </releases>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>AGPL-3.0-or-later</project_license>
+
+  <url type="bugtracker">https://gitlab.com/envision-play/envision-media-player/-/issues</url>
+  <url type="donation">https://realmazharhussain.github.io/donate</url>
+  <url type="homepage">https://gitlab.com/envision-play/envision-media-player</url>
+
+  <update_contact>realmazharhussain_at_gmail.com</update_contact>
+</component>
