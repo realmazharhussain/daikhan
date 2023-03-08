@@ -4,13 +4,7 @@ public class VolumeButton : Adw.Bin {
     unowned Playback playback;
 
     construct {
-        notify["root"].connect(notify_root);
-    }
-
-    void notify_root() {
-        assert (root is PlaybackWindow);
-        playback = ((PlaybackWindow)root).playback;
-        notify["root"].disconnect(notify_root);
+        playback = Playback.get_default();
 
         var flags = BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL;
         playback.bind_property("volume", adjustment, "value", flags);

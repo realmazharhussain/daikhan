@@ -2,18 +2,12 @@ public class PlayButton : Gtk.Button {
     unowned Playback playback;
 
     construct {
-        clicked.connect(clicked_cb);
-        notify["root"].connect(notify_root);
-    }
-
-    void notify_root() {
-        assert (root is PlaybackWindow);
-        playback = ((PlaybackWindow)root).playback;
-        notify["root"].disconnect(notify_root);
-
+        playback = Playback.get_default();
         playback.bind_property("can_play", this, "sensitive", BindingFlags.SYNC_CREATE);
         playback.bind_property("playing", this, "icon-name", BindingFlags.SYNC_CREATE,
                                playing_to_icon_name);
+
+        clicked.connect(clicked_cb);
     }
 
     bool playing_to_icon_name (Binding binding, Value playing, ref Value icon_name) {

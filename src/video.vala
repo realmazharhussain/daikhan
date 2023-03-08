@@ -38,14 +38,8 @@ class Video : Adw.Bin {
         click_gesture.pressed.connect(click_gesture_pressed_cb);
         add_controller(click_gesture);
 
-        notify["root"].connect(notify_root_cb);
-    }
-
-    void notify_root_cb() {
-        assert (root is PlaybackWindow);
-        playback = ((PlaybackWindow)root).playback;
+        playback = Playback.get_default();
         playback.notify["pipeline"].connect(notify_pipeline_cb);
-        notify["root"].disconnect(notify_root_cb);
     }
 
     Gst.Pipeline? last_pipeline = null;

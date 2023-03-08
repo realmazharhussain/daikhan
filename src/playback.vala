@@ -19,10 +19,7 @@ namespace AudioVolume {
 }
 
 
-public interface PlaybackWindow: Gtk.Window {
-    public abstract Playback playback { get; }
-}
-
+internal Playback? default_playback;
 
 public class Playback : Object {
     public File? last_opened_file { get; private set; }
@@ -116,6 +113,11 @@ public class Playback : Object {
 
             _playing = value;
         }
+    }
+
+    public static unowned Playback get_default() {
+        default_playback = default_playback ?? new Playback();
+        return default_playback;
     }
 
     public bool open_file(File file) {

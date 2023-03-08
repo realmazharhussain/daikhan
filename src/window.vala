@@ -1,12 +1,6 @@
 [GtkTemplate (ui = "/ui/window.ui")]
-class PlayerWindow : Adw.ApplicationWindow, PlaybackWindow {
-    private Playback _playback;
-    public Playback playback {
-        get {
-            _playback = _playback ?? new Playback();
-            return _playback;
-        }
-    }
+class PlayerWindow : Adw.ApplicationWindow {
+    unowned Playback playback;
 
     static construct {
         typeof(HeaderBar).ensure();
@@ -24,6 +18,8 @@ class PlayerWindow : Adw.ApplicationWindow, PlaybackWindow {
         };
 
         add_action_entries(entries, this);
+
+        playback = Playback.get_default();
         playback.notify["playing"].connect(notify_playing_cb);
     }
 

@@ -7,19 +7,13 @@ public class ProgressBar : Gtk.Scale {
         adjustment.upper = 1;
         hexpand = true;
 
-        notify["root"].connect(notify_root);
-        change_value.connect(change_value_cb);
-    }
-
-    void notify_root() {
-        assert (root is PlaybackWindow);
-        playback = ((PlaybackWindow)root).playback;
-        notify["root"].disconnect(notify_root);
-
+        playback = Playback.get_default();
         playback.bind_property("duration", adjustment, "upper", BindingFlags.SYNC_CREATE);
         playback.bind_property("progress", adjustment, "value", BindingFlags.SYNC_CREATE);
         playback.bind_property("state", this, "sensitive", BindingFlags.SYNC_CREATE,
                                playback_state_to_sensitive);
+
+        change_value.connect(change_value_cb);
     }
 
     bool playback_state_to_sensitive (Binding binding, Value state, ref Value sensitive) {
