@@ -3,7 +3,6 @@ class PlayerWindow : Adw.ApplicationWindow {
     unowned Playback playback;
 
     static construct {
-        typeof(HeaderBar).ensure();
         typeof(Video).ensure();
         typeof(MediaControls).ensure();
     }

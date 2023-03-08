@@ -1,7 +1,6 @@
 gresource_xml = files('envision.gresource.xml')
 
 blp_sources = files('window.blp',
-                    'headerbar.blp',
                     'media-controls.blp',
                     'media-controls/volume-button.blp',
                     )
@@ -23,7 +22,6 @@ sources = files(
   'video.vala',
   'window.vala',
   'playback.vala',
-  'headerbar.vala',
   'media-controls.vala',
   'media-controls/play-button.vala',
   'media-controls/progress-scale.vala',

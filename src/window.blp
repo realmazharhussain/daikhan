@@ -1,6 +1,13 @@
 using Gtk 4.0;
 using Adw 1;
 
+menu app_menu {
+  section {
+    item (_("About"), "win.about")
+    item (_("Quit"), "app.quit")
+  }
+}
+
 template PlayerWindow: Adw.ApplicationWindow {
   title: "Envision Media Player";
   width-request: 300;
@@ -12,8 +19,14 @@ template PlayerWindow: Adw.ApplicationWindow {
   Box {
     orientation: vertical;
 
-    .HeaderBar headerbar {
+    Gtk.HeaderBar {
       visible: bind PlayerWindow.fullscreened inverted;
+      styles ["flat"]
+
+      [start] MenuButton {
+        icon-name: 'open-menu-symbolic';
+        menu-model: app_menu;
+      }
     }
 
     .Video video {}
