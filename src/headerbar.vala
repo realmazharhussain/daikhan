@@ -5,7 +5,7 @@ public class HeaderBar : Adw.Bin {
 
     construct {
         playback = Playback.get_default();
-        playback.bind_property("title", this, "title", BindingFlags.SYNC_CREATE,
+        playback.bind_property("title", this, "title", SYNC_CREATE,
                                playback_title_to_title);
     }
 

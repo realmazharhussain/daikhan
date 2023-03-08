@@ -3,8 +3,8 @@ public class PlayButton : Gtk.Button {
 
     construct {
         playback = Playback.get_default();
-        playback.bind_property("can_play", this, "sensitive", BindingFlags.SYNC_CREATE);
-        playback.bind_property("playing", this, "icon-name", BindingFlags.SYNC_CREATE,
+        playback.bind_property("can_play", this, "sensitive", SYNC_CREATE);
+        playback.bind_property("playing", this, "icon-name", SYNC_CREATE,
                                playing_to_icon_name);
 
         clicked.connect(clicked_cb);

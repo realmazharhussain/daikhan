@@ -45,8 +45,7 @@ class PlayerWindow : Adw.ApplicationWindow {
     uint inhibit_id = 0;
     void notify_playing_cb() {
         if (playback.playing) {
-            inhibit_id = application.inhibit(this, Gtk.ApplicationInhibitFlags.IDLE,
-                                             "Media is playing");
+            inhibit_id = application.inhibit(this, IDLE, "Media is playing");
         } else {
             application.uninhibit(inhibit_id);
         }

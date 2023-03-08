@@ -5,16 +5,14 @@ public class VolumeButton : Adw.Bin {
 
     construct {
         playback = Playback.get_default();
-
-        var flags = BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL;
-        playback.bind_property("volume", adjustment, "value", flags);
-        playback.bind_property("state", this, "sensitive", BindingFlags.SYNC_CREATE,
+        playback.bind_property("volume", adjustment, "value", SYNC_CREATE|BIDIRECTIONAL);
+        playback.bind_property("state", this, "sensitive", SYNC_CREATE,
                                playback_state_to_sensitive);
 
     }
 
     bool playback_state_to_sensitive (Binding binding, Value state, ref Value sensitive) {
-        sensitive = ((Gst.State)state != Gst.State.NULL);
+        sensitive = ((Gst.State) state != NULL);
         return true;
     }
 }

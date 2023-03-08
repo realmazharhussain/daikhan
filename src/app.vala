@@ -1,7 +1,7 @@
 class MediaPlayer : Adw.Application {
     construct {
         application_id = "io.gitlab.Envision.MediaPlayer";
-        flags |= ApplicationFlags.HANDLES_OPEN;
+        flags |= HANDLES_OPEN;
     }
 
     PlayerWindow get_main_window() {

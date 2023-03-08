@@ -44,7 +44,7 @@ public class Playback : Object {
 
             if (_pipeline != null) {
                 volume_binding.unbind();
-                try_set_state(Gst.State.NULL);
+                try_set_state(NULL);
 
                 var bus = _pipeline.get_bus();
                 bus.message["state-changed"].disconnect(pipeline_state_changed_message_cb);
@@ -60,8 +60,8 @@ public class Playback : Object {
                 bus.message["error"].connect(pipeline_error_cb);
                 bus.message["state-changed"].connect(pipeline_state_changed_message_cb);
 
-                var binding_flags = BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL;
-                volume_binding = value.bind_property("volume", this, "volume", binding_flags,
+                volume_binding = value.bind_property("volume", this, "volume",
+                                                     SYNC_CREATE|BIDIRECTIONAL,
                                                      AudioVolume.linear_to_logarithmic,
                                                      AudioVolume.logarithmic_to_linear);
 
@@ -74,7 +74,7 @@ public class Playback : Object {
         }
     }
 
-    private Gst.State _state = Gst.State.NULL;
+    private Gst.State _state = NULL;
     public Gst.State state {
         get {
             return _state;
@@ -85,7 +85,7 @@ public class Playback : Object {
                 return;
             }
 
-            playing = (value == Gst.State.PLAYING);
+            playing = (value == PLAYING);
             _state = value;
         }
     }
@@ -140,7 +140,7 @@ public class Playback : Object {
         can_play = true;
 
         try {
-            var info = file.query_info("standard::display-name", FileQueryInfoFlags.NONE);
+            var info = file.query_info("standard::display-name", NONE);
             title = info.get_display_name();
         } catch (Error err) {
             warning(err.message);
@@ -158,7 +158,7 @@ public class Playback : Object {
 
     public bool play() {
         if (pipeline != null) {
-            return try_set_state(Gst.State.PLAYING);
+            return try_set_state(PLAYING);
         } else if (last_opened_file != null) {
             return open_file(last_opened_file);
         }
@@ -169,11 +169,11 @@ public class Playback : Object {
         if (pipeline == null) {
             return false;
         }
-        return try_set_state(Gst.State.PAUSED);
+        return try_set_state(PAUSED);
     }
 
     public void stop() {
-        try_set_state(Gst.State.NULL);
+        try_set_state(NULL);
         pipeline = null;
         progress = -1;
         duration = -1;
@@ -199,13 +199,13 @@ public class Playback : Object {
     bool update_progress() {
         if (duration == -1 ) {
             int64 duration;
-            if (pipeline.query_duration(Gst.Format.TIME, out duration)) {
+            if (pipeline.query_duration(TIME, out duration)) {
                 this.duration = duration;
             }
         }
 
         int64 progress;
-        if (!pipeline.query_position(Gst.Format.TIME, out progress)) {
+        if (!pipeline.query_position(TIME, out progress)) {
             return false;
         }
 
@@ -219,7 +219,7 @@ public class Playback : Object {
             return true;
         }
 
-        if (pipeline.set_state(new_state) == Gst.StateChangeReturn.FAILURE) {
+        if (pipeline.set_state(new_state) == FAILURE) {
             critical(@"Failed to set pipeline state to $(state)!");
             return false;
         }
