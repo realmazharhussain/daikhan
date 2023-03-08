@@ -21,6 +21,9 @@ class PlayerWindow : Adw.ApplicationWindow {
 
         playback = Playback.get_default();
         playback.notify["playing"].connect(notify_playing_cb);
+        playback.notify["title"].connect(update_title);
+
+        update_title();
     }
 
     public PlayerWindow (Gtk.Application app) {
@@ -48,6 +51,14 @@ class PlayerWindow : Adw.ApplicationWindow {
             inhibit_id = application.inhibit(this, IDLE, "Media is playing");
         } else {
             application.uninhibit(inhibit_id);
+        }
+    }
+
+    void update_title() {
+        if (playback.title != null) {
+            title = playback.title;
+        } else {
+            title = "Envision Media Player";
         }
     }
 
