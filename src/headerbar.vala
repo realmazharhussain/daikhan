@@ -4,19 +4,21 @@ public class HeaderBar : Adw.Bin {
     unowned Playback playback;
 
     construct {
+        // Update headerbar title when title of the root Window is updated
+        var root_expr = new Gtk.PropertyExpression(typeof(Gtk.Widget), null, "root");
+        var root_title_expr = new Gtk.PropertyExpression(typeof(Gtk.Window), root_expr, "title");
+        root_title_expr.watch(this, update_title);
+
+        // Update headerbar title when playback title is updated
         playback = Playback.get_default();
-        playback.bind_property("title", this, "title", SYNC_CREATE,
-                               playback_title_to_title);
+        playback.notify["title"].connect(update_title);
     }
 
-    bool playback_title_to_title(Binding binding, Value playback_title, ref Value title) {
-        if ((string)playback_title != "") {
-            title = playback_title;
+    void update_title() {
+        if (playback.title != null) {
+            title = playback.title;
         } else if (root is Gtk.Window) {
             title = ((Gtk.Window) root).title;
-        } else {
-            return false;
         }
-        return true;
     }
 }

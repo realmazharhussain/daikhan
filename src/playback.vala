@@ -23,7 +23,7 @@ internal Playback? default_playback;
 
 public class Playback : Object {
     public File? last_opened_file { get; private set; }
-    public string title { get; private set; default = ""; }
+    public string? title { get; private set; }
     public double volume { get; set; default = 1; }
     public int64 progress { get; private set; default = -1; }
     public int64 duration { get; private set; default = -1; }
@@ -177,7 +177,7 @@ public class Playback : Object {
         pipeline = null;
         progress = -1;
         duration = -1;
-        title = "";
+        title = null;
     }
 
     public bool seek(int64 seconds) {
