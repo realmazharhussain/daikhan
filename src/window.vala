@@ -1,5 +1,6 @@
 [GtkTemplate (ui = "/ui/window.ui")]
 class PlayerWindow : Adw.ApplicationWindow {
+    string app_name = "Envision Media Player";
     unowned Playback playback;
 
     static construct {
@@ -55,9 +56,9 @@ class PlayerWindow : Adw.ApplicationWindow {
 
     void update_title() {
         if (playback.title != null) {
-            title = playback.title;
+            title = playback.title + " - " + app_name;
         } else {
-            title = "Envision Media Player";
+            title = app_name;
         }
     }
 
