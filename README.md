@@ -18,7 +18,7 @@ A media player for the modern desktop
 - Move window by dragging from the video
 - Drag n Drop a file into the video area in order to play it
 - Once finished, replay previous file simply by hitting play
-- Hide cursor when fullscreen
+- Hide cursor when in fullscreen
 
 ## Keyboard Shortcuts
 
