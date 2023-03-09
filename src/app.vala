@@ -25,10 +25,22 @@ class MediaPlayer : Adw.Application {
         base.startup();
 
         ActionEntry[] entries = {
+            {"show_shortcuts", show_shortcuts_cb},
             {"quit", quit},
         };
 
         add_action_entries(entries, this);
+        set_accels_for_action("app.show_shortcuts", {"<Ctrl>question"});
         set_accels_for_action("app.quit", {"<Ctrl>q", "q"});
+    }
+
+    Gtk.Window shortcuts_win;
+
+    void show_shortcuts_cb() {
+      var builder = new Gtk.Builder.from_resource("/ui/shortcuts.ui");
+      shortcuts_win = (Gtk.Window) builder.get_object("shortcuts_window");
+
+      shortcuts_win.transient_for = get_active_window();
+      shortcuts_win.present();
     }
 }

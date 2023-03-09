@@ -1,6 +1,7 @@
 gresource_xml = files('envision.gresource.xml')
 
 blp_sources = files('window.blp',
+                    'shortcuts.blp',
                     'media-controls.blp',
                     'media-controls/volume-button.blp',
                     )

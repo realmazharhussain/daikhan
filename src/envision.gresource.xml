@@ -2,6 +2,7 @@
 <gresources>
   <gresource prefix="/ui">
     <file preprocess="xml-stripblanks">window.ui</file>
+    <file preprocess="xml-stripblanks">shortcuts.ui</file>
     <file preprocess="xml-stripblanks">headerbar.ui</file>
     <file preprocess="xml-stripblanks">media-controls.ui</file>
     <file preprocess="xml-stripblanks">media-controls/volume-button.ui</file>
