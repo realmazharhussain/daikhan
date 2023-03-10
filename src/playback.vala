@@ -193,7 +193,13 @@ public class Playback : Object {
     }
 
     public bool seek_absolute(Gst.ClockTime nano_seconds) {
-        return pipeline.seek_simple(TIME, FLUSH, (int64)nano_seconds);
+        if (pipeline.seek_simple(TIME, FLUSH, (int64)nano_seconds)) {
+            progress = (int64) nano_seconds;
+            return true;
+        }
+
+        return false;
+
     }
 
     bool update_progress() {
