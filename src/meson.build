@@ -25,7 +25,7 @@ sources = files(
   'playback.vala',
   'media-controls.vala',
   'media-controls/play-button.vala',
-  'media-controls/progress-scale.vala',
+  'media-controls/progress-bar.vala',
   'media-controls/volume-button.vala',
 ) + resources
 
