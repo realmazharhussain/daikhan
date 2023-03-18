@@ -53,6 +53,8 @@ public class Playback : Object {
                 bus.remove_signal_watch();
             }
 
+            current_state = NULL;   // reset state
+
             if (value != null) {
                 var bus = value.get_bus();
                 bus.add_signal_watch();
