@@ -87,8 +87,10 @@ public class Playback : Object {
                 return;
             }
 
-            if (value != PLAYING)
+            if (value != PLAYING) {
                 playing = false;
+                stop_progress_tracking();
+            }
 
             _expected_state = value;
         }
@@ -106,6 +108,12 @@ public class Playback : Object {
             }
 
             playing = (value == PLAYING);
+
+            if (value == PLAYING)
+                ensure_progress_tracking();
+            else
+                stop_progress_tracking();
+
             _current_state = value;
         }
     }
@@ -120,11 +128,6 @@ public class Playback : Object {
             if (value == _playing) {
                 return;
             }
-
-            if (value == true)
-                ensure_progress_tracking();
-            else
-                stop_progress_tracking();
 
             _playing = value;
         }
