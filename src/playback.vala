@@ -165,9 +165,9 @@ public class Playback : Object {
     }
 
     public bool toggle_playing() {
-        if (playing) {
+        if (expected_state == PLAYING)
             return pause();
-        }
+
         return play();
     }
 
