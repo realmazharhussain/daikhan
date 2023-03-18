@@ -53,6 +53,8 @@ public class Playback : Object {
                 bus.remove_signal_watch();
             }
 
+            current_state = NULL;   // reset state
+
             if (value != null) {
                 var bus = value.get_bus();
                 bus.add_signal_watch();
@@ -74,44 +76,41 @@ public class Playback : Object {
         }
     }
 
-    private Gst.State _state = NULL;
-    public Gst.State state {
+    private Gst.State _expected_state = NULL;
+    public Gst.State expected_state {
         get {
-            return _state;
+            return _expected_state;
         }
 
         private set {
-            if (value == _state) {
+            if (value == _expected_state) {
                 return;
             }
 
-            playing = (value == PLAYING);
-            _state = value;
+            if (value != PLAYING)
+                stop_progress_tracking();
+
+            _expected_state = value;
         }
     }
 
-    uint timeout_id = 0;
-
-    private bool _playing = false;
-    public bool playing {
+    private Gst.State _current_state = NULL;
+    public Gst.State current_state {
         get {
-            return _playing;
+            return _current_state;
         }
 
         private set {
-            if (value == _playing) {
+            if (value == _current_state) {
                 return;
             }
 
-            if (value == true) {
-                timeout_id = Timeout.add(100, update_progress);
-            } else if (timeout_id > 0) {
-                if (Source.remove(timeout_id)) {
-                    timeout_id = 0;
-                }
-            }
+            if (value == PLAYING)
+                ensure_progress_tracking();
+            else
+                stop_progress_tracking();
 
-            _playing = value;
+            _current_state = value;
         }
     }
 
@@ -150,9 +149,9 @@ public class Playback : Object {
     }
 
     public bool toggle_playing() {
-        if (playing) {
+        if (expected_state == PLAYING)
             return pause();
-        }
+
         return play();
     }
 
@@ -202,6 +201,23 @@ public class Playback : Object {
 
     }
 
+    uint timeout_id = 0;
+
+    void ensure_progress_tracking() {
+        if (timeout_id > 0)
+            return;
+
+        timeout_id = Timeout.add(100, update_progress);
+    }
+
+    void stop_progress_tracking() {
+        if (timeout_id == 0)
+            return;
+
+        if (Source.remove(timeout_id))
+            timeout_id = 0;
+    }
+
     bool update_progress() {
         if (duration == -1 ) {
             int64 duration;
@@ -221,7 +237,7 @@ public class Playback : Object {
     }
 
     bool try_set_state(Gst.State new_state) {
-        if (state == new_state) {
+        if (expected_state == new_state) {
             return true;
         }
 
@@ -230,12 +246,12 @@ public class Playback : Object {
             return false;
         }
 
-        state = new_state;
+        expected_state = new_state;
         return true;
     }
 
     void pipeline_state_changed_message_cb() {
-        state = pipeline.current_state;
+        current_state = pipeline.current_state;
     }
 
     void pipeline_error_cb (Gst.Bus bus, Gst.Message msg) {
