@@ -226,7 +226,7 @@ public class Playback : Object {
         }
 
         if (pipeline.set_state(new_state) == FAILURE) {
-            critical(@"Failed to set pipeline state to $(state)!");
+            critical(@"Failed to set pipeline state to $(new_state)!");
             return false;
         }
 
