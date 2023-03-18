@@ -74,19 +74,19 @@ public class Playback : Object {
         }
     }
 
-    private Gst.State _state = NULL;
-    public Gst.State state {
+    private Gst.State _current_state = NULL;
+    public Gst.State current_state {
         get {
-            return _state;
+            return _current_state;
         }
 
         private set {
-            if (value == _state) {
+            if (value == _current_state) {
                 return;
             }
 
             playing = (value == PLAYING);
-            _state = value;
+            _current_state = value;
         }
     }
 
@@ -221,7 +221,7 @@ public class Playback : Object {
     }
 
     bool try_set_state(Gst.State new_state) {
-        if (state == new_state) {
+        if (current_state == new_state) {
             return true;
         }
 
@@ -230,12 +230,12 @@ public class Playback : Object {
             return false;
         }
 
-        state = new_state;
+        current_state = new_state;
         return true;
     }
 
     void pipeline_state_changed_message_cb() {
-        state = pipeline.current_state;
+        current_state = pipeline.current_state;
     }
 
     void pipeline_error_cb (Gst.Bus bus, Gst.Message msg) {

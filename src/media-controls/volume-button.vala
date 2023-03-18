@@ -6,7 +6,7 @@ public class VolumeButton : Adw.Bin {
     construct {
         playback = Playback.get_default();
         playback.bind_property("volume", adjustment, "value", SYNC_CREATE|BIDIRECTIONAL);
-        playback.bind_property("state", this, "sensitive", SYNC_CREATE,
+        playback.bind_property("current-state", this, "sensitive", SYNC_CREATE,
                                playback_state_to_sensitive);
 
     }
