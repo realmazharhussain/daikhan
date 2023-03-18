@@ -110,8 +110,6 @@ public class Playback : Object {
         }
     }
 
-    uint timeout_id = 0;
-
     private bool _playing = false;
     public bool playing {
         get {
@@ -123,13 +121,10 @@ public class Playback : Object {
                 return;
             }
 
-            if (value == true) {
-                timeout_id = Timeout.add(100, update_progress);
-            } else if (timeout_id > 0) {
-                if (Source.remove(timeout_id)) {
-                    timeout_id = 0;
-                }
-            }
+            if (value == true)
+                ensure_progress_tracking();
+            else
+                stop_progress_tracking();
 
             _playing = value;
         }
@@ -220,6 +215,23 @@ public class Playback : Object {
 
         return false;
 
+    }
+
+    uint timeout_id = 0;
+
+    void ensure_progress_tracking() {
+        if (timeout_id > 0)
+            return;
+
+        timeout_id = Timeout.add(100, update_progress);
+    }
+
+    void stop_progress_tracking() {
+        if (timeout_id == 0)
+            return;
+
+        if (Source.remove(timeout_id))
+            timeout_id = 0;
     }
 
     bool update_progress() {
