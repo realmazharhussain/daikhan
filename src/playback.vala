@@ -53,7 +53,11 @@ public class Playback : Object {
                 bus.remove_signal_watch();
             }
 
-            current_state = NULL;   // reset state
+            // Reset all pipeline related properties
+            current_state = NULL;
+            title = null;
+            progress = -1;
+            duration = -1;
 
             if (value != null) {
                 var bus = value.get_bus();
@@ -172,11 +176,7 @@ public class Playback : Object {
     }
 
     public void stop() {
-        try_set_state(NULL);
         pipeline = null;
-        progress = -1;
-        duration = -1;
-        title = null;
     }
 
     public bool seek(int64 seconds) {
