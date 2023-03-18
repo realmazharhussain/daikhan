@@ -1,7 +1,7 @@
 [GtkTemplate (ui = "/ui/window.ui")]
 class PlayerWindow : Adw.ApplicationWindow {
     string app_name = "Envision Media Player";
-    unowned Playback playback;
+    public Playback playback { get; private set; }
 
     static construct {
         typeof(Video).ensure();
