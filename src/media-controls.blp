@@ -6,10 +6,10 @@ template MediaControls : Adw.Bin {
     orientation: horizontal;
     styles ["toolbar"]
 
-    .PlayButton play_btn {}
+    .PlayButton {}
     .ProgressLabel { sensitive: bind progress_bar.sensitive; }
     .ProgressBar progress_bar {}
     .DurationLabel { sensitive: bind progress_bar.sensitive; }
-    .VolumeButton volume_btn {}
+    .VolumeButton {}
   };
 }
