@@ -17,7 +17,7 @@ public class ProgressBar : Gtk.Scale {
     }
 
     bool playback_state_to_sensitive (Binding binding, Value state, ref Value sensitive) {
-        sensitive = ((Gst.State)state != NULL);
+        sensitive = ((Gst.State) state != NULL);
         return true;
     }
 
