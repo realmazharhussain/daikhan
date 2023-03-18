@@ -76,6 +76,24 @@ public class Playback : Object {
         }
     }
 
+    private Gst.State _expected_state = NULL;
+    public Gst.State expected_state {
+        get {
+            return _expected_state;
+        }
+
+        private set {
+            if (value == _expected_state) {
+                return;
+            }
+
+            if (value != PLAYING)
+                playing = false;
+
+            _expected_state = value;
+        }
+    }
+
     private Gst.State _current_state = NULL;
     public Gst.State current_state {
         get {
@@ -223,7 +241,7 @@ public class Playback : Object {
     }
 
     bool try_set_state(Gst.State new_state) {
-        if (current_state == new_state) {
+        if (expected_state == new_state) {
             return true;
         }
 
@@ -232,7 +250,7 @@ public class Playback : Object {
             return false;
         }
 
-        current_state = new_state;
+        expected_state = new_state;
         return true;
     }
 
