@@ -7,9 +7,4 @@ public class MediaControls : Adw.Bin {
         typeof(DurationLabel).ensure();
         typeof(VolumeButton).ensure();
     }
-
-    construct {
-        set("css-name", "mediacontrols");
-    }
-
 }
