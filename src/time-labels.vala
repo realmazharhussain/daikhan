@@ -21,6 +21,8 @@ public class TimeLabel : Gtk.Widget {
     }
 
     construct {
+        set("css-name", "timelabel");
+
         child = new Gtk.Label (null);
         child.set_parent (this);
 
