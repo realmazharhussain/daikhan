@@ -207,6 +207,7 @@ public class Playback : Object {
         if (timeout_id > 0)
             return;
 
+        update_progress();
         timeout_id = Timeout.add(100, update_progress);
     }
 
