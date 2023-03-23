@@ -207,14 +207,14 @@ public class Playback : Object {
         if (timeout_id > 0)
             return;
 
+        if (duration == -1)
+            update_duration();
+
         update_progress();
         timeout_id = Timeout.add(100, update_progress);
     }
 
     bool update_progress() {
-        if (duration == -1)
-            update_duration();
-
         int64 progress;
         if (!pipeline.query_position(TIME, out progress)) {
             warning("Failed to query playback position");
