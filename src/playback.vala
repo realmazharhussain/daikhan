@@ -217,6 +217,15 @@ public class Playback : Object {
         progress_source.attach();
     }
 
+    bool update_duration() {
+        int64 duration;
+        if (!pipeline.query_duration(TIME, out duration))
+            return false;
+
+        this.duration = duration;
+        return true;
+    }
+
     bool update_progress() {
         int64 progress;
         if (!pipeline.query_position(TIME, out progress)) {
@@ -227,15 +236,6 @@ public class Playback : Object {
         this.progress = progress;
 
         return Source.CONTINUE;
-    }
-
-    bool update_duration() {
-        int64 duration;
-        if (!pipeline.query_duration(TIME, out duration))
-            return false;
-
-        this.duration = duration;
-        return true;
     }
 
     void stop_progress_tracking() {
