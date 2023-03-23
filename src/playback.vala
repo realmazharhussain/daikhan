@@ -211,14 +211,6 @@ public class Playback : Object {
         timeout_id = Timeout.add(100, update_progress);
     }
 
-    void stop_progress_tracking() {
-        if (timeout_id == 0)
-            return;
-
-        if (Source.remove(timeout_id))
-            timeout_id = 0;
-    }
-
     bool update_progress() {
         if (duration == -1)
             update_duration();
@@ -241,6 +233,14 @@ public class Playback : Object {
 
         this.duration = duration;
         return true;
+    }
+
+    void stop_progress_tracking() {
+        if (timeout_id == 0)
+            return;
+
+        if (Source.remove(timeout_id))
+            timeout_id = 0;
     }
 
     bool try_set_state(Gst.State new_state) {
