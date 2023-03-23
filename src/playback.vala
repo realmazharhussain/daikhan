@@ -229,12 +229,12 @@ public class Playback : Object {
 
         int64 progress;
         if (!pipeline.query_position(TIME, out progress)) {
-            return false;
+            return Source.REMOVE;
         }
 
         this.progress = progress;
 
-        return true;
+        return Source.CONTINUE;
     }
 
     bool try_set_state(Gst.State new_state) {
