@@ -78,12 +78,6 @@ class PlayerWindow : Adw.ApplicationWindow {
         fullscreened = !fullscreened;
     }
 
-    [GtkCallback]
-    void notify_fullscreened_cb() {
-        var cursor_name = fullscreened ? "none": "default";
-        set_cursor_from_name(cursor_name);
-    }
-
     void about_cb () {
         show_about_window(this);
     }
