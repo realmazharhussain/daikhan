@@ -38,6 +38,10 @@ class Video : Adw.Bin {
         drag_gesture.drag_update.connect(drag_gesture_update_cb);
         add_controller(drag_gesture);
 
+        var motion_ctrlr = new Gtk.EventControllerMotion();
+        motion_ctrlr.motion.connect(cursor_motion_cb);
+        add_controller(motion_ctrlr);
+
         playback = Playback.get_default();
         playback.notify["pipeline"].connect(notify_pipeline_cb);
     }
@@ -153,5 +157,40 @@ class Video : Adw.Bin {
                             gesture.get_current_event_time());
 
         gesture.reset();
+    }
+
+    double cursor_x_cached;
+    double cursor_y_cached;
+    TimeoutSource? cursor_timeout_source;
+
+    void cursor_motion_cb(Gtk.EventControllerMotion ctrlr,
+                          double x, double y)
+    {
+        /* Gtk keeps emitting motion signal with the same x & y values when the
+         * cursor is over the current widget (Video) and video is playing, even 
+         * if the cursor is actually not moving anymore.
+         */
+        if (x == cursor_x_cached && y == cursor_y_cached)
+            return;
+
+        cursor_x_cached = x;
+        cursor_y_cached = y;
+
+        // Show cursor
+        set_cursor_from_name("default");
+
+        /* Reset cursor hide timer by destroying the old one (if any exists and is
+         * not already destroyed) and creating a new one.
+         */
+
+        if (cursor_timeout_source != null && !cursor_timeout_source.is_destroyed())
+            cursor_timeout_source.destroy();
+
+        cursor_timeout_source = new TimeoutSource(700);
+        cursor_timeout_source.set_callback(() => {
+            set_cursor_from_name("none");
+            return Source.REMOVE;
+        });
+        cursor_timeout_source.attach();
     }
 }
