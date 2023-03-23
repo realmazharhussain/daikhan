@@ -23,6 +23,7 @@ internal Playback? default_playback;
 
 public class Playback : Object {
     public File? last_opened_file { get; private set; }
+    public Gst.Element? video_sink { get; set; }
     public string? title { get; private set; }
     public double volume { get; set; default = 1; }
     public int64 progress { get; private set; default = -1; }
@@ -43,6 +44,7 @@ public class Playback : Object {
             }
 
             if (_pipeline != null) {
+                _pipeline["video-sink"] = null;
                 volume_binding.unbind();
                 try_set_state(NULL);
 
@@ -65,6 +67,8 @@ public class Playback : Object {
                 bus.message["eos"].connect(pipeline_eos_cb);
                 bus.message["error"].connect(pipeline_error_cb);
                 bus.message["state-changed"].connect(pipeline_state_changed_message_cb);
+
+                value["video-sink"] = video_sink;
 
                 volume_binding = value.bind_property("volume", this, "volume",
                                                      SYNC_CREATE|BIDIRECTIONAL,

@@ -1,5 +1,4 @@
 class Video : Adw.Bin {
-    Gst.Element? video_sink;
     unowned Playback playback;
 
     construct {
@@ -14,13 +13,15 @@ class Video : Adw.Bin {
         dynamic Gdk.Paintable paintable = gtksink.paintable;
         image.paintable = paintable;
 
+        playback = Playback.get_default();
+
         if (paintable.gl_context != null) {
             var glsink = Gst.ElementFactory.make("glsinkbin", "glsinkbin");
             glsink["sink"] = gtksink;
-            video_sink = glsink;
+            playback.video_sink = glsink;
         }
         else {
-            video_sink = gtksink;
+            playback.video_sink = gtksink;
         }
 
         var target = new Gtk.DropTarget(typeof(Gdk.FileList), COPY);
@@ -41,21 +42,6 @@ class Video : Adw.Bin {
         var motion_ctrlr = new Gtk.EventControllerMotion();
         motion_ctrlr.motion.connect(cursor_motion_cb);
         add_controller(motion_ctrlr);
-
-        playback = Playback.get_default();
-        playback.notify["pipeline"].connect(notify_pipeline_cb);
-    }
-
-    Gst.Pipeline? last_pipeline = null;
-    void notify_pipeline_cb() {
-        if (last_pipeline != null) {
-            last_pipeline["video-sink"] = null;
-        }
-        if (playback.pipeline != null) {
-            playback.pipeline["video-sink"] = video_sink;
-        }
-
-        last_pipeline = playback.pipeline;
     }
 
     bool drop_value_is_acceptable(Value value) {
