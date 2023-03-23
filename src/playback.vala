@@ -201,17 +201,20 @@ public class Playback : Object {
 
     }
 
-    uint timeout_id = 0;
+    TimeoutSource? progress_source;
 
     void ensure_progress_tracking() {
-        if (timeout_id > 0)
+        if (progress_source != null && !progress_source.is_destroyed())
             return;
 
         if (duration == -1)
             update_duration();
 
         update_progress();
-        timeout_id = Timeout.add(100, update_progress);
+
+        progress_source = new TimeoutSource(100);
+        progress_source.set_callback(update_progress);
+        progress_source.attach();
     }
 
     bool update_progress() {
@@ -236,11 +239,11 @@ public class Playback : Object {
     }
 
     void stop_progress_tracking() {
-        if (timeout_id == 0)
+        if (progress_source == null || progress_source.is_destroyed())
             return;
 
-        if (Source.remove(timeout_id))
-            timeout_id = 0;
+        var source_id = progress_source.get_id();
+        Source.remove(source_id);
     }
 
     bool try_set_state(Gst.State new_state) {
