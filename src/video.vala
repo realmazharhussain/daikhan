@@ -176,8 +176,8 @@ class Video : Adw.Bin {
         cursor_x_cached = x;
         cursor_y_cached = y;
 
-        // Show cursor
-        set_cursor_from_name("default");
+        // Show cursor (`null` means the default cursor will be used)
+        cursor = null;
 
         /* Reset cursor hide timer by destroying the old one (if any exists and is
          * not already destroyed) and creating a new one.
