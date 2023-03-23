@@ -220,12 +220,8 @@ public class Playback : Object {
     }
 
     bool update_progress() {
-        if (duration == -1 ) {
-            int64 duration;
-            if (pipeline.query_duration(TIME, out duration)) {
-                this.duration = duration;
-            }
-        }
+        if (duration == -1)
+            update_duration();
 
         int64 progress;
         if (!pipeline.query_position(TIME, out progress)) {
@@ -236,6 +232,15 @@ public class Playback : Object {
         this.progress = progress;
 
         return Source.CONTINUE;
+    }
+
+    bool update_duration() {
+        int64 duration;
+        if (!pipeline.query_duration(TIME, out duration))
+            return false;
+
+        this.duration = duration;
+        return true;
     }
 
     bool try_set_state(Gst.State new_state) {
