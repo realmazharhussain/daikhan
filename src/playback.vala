@@ -229,6 +229,7 @@ public class Playback : Object {
 
         int64 progress;
         if (!pipeline.query_position(TIME, out progress)) {
+            warning("Failed to query playback position");
             return Source.REMOVE;
         }
 
