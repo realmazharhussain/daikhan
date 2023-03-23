@@ -162,6 +162,7 @@ class Video : Adw.Bin {
     double cursor_x_cached;
     double cursor_y_cached;
     TimeoutSource? cursor_timeout_source;
+    Gdk.Cursor none_cursor = new Gdk.Cursor.from_name("none", null);
 
     void cursor_motion_cb(Gtk.EventControllerMotion ctrlr,
                           double x, double y)
@@ -188,7 +189,7 @@ class Video : Adw.Bin {
 
         cursor_timeout_source = new TimeoutSource(700);
         cursor_timeout_source.set_callback(() => {
-            set_cursor_from_name("none");
+            cursor = none_cursor;
             return Source.REMOVE;
         });
         cursor_timeout_source.attach();
