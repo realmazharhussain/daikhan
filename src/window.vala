@@ -20,7 +20,7 @@ class PlayerWindow : Adw.ApplicationWindow {
         add_action_entries(entries, this);
 
         playback = Playback.get_default();
-        playback.notify["expected-state"].connect(notify_playback_state_cb);
+        playback.notify["desired-state"].connect(notify_playback_state_cb);
         playback.notify["title"].connect(update_title);
 
         update_title();
@@ -47,7 +47,7 @@ class PlayerWindow : Adw.ApplicationWindow {
 
     uint inhibit_id = 0;
     void notify_playback_state_cb() {
-        if (playback.expected_state == PLAYING) {
+        if (playback.desired_state == PLAYING) {
             inhibit_id = application.inhibit(this, IDLE, "Media is playing");
         } else {
             application.uninhibit(inhibit_id);

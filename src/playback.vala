@@ -80,21 +80,21 @@ public class Playback : Object {
         }
     }
 
-    private Gst.State _expected_state = NULL;
-    public Gst.State expected_state {
+    private Gst.State _desired_state = NULL;
+    public Gst.State desired_state {
         get {
-            return _expected_state;
+            return _desired_state;
         }
 
         private set {
-            if (value == _expected_state) {
+            if (value == _desired_state) {
                 return;
             }
 
             if (value != PLAYING)
                 stop_progress_tracking();
 
-            _expected_state = value;
+            _desired_state = value;
         }
     }
 
@@ -153,7 +153,7 @@ public class Playback : Object {
     }
 
     public bool toggle_playing() {
-        if (expected_state == PLAYING)
+        if (desired_state == PLAYING)
             return pause();
 
         return play();
@@ -238,7 +238,7 @@ public class Playback : Object {
     }
 
     bool try_set_state(Gst.State new_state) {
-        if (expected_state == new_state) {
+        if (desired_state == new_state) {
             return true;
         }
 
@@ -247,7 +247,7 @@ public class Playback : Object {
             return false;
         }
 
-        expected_state = new_state;
+        desired_state = new_state;
         return true;
     }
 
