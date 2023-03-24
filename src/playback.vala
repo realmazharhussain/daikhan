@@ -128,8 +128,6 @@ public class Playback : Object {
     }
 
     public bool open_file(File file) {
-        stop();
-
         pipeline = Gst.ElementFactory.make("playbin", null) as Gst.Pipeline;
         if (pipeline == null) {
             critical("Failed to create pipeline!");
