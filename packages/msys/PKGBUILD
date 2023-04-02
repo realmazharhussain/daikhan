@@ -1,0 +1,43 @@
+# Maintainer: Mazhar Hussain <realmazharhussain@gmail.com>
+
+_realname=envision
+pkgbase=mingw-w64-${_realname}
+pkgname="${MINGW_PACKAGE_PREFIX}-${_realname}"
+pkgver=44.0
+pkgrel=1
+arch=(any)
+#mingw_arch=('mingw32' 'mingw64' 'ucrt64' 'clang64' 'clang32')
+mingw_arch=(ucrt64)
+pkgdesc="Envision Media Player (mingw-w64)"
+url="https://gitlab.com/envision-play/envision-media-player"
+depends=("${MINGW_PACKAGE_PREFIX}-libadwaita")
+makedepends=("${MINGW_PACKAGE_PREFIX}-cc"
+             "${MINGW_PACKAGE_PREFIX}-vala"
+             "${MINGW_PACKAGE_PREFIX}-appstream-glib"
+             "${MINGW_PACKAGE_PREFIX}-desktop-file-utils"
+             "${MINGW_PACKAGE_PREFIX}-meson"
+	     git)
+options=('strip' 'staticlibs')
+license=("GPL3")
+source=("git+${url}.git")
+md5sums=(SKIP)
+
+build() {
+  [[ -d build-${MINGW_CHOST} ]] && rm -rf build-${MINGW_CHOST}
+  mkdir -p build-${MINGW_CHOST} && cd build-${MINGW_CHOST}
+
+  MSYS2_ARG_CONV_EXCL="--prefix=" \
+  ${MINGW_PREFIX}/bin/meson \
+    --prefix=${MINGW_PREFIX} \
+    --buildtype=plain \
+    "${srcdir}/envision-media-player"
+
+  ninja
+}
+
+package() {
+  cd "${srcdir}/build-${MINGW_CHOST}"
+
+  DESTDIR="${pkgdir}" ninja install
+}
+
