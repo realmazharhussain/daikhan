@@ -18,9 +18,14 @@ template MediaControls : Adw.Bin {
       visible: false;
     }
 
+    Separator { styles ["spacer"] }
+
     .ProgressLabel { sensitive: bind progress_bar.sensitive; }
     .ProgressBar progress_bar {}
     .DurationLabel { sensitive: bind progress_bar.sensitive; }
+
+    Separator { styles ["spacer"] }
+
     .VolumeButton {}
   };
 }
