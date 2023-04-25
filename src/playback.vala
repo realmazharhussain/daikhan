@@ -142,15 +142,15 @@ public class Playback : Object {
             return false;
         }
 
-        last_queue = files;
-        can_play = true;
-
         try {
             var info = files[0].query_info("standard::display-name", NONE);
             title = info.get_display_name();
         } catch (Error err) {
             warning(err.message);
         }
+
+        last_queue = files;
+        can_play = true;
 
         return true;
     }
