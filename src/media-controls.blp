@@ -6,7 +6,18 @@ template MediaControls : Adw.Bin {
     orientation: horizontal;
     styles ["toolbar"]
 
+    Button {
+      icon-name: "media-skip-backward-symbolic";
+      visible: false;
+    }
+
     .PlayButton {}
+
+    Button {
+      icon-name: "media-skip-forward-symbolic";
+      visible: false;
+    }
+
     .ProgressLabel { sensitive: bind progress_bar.sensitive; }
     .ProgressBar progress_bar {}
     .DurationLabel { sensitive: bind progress_bar.sensitive; }
