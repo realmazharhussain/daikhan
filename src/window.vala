@@ -41,8 +41,8 @@ class PlayerWindow : Adw.ApplicationWindow {
         app.set_accels_for_action("win.volume_step(-0.02)", {"<Shift>Down", "<Shift>j"});
     }
 
-    public bool open_file(File file) {
-        return playback.open_file(file);
+    public bool open(File[] files) {
+        return playback.open(files);
     }
 
     uint inhibit_id = 0;

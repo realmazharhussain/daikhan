@@ -80,7 +80,7 @@ class Video : Adw.Bin {
 
     bool drop_cb(Gtk.DropTarget target, Value value, double x, double y) {
         var file = ((Gdk.FileList) value).get_files().last().data;
-        return playback.open_file(file);
+        return playback.open({file});
     }
 
     void click_gesture_pressed_cb(Gtk.GestureClick gesture,

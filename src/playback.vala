@@ -22,13 +22,14 @@ namespace AudioVolume {
 internal Playback? default_playback;
 
 public class Playback : Object {
-    public File? last_opened_file { get; private set; }
     public Gst.Element? video_sink { get; set; }
     public string? title { get; private set; }
     public double volume { get; set; default = 1; }
     public int64 progress { get; private set; default = -1; }
     public int64 duration { get; private set; default = -1; }
     public bool can_play { get; private set; default = false; }
+
+    public File[]? last_queue;
 
     Binding? volume_binding;
 
@@ -127,25 +128,25 @@ public class Playback : Object {
         return default_playback;
     }
 
-    public bool open_file(File file) {
+    public bool open(File[] files) {
         pipeline = Gst.ElementFactory.make("playbin", null) as Gst.Pipeline;
         if (pipeline == null) {
             critical("Failed to create pipeline!");
             return false;
         }
 
-        pipeline["uri"] = file.get_uri();
+        pipeline["uri"] = files[0].get_uri();
 
         if (!play()) {
             critical("Cannot play!");
             return false;
         }
 
-        last_opened_file = file;
+        last_queue = files;
         can_play = true;
 
         try {
-            var info = file.query_info("standard::display-name", NONE);
+            var info = files[0].query_info("standard::display-name", NONE);
             title = info.get_display_name();
         } catch (Error err) {
             warning(err.message);
@@ -164,8 +165,8 @@ public class Playback : Object {
     public bool play() {
         if (pipeline != null) {
             return try_set_state(PLAYING);
-        } else if (last_opened_file != null) {
-            return open_file(last_opened_file);
+        } else if (last_queue != null) {
+            return open(last_queue);
         }
         return false;
     }

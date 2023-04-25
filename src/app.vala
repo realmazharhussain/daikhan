@@ -16,9 +16,8 @@ class MediaPlayer : Adw.Application {
     }
 
     public override void open(File[] files, string hint) {
-        var file = files[files.length-1];
         var win = get_main_window();
-        win.open_file(file);
+        win.open(files);
         win.present();
     }
 
