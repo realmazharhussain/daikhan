@@ -1,5 +1,6 @@
 class MediaPlayer : Adw.Application {
     public MediaPlayer() {
+        resource_base_path = "/app";
         application_id = "io.gitlab.Envision.MediaPlayer";
         flags |= HANDLES_OPEN;
     }
@@ -37,7 +38,7 @@ class MediaPlayer : Adw.Application {
     Gtk.Window shortcuts_win;
 
     void show_shortcuts_cb() {
-      var builder = new Gtk.Builder.from_resource("/ui/shortcuts.ui");
+      var builder = new Gtk.Builder.from_resource("/app/ui/shortcuts.ui");
       shortcuts_win = (Gtk.Window) builder.get_object("shortcuts_window");
 
       shortcuts_win.transient_for = get_active_window();

@@ -1,4 +1,4 @@
-[GtkTemplate (ui = "/ui/window.ui")]
+[GtkTemplate (ui = "/app/ui/window.ui")]
 class PlayerWindow : Adw.ApplicationWindow {
     string app_name = "Envision Media Player";
     public Playback playback { get; private set; }

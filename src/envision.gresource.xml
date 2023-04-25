@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/ui">
+  <gresource prefix="/app/ui">
     <file preprocess="xml-stripblanks">window.ui</file>
     <file preprocess="xml-stripblanks">shortcuts.ui</file>
     <file preprocess="xml-stripblanks">media-controls.ui</file>
     <file preprocess="xml-stripblanks">media-controls/volume-button.ui</file>
   </gresource>
-  <gresource prefix="/io/gitlab/Envision/MediaPlayer">
+  <gresource prefix="/app">
     <file>style.css</file>
   </gresource>
 </gresources>
