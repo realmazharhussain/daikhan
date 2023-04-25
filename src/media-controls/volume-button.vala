@@ -1,4 +1,4 @@
-[GtkTemplate (ui = "/app/ui/media-controls/volume-button.ui")]
+[GtkTemplate (ui = "/app/media-controls/volume-button.ui")]
 public class VolumeButton : Adw.Bin {
     [GtkChild] unowned Gtk.Adjustment adjustment;
     unowned Playback playback;
