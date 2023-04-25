@@ -214,7 +214,7 @@ public class Playback : Object {
 
         update_progress();
 
-        progress_source = new TimeoutSource(100);
+        progress_source = new TimeoutSource(250);
         progress_source.set_callback(update_progress);
         progress_source.attach();
     }
