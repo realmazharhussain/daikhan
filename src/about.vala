@@ -4,7 +4,6 @@ namespace Adw {
 }
 
 void show_about_window(Gtk.Window parent) {
-    string[] developers = {"Mazhar Hussain"};
 
     Adw.show_about_window(parent,
         "issue_url", "https://gitlab.com/envision-play/envision-media-player/-/issues/new",
@@ -12,9 +11,7 @@ void show_about_window(Gtk.Window parent) {
         "application_name", "Envision Media Player",
         "copyright", "Copyright 2022-2023 Mazhar Hussain",
         "license_type", Gtk.License.AGPL_3_0,
-        "developer_name", developers[0],
-        "version", "0.1.alpha",
-        "developers", developers,
-        "designers", developers
+        "developer_name", "Mazhar Hussain",
+        "version", "0.1.alpha"
     );
 }
