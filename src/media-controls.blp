@@ -10,16 +10,20 @@ template MediaControls : Adw.Bin {
       orientation: horizontal;
       spacing: 0;
 
-      Button {
+      Button prev_btn {
         icon-name: "media-skip-backward-symbolic";
         visible: false;
+
+        clicked => prev_cb();
       }
 
       .PlayButton {}
 
-      Button {
+      Button next_btn {
         icon-name: "media-skip-forward-symbolic";
         visible: false;
+
+        clicked => next_cb();
       }
     }
 

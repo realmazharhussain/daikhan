@@ -28,13 +28,43 @@ public class Playback : Object {
     public int64 progress { get; private set; default = -1; }
     public int64 duration { get; private set; default = -1; }
 
-    public File[]? queue;
-    public int track { get; private set; default = 1; }
-
     public bool can_play { get; private set; default = false; }
     public bool can_next { get; private set; default = false; }
     public bool can_prev { get; private set; default = false; }
     public bool multiple_tracks { get; private set; default = false; }
+
+    public File[]? prev_queue;
+    public File[]? queue;
+    public void set_queue(File[]? queue) {
+        this.queue = queue;
+        this.track = -1;
+        this.can_prev = false;
+
+        if (queue == null) {
+            this.multiple_tracks = false;
+            this.can_next = false;
+        } else {
+            this.multiple_tracks = queue.length > 1;
+            this.can_next = can_play_track(0);
+        }
+    }
+
+    private int _track = -1;
+    public int track {
+        get {
+            return _track;
+        }
+
+        private set {
+            if (value == _track)
+                return;
+
+            can_prev = can_play_track(value - 1);
+            can_next = can_play_track(value + 1);
+
+            _track = value;
+        }
+    }
 
     Binding? volume_binding;
 
@@ -169,14 +199,6 @@ public class Playback : Object {
         return true;
     }
 
-    private void update_can_next() {
-        can_next = can_play_track(track + 1);
-    }
-
-    private void update_can_prev() {
-        can_prev = can_play_track(track - 1);
-    }
-
     public bool next() {
         if (!can_next)
             return false;
@@ -185,8 +207,6 @@ public class Playback : Object {
             return false;
 
         track++;
-
-        update_can_next();
 
         return true;
     }
@@ -200,20 +220,14 @@ public class Playback : Object {
 
         track--;
 
-        update_can_prev();
-
         return true;
     }
 
     public bool open(File[] files) {
         assert(files.length > 0);
 
-        queue = files;
-        multiple_tracks = files.length > 1;
-        track = -1;
+        set_queue(files);
         can_play = true;
-        update_can_next();
-        update_can_prev();
 
         return next();
     }
@@ -228,8 +242,8 @@ public class Playback : Object {
     public bool play() {
         if (pipeline != null) {
             return try_set_state(PLAYING);
-        } else if (queue != null) {
-            return open(queue);
+        } else if (prev_queue != null) {
+            return open(prev_queue);
         }
         return false;
     }
@@ -243,6 +257,11 @@ public class Playback : Object {
 
     public void stop() {
         pipeline = null;
+
+        if (queue != null) {
+            prev_queue = queue;
+            set_queue(null);
+        }
     }
 
     public bool seek(int64 seconds) {
