@@ -6,16 +6,21 @@ template MediaControls : Adw.Bin {
     orientation: horizontal;
     styles ["toolbar"]
 
-    Button {
-      icon-name: "media-skip-backward-symbolic";
-      visible: false;
-    }
+    Box {
+      orientation: horizontal;
+      spacing: 0;
 
-    .PlayButton {}
+      Button {
+        icon-name: "media-skip-backward-symbolic";
+        visible: false;
+      }
 
-    Button {
-      icon-name: "media-skip-forward-symbolic";
-      visible: false;
+      .PlayButton {}
+
+      Button {
+        icon-name: "media-skip-forward-symbolic";
+        visible: false;
+      }
     }
 
     Separator { styles ["spacer"] }
