@@ -27,9 +27,14 @@ public class Playback : Object {
     public double volume { get; set; default = 1; }
     public int64 progress { get; private set; default = -1; }
     public int64 duration { get; private set; default = -1; }
-    public bool can_play { get; private set; default = false; }
 
-    public File[]? last_queue;
+    public File[]? queue;
+    public int track { get; private set; default = 1; }
+
+    public bool can_play { get; private set; default = false; }
+    public bool can_next { get; private set; default = false; }
+    public bool can_prev { get; private set; default = false; }
+    public bool multiple_tracks { get; private set; default = false; }
 
     Binding? volume_binding;
 
@@ -128,14 +133,26 @@ public class Playback : Object {
         return default_playback;
     }
 
-    public bool open(File[] files) {
-        pipeline = Gst.ElementFactory.make("playbin", null) as Gst.Pipeline;
-        if (pipeline == null) {
-            critical("Failed to create pipeline!");
+    private bool can_play_track(int track_index) {
+        if (queue == null)
             return false;
-        }
 
-        pipeline["uri"] = files[0].get_uri();
+        if (track_index < 0 || track_index >= queue.length)
+            return false;
+        
+        return true;
+    }
+
+    private bool play_track(int track_index) {
+        if (!can_play_track(track_index))
+            return false;
+
+        pipeline = Gst.ElementFactory.make("playbin", null) as Gst.Pipeline;
+        assert(pipeline != null);
+
+        var file = queue[track_index];
+
+        pipeline["uri"] = file.get_uri();
 
         if (!play()) {
             critical("Cannot play!");
@@ -143,16 +160,62 @@ public class Playback : Object {
         }
 
         try {
-            var info = files[0].query_info("standard::display-name", NONE);
+            var info = file.query_info("standard::display-name", NONE);
             title = info.get_display_name();
         } catch (Error err) {
             warning(err.message);
         }
 
-        last_queue = files;
-        can_play = true;
+        return true;
+    }
+
+    private void update_can_next() {
+        can_next = can_play_track(track + 1);
+    }
+
+    private void update_can_prev() {
+        can_prev = can_play_track(track - 1);
+    }
+
+    public bool next() {
+        if (!can_next)
+            return false;
+
+        if (!play_track(track + 1))
+            return false;
+
+        track++;
+
+        update_can_next();
 
         return true;
+    }
+
+    public bool prev() {
+        if (!can_prev)
+            return false;
+
+        if (!play_track(track - 1))
+            return false;
+
+        track--;
+
+        update_can_prev();
+
+        return true;
+    }
+
+    public bool open(File[] files) {
+        assert(files.length > 0);
+
+        queue = files;
+        multiple_tracks = files.length > 1;
+        track = -1;
+        can_play = true;
+        update_can_next();
+        update_can_prev();
+
+        return next();
     }
 
     public bool toggle_playing() {
@@ -165,8 +228,8 @@ public class Playback : Object {
     public bool play() {
         if (pipeline != null) {
             return try_set_state(PLAYING);
-        } else if (last_queue != null) {
-            return open(last_queue);
+        } else if (queue != null) {
+            return open(queue);
         }
         return false;
     }
@@ -278,7 +341,10 @@ public class Playback : Object {
     }
 
     void pipeline_eos_cb () {
-        stop();
+        if (can_next)
+            next();
+        else
+            stop();
     }
 
     ~Playback() {
