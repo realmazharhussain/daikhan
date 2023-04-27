@@ -1,7 +1,7 @@
 app-id: io.gitlab.Envision.MediaPlayer
 command: envision
 runtime: org.gnome.Platform
-runtime-version: "43"
+runtime-version: "44"
 sdk: org.gnome.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
@@ -9,14 +9,17 @@ sdk-extensions:
 build-options:
   append-path: /usr/lib/sdk/rust-stable/bin
   env:
-    CARGO_HOME: /run/build/cargo-c/cargo
     RUST_BACKTRACE: "1"
 
 finish-args:
   - --share=ipc
+  - --share=network
   - --device=dri
   - --socket=wayland
   - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --filesystem=host
+  - --filesystem=xdg-run/gvfs
 
 cleanup:
   - /include
@@ -40,18 +43,21 @@ modules:
     cleanup:
       - "*"
 
-  #- name: cargo-c
-  #  buildsystem: simple
-  #  build-commands:
-  #    - cargo --offline fetch --manifest-path Cargo.toml
-  #    - cargo --offline install --path . --root /app
-  #  sources:
-  #    - type: archive
-  #      url: https://github.com/lu-zero/cargo-c/archive/refs/tags/v0.9.19.tar.gz
-  #      sha256: c2633ff22e52da9985394f30c8ef5e9abbac4d14c9b79e3690c8e95cf500ab97
-  #    - cargo-c-sources.json
-  #  cleanup:
-  #    - "*"
+  - name: cargo-c
+    buildsystem: simple
+    build-options:
+      env:
+        CARGO_HOME: /run/build/cargo-c/cargo
+    build-commands:
+      - cargo --offline fetch --manifest-path Cargo.toml
+      - cargo --offline install --path . --root /app
+    sources:
+      - type: archive
+        url: https://github.com/lu-zero/cargo-c/archive/refs/tags/v0.9.19.tar.gz
+        sha256: c2633ff22e52da9985394f30c8ef5e9abbac4d14c9b79e3690c8e95cf500ab97
+      - cargo-c-sources.json
+    cleanup:
+      - "*"
 
   - name: gst-plugins-rs
     buildsystem: simple
@@ -60,16 +66,20 @@ modules:
         url: https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs/-/archive/0.10.6/gst-plugins-rs-0.10.6.tar.bz2
         sha256: 90af993b28f050e2d682582ca1bde440665e75a5fbaec6577cafc609e24f2d92
       - gst-plugins-rs-sources.json
-    build-commands:
-      - cargo --offline fetch --manifest-path video/gtk4/Cargo.toml
-      - cargo --offline cinstall -p gst-plugin-gtk4 --prefix=/app
     build-options:
-      build-args:
-        - --share=network
+      env:
+        CARGO_HOME: /run/build/gst-plugins-rs/cargo
+    build-commands:
+      - cargo --offline fetch
+      - cargo --offline cinstall -p gst-plugin-gtk4 --prefix=/app
 
   - name: envision
     builddir: true
-    buildsystem: meson
+    buildsystem: simple
     sources:
       - type: dir
         path: '../../'
+    build-commands:
+      - meson setup _build --prefix=/app
+      - meson compile -C _build || meson compile -C _build
+      - meson install -C _build
