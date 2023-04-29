@@ -7,6 +7,11 @@ public class ProgressBar : Gtk.Scale {
         adjustment.upper = 1;
         hexpand = true;
 
+        add_css_class("progress");
+
+        var trough = get_first_child();
+        trough.overflow = HIDDEN;
+
         playback = Playback.get_default();
         playback.bind_property("duration", adjustment, "upper", SYNC_CREATE);
         playback.bind_property("progress", adjustment, "value", SYNC_CREATE);
