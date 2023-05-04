@@ -24,6 +24,7 @@ sources = files(
   'window.vala',
   'playback.vala',
   'time-labels.vala',
+  'title.vala',
   'media-controls.vala',
   'media-controls/play-button.vala',
   'media-controls/progress-bar.vala',

@@ -1,9 +1,10 @@
 [GtkTemplate (ui = "/app/window.ui")]
 class PlayerWindow : Adw.ApplicationWindow {
-    string app_name = "Envision Media Player";
+    [GtkChild] unowned Envision.Title title_widget;
     public Playback playback { get; private set; }
 
     static construct {
+        typeof(Envision.Title).ensure();
         typeof(Video).ensure();
         typeof(MediaControls).ensure();
     }
@@ -21,9 +22,8 @@ class PlayerWindow : Adw.ApplicationWindow {
 
         playback = Playback.get_default();
         playback.notify["desired-state"].connect(notify_playback_state_cb);
-        playback.notify["title"].connect(update_title);
 
-        update_title();
+        title_widget.bind_property ("title", this, "title", SYNC_CREATE);
     }
 
     public PlayerWindow (Gtk.Application app) {
@@ -51,14 +51,6 @@ class PlayerWindow : Adw.ApplicationWindow {
             inhibit_id = application.inhibit(this, IDLE, "Media is playing");
         } else {
             application.uninhibit(inhibit_id);
-        }
-    }
-
-    void update_title() {
-        if (playback.title != null) {
-            title = playback.title + " - " + app_name;
-        } else {
-            title = app_name;
         }
     }
 
