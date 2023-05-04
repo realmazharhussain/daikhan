@@ -24,6 +24,7 @@ overlay > revealer > * {
 
 overlay > revealer * .title {
   font-size: 2rem;
+  font-weight: 600;
   margin: 0rem 1rem;
 }
 
