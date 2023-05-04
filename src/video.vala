@@ -1,4 +1,5 @@
 class Video : Adw.Bin {
+    public bool cursor_in_motion { get; private set; default = false; }
     unowned Playback playback;
 
     construct {
@@ -42,6 +43,8 @@ class Video : Adw.Bin {
         var motion_ctrlr = new Gtk.EventControllerMotion();
         motion_ctrlr.motion.connect(cursor_motion_cb);
         add_controller(motion_ctrlr);
+
+        notify["cursor-in-motion"].connect(notify_cursor_in_motion_cb);
     }
 
     bool drop_value_is_acceptable(Value value) {
@@ -147,8 +150,7 @@ class Video : Adw.Bin {
 
     double cursor_x_cached;
     double cursor_y_cached;
-    TimeoutSource? cursor_timeout_source;
-    Gdk.Cursor none_cursor = new Gdk.Cursor.from_name("none", null);
+    TimeoutSource? cursor_motion_timeout_source;
 
     void cursor_motion_cb(Gtk.EventControllerMotion ctrlr,
                           double x, double y)
@@ -164,20 +166,39 @@ class Video : Adw.Bin {
         cursor_y_cached = y;
 
         // Show cursor (`null` means the default cursor will be used)
-        cursor = null;
+        cursor_in_motion = true;
 
-        /* Reset cursor hide timer by destroying the old one (if any exists and is
+        /* Reset cursor motion timer by destroying the old one (if any exists and is
          * not already destroyed) and creating a new one.
          */
 
-        if (cursor_timeout_source != null && !cursor_timeout_source.is_destroyed())
-            cursor_timeout_source.destroy();
+        if (cursor_motion_timeout_source != null && !cursor_motion_timeout_source.is_destroyed())
+            cursor_motion_timeout_source.destroy();
 
-        cursor_timeout_source = new TimeoutSource(700);
-        cursor_timeout_source.set_callback(() => {
-            cursor = none_cursor;
+        cursor_motion_timeout_source = new TimeoutSource(100);
+        cursor_motion_timeout_source.set_callback(() => {
+            cursor_in_motion = false;
             return Source.REMOVE;
         });
-        cursor_timeout_source.attach();
+        cursor_motion_timeout_source.attach();
+    }
+
+    TimeoutSource? cursor_hide_timeout_source;
+    Gdk.Cursor none_cursor = new Gdk.Cursor.from_name("none", null);
+
+    void notify_cursor_in_motion_cb() {
+        if (cursor_hide_timeout_source != null && !cursor_hide_timeout_source.is_destroyed())
+            cursor_hide_timeout_source.destroy();
+
+        if (cursor_in_motion) {
+            cursor = null;
+        } else {
+            cursor_hide_timeout_source = new TimeoutSource(500);
+            cursor_hide_timeout_source.set_callback(() =>{
+                cursor = none_cursor;
+                return Source.REMOVE;
+            });
+            cursor_hide_timeout_source.attach();
+        }
     }
 }
