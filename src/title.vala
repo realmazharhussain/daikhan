@@ -8,10 +8,23 @@ class Envision.Title: Adw.Bin {
 
         bind_property("title", child, "title", BIDIRECTIONAL);
         playback.notify["filename"].connect(update_title);
+        playback.notify["title"].connect(update_title);
         update_title();
     }
 
     void update_title() {
-        title = playback.filename ?? "Envision Media Player";
+        if (playback.title == null) {
+            title = playback.filename ?? "Envision Media Player";
+            return;
+        }
+
+        child["subtitle"] = playback.filename;
+        title = playback.title;
+
+        if (playback.album != null)
+            title += " – " + playback.album;
+
+        if (playback.artist != null)
+            title += " – " + playback.artist;
     }
 }

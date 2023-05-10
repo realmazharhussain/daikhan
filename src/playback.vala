@@ -28,6 +28,10 @@ public class Playback : Object {
     public int64 progress { get; private set; default = -1; }
     public int64 duration { get; private set; default = -1; }
 
+    public string? title { get; private set; }
+    public string? artist { get; private set; }
+    public string? album { get; private set; }
+
     public bool can_play { get; private set; default = false; }
     public bool can_next { get; private set; default = false; }
     public bool can_prev { get; private set; default = false; }
@@ -85,6 +89,7 @@ public class Playback : Object {
                 try_set_state(NULL);
 
                 var bus = _pipeline.get_bus();
+                bus.message["tag"].disconnect(pipeline_tag_message_cb);
                 bus.message["state-changed"].disconnect(pipeline_state_changed_message_cb);
                 bus.message["error"].disconnect(pipeline_error_cb);
                 bus.message["eos"].disconnect(pipeline_eos_cb);
@@ -96,6 +101,9 @@ public class Playback : Object {
             progress = -1;
             duration = -1;
             filename = null;
+            album = null;
+            artist = null;
+            title = null;
 
             if (value != null) {
                 var bus = value.get_bus();
@@ -103,6 +111,7 @@ public class Playback : Object {
                 bus.message["eos"].connect(pipeline_eos_cb);
                 bus.message["error"].connect(pipeline_error_cb);
                 bus.message["state-changed"].connect(pipeline_state_changed_message_cb);
+                bus.message["tag"].connect(pipeline_tag_message_cb);
 
                 value["video-sink"] = video_sink;
 
@@ -343,6 +352,29 @@ public class Playback : Object {
 
         desired_state = new_state;
         return true;
+    }
+
+    void pipeline_tag_message_cb (Gst.Bus bus, Gst.Message msg) {
+        Gst.TagList tag_list;
+        msg.parse_tag(out tag_list);
+
+        if (this.album == null) {
+            string album;
+            tag_list.get_string(Gst.Tags.ALBUM, out album);
+            this.album = album;
+        }
+
+        if (this.artist == null) {
+            string artist;
+            tag_list.get_string(Gst.Tags.ARTIST, out artist);
+            this.artist = artist;
+        }
+
+        if (this.title == null) {
+            string title;
+            tag_list.get_string(Gst.Tags.TITLE, out title);
+            this.title = title;
+        }
     }
 
     void pipeline_state_changed_message_cb() {

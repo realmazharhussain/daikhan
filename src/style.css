@@ -22,9 +22,16 @@ overlay > revealer > * {
   margin: 0.8rem;
 }
 
-overlay > revealer * .title {
-  font-size: 1.7rem;
-  margin: 0rem 1rem;
+overlay > revealer * windowtitle {
+  padding: .75rem;
+}
+
+overlay > revealer * windowtitle .title {
+  font-size: 1.75rem;
+}
+
+overlay > revealer * windowtitle .subtitle {
+  font-size: 1.25rem;
 }
 
 overlay > revealer * button {
