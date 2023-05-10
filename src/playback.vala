@@ -23,7 +23,7 @@ internal Playback? default_playback;
 
 public class Playback : Object {
     public Gst.Element? video_sink { get; set; }
-    public string? title { get; private set; }
+    public string? filename { get; private set; }
     public double volume { get; set; default = 1; }
     public int64 progress { get; private set; default = -1; }
     public int64 duration { get; private set; default = -1; }
@@ -93,9 +93,9 @@ public class Playback : Object {
 
             // Reset all pipeline related properties
             current_state = NULL;
-            title = null;
             progress = -1;
             duration = -1;
+            filename = null;
 
             if (value != null) {
                 var bus = value.get_bus();
@@ -191,7 +191,7 @@ public class Playback : Object {
 
         try {
             var info = file.query_info("standard::display-name", NONE);
-            title = info.get_display_name();
+            filename = info.get_display_name();
         } catch (Error err) {
             warning(err.message);
         }
