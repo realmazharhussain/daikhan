@@ -63,7 +63,7 @@ class PlayerWindow : Adw.ApplicationWindow {
         if (video.cursor_in_motion)
             top_revealer.reveal_child = true;
         else {
-            overlay_timeout_source = new TimeoutSource (1200);
+            overlay_timeout_source = new TimeoutSource (1500);
             overlay_timeout_source.set_callback (() => {
                 top_revealer.reveal_child = false;
                 return Source.REMOVE;
