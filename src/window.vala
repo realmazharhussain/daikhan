@@ -1,12 +1,10 @@
 [GtkTemplate (ui = "/app/window.ui")]
 class PlayerWindow : Adw.ApplicationWindow {
     [GtkChild] unowned Envision.Title title_widget;
-    [GtkChild] unowned Video video;
-    [GtkChild] unowned Gtk.Revealer top_revealer;
     public Playback playback { get; private set; }
 
     static construct {
-        typeof(MediaControls).ensure();
+        typeof(Envision.VideoArea).ensure();
     }
 
     construct {
@@ -24,7 +22,6 @@ class PlayerWindow : Adw.ApplicationWindow {
         playback.notify["desired-state"].connect(notify_playback_state_cb);
 
         title_widget.bind_property ("title", this, "title", SYNC_CREATE);
-        video.notify["cursor-in-motion"].connect(notify_video_cursor_cb);
     }
 
     public PlayerWindow (Gtk.Application app) {
@@ -52,23 +49,6 @@ class PlayerWindow : Adw.ApplicationWindow {
             inhibit_id = application.inhibit(this, IDLE, "Media is playing");
         } else {
             application.uninhibit(inhibit_id);
-        }
-    }
-
-    TimeoutSource? overlay_timeout_source;
-    void notify_video_cursor_cb() {
-        if (overlay_timeout_source != null && !overlay_timeout_source.is_destroyed ())
-            overlay_timeout_source.destroy ();
-
-        if (video.cursor_in_motion)
-            top_revealer.reveal_child = true;
-        else {
-            overlay_timeout_source = new TimeoutSource (1500);
-            overlay_timeout_source.set_callback (() => {
-                top_revealer.reveal_child = false;
-                return Source.REMOVE;
-            });
-            overlay_timeout_source.attach ();
         }
     }
 

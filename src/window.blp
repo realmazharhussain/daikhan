@@ -30,29 +30,7 @@ template PlayerWindow: Adw.ApplicationWindow {
       title-widget: .EnvisionTitle title_widget {};
     }
 
-    Overlay {
-      [overlay] Revealer top_revealer {
-        valign: start;
-        transition-duration: 750;
-        transition-type: slide_down;
-        visible: bind PlayerWindow.fullscreened;
-        child: .EnvisionTitle {
-          halign: center;
-          styles ["background"]
-        };
-      }
-
-      .Video video {}
-
-      [overlay] Revealer bottom_revealer {
-        valign: end;
-        transition-type: slide_up;
-        visible: bind top_revealer.visible bidirectional;
-        reveal-child: bind top_revealer.reveal-child bidirectional;
-        transition-duration: bind top_revealer.transition-duration bidirectional;
-        child: .MediaControls { styles ["background"] };
-      }
-    }
+    .EnvisionVideoArea video_area {}
 
     .MediaControls {
       visible: bind PlayerWindow.fullscreened inverted;

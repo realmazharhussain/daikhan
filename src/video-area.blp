@@ -1,0 +1,27 @@
+using Gtk 4.0;
+using Adw 1;
+
+template EnvisionVideoArea : Adw.Bin {
+    Overlay {
+      [overlay] Revealer top_revealer {
+        valign: start;
+        transition-duration: 750;
+        transition-type: slide_down;
+        child: .EnvisionTitle title_overlay {
+          halign: center;
+          styles ["background"]
+        };
+      }
+
+      .Video video {}
+
+      [overlay] Revealer bottom_revealer {
+        valign: end;
+        transition-type: slide_up;
+        visible: bind top_revealer.visible bidirectional;
+        reveal-child: bind top_revealer.reveal-child bidirectional;
+        transition-duration: bind top_revealer.transition-duration bidirectional;
+        child: .MediaControls controls_overlay { styles ["background"] };
+      }
+    }
+}
