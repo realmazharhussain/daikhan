@@ -61,6 +61,11 @@ class Envision.VideoArea : Adw.Bin {
                 top_revealer.reveal_child = true;
             });
 
+        var click_gesture = new Gtk.GestureClick();
+        click_gesture.button = Gdk.BUTTON_PRIMARY;
+        click_gesture.pressed.connect(click_gesture_pressed_cb);
+        add_controller(click_gesture);
+
         var root_expr = new Gtk.PropertyExpression(typeof(VideoArea), null, "root");
         var fllscrn_expr = new Gtk.PropertyExpression(typeof(Gtk.Window), root_expr, "fullscreened");
         fllscrn_expr.bind(top_revealer, "visible", this);
@@ -114,5 +119,23 @@ class Envision.VideoArea : Adw.Bin {
             src.attach();
             timeout_sources[i] = src;
         }
+    }
+
+    void click_gesture_pressed_cb(Gtk.GestureClick gesture,
+                                  int n_press, double x, double y)
+    {
+        // Don't do anything if the cursor is on media controls
+        if (ctrls_ctrlr.contains_pointer)
+            return;
+
+        var window = this.get_root() as PlayerWindow;
+        assert(window != null);
+
+        if (n_press != 2)
+            return;
+
+        gesture.set_state(CLAIMED);
+        window.activate_action("toggle_fullscreen", null);
+        gesture.reset();
     }
 }
