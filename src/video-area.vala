@@ -209,6 +209,10 @@ class Envision.VideoArea : Adw.Bin {
         var native = get_native();
         var toplevel = native.get_surface() as Gdk.Toplevel;
 
+        // Cannot move window if it is fullscreen
+        if (((Gtk.Window) native).fullscreened)
+            return;
+
         // If toplevel is NULL, it means something went really wrong.
         assert(toplevel != null);
 
