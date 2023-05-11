@@ -22,7 +22,8 @@ namespace AudioVolume {
 internal Playback? default_playback;
 
 public class Playback : Object {
-    public Gst.Element? video_sink { get; set; }
+    public Gst.Pipeline pipeline { get; private set; }
+
     public string? filename { get; private set; }
     public double volume { get; set; default = 1; }
     public int64 progress { get; private set; default = -1; }
@@ -66,84 +67,51 @@ public class Playback : Object {
             can_prev = can_play_track(value - 1);
             can_next = can_play_track(value + 1);
 
+            if (value == -1)
+                filename = null;
+
             _track = value;
         }
     }
 
-    Binding? volume_binding;
+    construct {
+        pipeline = Gst.ElementFactory.make("playbin", null) as Gst.Pipeline;
+        pipeline.bus.add_signal_watch();
+        pipeline.bus.message["eos"].connect(pipeline_eos_cb);
+        pipeline.bus.message["error"].connect(pipeline_error_cb);
+        pipeline.bus.message["state-changed"].connect(pipeline_state_changed_message_cb);
+        pipeline.bus.message["tag"].connect(pipeline_tag_message_cb);
 
-    private Gst.Pipeline? _pipeline;
-    public Gst.Pipeline? pipeline {
-        get {
-            return _pipeline;
-        }
-
-        private set {
-            if (_pipeline == value) {
-                return;
-            }
-
-            if (_pipeline != null) {
-                _pipeline["video-sink"] = null;
-                volume_binding.unbind();
-                try_set_state(NULL);
-
-                var bus = _pipeline.get_bus();
-                bus.message["tag"].disconnect(pipeline_tag_message_cb);
-                bus.message["state-changed"].disconnect(pipeline_state_changed_message_cb);
-                bus.message["error"].disconnect(pipeline_error_cb);
-                bus.message["eos"].disconnect(pipeline_eos_cb);
-                bus.remove_signal_watch();
-            }
-
-            // Reset all pipeline related properties
-            current_state = NULL;
-            progress = -1;
-            duration = -1;
-            filename = null;
-            album = null;
-            artist = null;
-            title = null;
-
-            if (value != null) {
-                var bus = value.get_bus();
-                bus.add_signal_watch();
-                bus.message["eos"].connect(pipeline_eos_cb);
-                bus.message["error"].connect(pipeline_error_cb);
-                bus.message["state-changed"].connect(pipeline_state_changed_message_cb);
-                bus.message["tag"].connect(pipeline_tag_message_cb);
-
-                value["video-sink"] = video_sink;
-
-                volume_binding = value.bind_property("volume", this, "volume",
-                                                     SYNC_CREATE|BIDIRECTIONAL,
-                                                     AudioVolume.linear_to_logarithmic,
-                                                     AudioVolume.logarithmic_to_linear);
-
-                // Disable Subtitles
-                dynamic Object _value = value;
-                _value.flags = (PipelinePlayFlags) _value.flags & ~PipelinePlayFlags.SUBTITLES;
-            }
-
-            _pipeline = value;
-        }
+        pipeline.bind_property("volume", this, "volume",
+                               SYNC_CREATE|BIDIRECTIONAL,
+                               AudioVolume.linear_to_logarithmic,
+                               AudioVolume.logarithmic_to_linear);
     }
 
-    private Gst.State _desired_state = NULL;
-    public Gst.State desired_state {
+    private Gst.State _target_state = NULL;
+    public Gst.State target_state {
         get {
-            return _desired_state;
+            return _target_state;
         }
 
         private set {
-            if (value == _desired_state) {
+            if (value == _target_state) {
                 return;
             }
 
-            if (value != PLAYING)
+            if (value != PLAYING) {
                 stop_progress_tracking();
 
-            _desired_state = value;
+                if (value == NULL) {
+                    this.progress = -1;
+                    this.duration = -1;
+                    this.album = null;
+                    this.artist = null;
+                    this.title = null;
+                }
+            }
+
+            _target_state = value;
         }
     }
 
@@ -186,14 +154,14 @@ public class Playback : Object {
         if (!can_play_track(track_index))
             return false;
 
-        pipeline = Gst.ElementFactory.make("playbin", null) as Gst.Pipeline;
-        assert(pipeline != null);
-
         var file = queue[track_index];
+
+        if (target_state != NULL)
+            set_state(NULL);
 
         pipeline["uri"] = file.get_uri();
 
-        if (!play()) {
+        if (!set_state(PLAYING)) {
             critical("Cannot play!");
             return false;
         }
@@ -242,15 +210,15 @@ public class Playback : Object {
     }
 
     public bool toggle_playing() {
-        if (desired_state == PLAYING)
+        if (target_state == PLAYING)
             return pause();
 
         return play();
     }
 
     public bool play() {
-        if (pipeline != null) {
-            return try_set_state(PLAYING);
+        if (target_state != NULL) {
+            return set_state(PLAYING);
         } else if (prev_queue != null) {
             return open(prev_queue);
         }
@@ -258,14 +226,15 @@ public class Playback : Object {
     }
 
     public bool pause() {
-        if (pipeline == null) {
+        if (target_state == NULL)
             return false;
-        }
-        return try_set_state(PAUSED);
+
+        return set_state(PAUSED);
     }
 
     public void stop() {
-        pipeline = null;
+        if (target_state != NULL)
+            set_state(NULL);
 
         if (queue != null) {
             prev_queue = queue;
@@ -340,8 +309,8 @@ public class Playback : Object {
         Source.remove(source_id);
     }
 
-    bool try_set_state(Gst.State new_state) {
-        if (desired_state == new_state) {
+    bool set_state(Gst.State new_state) {
+        if (target_state == new_state) {
             return true;
         }
 
@@ -350,7 +319,7 @@ public class Playback : Object {
             return false;
         }
 
-        desired_state = new_state;
+        target_state = new_state;
         return true;
     }
 

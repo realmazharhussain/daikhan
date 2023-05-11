@@ -19,7 +19,7 @@ class PlayerWindow : Adw.ApplicationWindow {
         add_action_entries(entries, this);
 
         playback = Playback.get_default();
-        playback.notify["desired-state"].connect(notify_playback_state_cb);
+        playback.notify["target-state"].connect(notify_playback_state_cb);
 
         title_widget.bind_property ("title", this, "title", SYNC_CREATE);
     }
@@ -45,7 +45,7 @@ class PlayerWindow : Adw.ApplicationWindow {
 
     uint inhibit_id = 0;
     void notify_playback_state_cb() {
-        if (playback.desired_state == PLAYING) {
+        if (playback.target_state == PLAYING) {
             inhibit_id = application.inhibit(this, IDLE, "Media is playing");
         } else {
             application.uninhibit(inhibit_id);

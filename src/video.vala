@@ -18,10 +18,10 @@ class Video : Adw.Bin {
         if (paintable.gl_context != null) {
             var glsink = Gst.ElementFactory.make("glsinkbin", "glsinkbin");
             glsink["sink"] = gtksink;
-            playback.video_sink = glsink;
+            playback.pipeline["video-sink"] = glsink;
         }
         else {
-            playback.video_sink = gtksink;
+            playback.pipeline["video-sink"] = gtksink;
         }
     }
 }
