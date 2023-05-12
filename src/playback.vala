@@ -67,8 +67,20 @@ public class Playback : Object {
             can_prev = can_play_track(value - 1);
             can_next = can_play_track(value + 1);
 
-            if (value == -1)
+            if (value < 0 || value >= queue.length) {
                 filename = null;
+            } else try {
+                var info = queue[value].query_info("standard::display-name", NONE);
+                filename = info.get_display_name();
+            } catch (Error err) {
+                warning(err.message);
+            }
+
+            progress = -1;
+            duration = -1;
+            album = null;
+            artist = null;
+            title = null;
 
             _track = value;
         }
@@ -101,14 +113,6 @@ public class Playback : Object {
 
             if (value != PLAYING) {
                 stop_progress_tracking();
-
-                if (value == NULL) {
-                    this.progress = -1;
-                    this.duration = -1;
-                    this.album = null;
-                    this.artist = null;
-                    this.title = null;
-                }
             }
 
             _target_state = value;
@@ -166,12 +170,7 @@ public class Playback : Object {
             return false;
         }
 
-        try {
-            var info = file.query_info("standard::display-name", NONE);
-            filename = info.get_display_name();
-        } catch (Error err) {
-            warning(err.message);
-        }
+        track = track_index;
 
         return true;
     }
@@ -183,8 +182,6 @@ public class Playback : Object {
         if (!play_track(track + 1))
             return false;
 
-        track++;
-
         return true;
     }
 
@@ -194,8 +191,6 @@ public class Playback : Object {
 
         if (!play_track(track - 1))
             return false;
-
-        track--;
 
         return true;
     }

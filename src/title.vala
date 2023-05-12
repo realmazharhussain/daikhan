@@ -15,6 +15,7 @@ class Envision.Title: Adw.Bin {
     void update_title() {
         if (playback.title == null) {
             title = playback.filename ?? "Envision Media Player";
+            child["subtitle"] = null;
             return;
         }
 
