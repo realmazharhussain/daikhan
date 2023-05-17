@@ -2,6 +2,7 @@
 public class MediaControls : Adw.Bin {
     [GtkChild] unowned Gtk.Button prev_btn;
     [GtkChild] unowned Gtk.Button next_btn;
+    [GtkChild] unowned Gtk.MenuButton streams_btn;
     unowned Playback playback;
 
     static construct {
@@ -20,6 +21,8 @@ public class MediaControls : Adw.Bin {
 
         playback.bind_property ("multiple-tracks", next_btn, "visible", SYNC_CREATE);
         playback.bind_property ("can-next", next_btn, "sensitive", SYNC_CREATE);
+
+        streams_btn.menu_model = StreamMenuBuilder.get_menu();
     }
 
     [GtkCallback]

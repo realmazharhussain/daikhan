@@ -1,5 +1,5 @@
 [Flags]
-enum PipelinePlayFlags {
+public enum PipelinePlayFlags {
     VIDEO,
     AUDIO,
     SUBTITLES
@@ -37,6 +37,8 @@ public class Playback : Object {
     public bool can_next { get; private set; default = false; }
     public bool can_prev { get; private set; default = false; }
     public bool multiple_tracks { get; private set; default = false; }
+
+    public uint flags { get; set; }
 
     public File[]? prev_queue;
     public File[]? queue;
@@ -94,6 +96,7 @@ public class Playback : Object {
         pipeline.bus.message["state-changed"].connect(pipeline_state_changed_message_cb);
         pipeline.bus.message["tag"].connect(pipeline_tag_message_cb);
 
+        pipeline.bind_property("flags", this, "flags", SYNC_CREATE|BIDIRECTIONAL);
         pipeline.bind_property("volume", this, "volume",
                                SYNC_CREATE|BIDIRECTIONAL,
                                AudioVolume.linear_to_logarithmic,
@@ -150,7 +153,7 @@ public class Playback : Object {
 
         if (track_index < 0 || track_index >= queue.length)
             return false;
-        
+
         return true;
     }
 

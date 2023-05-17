@@ -2,12 +2,16 @@ project('envision', 'vala',
         version: '0.1.alpha')
 
 gnome = import('gnome')
-adw_dep = dependency('libadwaita-1')
-gst_dep = dependency('gstreamer-1.0')
-dependency('gstgtk4')
-
 cc = meson.get_compiler('c')
-math_dep = cc.find_library('m', required: false)
+
+deps = [
+  dependency('libadwaita-1'),
+  dependency('gstreamer-1.0'),
+  dependency('gstreamer-tag-1.0'),
+  cc.find_library('m', required: false),
+]
+
+dependency('gstgtk4')   # Has no header or vaapi file
 
 subdir('data')
 subdir('src')

@@ -27,6 +27,7 @@ sources = files(
   'time-labels.vala',
   'title.vala',
   'video-area.vala',
+  'stream-selector.vala',
   'media-controls.vala',
   'media-controls/play-button.vala',
   'media-controls/progress-bar.vala',
@@ -34,7 +35,7 @@ sources = files(
 ) + resources
 
 executable(meson.project_name(), sources,
-           dependencies: [adw_dep, gst_dep, math_dep],
+           dependencies: deps,
            vala_args: ['--gresourcesdir', meson.current_build_dir()],
            win_subsystem: 'windows',
            install: true)

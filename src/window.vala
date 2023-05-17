@@ -12,6 +12,8 @@ class PlayerWindow : Adw.ApplicationWindow {
             {"seek", seek_cb, "i"},
             {"volume_step", volume_step_cb, "d"},
             {"play_pause", play_pause_cb},
+            {"select_audio", select_audio_cb, "i"},
+            {"select_text", select_text_cb, "i"},
             {"toggle_fullscreen", toggle_fullscreen_cb},
             {"about", about_cb},
         };
@@ -58,6 +60,24 @@ class PlayerWindow : Adw.ApplicationWindow {
 
     void volume_step_cb (SimpleAction action, Variant? step) {
         playback.volume += step.get_double();
+    }
+
+    void select_audio_cb (SimpleAction action, Variant? stream_index) {
+        if (stream_index.get_int32 () < 0) {
+            playback.flags &= ~PipelinePlayFlags.AUDIO;
+        } else {
+            playback.flags |= PipelinePlayFlags.AUDIO;
+            playback.pipeline["current-audio"] = stream_index.get_int32 ();
+        }
+    }
+
+    void select_text_cb (SimpleAction action, Variant? stream_index) {
+        if (stream_index.get_int32 () < 0) {
+            playback.flags &= ~PipelinePlayFlags.SUBTITLES;
+        } else {
+            playback.flags |= PipelinePlayFlags.SUBTITLES;
+            playback.pipeline["current-text"] = stream_index.get_int32 ();
+        }
     }
 
     void play_pause_cb () {

@@ -36,5 +36,10 @@ template MediaControls : Adw.Bin {
     Separator { styles ["spacer"] }
 
     .VolumeButton {}
+    MenuButton streams_btn {
+      icon-name: "view-more-symbolic";
+      direction: up;
+      sensitive: bind progress_bar.sensitive;
+    }
   };
 }
