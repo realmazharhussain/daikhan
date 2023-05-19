@@ -9,7 +9,7 @@ menu app_menu {
   }
 }
 
-template PlayerWindow: Adw.ApplicationWindow {
+template $PlayerWindow: Adw.ApplicationWindow {
   title: "Envision Media Player";
   width-request: 300;
   default-height: 430;
@@ -19,7 +19,7 @@ template PlayerWindow: Adw.ApplicationWindow {
     orientation: vertical;
 
     Gtk.HeaderBar {
-      visible: bind PlayerWindow.fullscreened inverted;
+      visible: bind-property template.fullscreened inverted;
       styles ["flat"]
 
       [start] MenuButton {
@@ -27,13 +27,13 @@ template PlayerWindow: Adw.ApplicationWindow {
         menu-model: app_menu;
       }
 
-      title-widget: .EnvisionTitle title_widget {};
+      title-widget: $EnvisionTitle title_widget {};
     }
 
-    .EnvisionVideoArea video_area {}
+    $EnvisionVideoArea video_area {}
 
-    .MediaControls {
-      visible: bind PlayerWindow.fullscreened inverted;
+    $MediaControls {
+      visible: bind-property template.fullscreened inverted;
     }
   }
 }
