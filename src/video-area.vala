@@ -57,7 +57,7 @@ class Envision.VideoArea : Adw.Bin {
                 this.cursor = null;
             });
 
-        add_motion_timeout (1750,
+        add_motion_timeout (2000,
             () => {
                 top_revealer.reveal_child = false;
             }, () => {
