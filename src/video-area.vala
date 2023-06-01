@@ -50,7 +50,7 @@ class Envision.VideoArea : Adw.Bin {
 
         this.cursor = none_cursor;
 
-        add_motion_timeout (750,
+        add_motion_timeout (500,
             () => { // Callback for when the cursor stops moving
                 this.cursor = none_cursor;
             }, () => { // Callback for when the cursor starts moving
