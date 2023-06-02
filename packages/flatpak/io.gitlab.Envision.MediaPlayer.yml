@@ -8,8 +8,6 @@ sdk-extensions:
 
 build-options:
   append-path: /usr/lib/sdk/rust-stable/bin
-  env:
-    RUST_BACKTRACE: "1"
 
 finish-args:
   - --share=ipc
