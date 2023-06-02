@@ -67,7 +67,7 @@ modules:
       env:
         CARGO_HOME: /run/build/gst-plugins-rs/cargo
     build-commands:
-      - cargo cinstall -p gst-plugin-gtk4 --offline --all-features --release --prefix=/app
+      - cargo cinstall -p gst-plugin-gtk4 --offline --release --prefix=/app
 
   - name: envision
     builddir: true
