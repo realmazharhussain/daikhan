@@ -47,8 +47,7 @@ modules:
       env:
         CARGO_HOME: /run/build/cargo-c/cargo
     build-commands:
-      - cargo --offline fetch --manifest-path Cargo.toml
-      - cargo --offline install --path . --root /app
+      - cargo install --offline --path . --root /app
     sources:
       - type: archive
         url: https://github.com/lu-zero/cargo-c/archive/refs/tags/v0.9.19.tar.gz
@@ -68,7 +67,6 @@ modules:
       env:
         CARGO_HOME: /run/build/gst-plugins-rs/cargo
     build-commands:
-      - cargo --offline fetch
       - cargo --offline cinstall -p gst-plugin-gtk4 --all-features --prefix=/app
 
   - name: envision
