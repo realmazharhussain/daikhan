@@ -2,6 +2,7 @@
 class PlayerWindow : Adw.ApplicationWindow {
     [GtkChild] unowned Envision.Title title_widget;
     public Playback playback { get; private set; }
+    Settings settings;
 
     static construct {
         typeof(Envision.VideoArea).ensure();
@@ -24,6 +25,11 @@ class PlayerWindow : Adw.ApplicationWindow {
         playback.notify["target-state"].connect(notify_playback_state_cb);
 
         title_widget.bind_property ("title", this, "title", SYNC_CREATE);
+
+        settings = new Settings ("io.gitlab.Envision.MediaPlayer.state");
+        settings.bind ("width", this, "default-width", DEFAULT);
+        settings.bind ("height", this, "default-height", DEFAULT);
+        settings.bind ("volume", playback, "volume", DEFAULT);
     }
 
     public PlayerWindow (Gtk.Application app) {
