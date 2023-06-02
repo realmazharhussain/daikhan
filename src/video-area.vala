@@ -2,8 +2,8 @@ delegate void Envision.CursorTimeoutCallback();
 
 class Envision.CursorTimeout {
     public uint delay { get; set; default = 0; }
-    public CursorTimeoutCallback callback;
-    public CursorTimeoutCallback motion_callback;
+    public unowned CursorTimeoutCallback callback;
+    public unowned CursorTimeoutCallback motion_callback;
 
     public CursorTimeout (uint delay,
                           CursorTimeoutCallback callback,
