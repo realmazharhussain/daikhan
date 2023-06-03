@@ -2,18 +2,18 @@
   <schema id="io.gitlab.Envision.MediaPlayer.state"
        path="/io/gitlab/Envision/MediaPlayer/state/">
 
-	 <key name="width" type="u">
-	   <default>601</default>
-	 </key>
+     <key name="width" type="u">
+       <default>601</default>
+     </key>
 
-	 <key name="height" type="u">
-	   <default>430</default>
-	 </key>
+     <key name="height" type="u">
+       <default>430</default>
+     </key>
 
-	 <key name="volume" type="d">
-	   <default>0.5</default>
-	   <range min="0" max="2"/>
-	 </key>
+     <key name="volume" type="d">
+       <default>0.5</default>
+       <range min="0" max="2"/>
+     </key>
 
   </schema>
 </schemalist>
