@@ -9,6 +9,16 @@ class PlayerWindow : Adw.ApplicationWindow {
     }
 
     construct {
+        title_widget.bind_property ("title", this, "title", SYNC_CREATE);
+
+        playback = Playback.get_default();
+        playback.notify["target-state"].connect(notify_playback_state_cb);
+
+        settings = new Settings ("io.gitlab.Envision.MediaPlayer.state");
+        settings.bind ("width", this, "default-width", DEFAULT);
+        settings.bind ("height", this, "default-height", DEFAULT);
+        settings.bind ("volume", playback, "volume", DEFAULT);
+
         ActionEntry[] entries = {
             {"seek", seek_cb, "i"},
             {"volume_step", volume_step_cb, "d"},
@@ -21,30 +31,26 @@ class PlayerWindow : Adw.ApplicationWindow {
 
         add_action_entries(entries, this);
 
-        playback = Playback.get_default();
-        playback.notify["target-state"].connect(notify_playback_state_cb);
+        notify["application"].connect(()=> {
+            if (application == null) {
+                return;
+            }
 
-        title_widget.bind_property ("title", this, "title", SYNC_CREATE);
-
-        settings = new Settings ("io.gitlab.Envision.MediaPlayer.state");
-        settings.bind ("width", this, "default-width", DEFAULT);
-        settings.bind ("height", this, "default-height", DEFAULT);
-        settings.bind ("volume", playback, "volume", DEFAULT);
+            application.set_accels_for_action("win.toggle_fullscreen", {"f"});
+            application.set_accels_for_action("win.play_pause", {"space"});
+            application.set_accels_for_action("win.seek(+10)", {"Right", "l"});
+            application.set_accels_for_action("win.seek(-10)", {"Left", "h"});
+            application.set_accels_for_action("win.seek(+3)", {"<Shift>Right", "<Shift>l"});
+            application.set_accels_for_action("win.seek(-3)", {"<Shift>Left", "<Shift>h"});
+            application.set_accels_for_action("win.volume_step(+0.05)", {"Up", "k"});
+            application.set_accels_for_action("win.volume_step(-0.05)", {"Down", "j"});
+            application.set_accels_for_action("win.volume_step(+0.02)", {"<Shift>Up", "<Shift>k"});
+            application.set_accels_for_action("win.volume_step(-0.02)", {"<Shift>Down", "<Shift>j"});
+        });
     }
 
     public PlayerWindow (Gtk.Application app) {
-        application = app;
-
-        app.set_accels_for_action("win.toggle_fullscreen", {"f"});
-        app.set_accels_for_action("win.play_pause", {"space"});
-        app.set_accels_for_action("win.seek(+10)", {"Right", "l"});
-        app.set_accels_for_action("win.seek(-10)", {"Left", "h"});
-        app.set_accels_for_action("win.seek(+3)", {"<Shift>Right", "<Shift>l"});
-        app.set_accels_for_action("win.seek(-3)", {"<Shift>Left", "<Shift>h"});
-        app.set_accels_for_action("win.volume_step(+0.05)", {"Up", "k"});
-        app.set_accels_for_action("win.volume_step(-0.05)", {"Down", "j"});
-        app.set_accels_for_action("win.volume_step(+0.02)", {"<Shift>Up", "<Shift>k"});
-        app.set_accels_for_action("win.volume_step(-0.02)", {"<Shift>Down", "<Shift>j"});
+        Object(application: app);
     }
 
     public bool open(File[] files) {
