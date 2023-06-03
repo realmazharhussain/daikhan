@@ -17,6 +17,7 @@ class PlayerWindow : Adw.ApplicationWindow {
         settings = new Settings ("io.gitlab.Envision.MediaPlayer.state");
         settings.bind ("width", this, "default-width", DEFAULT);
         settings.bind ("height", this, "default-height", DEFAULT);
+        settings.bind ("maximized", this, "maximized", DEFAULT);
         settings.bind ("volume", playback, "volume", DEFAULT);
 
         ActionEntry[] entries = {
