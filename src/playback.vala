@@ -23,6 +23,7 @@ internal Playback? default_playback;
 
 public class Playback : Object {
     public Gst.Pipeline pipeline { get; private set; }
+    public PlaybackHistory history { get; private construct; }
 
     public string? filename { get; private set; }
     public double volume { get; set; default = 1; }
@@ -47,6 +48,8 @@ public class Playback : Object {
         this.track = -1;
         this.can_prev = false;
 
+        can_play = (prev_queue != null || queue != null);
+
         if (queue == null) {
             this.multiple_tracks = false;
             this.can_next = false;
@@ -56,6 +59,7 @@ public class Playback : Object {
         }
     }
 
+    public HistoryRecord? current_record = null;
     private int _track = -1;
     public int track {
         get {
@@ -69,11 +73,17 @@ public class Playback : Object {
             can_prev = can_play_track(value - 1);
             can_next = can_play_track(value + 1);
 
+            if (current_record != null) {
+                history.update(current_record);
+            }
+
             if (value < 0 || value >= queue.length) {
                 filename = null;
+                current_record = null;
             } else try {
                 var info = queue[value].query_info("standard::display-name", NONE);
                 filename = info.get_display_name();
+                current_record = new HistoryRecord.with_uri(queue[value].get_uri());
             } catch (Error err) {
                 warning(err.message);
             }
@@ -89,6 +99,8 @@ public class Playback : Object {
     }
 
     construct {
+        history = PlaybackHistory.get_default();
+
         pipeline = Gst.ElementFactory.make("playbin", null) as Gst.Pipeline;
         pipeline.bus.add_signal_watch();
         pipeline.bus.message["eos"].connect(pipeline_eos_cb);
@@ -157,19 +169,20 @@ public class Playback : Object {
         return true;
     }
 
-    private bool play_track(int track_index) {
+    public bool load_track(int track_index) {
         if (!can_play_track(track_index))
             return false;
 
         var file = queue[track_index];
+        var play = (target_state == PLAYING);
 
         if (target_state != NULL)
             set_state(NULL);
 
         pipeline["uri"] = file.get_uri();
 
-        if (!set_state(PLAYING)) {
-            critical("Cannot play!");
+        if (!set_state(play ? Gst.State.PLAYING : Gst.State.PAUSED)) {
+            critical("Cannot load track!");
             return false;
         }
 
@@ -182,7 +195,7 @@ public class Playback : Object {
         if (!can_next)
             return false;
 
-        if (!play_track(track + 1))
+        if (!load_track(track + 1))
             return false;
 
         return true;
@@ -192,19 +205,20 @@ public class Playback : Object {
         if (!can_prev)
             return false;
 
-        if (!play_track(track - 1))
+        if (!load_track(track - 1))
             return false;
 
         return true;
     }
 
     public bool open(File[] files) {
-        assert(files.length > 0);
-
         set_queue(files);
-        can_play = true;
 
-        return next();
+        var status = false;
+        if (load_track(0)) {
+            status = set_state(PLAYING);
+        }
+        return status;
     }
 
     public bool toggle_playing() {
@@ -295,6 +309,7 @@ public class Playback : Object {
         }
 
         this.progress = progress;
+        current_record.progress = progress;
 
         return Source.CONTINUE;
     }
@@ -307,7 +322,7 @@ public class Playback : Object {
         Source.remove(source_id);
     }
 
-    bool set_state(Gst.State new_state) {
+    public bool set_state(Gst.State new_state) {
         if (target_state == new_state) {
             return true;
         }
@@ -359,6 +374,8 @@ public class Playback : Object {
     }
 
     void pipeline_eos_cb () {
+        current_record.progress = -1;
+
         if (can_next)
             next();
         else

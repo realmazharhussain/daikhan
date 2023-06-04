@@ -2,7 +2,9 @@
 class PlayerWindow : Adw.ApplicationWindow {
     [GtkChild] unowned Envision.Title title_widget;
     public Playback playback { get; private set; }
-    Settings settings;
+    public Settings settings { get; private construct; }
+    PlaybackHistory playback_history;
+    bool restoring_state = false;
 
     static construct {
         typeof(Envision.VideoArea).ensure();
@@ -13,6 +15,29 @@ class PlayerWindow : Adw.ApplicationWindow {
 
         playback = Playback.get_default();
         playback.notify["target-state"].connect(notify_playback_state_cb);
+        playback.notify["track"].connect(()=> {
+            if (playback.track < 0) {
+                return;
+            }
+
+            var record = playback_history.find (playback.queue[playback.track].get_uri ());
+            if (record == null || record.progress <= 0) {
+                return;
+            }
+
+            activate_action ("select_audio", new Variant("i", record.audio_track));
+            activate_action ("select_text", new Variant("i", record.text_track));
+
+            if (restoring_state) {
+                perform_seek (record.progress);
+            } else {
+                var dialog = new ActionDialog (this, "Resume playback?");
+                dialog.response["accept"].connect (()=> { perform_seek (record.progress); });
+                dialog.present ();
+            }
+        });
+
+        playback_history = PlaybackHistory.get_default ();
 
         settings = new Settings ("io.gitlab.Envision.MediaPlayer.state");
         settings.bind ("width", this, "default-width", DEFAULT);
@@ -33,7 +58,7 @@ class PlayerWindow : Adw.ApplicationWindow {
         add_action_entries(entries, this);
 
         notify["application"].connect(()=> {
-            if (application == null) {
+            if (!(application is MediaPlayer)) {
                 return;
             }
 
@@ -62,8 +87,25 @@ class PlayerWindow : Adw.ApplicationWindow {
     void notify_playback_state_cb() {
         if (playback.target_state == PLAYING) {
             inhibit_id = application.inhibit(this, IDLE, "Media is playing");
-        } else {
+        } else if (inhibit_id > 0) {
             application.uninhibit(inhibit_id);
+            inhibit_id = 0;
+        }
+    }
+
+    void perform_seek (int64 position) {
+        if (playback.current_state < Gst.State.PAUSED) {
+            ulong handler_id = 0;
+            handler_id = playback.notify["current-state"].connect(()=> {
+                if (playback.current_state < Gst.State.PAUSED) {
+                    return;
+                }
+
+                playback.seek_absolute (position);
+                SignalHandler.disconnect (playback, handler_id);
+            });
+        } else {
+            playback.seek_absolute (position);
         }
     }
 
@@ -82,6 +124,10 @@ class PlayerWindow : Adw.ApplicationWindow {
             playback.flags |= PipelinePlayFlags.AUDIO;
             playback.pipeline["current-audio"] = stream_index.get_int32 ();
         }
+
+        if (playback.current_record != null) {
+            playback.current_record.audio_track = stream_index.get_int32 ();
+        }
     }
 
     void select_text_cb (SimpleAction action, Variant? stream_index) {
@@ -90,6 +136,10 @@ class PlayerWindow : Adw.ApplicationWindow {
         } else {
             playback.flags |= PipelinePlayFlags.SUBTITLES;
             playback.pipeline["current-text"] = stream_index.get_int32 ();
+        }
+
+        if (playback.current_record != null) {
+            playback.current_record.text_track = stream_index.get_int32 ();
         }
     }
 
@@ -103,5 +153,41 @@ class PlayerWindow : Adw.ApplicationWindow {
 
     void about_cb () {
         show_about_window(this);
+    }
+
+    public void save_state () {
+        if (playback.queue.length == 0) {
+            settings.set_strv ("queue", null);
+            return;
+        }
+
+        string[] uri_list = {};
+        uri_list.resize (playback.queue.length);
+
+        for (int i = 0; i < uri_list.length; i++) {
+            uri_list[i] = playback.queue[i].get_uri ();
+        }
+
+        settings.set_strv ("queue", uri_list);
+        settings.set_int ("track", playback.track);
+        settings.set_boolean("paused", playback.target_state != PLAYING);
+    }
+
+    public void restore_state () {
+        restoring_state = true;
+
+        string[] uri_list = settings.get_strv ("queue");
+        File[] file_list = null;
+        file_list.resize (uri_list.length);
+
+        for (int i = 0; i < uri_list.length; i++) {
+            file_list[i] = File.new_for_uri (uri_list[i]);
+        }
+
+        playback.set_queue (file_list);
+        playback.load_track (settings.get_int ("track"));
+        playback.set_state(settings.get_boolean("paused")? Gst.State.PAUSED : Gst.State.PLAYING);
+
+        restoring_state = false;
     }
 }

@@ -14,6 +14,19 @@
        <default>false</default>
      </key>
 
+     <key name="queue" type="as">
+       <default>[]</default>
+     </key>
+
+     <key name="track" type="i">
+       <range min="-1"/>
+       <default>-1</default>
+     </key>
+
+     <key name="paused" type="b">
+       <default>true</default>
+     </key>
+
      <key name="volume" type="d">
        <default>0.5</default>
        <range min="0" max="2"/>
