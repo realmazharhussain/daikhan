@@ -5,6 +5,7 @@ class StreamMenuBuilder : Object {
 
     Menu audio_streams;
     Menu subtitle_streams;
+    Menu video_streams;
     Playback playback;
 
     construct {
@@ -22,9 +23,16 @@ class StreamMenuBuilder : Object {
         subtitle_menu.append ("Off", "win.select_text(-1)");
         subtitle_menu.append_section (null, subtitle_streams);
 
+        var video_menu = new Menu ();
+        video_streams = new Menu ();
+        menu.append_submenu ("Video", video_menu);
+        video_menu.append ("Off", "win.select_video(-1)");
+        video_menu.append_section (null, video_streams);
+
         playback = Playback.get_default ();
         Signal.connect_swapped (playback.pipeline, "audio-changed", (Callback) update_audio_cb, this);
         Signal.connect_swapped (playback.pipeline, "text-changed", (Callback) update_text_cb, this);
+        Signal.connect_swapped (playback.pipeline, "video-changed", (Callback) update_video_cb, this);
     }
 
     public static StreamMenuBuilder get_default () {
@@ -50,6 +58,13 @@ class StreamMenuBuilder : Object {
         });
     }
 
+    void update_video_cb () {
+        Idle.add (() => {
+            update_video_model ();
+            return Source.REMOVE;
+        });
+    }
+
     void update_model (Menu model) {
         var type = "";
 
@@ -69,7 +84,10 @@ class StreamMenuBuilder : Object {
         int total_streams;
         pipeline.get (@"n-$type", out total_streams);
 
-        for (int stream = 0; stream < total_streams; stream++) {
+
+        if (total_streams == 1) {
+            model.append (@"On", @"win.select_$type(0)");
+        } else for (int stream = 0; stream < total_streams; stream++) {
             Signal.emit_by_name (pipeline, @"get-$type-tags", stream, out tags);
 
             if (tags == null) {
@@ -84,6 +102,20 @@ class StreamMenuBuilder : Object {
                 language_name = "Unknown Language";
 
             model.append (language_name, @"win.select_$type($stream)");
+        }
+    }
+
+    void update_video_model () {
+        video_streams.remove_all ();
+
+        int total_streams;
+        Object pipeline = playback.pipeline;
+        pipeline.get (@"n-video", out total_streams);
+
+        if (total_streams == 1) {
+            video_streams.append (@"On", @"win.select_video(0)");
+        } else for (int stream = 0; stream < total_streams; stream++) {
+            video_streams.append (@"Track $(stream + 1)", @"win.select_video($stream)");
         }
     }
 }

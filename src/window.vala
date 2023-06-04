@@ -51,6 +51,7 @@ class PlayerWindow : Adw.ApplicationWindow {
             {"play_pause", play_pause_cb},
             {"select_audio", select_audio_cb, "i"},
             {"select_text", select_text_cb, "i"},
+            {"select_video", select_video_cb, "i"},
             {"toggle_fullscreen", toggle_fullscreen_cb},
             {"about", about_cb},
         };
@@ -140,6 +141,19 @@ class PlayerWindow : Adw.ApplicationWindow {
 
         if (playback.current_record != null) {
             playback.current_record.text_track = stream_index.get_int32 ();
+        }
+    }
+
+    void select_video_cb (SimpleAction action, Variant? stream_index) {
+        if (stream_index.get_int32 () < 0) {
+            playback.flags &= ~PipelinePlayFlags.VIDEO;
+        } else {
+            playback.flags |= PipelinePlayFlags.VIDEO;
+            playback.pipeline["current-video"] = stream_index.get_int32 ();
+        }
+
+        if (playback.current_record != null) {
+            playback.current_record.video_track = stream_index.get_int32 ();
         }
     }
 
