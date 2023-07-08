@@ -25,6 +25,7 @@ scale.progress > trough > highlight {
 }
 
 overlay > revealer > * {
+  opacity: 0.96;
   min-height: 4rem;
   border: solid 1px @headerbar_shade_color;
   border-radius: 0.5rem;
