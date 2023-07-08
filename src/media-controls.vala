@@ -14,6 +14,8 @@ public class MediaControls : Adw.Bin {
     }
 
     construct {
+        set("css-name", "mediacontrols");
+
         playback = Playback.get_default ();
 
         playback.bind_property ("multiple-tracks", prev_btn, "visible", SYNC_CREATE);

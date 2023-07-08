@@ -1,3 +1,11 @@
+headerbar {
+  border-bottom: solid 1px @headerbar_shade_color;
+}
+
+mediacontrols {
+  border-top: solid 1px @headerbar_shade_color;
+}
+
 timelabel > label {
   font-weight: 500;
   font-variant-numeric: tabular-nums;
@@ -18,6 +26,7 @@ scale.progress > trough > highlight {
 
 overlay > revealer > * {
   min-height: 4rem;
+  border: solid 1px @headerbar_shade_color;
   border-radius: 0.5rem;
   margin: 0.8rem;
 }
