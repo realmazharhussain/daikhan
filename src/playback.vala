@@ -5,6 +5,12 @@ public enum PipelinePlayFlags {
     SUBTITLES
 }
 
+public enum RepeatMode {
+    OFF,
+    TRACK,
+    QUEUE
+}
+
 
 namespace AudioVolume {
     bool linear_to_logarithmic (Binding binding, Value linear, ref Value logarithmic) {
@@ -39,6 +45,7 @@ public class Playback : Object {
     public bool can_prev { get; private set; default = false; }
     public bool multiple_tracks { get; private set; default = false; }
 
+    public RepeatMode repeat { get; set; default = OFF; }
     public uint flags { get; set; }
 
     public File[]? prev_queue;
@@ -376,10 +383,15 @@ public class Playback : Object {
     void pipeline_eos_cb () {
         current_record.progress = -1;
 
-        if (can_next)
+        if (repeat == TRACK) {
+            seek_absolute(0);
+        } else if (can_next) {
             next();
-        else
+        } else if (repeat == QUEUE) {
+            load_track(0);
+        } else {
             stop();
+        }
     }
 
     ~Playback() {

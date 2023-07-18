@@ -32,5 +32,14 @@
        <range min="0" max="2"/>
      </key>
 
+     <key name="repeat" type="s">
+       <default>"off"</default>
+       <choices>
+         <choice value="off"/>
+         <choice value="track"/>
+         <choice value="queue"/>
+       </choices>
+     </key>
+
   </schema>
 </schemalist>

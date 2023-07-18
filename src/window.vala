@@ -44,6 +44,7 @@ class PlayerWindow : Adw.ApplicationWindow {
         settings.bind ("height", this, "default-height", DEFAULT);
         settings.bind ("maximized", this, "maximized", DEFAULT);
         settings.bind ("volume", playback, "volume", DEFAULT);
+        settings.bind ("repeat", playback, "repeat", DEFAULT);
 
         ActionEntry[] entries = {
             {"seek", seek_cb, "i"},
@@ -56,7 +57,10 @@ class PlayerWindow : Adw.ApplicationWindow {
             {"about", about_cb},
         };
 
+	var repeat_act = new PropertyAction ("repeat", playback, "repeat");
+
         add_action_entries(entries, this);
+	add_action(repeat_act);
 
         notify["application"].connect(()=> {
             if (!(application is MediaPlayer)) {

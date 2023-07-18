@@ -33,6 +33,12 @@ class StreamMenuBuilder : Object {
         Signal.connect_swapped (playback.pipeline, "audio-changed", (Callback) update_audio_cb, this);
         Signal.connect_swapped (playback.pipeline, "text-changed", (Callback) update_text_cb, this);
         Signal.connect_swapped (playback.pipeline, "video-changed", (Callback) update_video_cb, this);
+
+        var repeat_menu = new Menu ();
+        menu.append_submenu ("Repeat", repeat_menu);
+        repeat_menu.append ("Off", "win.repeat(\"off\")");
+        repeat_menu.append ("Single File", "win.repeat(\"track\")");
+        repeat_menu.append ("Whole Queue", "win.repeat(\"queue\")");
     }
 
     public static StreamMenuBuilder get_default () {
