@@ -199,6 +199,15 @@ public class Playback : Object {
             return false;
         }
 
+	ulong handler_id = 0;
+        handler_id = notify["current-state"].connect(() => {
+            if (current_state == PAUSED) {
+                update_duration ();
+                update_progress ();
+                SignalHandler.disconnect (this, handler_id);
+            }
+        });
+
         track = track_index;
 
         return true;
