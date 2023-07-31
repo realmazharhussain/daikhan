@@ -22,11 +22,17 @@ blueprints = custom_target('blueprints',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
 )
 
+blueprint_hack = custom_target('blueprint_hack',
+  input: blueprints,
+  output: 'blueprint_hack.vala',
+  command: [find_program('touch'), '@OUTPUT@'],
+)
+
 resources = gnome.compile_resources('daikhan-ui', 'daikhan.gresource.xml',
   dependencies: blueprints,
 )
 
-sources = [config_file] + files(
+sources = [blueprint_hack, config_file] + resources + files(
   'main.vala',
   'MediaPlayer.vala',
   'Video.vala',
@@ -42,7 +48,7 @@ sources = [config_file] + files(
   'media-controls/PlayButton.vala',
   'media-controls/ProgressBar.vala',
   'media-controls/VolumeButton.vala',
-) + resources
+)
 
 executable(meson.project_name(), sources,
            dependencies: deps,
