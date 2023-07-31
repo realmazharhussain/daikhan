@@ -1,5 +1,5 @@
 class Video : Adw.Bin {
-    unowned Playback playback;
+    Playback playback;
 
     construct {
         var image = new Gtk.Picture();

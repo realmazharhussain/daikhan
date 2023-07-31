@@ -10,7 +10,7 @@ public class HistoryRecord {
     }
 }
 
-internal PlaybackHistory default_instance;
+internal unowned PlaybackHistory? default_instance;
 
 public class PlaybackHistory {
     SList<HistoryRecord> data;

@@ -3,7 +3,7 @@ public class MediaControls : Adw.Bin {
     [GtkChild] unowned Gtk.Button prev_btn;
     [GtkChild] unowned Gtk.Button next_btn;
     [GtkChild] unowned Gtk.MenuButton streams_btn;
-    unowned Playback playback;
+    Playback playback;
 
     static construct {
         typeof(PlayButton).ensure();

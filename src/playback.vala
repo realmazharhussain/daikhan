@@ -25,7 +25,7 @@ namespace AudioVolume {
 }
 
 
-internal Playback? default_playback;
+internal unowned Playback? default_playback;
 
 public class Playback : Object {
     public Gst.Pipeline pipeline { get; private set; }
@@ -161,7 +161,7 @@ public class Playback : Object {
         }
     }
 
-    public static unowned Playback get_default() {
+    public static Playback get_default() {
         default_playback = default_playback ?? new Playback();
         return default_playback;
     }

@@ -1,5 +1,5 @@
 public class PlayButton : Gtk.Button {
-    unowned Playback playback;
+    Playback playback;
 
     construct {
         playback = Playback.get_default();
