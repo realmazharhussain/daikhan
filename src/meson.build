@@ -1,4 +1,13 @@
-gresource_xml = files('envision.gresource.xml')
+conf_data = {
+  'app_id': app_id,
+  'gschema_path': gschema_path,
+}
+
+config_file = configure_file(
+  input: 'Conf.vala.in',
+  output: 'Conf.vala',
+  configuration: conf_data,
+)
 
 blp_sources = files('window.blp',
                     'shortcuts.blp',
@@ -13,11 +22,11 @@ blueprints = custom_target('blueprints',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
 )
 
-resources = gnome.compile_resources('envision-ui', gresource_xml,
+resources = gnome.compile_resources('daikhan-ui', 'daikhan.gresource.xml',
   dependencies: blueprints,
 )
 
-sources = files(
+sources = [config_file] + files(
   'main.vala',
   'about.vala',
   'app.vala',

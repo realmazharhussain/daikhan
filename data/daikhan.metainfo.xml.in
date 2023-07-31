@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>io.gitlab.Envision.MediaPlayer</id>
-  <launchable type="desktop-id">io.gitlab.Envision.MediaPlayer.desktop</launchable>
+  <id>@app_id@</id>
+  <launchable type="desktop-id">@app_id@.desktop</launchable>
 
-  <name>Envision Media Player</name>
+  <name>Daikhan</name>
   <summary>Play Videos/Music with style</summary>
   <developer_name>Mazhar Hussain</developer_name>
   <description>
@@ -14,12 +14,12 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://gitlab.com/envision-play/envision-media-player/-/raw/screenshots/latest-dev.png</image>
+      <image>https://gitlab.com/daikhan/daikhan/-/raw/screenshots/latest-dev.png</image>
     </screenshot>
   </screenshots>
 
   <provides>
-    <binary>envision</binary>
+    <binary>daikhan</binary>
   </provides>
 
   <!-- Minimum display length required -->
@@ -51,9 +51,9 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>AGPL-3.0-or-later</project_license>
 
-  <url type="bugtracker">https://gitlab.com/envision-play/envision-media-player/-/issues</url>
+  <url type="bugtracker">https://gitlab.com/daikhan/daikhan/-/issues</url>
   <url type="donation">https://realmazharhussain.github.io/donate</url>
-  <url type="homepage">https://gitlab.com/envision-play/envision-media-player</url>
+  <url type="homepage">https://gitlab.com/daikhan/daikhan</url>
 
   <update_contact>realmazharhussain_at_gmail.com</update_contact>
 </component>

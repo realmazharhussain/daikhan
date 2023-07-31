@@ -10,7 +10,7 @@ menu app_menu {
 }
 
 template $PlayerWindow: Adw.ApplicationWindow {
-  title: "Envision Media Player";
+  title: "Daikhan";
   width-request: 300;
   default-height: 430;
   default-width: 601;
@@ -27,10 +27,10 @@ template $PlayerWindow: Adw.ApplicationWindow {
         menu-model: app_menu;
       }
 
-      title-widget: $EnvisionTitle title_widget {};
+      title-widget: $DaikhanTitle title_widget {};
     }
 
-    $EnvisionVideoArea video_area {}
+    $DaikhanVideoArea video_area {}
 
     $MediaControls {
       visible: bind-property template.fullscreened inverted;

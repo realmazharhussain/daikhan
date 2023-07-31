@@ -1,13 +1,13 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $EnvisionVideoArea : Adw.Bin {
+template $DaikhanVideoArea : Adw.Bin {
     Overlay {
       [overlay] Revealer top_revealer {
         valign: start;
         transition-duration: 750;
         transition-type: slide_down;
-        child: $EnvisionTitle title_overlay {
+        child: $DaikhanTitle title_overlay {
           halign: center;
           styles ["background"]
         };

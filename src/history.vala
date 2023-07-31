@@ -17,7 +17,7 @@ public class PlaybackHistory {
     File file;
 
     private PlaybackHistory() {
-        var statedir = Environment.get_user_state_dir () + "/envision";
+        var statedir = Environment.get_user_state_dir () + "/daikhan";
         var path = statedir + "/history";
         file = File.new_for_path (path);
     }

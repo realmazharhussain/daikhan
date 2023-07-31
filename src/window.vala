@@ -1,13 +1,13 @@
 [GtkTemplate (ui = "/app/window.ui")]
 class PlayerWindow : Adw.ApplicationWindow {
-    [GtkChild] unowned Envision.Title title_widget;
+    [GtkChild] unowned Daikhan.Title title_widget;
     public Playback playback { get; private set; }
     public Settings settings { get; private construct; }
     PlaybackHistory playback_history;
     bool restoring_state = false;
 
     static construct {
-        typeof(Envision.VideoArea).ensure();
+        typeof(Daikhan.VideoArea).ensure();
     }
 
     construct {
@@ -45,7 +45,7 @@ class PlayerWindow : Adw.ApplicationWindow {
 
         playback_history = PlaybackHistory.get_default ();
 
-        settings = new Settings ("io.gitlab.Envision.MediaPlayer.state");
+        settings = new Settings (Conf.APP_ID + ".state");
         settings.bind ("width", this, "default-width", DEFAULT);
         settings.bind ("height", this, "default-height", DEFAULT);
         settings.bind ("maximized", this, "maximized", DEFAULT);

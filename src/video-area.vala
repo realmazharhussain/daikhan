@@ -1,6 +1,6 @@
-delegate void Envision.CursorTimeoutCallback();
+delegate void Daikhan.CursorTimeoutCallback();
 
-class Envision.CursorTimeout {
+class Daikhan.CursorTimeout {
     public uint delay { get; set; default = 0; }
     public unowned CursorTimeoutCallback callback;
     public unowned CursorTimeoutCallback motion_callback;
@@ -16,14 +16,14 @@ class Envision.CursorTimeout {
 }
 
 [GtkTemplate (ui = "/app/video-area.ui")]
-class Envision.VideoArea : Adw.Bin {
+class Daikhan.VideoArea : Adw.Bin {
     [GtkChild] unowned Gtk.Revealer top_revealer;
-    [GtkChild] unowned Envision.Title title_overlay;
+    [GtkChild] unowned Daikhan.Title title_overlay;
     [GtkChild] unowned MediaControls controls_overlay;
 
     Gtk.EventControllerMotion title_ctrlr;
     Gtk.EventControllerMotion ctrls_ctrlr;
-    Envision.CursorTimeout[] timeouts = null;
+    Daikhan.CursorTimeout[] timeouts = null;
     Source[] timeout_sources = null;
     Playback playback;
 
@@ -84,11 +84,11 @@ class Envision.VideoArea : Adw.Bin {
         fllscrn_expr.bind(top_revealer, "visible", this);
     }
 
-    Envision.CursorTimeout add_motion_timeout (uint interval,
+    Daikhan.CursorTimeout add_motion_timeout (uint interval,
                                                CursorTimeoutCallback callback,
                                                CursorTimeoutCallback motion_callback)
     {
-        var timeout = new Envision.CursorTimeout(interval, callback, motion_callback);
+        var timeout = new Daikhan.CursorTimeout(interval, callback, motion_callback);
         timeouts.resize(timeouts.length + 1);
         timeouts[timeouts.length - 1] = timeout;
         return timeout;

@@ -3,7 +3,7 @@ class MediaPlayer : Adw.Application {
 
     public MediaPlayer() {
         resource_base_path = "/app";
-        application_id = "io.gitlab.Envision.MediaPlayer";
+        application_id = Conf.APP_ID;
         flags |= HANDLES_OPEN;
 
         playback_history = PlaybackHistory.get_default();

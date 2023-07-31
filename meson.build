@@ -1,5 +1,15 @@
-project('envision', 'vala',
+project('daikhan', 'vala',
         version: '0.1.alpha')
+
+profile = get_option('profile')
+
+app_id = 'io.gitlab.daikhan.player'
+gschema_path = '/io/gitlab/daikhan/player/'
+
+if profile != 'stable'
+  app_id += '.' + profile
+  gschema_path += profile + '/'
+endif
 
 gnome = import('gnome')
 cc = meson.get_compiler('c')

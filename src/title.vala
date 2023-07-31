@@ -1,4 +1,4 @@
-class Envision.Title: Adw.Bin {
+class Daikhan.Title: Adw.Bin {
     public string title { get; set; }
     Playback playback;
 
@@ -14,7 +14,7 @@ class Envision.Title: Adw.Bin {
 
     void update_title() {
         if (playback.title == null) {
-            title = playback.filename ?? "Envision Media Player";
+            title = playback.filename ?? "Daikhan";
             child["subtitle"] = null;
             return;
         }

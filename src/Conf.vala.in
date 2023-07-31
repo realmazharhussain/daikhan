@@ -1,0 +1,4 @@
+namespace Conf {
+    public const string APP_ID = "@app_id@";
+    public const string GSCHEMA_PATH = "@gschema_path@";
+}

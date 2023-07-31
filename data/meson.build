@@ -1,7 +1,15 @@
-desktop_file = files('io.gitlab.Envision.MediaPlayer.desktop')
-metainfo_file = files('io.gitlab.Envision.MediaPlayer.metainfo.xml')
-install_data(desktop_file, metainfo_file,
-  install_dir: get_option('datadir') / 'applications',
+conf_data = {
+  'app_id': app_id,
+  'bindir': get_option('prefix') / get_option('bindir'),
+}
+
+
+desktop_file = configure_file(
+          input: 'daikhan.desktop.in',
+         output: app_id + '.desktop',
+        install: true,
+    install_dir: get_option('datadir') / 'applications',
+  configuration: conf_data,
 )
 
 desktop_utils = find_program('desktop-file-validate', required: false)
@@ -12,6 +20,15 @@ if desktop_utils.found()
     args: [desktop_file]
   )
 endif
+
+
+metainfo_file = configure_file(
+          input: 'daikhan.metainfo.xml.in',
+         output: app_id + '.metainfo.xml',
+        install: true,
+    install_dir: get_option('datadir') / 'metainfo',
+  configuration: conf_data,
+)
 
 appstreamcli = find_program('appstreamcli', required: false)
 if appstreamcli.found()
@@ -31,14 +48,13 @@ if appstream_util.found()
   )
 endif
 
+
 configure_file(
-          input: 'io.gitlab.Envision.MediaPlayer.service.in',
-         output: 'io.gitlab.Envision.MediaPlayer.service',
+          input: 'daikhan.service.in',
+         output: app_id + '.service',
         install: true,
     install_dir: get_option('datadir') / 'dbus-1/services',
-  configuration: configuration_data({
-    'bindir': get_option('prefix') / get_option('bindir'),
-  }),
+  configuration: conf_data,
 )
 
 subdir('icons')
