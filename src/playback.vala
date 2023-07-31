@@ -92,6 +92,16 @@ public class Playback : Object {
                 var info = queue[value].query_info("standard::display-name", NONE);
                 filename = info.get_display_name();
                 current_record = new HistoryRecord.with_uri(queue[value].get_uri());
+
+                if ((flags & PipelinePlayFlags.AUDIO) == 0) {
+                    current_record.audio_track = -1;
+                }
+                if ((flags & PipelinePlayFlags.SUBTITLES) == 0) {
+                    current_record.text_track = -1;
+                }
+                if ((flags & PipelinePlayFlags.VIDEO) == 0) {
+                    current_record.video_track = -1;
+                }
             } catch (Error err) {
                 warning(err.message);
             }
