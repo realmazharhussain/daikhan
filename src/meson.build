@@ -28,7 +28,6 @@ resources = gnome.compile_resources('daikhan-ui', 'daikhan.gresource.xml',
 
 sources = [config_file] + files(
   'main.vala',
-  'about.vala',
   'app.vala',
   'video.vala',
   'window.vala',
