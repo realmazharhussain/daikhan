@@ -18,9 +18,9 @@ template $DaikhanVideoArea : Adw.Bin {
       [overlay] Revealer bottom_revealer {
         valign: end;
         transition-type: slide_up;
-        visible: bind-property top_revealer.visible bidirectional;
-        reveal-child: bind-property top_revealer.reveal-child bidirectional;
-        transition-duration: bind-property top_revealer.transition-duration bidirectional;
+        visible: bind top_revealer.visible bidirectional;
+        reveal-child: bind top_revealer.reveal-child bidirectional;
+        transition-duration: bind top_revealer.transition-duration bidirectional;
         child: $MediaControls controls_overlay { styles ["background"] };
       }
     }

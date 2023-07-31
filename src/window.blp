@@ -19,7 +19,7 @@ template $PlayerWindow: Adw.ApplicationWindow {
     orientation: vertical;
 
     Gtk.HeaderBar {
-      visible: bind-property template.fullscreened inverted;
+      visible: bind template.fullscreened inverted;
       styles ["flat"]
 
       [start] MenuButton {
@@ -33,7 +33,7 @@ template $PlayerWindow: Adw.ApplicationWindow {
     $DaikhanVideoArea video_area {}
 
     $MediaControls {
-      visible: bind-property template.fullscreened inverted;
+      visible: bind template.fullscreened inverted;
     }
   }
 }
