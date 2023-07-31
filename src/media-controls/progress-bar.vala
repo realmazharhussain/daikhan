@@ -29,7 +29,7 @@ public class ProgressBar : Gtk.Scale {
     double last_progress_change = 0;
 
     bool change_value_cb(Gtk.Range range, Gtk.ScrollType scrl_type, double value) {
-        if (last_progress_change == value || playback.current_state == NULL) {
+        if (last_progress_change == value || value < 0 || playback.current_state == NULL) {
             return true;
         }
 
