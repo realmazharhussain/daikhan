@@ -19,8 +19,7 @@ class Video : Adw.Bin {
             var glsink = Gst.ElementFactory.make("glsinkbin", "glsinkbin");
             glsink["sink"] = gtksink;
             playback.pipeline["video-sink"] = glsink;
-        }
-        else {
+        } else {
             playback.pipeline["video-sink"] = gtksink;
         }
     }

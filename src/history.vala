@@ -42,8 +42,9 @@ public class PlaybackHistory {
         int i;
         for (i = 0; i < 1000; i++) {
             line = istream.read_line ();
-            if (line == null)
+            if (line == null) {
                 break;
+            }
 
             var parts = line.split (",");
             var record = new HistoryRecord();

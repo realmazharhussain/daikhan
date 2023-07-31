@@ -74,12 +74,13 @@ class StreamMenuBuilder : Object {
     void update_model (Menu model) {
         var type = "";
 
-        if (model == audio_streams)
+        if (model == audio_streams) {
             type = "audio";
-        else if (model == subtitle_streams)
+        } else if (model == subtitle_streams) {
             type = "text";
-        else
+        } else {
             assert_not_reached ();
+        }
 
         model.remove_all ();
 
@@ -104,8 +105,9 @@ class StreamMenuBuilder : Object {
                 tags.get_string (Gst.Tags.LANGUAGE_NAME, out language_name);
             }
 
-            if (language_name == null)
+            if (language_name == null) {
                 language_name = "Unknown Language";
+            }
 
             model.append (language_name, @"win.select_$type($stream)");
         }

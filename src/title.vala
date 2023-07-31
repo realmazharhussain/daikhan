@@ -22,10 +22,12 @@ class Envision.Title: Adw.Bin {
         child["subtitle"] = playback.filename;
         title = playback.title;
 
-        if (playback.album != null)
+        if (playback.album != null) {
             title += " – " + playback.album;
+        }
 
-        if (playback.artist != null)
+        if (playback.artist != null) {
             title += " – " + playback.artist;
+        }
     }
 }

@@ -101,8 +101,9 @@ class Envision.VideoArea : Adw.Bin {
          * cursor is over the current widget (Video) and video is playing, even
          * if the cursor is actually not moving anymore.
          */
-        if (x == cursor_x_cached && y == cursor_y_cached)
+        if (x == cursor_x_cached && y == cursor_y_cached) {
             return;
+        }
 
         cursor_x_cached = x;
         cursor_y_cached = y;
@@ -112,15 +113,18 @@ class Envision.VideoArea : Adw.Bin {
             timeout.motion_callback();
 
         // Destroy any pending timeouts
-        foreach (var src in timeout_sources)
-            if (!src.is_destroyed())
+        foreach (var src in timeout_sources) {
+            if (!src.is_destroyed()) {
                 src.destroy();
+            }
+        }
 
         timeout_sources = null;
 
         // No need to set up timeouts if the cursor is on an interface widget
-        if (title_ctrlr.contains_pointer || ctrls_ctrlr.contains_pointer)
+        if (title_ctrlr.contains_pointer || ctrls_ctrlr.contains_pointer) {
             return;
+        }
 
         // Set up timeouts
 
@@ -138,14 +142,16 @@ class Envision.VideoArea : Adw.Bin {
                                   int n_press, double x, double y)
     {
         // Don't do anything if the cursor is on media controls
-        if (ctrls_ctrlr.contains_pointer)
+        if (ctrls_ctrlr.contains_pointer) {
             return;
+        }
 
         var window = this.get_root() as PlayerWindow;
         assert(window != null);
 
-        if (n_press != 2)
+        if (n_press != 2) {
             return;
+        }
 
         gesture.set_state(CLAIMED);
         window.activate_action("toggle_fullscreen", null);
@@ -163,14 +169,17 @@ class Envision.VideoArea : Adw.Bin {
             return false;
         }
 
-        if (mimetype == null)
+        if (mimetype == null) {
             return false;
+        }
 
-        if (mimetype.has_prefix("video/"))
+        if (mimetype.has_prefix("video/")) {
             return true;
+        }
 
-        if (mimetype.has_prefix("audio/"))
+        if (mimetype.has_prefix("audio/")) {
             return true;
+        }
 
         return false;
     }
@@ -179,11 +188,13 @@ class Envision.VideoArea : Adw.Bin {
         var target = (Gtk.DropTarget) obj;
 
         var value = target.get_value();
-        if (value == null)
+        if (value == null) {
             return;
+        }
 
-        if (!drop_value_is_acceptable(value))
+        if (!drop_value_is_acceptable(value)) {
             target.reject();
+        }
     }
 
     bool drop_cb(Gtk.DropTarget target, Value value, double x, double y) {
@@ -203,15 +214,17 @@ class Envision.VideoArea : Adw.Bin {
 
         // We only recognize the gesture if the threshold has been crossed in any direction.
         var threshold = this.get_settings().gtk_dnd_drag_threshold;
-        if (offset_x.abs() < threshold && offset_y.abs() < threshold)
+        if (offset_x.abs() < threshold && offset_y.abs() < threshold) {
             return;
+        }
 
         var native = get_native();
         var toplevel = native.get_surface() as Gdk.Toplevel;
 
         // Cannot move window if it is fullscreen
-        if (((Gtk.Window) native).fullscreened)
+        if (((Gtk.Window) native).fullscreened) {
             return;
+        }
 
         // If toplevel is NULL, it means something went really wrong.
         assert(toplevel != null);

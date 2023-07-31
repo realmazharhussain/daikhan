@@ -74,8 +74,9 @@ public class Playback : Object {
         }
 
         private set {
-            if (value == _track)
+            if (value == _track) {
                 return;
+            }
 
             can_prev = can_play_track(value - 1);
             can_next = can_play_track(value + 1);
@@ -152,10 +153,11 @@ public class Playback : Object {
                 return;
             }
 
-            if (value == PLAYING)
+            if (value == PLAYING) {
                 ensure_progress_tracking();
-            else
+            } else {
                 stop_progress_tracking();
+            }
 
             _current_state = value;
         }
@@ -167,24 +169,28 @@ public class Playback : Object {
     }
 
     private bool can_play_track(int track_index) {
-        if (queue == null)
+        if (queue == null) {
             return false;
+        }
 
-        if (track_index < 0 || track_index >= queue.length)
+        if (track_index < 0 || track_index >= queue.length) {
             return false;
+        }
 
         return true;
     }
 
     public bool load_track(int track_index) {
-        if (!can_play_track(track_index))
+        if (!can_play_track(track_index)) {
             return false;
+        }
 
         var file = queue[track_index];
         var play = (target_state == PLAYING);
 
-        if (target_state != NULL)
+        if (target_state != NULL) {
             set_state(NULL);
+        }
 
         pipeline["uri"] = file.get_uri();
 
@@ -199,21 +205,25 @@ public class Playback : Object {
     }
 
     public bool next() {
-        if (!can_next)
+        if (!can_next) {
             return false;
+        }
 
-        if (!load_track(track + 1))
+        if (!load_track(track + 1)) {
             return false;
+        }
 
         return true;
     }
 
     public bool prev() {
-        if (!can_prev)
+        if (!can_prev) {
             return false;
+        }
 
-        if (!load_track(track - 1))
+        if (!load_track(track - 1)) {
             return false;
+        }
 
         return true;
     }
@@ -229,8 +239,9 @@ public class Playback : Object {
     }
 
     public bool toggle_playing() {
-        if (target_state == PLAYING)
+        if (target_state == PLAYING) {
             return pause();
+        }
 
         return play();
     }
@@ -245,15 +256,17 @@ public class Playback : Object {
     }
 
     public bool pause() {
-        if (target_state == NULL)
+        if (target_state == NULL) {
             return false;
+        }
 
         return set_state(PAUSED);
     }
 
     public void stop() {
-        if (target_state != NULL)
+        if (target_state != NULL) {
             set_state(NULL);
+        }
 
         if (queue != null) {
             prev_queue = queue;
@@ -266,8 +279,7 @@ public class Playback : Object {
 
         if (absolute_time < 0) {
             absolute_time = 0;
-        }
-        else if (absolute_time > duration) {
+        } else if (absolute_time > duration) {
             absolute_time = duration;
         }
         return seek_absolute((Gst.ClockTime) absolute_time);
@@ -286,11 +298,13 @@ public class Playback : Object {
     TimeoutSource? progress_source;
 
     void ensure_progress_tracking() {
-        if (progress_source != null && !progress_source.is_destroyed())
+        if (progress_source != null && !progress_source.is_destroyed()) {
             return;
+        }
 
-        if (duration == -1)
+        if (duration == -1) {
             update_duration();
+        }
 
         update_progress();
 
@@ -301,8 +315,9 @@ public class Playback : Object {
 
     bool update_duration() {
         int64 duration;
-        if (!pipeline.query_duration(TIME, out duration))
+        if (!pipeline.query_duration(TIME, out duration)) {
             return false;
+        }
 
         this.duration = duration;
         return true;
@@ -322,8 +337,9 @@ public class Playback : Object {
     }
 
     void stop_progress_tracking() {
-        if (progress_source == null || progress_source.is_destroyed())
+        if (progress_source == null || progress_source.is_destroyed()) {
             return;
+        }
 
         var source_id = progress_source.get_id();
         Source.remove(source_id);
