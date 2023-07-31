@@ -1,0 +1,87 @@
+name: GStreamer-Meta
+modules:
+  - name: gstreamer
+    builddir: true
+    buildsystem: meson
+    sources:
+      - url: https://gitlab.freedesktop.org/gstreamer/gstreamer/-/archive/1.22.4/gstreamer-1.22.4.tar.bz2
+        type: archive
+        sha256: c7e954ea63bf303d21da9c030e672fcc7674e742917ea155f28bfed4551124da
+
+      # Subprojects
+      - url: https://gitlab.freedesktop.org/gstreamer/orc/-/archive/0.4.34/orc-0.4.34.tar.bz2
+        dest: subprojects/orc
+        type: archive
+        sha256: 70d81ded7a17439c677decc037f8bbf1982cbb5bd8c7e468c4761595b8bc79c3
+      - url: https://gitlab.freedesktop.org/gstreamer/meson-ports/gl-headers/-/archive/5c8c7c0d3ca1f0b783272dac0b95e09414e49bc8/gl-headers-5c8c7c0d3ca1f0b783272dac0b95e09414e49bc8.tar.bz2
+        dest: subprojects/gl-headers
+        type: archive
+        sha256: 46b771874c9e14c2a94575eaf579877f34060950f7090e50b2b91f22399700a3
+      - url: https://gitlab.freedesktop.org/gstreamer/meson-ports/libdv/-/archive/4a28ebb4a169644ea6180795b1f39db7c4c07212/libdv-4a28ebb4a169644ea6180795b1f39db7c4c07212.tar.bz2
+        dest: subprojects/dv
+        type: archive
+        sha256: 5c8503a5a24d3ead874a457ad8d2f09af33b4cc4e1f31ffe90c56f5e0e17107b
+      - url: https://github.com/Avnu/libavtp/archive/refs/tags/v0.2.0.tar.gz
+        dest: subprojects/libavtp
+        type: archive
+        sha256: 631f5e704a1b7c8f953ca017a382ad945e75c2952c81813ff355e9ab8071b70e
+      - url: https://github.com/kornelski/dssim/archive/a40c62b95fa2a4223218c973a85dc183e610070a.tar.gz
+        dest: subprojects/dssim
+        type: archive
+        sha256: 7447b86ae3055c5b71b92a1251d77c19b138ac29d4e8bd25c931f963b6703b73
+      - url: https://github.com/videolabs/libmicrodns/archive/2489a7ad11264af39641655e173eeaa6df9c82f5.tar.gz
+        dest: subprojects/libmicrodns
+        type: archive
+        sha256: b867d7367752462c8ded5287acf0983f10934d04bdc43dcb759c35fca804403e
+      - url: https://gitlab.freedesktop.org/gstreamer/meson-ports/x264/-/archive/2b0ff085335b6722625e046123afe1ba5d9fc390/x264-2b0ff085335b6722625e046123afe1ba5d9fc390.tar.bz2
+        dest: subprojects/x264
+        type: archive
+        sha256: adfcf39ec5ffcf1a3ccf1a6b7c01d0bb8fb7a544999a005d7396f1b01b63f6b2
+
+    config-opts:
+      - --buildtype=release
+      - --wrap-mode=nodownload
+
+      - -Dpython=disabled
+      - -Dlibnice=disabled
+      - -Ddevtools=disabled
+      - -Dges=disabled
+      - -Drtsp_server=disabled
+      - -Dgst-examples=disabled
+      - -Dtls=disabled
+      - -Dqt5=disabled
+
+      - -Dlibav=enabled
+      - -Dbase=enabled
+      - -Dgood=enabled
+      - -Dugly=enabled
+      - -Dbad=enabled
+      - -Dvaapi=enabled
+      - -Dgpl=enabled
+
+      - -Dtests=disabled
+      - -Dexamples=disabled
+      - -Dintrospection=disabled
+      - -Ddoc=disabled
+
+      - -Dgst-plugins-good:gtk3=disabled
+      - -Dgst-plugins-good:pulse=enabled
+      - -Dgst-plugins-good:qt6=disabled
+
+      - -Dgst-plugins-bad:opencv=disabled
+      - -Dgst-plugins-bad:gtk3=disabled
+      - -Dgst-plugins-bad:nvcodec=enabled
+      - -Dgst-plugins-bad:va=enabled
+
+  - name: gst-plugins-rs
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs/-/archive/gstreamer-1.22.4/gst-plugins-rs-gstreamer-1.22.4.tar.bz2
+        sha256: dfcaebe170089a343a4636d68ca34e1e919849567b34b0aa59b18734588c9258
+      - gst-plugins-rs-sources.json
+    build-options:
+      env:
+        CARGO_HOME: /run/build/gst-plugins-rs/cargo
+    build-commands:
+      - cargo cinstall -p gst-plugin-gtk4 --offline --release --library-type=cdylib --prefix=/app

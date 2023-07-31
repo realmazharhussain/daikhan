@@ -8,6 +8,8 @@ sdk-extensions:
 
 build-options:
   append-path: /usr/lib/sdk/rust-stable/bin
+  build-args:
+    - --share=network
 
 finish-args:
   - --share=ipc
@@ -31,51 +33,12 @@ cleanup:
   - '*.a'
 
 modules:
-  - name: blueprint-compiler
-    builddir: true
-    buildsystem: meson
-    sources:
-      - type: archive
-        url: https://gitlab.gnome.org/jwestman/blueprint-compiler/-/archive/v0.8.1/blueprint-compiler-v0.8.1.tar.bz2
-        sha256: 7690fa48b4c7237290a71e1521f4a52bfe83b4e44ca6c807955a0ac96c27a35a
-    cleanup:
-      - "*"
-
-  - name: cargo-c
-    buildsystem: simple
-    build-options:
-      env:
-        CARGO_HOME: /run/build/cargo-c/cargo
-    build-commands:
-      - cargo install --offline --path . --root /app
-    sources:
-      - type: archive
-        url: https://github.com/lu-zero/cargo-c/archive/refs/tags/v0.9.19.tar.gz
-        sha256: c2633ff22e52da9985394f30c8ef5e9abbac4d14c9b79e3690c8e95cf500ab97
-      - cargo-c-sources.json
-    cleanup:
-      - "*"
-
-  - name: gst-plugins-rs
-    buildsystem: simple
-    sources:
-      - type: archive
-        url: https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs/-/archive/0.10.6/gst-plugins-rs-0.10.6.tar.bz2
-        sha256: 90af993b28f050e2d682582ca1bde440665e75a5fbaec6577cafc609e24f2d92
-      - gst-plugins-rs-sources.json
-    build-options:
-      env:
-        CARGO_HOME: /run/build/gst-plugins-rs/cargo
-    build-commands:
-      - cargo cinstall -p gst-plugin-gtk4 --offline --release --prefix=/app
+  - build-deps.yml
+  - gstreamer.yml
 
   - name: envision
     builddir: true
-    buildsystem: simple
+    buildsystem: meson
     sources:
       - type: dir
         path: '../../'
-    build-commands:
-      - meson setup _build --prefix=/app
-      - meson compile -C _build || meson compile -C _build
-      - meson install -C _build
