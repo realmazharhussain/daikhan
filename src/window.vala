@@ -21,12 +21,18 @@ class PlayerWindow : Adw.ApplicationWindow {
             }
 
             var record = playback_history.find (playback.queue[playback.track].get_uri ());
-            if (record == null || record.progress <= 0) {
+
+            if (record == null) {
                 return;
             }
 
-            activate_action ("select_audio", new Variant("i", record.audio_track));
-            activate_action ("select_text", new Variant("i", record.text_track));
+            activate_action ("audio", new Variant("i", record.audio_track));
+            activate_action ("text", new Variant("i", record.text_track));
+            activate_action ("video", new Variant("i", record.video_track));
+
+            if (record.progress <= 0) {
+                return;
+            }
 
             if (restoring_state) {
                 perform_seek (record.progress);
