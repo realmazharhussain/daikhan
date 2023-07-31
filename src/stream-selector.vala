@@ -3,31 +3,21 @@ internal StreamMenuBuilder menu_builder_instance;
 class StreamMenuBuilder : Object {
     public Menu menu;
 
-    Menu audio_streams;
-    Menu subtitle_streams;
-    Menu video_streams;
+    Menu audio_menu;
+    Menu subtitle_menu;
+    Menu video_menu;
     Playback playback;
 
     construct {
         menu = new Menu ();
 
-        var audio_menu = new Menu ();
-        audio_streams = new Menu ();
+        audio_menu = new Menu ();
+        video_menu = new Menu ();
+        subtitle_menu = new Menu ();
+
         menu.append_submenu ("Audio", audio_menu);
-        audio_menu.append ("Off", "win.select_audio(-1)");
-        audio_menu.append_section (null, audio_streams);
-
-        var subtitle_menu = new Menu ();
-        subtitle_streams = new Menu ();
         menu.append_submenu ("Subtitles", subtitle_menu);
-        subtitle_menu.append ("Off", "win.select_text(-1)");
-        subtitle_menu.append_section (null, subtitle_streams);
-
-        var video_menu = new Menu ();
-        video_streams = new Menu ();
         menu.append_submenu ("Video", video_menu);
-        video_menu.append ("Off", "win.select_video(-1)");
-        video_menu.append_section (null, video_streams);
 
         playback = Playback.get_default ();
         Signal.connect_swapped (playback.pipeline, "audio-changed", (Callback) update_audio_cb, this);
@@ -52,14 +42,14 @@ class StreamMenuBuilder : Object {
 
     void update_audio_cb () {
         Idle.add (() => {
-            update_model (audio_streams);
+            update_model (audio_menu);
             return Source.REMOVE;
         });
     }
 
     void update_text_cb () {
         Idle.add (() => {
-            update_model (subtitle_streams);
+            update_model (subtitle_menu);
             return Source.REMOVE;
         });
     }
@@ -74,9 +64,9 @@ class StreamMenuBuilder : Object {
     void update_model (Menu model) {
         var type = "";
 
-        if (model == audio_streams) {
+        if (model == audio_menu) {
             type = "audio";
-        } else if (model == subtitle_streams) {
+        } else if (model == subtitle_menu) {
             type = "text";
         } else {
             assert_not_reached ();
@@ -92,9 +82,13 @@ class StreamMenuBuilder : Object {
         pipeline.get (@"n-$type", out total_streams);
 
 
-        if (total_streams == 1) {
-            model.append (@"On", @"win.select_$type(0)");
-        } else for (int stream = 0; stream < total_streams; stream++) {
+        if (total_streams == 0) {
+            return;
+        }
+
+        model.append ("Off", @"win.$type(-1)");
+
+        for (int stream = 0; stream < total_streams; stream++) {
             Signal.emit_by_name (pipeline, @"get-$type-tags", stream, out tags);
 
             if (tags == null) {
@@ -109,21 +103,27 @@ class StreamMenuBuilder : Object {
                 language_name = "Unknown Language";
             }
 
-            model.append (language_name, @"win.select_$type($stream)");
+            model.append (language_name, @"win.$type($stream)");
         }
     }
 
     void update_video_model () {
-        video_streams.remove_all ();
+        video_menu.remove_all ();
 
         int total_streams;
         Object pipeline = playback.pipeline;
         pipeline.get (@"n-video", out total_streams);
 
+        if (total_streams == 0) {
+            return;
+        }
+
+        video_menu.append ("Off", "win.video(-1)");
+
         if (total_streams == 1) {
-            video_streams.append (@"On", @"win.select_video(0)");
+            video_menu.append (@"On", @"win.video(0)");
         } else for (int stream = 0; stream < total_streams; stream++) {
-            video_streams.append (@"Track $(stream + 1)", @"win.select_video($stream)");
+            video_menu.append (@"Track $(stream + 1)", @"win.video($stream)");
         }
     }
 }

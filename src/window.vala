@@ -56,16 +56,16 @@ class PlayerWindow : Adw.ApplicationWindow {
             {"seek", seek_cb, "i"},
             {"volume_step", volume_step_cb, "d"},
             {"play_pause", play_pause_cb},
-            {"select_audio", select_audio_cb, "i"},
-            {"select_text", select_text_cb, "i"},
-            {"select_video", select_video_cb, "i"},
+            {"audio", null, "i", "0", select_audio_cb},
+            {"text", null, "i", "0", select_text_cb},
+            {"video", null, "i", "0", select_video_cb},
             {"toggle_fullscreen", toggle_fullscreen_cb},
             {"about", about_cb},
         };
 
-	var repeat_act = new PropertyAction ("repeat", playback, "repeat");
-
         add_action_entries(entries, this);
+
+	var repeat_act = new PropertyAction ("repeat", playback, "repeat");
 	add_action(repeat_act);
 
         notify["application"].connect(()=> {
@@ -139,6 +139,8 @@ class PlayerWindow : Adw.ApplicationWindow {
         if (playback.current_record != null) {
             playback.current_record.audio_track = stream_index.get_int32 ();
         }
+
+        action.set_state(stream_index);
     }
 
     void select_text_cb (SimpleAction action, Variant? stream_index) {
@@ -152,6 +154,8 @@ class PlayerWindow : Adw.ApplicationWindow {
         if (playback.current_record != null) {
             playback.current_record.text_track = stream_index.get_int32 ();
         }
+
+        action.set_state(stream_index);
     }
 
     void select_video_cb (SimpleAction action, Variant? stream_index) {
@@ -165,6 +169,8 @@ class PlayerWindow : Adw.ApplicationWindow {
         if (playback.current_record != null) {
             playback.current_record.video_track = stream_index.get_int32 ();
         }
+
+        action.set_state(stream_index);
     }
 
     void play_pause_cb () {
