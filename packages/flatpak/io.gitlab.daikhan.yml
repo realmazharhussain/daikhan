@@ -1,5 +1,5 @@
-app-id: io.gitlab.Envision.MediaPlayer
-command: envision
+app-id: io.gitlab.daikhan
+command: daikhan
 runtime: org.gnome.Platform
 runtime-version: "44"
 sdk: org.gnome.Sdk
@@ -36,7 +36,7 @@ modules:
   - build-deps.yml
   - gstreamer.yml
 
-  - name: envision
+  - name: daikhan
     builddir: true
     buildsystem: meson
     sources:
