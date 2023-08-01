@@ -36,7 +36,7 @@ build() {
     --buildtype=plain \
     "${srcdir}/${_realname}"
 
-  ninja
+  meson compile
 }
 
 check() {
@@ -46,7 +46,6 @@ check() {
 
 package() {
   cd build-${MINGW_CHOST}
-
-  DESTDIR="${pkgdir}" ninja install
+  meson install --destdir="${pkgdir}"
 }
 
