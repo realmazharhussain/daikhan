@@ -1,9 +1,9 @@
 # Maintainer: Mazhar Hussain <realmazharhussain@gmail.com>
 
 _realname=daikhan
-pkgbase=mingw-w64-${_realname}
+pkgbase=mingw-w64-${_realname}-git
 pkgname="${MINGW_PACKAGE_PREFIX}-${_realname}"
-pkgver=44.0
+pkgver=r0
 pkgrel=1
 arch=(any)
 #mingw_arch=('mingw32' 'mingw64' 'ucrt64' 'clang64' 'clang32')
@@ -21,6 +21,11 @@ options=('strip' 'staticlibs')
 license=("GPL3")
 source=("git+${url}.git")
 md5sums=(SKIP)
+
+pkgver() {
+  cd $_realname
+  echo r$(git rev-list --count HAED).$(git rev-parse --short HEAD)
+}
 
 build() {
   [[ -d build-${MINGW_CHOST} ]] && rm -rf build-${MINGW_CHOST}
