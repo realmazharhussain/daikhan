@@ -186,7 +186,7 @@ class PlayerWindow : Adw.ApplicationWindow {
             transient_for = this,
             issue_url = "https://gitlab.com/daikhan/daikhan/-/issues/new",
             application_icon = Conf.APP_ID,
-            application_name = "Daikhan",
+            application_name = "Daikhan (Preview)",
             copyright = "Copyright 2022-2023 Mazhar Hussain",
             license_type = Gtk.License.AGPL_3_0,
             developer_name = "Mazhar Hussain",

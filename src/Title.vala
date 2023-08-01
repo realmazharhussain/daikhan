@@ -14,7 +14,7 @@ class Daikhan.Title: Adw.Bin {
 
     void update_title() {
         if (playback.title == null) {
-            title = playback.filename ?? "Daikhan";
+            title = playback.filename ?? "Daikhan (Preview)";
             child["subtitle"] = null;
             return;
         }
