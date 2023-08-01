@@ -2,22 +2,22 @@
 
 _realname=daikhan
 pkgbase=mingw-w64-${_realname}-git
-pkgname="${MINGW_PACKAGE_PREFIX}-${_realname}"
+pkgname=${MINGW_PACKAGE_PREFIX}-${_realname}
 pkgver=r0
 pkgrel=1
 arch=(any)
-mingw_arch=('mingw32' 'mingw64' 'ucrt64' 'clang64' 'clang32')
+mingw_arch=(mingw32 mingw64 ucrt64 clang64 clang32)
 pkgdesc="Daikhan Media Player (mingw-w64)"
 url="https://gitlab.com/daikhan/daikhan"
-depends=("${MINGW_PACKAGE_PREFIX}-libadwaita")
-makedepends=("${MINGW_PACKAGE_PREFIX}-cc"
-             "${MINGW_PACKAGE_PREFIX}-vala"
-             "${MINGW_PACKAGE_PREFIX}-appstream-glib"
-             "${MINGW_PACKAGE_PREFIX}-desktop-file-utils"
-             "${MINGW_PACKAGE_PREFIX}-meson"
+depends=(${MINGW_PACKAGE_PREFIX}-libadwaita)
+makedepends=(${MINGW_PACKAGE_PREFIX}-cc
+             ${MINGW_PACKAGE_PREFIX}-vala
+             ${MINGW_PACKAGE_PREFIX}-appstream-glib
+             ${MINGW_PACKAGE_PREFIX}-desktop-file-utils
+             ${MINGW_PACKAGE_PREFIX}-meson
 	     git)
-options=('strip' 'staticlibs')
-license=("GPL3")
+options=(strip staticlibs)
+license=(GPL3)
 source=("git+${url}.git")
 md5sums=(SKIP)
 
