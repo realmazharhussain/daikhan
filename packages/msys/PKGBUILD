@@ -35,7 +35,7 @@ build() {
   ${MINGW_PREFIX}/bin/meson \
     --prefix=${MINGW_PREFIX} \
     --buildtype=plain \
-    "${srcdir}/daikhan"
+    "${srcdir}/${_realname}"
 
   ninja
 }
