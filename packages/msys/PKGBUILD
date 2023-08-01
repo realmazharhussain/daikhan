@@ -40,7 +40,7 @@ build() {
 }
 
 package() {
-  cd "${srcdir}/build-${MINGW_CHOST}"
+  cd build-${MINGW_CHOST}
 
   DESTDIR="${pkgdir}" ninja install
 }
