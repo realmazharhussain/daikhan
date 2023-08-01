@@ -1,4 +1,4 @@
-app-id: io.gitlab.daikhan
+app-id: io.gitlab.daikhan.player
 command: daikhan
 runtime: org.gnome.Platform
 runtime-version: "44"
