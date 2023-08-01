@@ -7,8 +7,11 @@
   <summary>Play Videos/Music with style</summary>
   <developer_name>Mazhar Hussain</developer_name>
   <description>
+    <p>A simple media player with beautiful interface.</p>
+
     <p>
-      A simple media player with beautiful interface.
+      NOTE: The app is in early stages of development and bound to change significantly
+      in the future.
     </p>
   </description>
 
