@@ -22,12 +22,12 @@ template $PlayerWindow: Adw.ApplicationWindow {
       visible: bind template.fullscreened inverted;
       styles ["flat"]
 
-      [start] MenuButton {
+      title-widget: $DaikhanTitle title_widget {};
+
+      [end] MenuButton {
         icon-name: 'open-menu-symbolic';
         menu-model: app_menu;
       }
-
-      title-widget: $DaikhanTitle title_widget {};
     }
 
     $DaikhanVideoArea video_area {}
