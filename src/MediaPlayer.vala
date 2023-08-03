@@ -34,11 +34,13 @@ class MediaPlayer : Adw.Application {
         base.startup();
 
         ActionEntry[] entries = {
+            {"preferences", preferences_cb},
             {"show_shortcuts", show_shortcuts_cb},
             {"quit", quit},
         };
 
         add_action_entries(entries, this);
+        set_accels_for_action("app.preferences", {"<Ctrl>comma"});
         set_accels_for_action("app.show_shortcuts", {"<Ctrl>question"});
         set_accels_for_action("app.quit", {"<Ctrl>q", "q"});
 
@@ -47,6 +49,13 @@ class MediaPlayer : Adw.Application {
         } catch (Error e) {
             warning("Error occured while loading history: %s", e.message);
         }
+    }
+
+    PreferencesWindow pref_win;
+
+    void preferences_cb() {
+      pref_win = new PreferencesWindow () { transient_for = get_active_window() };
+      pref_win.present();
     }
 
     Gtk.Window shortcuts_win;

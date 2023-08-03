@@ -12,6 +12,7 @@ config_file = configure_file(
 blp_sources = files('window.blp',
                     'shortcuts.blp',
                     'video-area.blp',
+                    'preferences.blp',
                     'media-controls.blp',
                     'media-controls/volume-button.blp',
                     )
@@ -42,6 +43,7 @@ sources = [blueprint_hack, config_file] + resources + files(
   'TimeLabels.vala',
   'Title.vala',
   'VideoArea.vala',
+  'PreferencesWindow.vala',
   'StreamMenuBuilder.vala',
   'ActionDialog.vala',
   'MediaControls.vala',
