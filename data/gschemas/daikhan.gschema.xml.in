@@ -1,4 +1,13 @@
 <schemalist gettext-domain="daikhan">
+  <schema id="@app_id@" path="@gschema_path@">
+
+     <key name="prefer-dark-style" type="b">
+       <default>false</default>
+     </key>
+
+  </schema>
+
+
   <schema id="@app_id@.state" path="@gschema_path@state/">
 
      <key name="width" type="u">

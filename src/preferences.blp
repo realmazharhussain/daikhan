@@ -2,4 +2,14 @@ using Gtk 4.0;
 using Adw 1;
 
 template $PreferencesWindow : Adw.PreferencesWindow {
+  Adw.PreferencesPage {
+    Adw.PreferencesGroup {
+      title: _("Appearance");
+
+      Adw.ActionRow {
+        title: _("Prefer Dark Style");
+        Switch dark_mode_switch { valign: center; }
+      }
+    }
+  }
 }
