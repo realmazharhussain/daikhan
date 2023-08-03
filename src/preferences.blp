@@ -6,9 +6,8 @@ template $PreferencesWindow : Adw.PreferencesWindow {
     Adw.PreferencesGroup {
       title: _("Appearance");
 
-      Adw.ActionRow {
-        title: _("Prefer Dark Style");
-        Switch dark_mode_switch { valign: center; }
+      $IdComboRow dark_mode_combo {
+        title: _("Color Scheme");
       }
     }
   }

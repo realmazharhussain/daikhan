@@ -1,8 +1,13 @@
 <schemalist gettext-domain="daikhan">
   <schema id="@app_id@" path="@gschema_path@">
 
-     <key name="prefer-dark-style" type="b">
-       <default>false</default>
+     <key name="color-scheme" type="s">
+       <default>"default"</default>
+       <choices>
+         <choice value="default"/>
+         <choice value="force-light"/>
+         <choice value="force-dark"/>
+       </choices>
      </key>
 
   </schema>

@@ -11,19 +11,7 @@ class MediaPlayer : Adw.Application {
         settings = new Settings (Conf.APP_ID);
 
         var style_mgr = Adw.StyleManager.get_default ();
-        settings.bind_with_mapping ("prefer-dark-style", style_mgr, "color-scheme", DEFAULT,
-            (value, variant) => {
-                value = variant.get_boolean () ? Adw.ColorScheme.PREFER_DARK : Adw.ColorScheme.DEFAULT;
-                return true;
-            },
-
-            (value) => {
-                return new Variant.boolean ( ((Adw.ColorScheme) value) == PREFER_DARK);
-            },
-
-            null,
-            null
-        );
+        settings.bind("color-scheme", style_mgr, "color-scheme", DEFAULT);
     }
 
     PlayerWindow get_main_window() {
