@@ -3,7 +3,7 @@
   <id>@app_id@</id>
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
-  <name>Daikhan (Preview)</name>
+  <name>Daikhan (Early Access)</name>
   <summary>Play Videos/Music with style</summary>
   <developer_name>Mazhar Hussain</developer_name>
   <description>
