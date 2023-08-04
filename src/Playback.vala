@@ -28,6 +28,8 @@ namespace AudioVolume {
 internal unowned Playback? default_playback;
 
 public class Playback : Object {
+    Settings settings;
+
     public Gst.Pipeline pipeline { get; private set; }
     public PlaybackHistory history { get; private construct; }
 
@@ -117,6 +119,7 @@ public class Playback : Object {
     }
 
     construct {
+        settings = new Settings(Conf.APP_ID);
         history = PlaybackHistory.get_default();
 
         pipeline = Gst.ElementFactory.make("playbin", null) as Gst.Pipeline;
@@ -305,7 +308,16 @@ public class Playback : Object {
     }
 
     public bool seek_absolute(Gst.ClockTime nano_seconds) {
-        if (pipeline.seek_simple(TIME, FLUSH, (int64)nano_seconds)) {
+        var seeking_method = settings.get_string("seeking-method");
+
+        Gst.SeekFlags seek_flags = FLUSH;
+        if (seeking_method == "fast") {
+            seek_flags |= KEY_UNIT;
+        } else if (seeking_method == "accurate") {
+            seek_flags |= ACCURATE;
+        }
+
+        if (pipeline.seek_simple(TIME, seek_flags, (int64)nano_seconds)) {
             progress = (int64) nano_seconds;
             return true;
         }

@@ -10,5 +10,14 @@ template $PreferencesWindow : Adw.PreferencesWindow {
         title: _("Color Scheme");
       }
     }
+
+    Adw.PreferencesGroup {
+      title: _("Behavior");
+
+
+      $IdComboRow seeking_combo {
+        title: _("Seeking Method");
+      }
+    }
   }
 }

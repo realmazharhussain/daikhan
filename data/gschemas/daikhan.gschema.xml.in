@@ -10,6 +10,15 @@
        </choices>
      </key>
 
+     <key name="seeking-method" type="s">
+       <default>"balanced"</default>
+       <choices>
+         <choice value="fast"/>
+         <choice value="balanced"/>
+         <choice value="accurate"/>
+       </choices>
+     </key>
+
   </schema>
 
 
