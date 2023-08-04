@@ -27,7 +27,7 @@ resources = gnome.compile_resources('daikhan-ui', 'daikhan.gresource.xml',
   dependencies: blueprints,
 )
 
-sources = [config_file] + resources + files(
+sources = [config_file] + blueprints + resources + files(
   'main.vala',
   'MediaPlayer.vala',
   'Video.vala',
