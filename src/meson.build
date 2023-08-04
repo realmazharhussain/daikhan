@@ -31,6 +31,7 @@ sources = [config_file] + blueprints + resources + files(
   'main.vala',
   'MediaPlayer.vala',
   'Video.vala',
+  'IdComboRow.vala',
   'PlayerWindow.vala',
   'PlaybackHistory.vala',
   'Playback.vala',
