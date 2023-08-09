@@ -1,12 +1,21 @@
 public class HistoryRecord {
-    public string uri;
+    public string uri_hash;
+    public string content_id;
     public int64 progress;
     public int audio_track;
     public int text_track;
     public int video_track;
 
-    public HistoryRecord.with_uri (string? uri = null) {
-        this.uri = uri;
+    public HistoryRecord.with_uri (string uri) {
+        this.uri_hash = XXH.v3_128bits (uri.data).to_string ();
+
+        if (uri[0:7] == "file://") {
+            try {
+                this.content_id = ContentId.for_uri (uri);
+            } catch (Error e) {
+                warning ("Error calculating content-id: %s", e.message);
+            }
+        }
     }
 }
 
@@ -28,6 +37,7 @@ public class PlaybackHistory {
     }
 
     public void load () throws Error {
+        const int LENGTH_OF_HASH_STRING = 32;
         data = new SList<HistoryRecord>();
         DataInputStream istream;
 
@@ -49,7 +59,15 @@ public class PlaybackHistory {
             var parts = line.split (",");
             var record = new HistoryRecord();
 
-            record.uri = unescape_str (parts[0]);
+            var id_parts =  parts[0].split (":");
+            if (id_parts[0].length == LENGTH_OF_HASH_STRING) {
+                record.uri_hash = id_parts[0];
+                record.content_id = id_parts[1];
+            } else {
+                record.uri_hash = XXH.v3_128bits (unescape_str (parts[0]).data).to_string ();
+                record.content_id = "";
+            }
+
             record.progress = int64.parse (parts[1]);
             record.audio_track = int.parse (parts[2]);
             record.text_track = int.parse (parts[3]);
@@ -62,8 +80,32 @@ public class PlaybackHistory {
     }
 
     public HistoryRecord? find (string uri) {
+        HistoryRecord? record = null;
+        string? content_id = null;
+
+        if (uri[0:7] == "file://") {
+            try {
+                content_id = ContentId.for_uri (uri);
+            } catch (Error e) {
+                warning ("Error occured calculating content-id: %s", e.message);
+            }
+        }
+
+        if (content_id != null) {
+            record = find_by_content_id (content_id);
+        }
+
+        if (record == null) {
+            var uri_hash = XXH.v3_128bits (uri.data).to_string ();
+            record = find_by_uri_hash (uri_hash);
+        }
+
+        return record;
+    }
+
+    private HistoryRecord? find_by_content_id (string content_id) {
         foreach (var record in data) {
-            if (record.uri == uri) {
+            if (record.content_id == content_id) {
                 return record;
             }
         }
@@ -71,12 +113,27 @@ public class PlaybackHistory {
         return null;
     }
 
-    public void update (HistoryRecord record) {
-        var existing_record = find (record.uri);
-        if (existing_record != null) {
-            data.remove (existing_record);
+    private HistoryRecord? find_by_uri_hash (string uri_hash) {
+        foreach (var record in data) {
+            if (record.uri_hash == uri_hash) {
+                return record;
+            }
         }
-        data.prepend (record);
+
+        return null;
+    }
+
+    public void update (HistoryRecord current) {
+        var previous = find_by_content_id (current.content_id)
+                       ?? find_by_uri_hash (current.uri_hash);
+
+        if (previous != null && previous.uri_hash == current.uri_hash &&
+            (previous.content_id == "" || previous.content_id == current.content_id))
+        {
+            data.remove (previous);
+        }
+
+        data.prepend (current);
     }
 
     public void save () throws Error {
@@ -90,21 +147,17 @@ public class PlaybackHistory {
         }
 
         foreach (var record in data) {
-            var uri = escape_str (record.uri);
+            var id = record.uri_hash + ":" + record.content_id;
             var progress = record.progress.to_string ();
             var audio_track = record.audio_track.to_string ();
             var text_track = record.text_track.to_string ();
             var video_track = record.video_track.to_string ();
 
-            var line = string.join (",", uri, progress, audio_track, text_track, video_track) + "\n";
+            var line = string.join (",", id, progress, audio_track, text_track, video_track) + "\n";
             ostream.write (line.data);
         }
 
         ostream.close ();
-    }
-
-    string escape_str (string input) {
-        return input.replace (",", "%2C");
     }
 
     string unescape_str (string input) {
