@@ -2,18 +2,20 @@ internal const int SEGMENT_SIZE = 16 * 1024;    // 16 KiB
 internal const int SIZE_OF_FILE_SIZE = (int) sizeof(int64);
 
 namespace ContentId {
-    public string for_path (string path) throws Error {
+    public const uint NONE = 0;
+
+    public uint for_path (string path) throws Error {
         var file = File.new_for_path (path);
         return for_file (file);
     }
 
-    public string for_uri (string uri) throws Error {
+    public uint for_uri (string uri) throws Error {
         var file = File.new_for_uri (uri);
         return for_file (file);
     }
 
-    public string for_file (File file) throws Error {
-        var info = file.query_info ("standard::size", NONE);
+    public uint for_file (File file) throws Error {
+        var info = file.query_info ("standard::size", 0);
         var file_size = info.get_size ();
         var stream = file.read ();
 
@@ -39,6 +41,6 @@ namespace ContentId {
         unowned var size_buffer = hash_input[hash_input.length - SIZE_OF_FILE_SIZE : hash_input.length];
         size_buffer = (uint8[]) file_size;
 
-        return  ((string) hash_input).hash ().to_string ();
+        return  ((string) hash_input).hash ();
     }
 }

@@ -1,13 +1,13 @@
 public class HistoryRecord {
-    public string uri_hash;
-    public string content_id;
+    public uint uri_hash;
+    public uint content_id;
     public int64 progress;
     public int audio_track;
     public int text_track;
     public int video_track;
 
     public HistoryRecord.with_uri (string uri) {
-        this.uri_hash = uri.hash ().to_string ();
+        this.uri_hash = uri.hash ();
 
         if (uri.has_prefix ("file://")) {
             try {
@@ -59,12 +59,11 @@ public class PlaybackHistory {
             var record = new HistoryRecord();
 
             var id_parts =  parts[0].split (":");
-            if (uint.try_parse (id_parts[0])) {
-                record.uri_hash = id_parts[0];
-                record.content_id = id_parts[1];
+            if (uint.try_parse (id_parts[0], out record.uri_hash)) {
+                uint.try_parse (id_parts[1], out record.content_id);
             } else {
-                record.uri_hash = unescape_str (parts[0]).hash ().to_string ();
-                record.content_id = "";
+                record.uri_hash = unescape_str (parts[0]).hash ();
+                record.content_id = ContentId.NONE;
             }
 
             record.progress = int64.parse (parts[1]);
@@ -80,7 +79,7 @@ public class PlaybackHistory {
 
     public HistoryRecord? find (string uri) {
         HistoryRecord? record = null;
-        string? content_id = null;
+        uint content_id = ContentId.NONE;
 
         if (uri.has_prefix ("file://")) {
             try {
@@ -90,19 +89,18 @@ public class PlaybackHistory {
             }
         }
 
-        if (content_id != null) {
+        if (content_id != ContentId.NONE) {
             record = find_by_content_id (content_id);
         }
 
         if (record == null) {
-            var uri_hash = uri.hash ().to_string ();
-            record = find_by_uri_hash (uri_hash);
+            record = find_by_uri_hash (uri.hash ());
         }
 
         return record;
     }
 
-    private HistoryRecord? find_by_content_id (string content_id) {
+    private HistoryRecord? find_by_content_id (uint content_id) {
         foreach (var record in data) {
             if (record.content_id == content_id) {
                 return record;
@@ -112,7 +110,7 @@ public class PlaybackHistory {
         return null;
     }
 
-    private HistoryRecord? find_by_uri_hash (string uri_hash) {
+    private HistoryRecord? find_by_uri_hash (uint uri_hash) {
         foreach (var record in data) {
             if (record.uri_hash == uri_hash) {
                 return record;
@@ -127,7 +125,7 @@ public class PlaybackHistory {
                        ?? find_by_uri_hash (current.uri_hash);
 
         if (previous != null && previous.uri_hash == current.uri_hash &&
-            (previous.content_id == "" || previous.content_id == current.content_id))
+            (previous.content_id == current.content_id || previous.content_id == ContentId.NONE))
         {
             data.remove (previous);
         }
@@ -146,7 +144,7 @@ public class PlaybackHistory {
         }
 
         foreach (var record in data) {
-            var id = record.uri_hash + ":" + record.content_id;
+            var id = record.uri_hash.to_string () + ":" + record.content_id.to_string ();
             var progress = record.progress.to_string ();
             var audio_track = record.audio_track.to_string ();
             var text_track = record.text_track.to_string ();
