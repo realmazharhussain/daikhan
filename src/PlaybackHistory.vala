@@ -82,7 +82,7 @@ public class PlaybackHistory {
         HistoryRecord? record = null;
         string? content_id = null;
 
-        if (uri[0:7] == "file://") {
+        if (uri.has_prefix ("file://")) {
             try {
                 content_id = ContentId.for_uri (uri);
             } catch (Error e) {
