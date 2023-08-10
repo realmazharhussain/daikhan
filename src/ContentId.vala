@@ -17,7 +17,7 @@ namespace ContentId {
         var file_size = info.get_size ();
         var stream = file.read ();
 
-        uint8[] hash_input = new uint8[SEGMENT_SIZE*3 + SIZE_OF_FILE_SIZE];
+        var hash_input = new uint8[SEGMENT_SIZE*3 + SIZE_OF_FILE_SIZE];
 
         if (file_size > SEGMENT_SIZE * 3) {
             unowned var file_start = hash_input[0 : SEGMENT_SIZE];
@@ -39,6 +39,6 @@ namespace ContentId {
         unowned var size_buffer = hash_input[hash_input.length - SIZE_OF_FILE_SIZE : hash_input.length];
         size_buffer = (uint8[]) file_size;
 
-        return XXH.v3_128bits (hash_input).to_string ();
+        return  ((string) hash_input).hash ().to_string ();
     }
 }

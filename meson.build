@@ -13,7 +13,6 @@ deps = [
   dependency('libadwaita-1'),
   dependency('gstreamer-1.0'),
   dependency('gstreamer-tag-1.0'),
-  dependency('libxxhash'),
   cc.find_library('m', required: false),
 ]
 
