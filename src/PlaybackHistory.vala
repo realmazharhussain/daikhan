@@ -9,7 +9,7 @@ public class HistoryRecord {
     public HistoryRecord.with_uri (string uri) {
         this.uri_hash = uri.hash ().to_string ();
 
-        if (uri[0:7] == "file://") {
+        if (uri.has_prefix ("file://")) {
             try {
                 this.content_id = ContentId.for_uri (uri);
             } catch (Error e) {
