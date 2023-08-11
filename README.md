@@ -18,14 +18,15 @@ A media player for the modern desktop
 
 ## Current Features (More Planned)
 
-- Play/Pause
-- Seek
-- Change Volume
-- Double click on the video area to Fullscreen
-- Move window by dragging from the video
-- Drag n Drop a file into the video area in order to play it
-- Once finished, replay previous file simply by hitting play
-- Hide cursor when in fullscreen
+- Play/pause, next/prev, volume control, seeking, etc.
+- Audio/video/subtitle track selection
+- Repeat (single file / whole queue)
+- Remember last playback position for each file
+- Remember audio/video/subtitle track selection for each file
+- Remember player state (restore session)
+- Move window by dragging from the video area
+- Drop files into the video area to play them
+- Replay previous queue simply by hitting play
 
 ## Keyboard Shortcuts
 
