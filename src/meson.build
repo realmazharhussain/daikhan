@@ -50,6 +50,8 @@ sources = [config_file] + blueprints + resources + files(
 
 executable(meson.project_name(), sources,
            dependencies: deps,
-           vala_args: ['--gresourcesdir', meson.current_build_dir()],
+           vala_args: ['--gresourcesdir', meson.current_build_dir(),
+                       '--vapidir', meson.source_root() / 'vapi',
+                       ],
            win_subsystem: 'windows',
            install: true)

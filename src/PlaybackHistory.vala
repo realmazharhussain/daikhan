@@ -7,7 +7,7 @@ public class HistoryRecord {
     public int video_track;
 
     public HistoryRecord.with_uri (string uri) {
-        this.uri_hash = uri.hash ().to_string ();
+        this.uri_hash = XXH.v3_128bits (uri.data).to_string ();
 
         if (uri.has_prefix ("file://")) {
             try {
@@ -37,6 +37,7 @@ public class PlaybackHistory {
     }
 
     public void load () throws Error {
+        const int LENGTH_OF_HASH_STRING = 32;
         data = new SList<HistoryRecord>();
         DataInputStream istream;
 
@@ -59,11 +60,11 @@ public class PlaybackHistory {
             var record = new HistoryRecord();
 
             var id_parts =  parts[0].split (":");
-            if (uint.try_parse (id_parts[0])) {
+            if (id_parts[0].length == LENGTH_OF_HASH_STRING) {
                 record.uri_hash = id_parts[0];
                 record.content_id = id_parts[1];
             } else {
-                record.uri_hash = unescape_str (parts[0]).hash ().to_string ();
+                record.uri_hash = XXH.v3_128bits (unescape_str (parts[0]).data).to_string ();
                 record.content_id = "";
             }
 
@@ -95,7 +96,7 @@ public class PlaybackHistory {
         }
 
         if (record == null) {
-            var uri_hash = uri.hash ().to_string ();
+            var uri_hash = XXH.v3_128bits (uri.data).to_string ();
             record = find_by_uri_hash (uri_hash);
         }
 
