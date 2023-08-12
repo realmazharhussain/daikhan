@@ -1,5 +1,6 @@
 conf_data = {
   'app_id': app_id,
+  'locale_dir': get_option('prefix') / get_option('localedir'),
   'gschema_path': gschema_path,
 }
 
@@ -50,6 +51,7 @@ sources = [config_file] + blueprints + resources + files(
 
 executable(meson.project_name(), sources,
            dependencies: deps,
+           c_args: ['-DGETTEXT_PACKAGE="daikhan"'],
            vala_args: ['--gresourcesdir', meson.current_build_dir(),
                        '--vapidir', meson.source_root() / 'vapi',
                        ],

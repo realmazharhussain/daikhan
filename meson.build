@@ -6,6 +6,7 @@ profile = get_option('profile')
 app_id = 'io.gitlab.daikhan.' + profile
 gschema_path = '/io/gitlab/daikhan/' + profile + '/'
 
+i18n = import('i18n')
 gnome = import('gnome')
 cc = meson.get_compiler('c')
 
@@ -19,6 +20,7 @@ deps = [
 
 dependency('gstgtk4')   # Has no header or vaapi file
 
+subdir('po')
 subdir('data')
 subdir('src')
 

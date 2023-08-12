@@ -1,0 +1,7 @@
+# List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
+data/daikhan.desktop.in
+data/daikhan.gschema.xml.in
+data/daikhan.metainfo.xml.in
+src/preferences.blp
+src/window.blp

@@ -4,20 +4,35 @@ conf_data = {
   'gschema_path': gschema_path,
 }
 
-desktop_file = configure_file(
+desktop_file_in = configure_file(
           input: 'daikhan.desktop.in',
-         output: app_id + '.desktop',
-        install: true,
-    install_dir: get_option('datadir') / 'applications',
+         output: app_id + '.desktop.in',
+        install: false,
   configuration: conf_data,
 )
 
-metainfo_file = configure_file(
+desktop_file = i18n.merge_file(
+           type: 'desktop',
+          input: desktop_file_in,
+         output: app_id + '.desktop',
+         po_dir: meson.source_root() / 'po',
+        install: true,
+    install_dir: get_option('datadir') / 'applications',
+)
+
+metainfo_file_in = configure_file(
           input: 'daikhan.metainfo.xml.in',
+         output: app_id + '.metainfo.xml.in',
+        install: false,
+  configuration: conf_data,
+)
+
+metainfo_file = i18n.merge_file(
+          input: metainfo_file_in,
          output: app_id + '.metainfo.xml',
+         po_dir: meson.source_root() / 'po',
         install: true,
     install_dir: get_option('datadir') / 'metainfo',
-  configuration: conf_data,
 )
 
 configure_file(

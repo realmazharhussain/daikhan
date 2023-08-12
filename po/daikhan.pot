@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the daikhan package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: daikhan pre-alpha\n"
+"Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
+"POT-Creation-Date: 2023-08-12 15:07+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
+msgid "Daikhan (Early Access)"
+msgstr ""
+
+#: data/daikhan.desktop.in:5
+msgid "Media player"
+msgstr ""
+
+#: data/daikhan.desktop.in:6 data/daikhan.metainfo.xml.in:7
+msgid "Play Videos/Music with style"
+msgstr ""
+
+#: data/daikhan.metainfo.xml.in:8
+msgid "Mazhar Hussain"
+msgstr ""
+
+#: data/daikhan.metainfo.xml.in:10
+msgid "A simple media player with beautiful interface."
+msgstr ""
+
+#: data/daikhan.metainfo.xml.in:12
+msgid ""
+"NOTE: The app is in early stages of development and bound to change "
+"significantly in the future."
+msgstr ""
+
+#: data/daikhan.metainfo.xml.in:58
+msgid "Not rleased yet."
+msgstr ""
+
+#: src/preferences.blp:7
+msgid "Appearance"
+msgstr ""
+
+#: src/preferences.blp:10
+msgid "Color Scheme"
+msgstr ""
+
+#: src/preferences.blp:15
+msgid "Behavior"
+msgstr ""
+
+#: src/preferences.blp:19
+msgid "Seeking Method"
+msgstr ""
+
+#: src/window.blp:6
+msgid "Preferences"
+msgstr ""
+
+#: src/window.blp:7
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: src/window.blp:8
+msgid "About Daikhan"
+msgstr ""
