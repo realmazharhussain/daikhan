@@ -23,7 +23,7 @@ class MediaPlayer : Adw.Application {
         win.present();
 
         if (win.settings.get_strv ("queue").length > 0) {
-            var dialog = new ActionDialog(win, "Restore last session?");
+            var dialog = new ActionDialog(win, _("Restore last session?"));
             dialog.response["accept"].connect (win.restore_state);
             dialog.present ();
         }

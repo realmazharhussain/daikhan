@@ -15,9 +15,9 @@ class StreamMenuBuilder : Object {
         video_menu = new Menu ();
         subtitle_menu = new Menu ();
 
-        menu.append_submenu ("Audio", audio_menu);
-        menu.append_submenu ("Subtitles", subtitle_menu);
-        menu.append_submenu ("Video", video_menu);
+        menu.append_submenu (_("Audio"), audio_menu);
+        menu.append_submenu (_("Subtitles"), subtitle_menu);
+        menu.append_submenu (_("Video"), video_menu);
 
         playback = Playback.get_default ();
         Signal.connect_swapped (playback.pipeline, "audio-changed", (Callback) update_audio_cb, this);
@@ -25,10 +25,10 @@ class StreamMenuBuilder : Object {
         Signal.connect_swapped (playback.pipeline, "video-changed", (Callback) update_video_cb, this);
 
         var repeat_menu = new Menu ();
-        menu.append_submenu ("Repeat", repeat_menu);
-        repeat_menu.append ("Off", "win.repeat(\"off\")");
-        repeat_menu.append ("Single File", "win.repeat(\"track\")");
-        repeat_menu.append ("Whole Queue", "win.repeat(\"queue\")");
+        menu.append_submenu (_("Repeat"), repeat_menu);
+        repeat_menu.append (_("Off"), "win.repeat(\"off\")");
+        repeat_menu.append (_("Single File"), "win.repeat(\"track\")");
+        repeat_menu.append (_("Whole Queue"), "win.repeat(\"queue\")");
     }
 
     public static StreamMenuBuilder get_default () {
@@ -86,7 +86,7 @@ class StreamMenuBuilder : Object {
             return;
         }
 
-        model.append ("Off", @"win.$type(-1)");
+        model.append (_("Off"), @"win.$type(-1)");
 
         for (int stream = 0; stream < total_streams; stream++) {
             Signal.emit_by_name (pipeline, @"get-$type-tags", stream, out tags);
@@ -100,7 +100,7 @@ class StreamMenuBuilder : Object {
             }
 
             if (language_name == null) {
-                language_name = "Unknown Language";
+                language_name = _("Unknown Language");
             }
 
             model.append (language_name, @"win.$type($stream)");
@@ -118,12 +118,13 @@ class StreamMenuBuilder : Object {
             return;
         }
 
-        video_menu.append ("Off", "win.video(-1)");
+        video_menu.append (_("Off"), "win.video(-1)");
 
         if (total_streams == 1) {
-            video_menu.append (@"On", @"win.video(0)");
+            video_menu.append (_("On"), "win.video(0)");
         } else for (int stream = 0; stream < total_streams; stream++) {
-            video_menu.append (@"Track $(stream + 1)", @"win.video($stream)");
+            // Translators: Keep %i as is. It will be replaced by the track number for each track.
+            video_menu.append (_("Track %i").printf(stream + 1), @"win.video($stream)");
         }
     }
 }

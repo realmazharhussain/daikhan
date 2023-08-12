@@ -37,7 +37,7 @@ class PlayerWindow : Adw.ApplicationWindow {
             if (restoring_state) {
                 perform_seek (record.progress);
             } else {
-                var dialog = new ActionDialog (this, "Resume playback?");
+                var dialog = new ActionDialog (this, _("Resume playback?"));
                 dialog.response["accept"].connect (()=> { perform_seek (record.progress); });
                 dialog.present ();
             }
@@ -186,11 +186,11 @@ class PlayerWindow : Adw.ApplicationWindow {
             transient_for = this,
             issue_url = "https://gitlab.com/daikhan/daikhan/-/issues/new",
             application_icon = Conf.APP_ID,
-            application_name = "Daikhan (Early Access)",
-            copyright = "Copyright 2022-2023 Mazhar Hussain",
+            application_name = _("Daikhan (Early Access)"),
+            copyright = _("Copyright 2022-2023 Mazhar Hussain"),
             license_type = Gtk.License.AGPL_3_0,
-            developer_name = "Mazhar Hussain",
-            version = "0.1.alpha"
+            developer_name = _("Mazhar Hussain"),
+            version = "pre-alpha"
         };
 
         win.present();

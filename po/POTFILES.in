@@ -3,5 +3,12 @@
 data/daikhan.desktop.in
 data/daikhan.gschema.xml.in
 data/daikhan.metainfo.xml.in
+src/ActionDialog.vala
+src/MediaPlayer.vala
+src/PlayerWindow.vala
 src/preferences.blp
+src/PreferencesWindow.vala
+src/shortcuts.blp
+src/StreamMenuBuilder.vala
+src/Title.vala
 src/window.blp

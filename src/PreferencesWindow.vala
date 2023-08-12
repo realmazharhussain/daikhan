@@ -11,14 +11,14 @@ class PreferencesWindow : Adw.PreferencesWindow {
     construct {
         settings = new Settings (Conf.APP_ID);
 
-        dark_mode_combo.append("default", "Follow System");
-        dark_mode_combo.append("force-light", "Light");
-        dark_mode_combo.append("force-dark", "Dark");
+        dark_mode_combo.append("default", _("Follow System"));
+        dark_mode_combo.append("force-light", _("Light"));
+        dark_mode_combo.append("force-dark", _("Dark"));
         settings.bind("color-scheme", dark_mode_combo, "selected-id", DEFAULT);
 
-        seeking_combo.append("fast", "Fast");
-        seeking_combo.append("balanced", "Balanced");
-        seeking_combo.append("accurate", "Accurate");
+        seeking_combo.append("fast", _("Fast"));
+        seeking_combo.append("balanced", _("Balanced"));
+        seeking_combo.append("accurate", _("Accurate"));
         settings.bind("seeking-method", seeking_combo, "selected-id", DEFAULT);
     }
 }
