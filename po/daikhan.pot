@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
-"POT-Creation-Date: 2023-08-12 16:02+0500\n"
+"POT-Creation-Date: 2023-08-14 12:20+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgid ""
 msgstr ""
 
 #: data/daikhan.metainfo.xml.in:58
-msgid "Not rleased yet."
+msgid "Not released yet."
 msgstr ""
 
 #: src/ActionDialog.vala:10
