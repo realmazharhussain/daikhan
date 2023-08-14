@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
-"POT-Creation-Date: 2023-08-12 16:02+0500\n"
+"POT-Creation-Date: 2023-08-14 12:20+0500\n"
 "PO-Revision-Date: 2023-08-14 06:10+0000\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/daikhan/"
@@ -49,7 +49,9 @@ msgstr ""
 "değişiklikler geçirmesi mümkündür."
 
 #: data/daikhan.metainfo.xml.in:58
-msgid "Not rleased yet."
+#, fuzzy
+#| msgid "Not rleased yet."
+msgid "Not released yet."
 msgstr "Henüz yayınlanmadı."
 
 #: src/ActionDialog.vala:10
