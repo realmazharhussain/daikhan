@@ -1,0 +1,223 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the daikhan package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: daikhan pre-alpha\n"
+"Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
+"POT-Creation-Date: 2023-08-12 16:02+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ur\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
+#: src/PlayerWindow.vala:189 src/Title.vala:17 src/window.blp:13
+msgid "Daikhan (Early Access)"
+msgstr ""
+
+#: data/daikhan.desktop.in:5
+msgid "Media player"
+msgstr ""
+
+#: data/daikhan.desktop.in:6 data/daikhan.metainfo.xml.in:7
+msgid "Play Videos/Music with style"
+msgstr ""
+
+#: data/daikhan.metainfo.xml.in:8 src/PlayerWindow.vala:192
+msgid "Mazhar Hussain"
+msgstr ""
+
+#: data/daikhan.metainfo.xml.in:10
+msgid "A simple media player with beautiful interface."
+msgstr ""
+
+#: data/daikhan.metainfo.xml.in:12
+msgid ""
+"NOTE: The app is in early stages of development and bound to change "
+"significantly in the future."
+msgstr ""
+
+#: data/daikhan.metainfo.xml.in:58
+msgid "Not rleased yet."
+msgstr ""
+
+#: src/ActionDialog.vala:10
+msgid "No"
+msgstr ""
+
+#: src/ActionDialog.vala:11
+msgid "Yes"
+msgstr ""
+
+#: src/MediaPlayer.vala:26
+msgid "Restore last session?"
+msgstr ""
+
+#: src/PlayerWindow.vala:40
+msgid "Resume playback?"
+msgstr ""
+
+#: src/PlayerWindow.vala:190
+msgid "Copyright 2022-2023 Mazhar Hussain"
+msgstr ""
+
+#: src/preferences.blp:7
+msgid "Appearance"
+msgstr ""
+
+#: src/preferences.blp:10
+msgid "Color Scheme"
+msgstr ""
+
+#: src/preferences.blp:15
+msgid "Behavior"
+msgstr ""
+
+#: src/preferences.blp:19
+msgid "Seeking Method"
+msgstr ""
+
+#: src/PreferencesWindow.vala:14
+msgid "Follow System"
+msgstr ""
+
+#: src/PreferencesWindow.vala:15
+msgid "Light"
+msgstr ""
+
+#: src/PreferencesWindow.vala:16
+msgid "Dark"
+msgstr ""
+
+#: src/PreferencesWindow.vala:19
+msgid "Fast"
+msgstr ""
+
+#: src/PreferencesWindow.vala:20
+msgid "Balanced"
+msgstr ""
+
+#: src/PreferencesWindow.vala:21
+msgid "Accurate"
+msgstr ""
+
+#: src/shortcuts.blp:8
+msgid "Application"
+msgstr ""
+
+#: src/shortcuts.blp:11
+msgid "Toggle Fullscreen"
+msgstr ""
+
+#: src/shortcuts.blp:16
+msgid "Open Preferences"
+msgstr ""
+
+#: src/shortcuts.blp:21
+msgid "Show Keyboard Shortcuts"
+msgstr ""
+
+#: src/shortcuts.blp:26
+msgid "Quit"
+msgstr ""
+
+#: src/shortcuts.blp:32
+msgid "Playback"
+msgstr ""
+
+#: src/shortcuts.blp:35
+msgid "Play/Pause"
+msgstr ""
+
+#: src/shortcuts.blp:40
+msgid "Seek Forward (10s)"
+msgstr ""
+
+#: src/shortcuts.blp:45
+msgid "Seek Backwards (10s)"
+msgstr ""
+
+#: src/shortcuts.blp:50
+msgid "Increase Volume (5%)"
+msgstr ""
+
+#: src/shortcuts.blp:55
+msgid "Decrease Volume (5%)"
+msgstr ""
+
+#: src/shortcuts.blp:60
+msgid "Seek Forward (3s)"
+msgstr ""
+
+#: src/shortcuts.blp:65
+msgid "Seek Backwards (3s)"
+msgstr ""
+
+#: src/shortcuts.blp:70
+msgid "Increase Volume (2%)"
+msgstr ""
+
+#: src/shortcuts.blp:75
+msgid "Decrease Volume (2%)"
+msgstr ""
+
+#: src/StreamMenuBuilder.vala:18
+msgid "Audio"
+msgstr ""
+
+#: src/StreamMenuBuilder.vala:19
+msgid "Subtitles"
+msgstr ""
+
+#: src/StreamMenuBuilder.vala:20
+msgid "Video"
+msgstr ""
+
+#: src/StreamMenuBuilder.vala:28
+msgid "Repeat"
+msgstr ""
+
+#: src/StreamMenuBuilder.vala:29 src/StreamMenuBuilder.vala:89
+#: src/StreamMenuBuilder.vala:121
+msgid "Off"
+msgstr ""
+
+#: src/StreamMenuBuilder.vala:30
+msgid "Single File"
+msgstr ""
+
+#: src/StreamMenuBuilder.vala:31
+msgid "Whole Queue"
+msgstr ""
+
+#: src/StreamMenuBuilder.vala:103
+msgid "Unknown Language"
+msgstr ""
+
+#: src/StreamMenuBuilder.vala:124
+msgid "On"
+msgstr ""
+
+#. Translators: Keep %i as is. It will be replaced by the track number for each track.
+#: src/StreamMenuBuilder.vala:127
+#, c-format
+msgid "Track %i"
+msgstr ""
+
+#: src/window.blp:6
+msgid "Preferences"
+msgstr ""
+
+#: src/window.blp:7
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: src/window.blp:8
+msgid "About Daikhan"
+msgstr ""
