@@ -66,6 +66,7 @@
   <url type="bugtracker">https://gitlab.com/daikhan/daikhan/-/issues</url>
   <url type="donation">https://realmazharhussain.github.io/donate</url>
   <url type="homepage">https://gitlab.com/daikhan/daikhan</url>
+  <url type="vcs-browser">https://gitlab.com/daikhan/daikhan</url>
 
   <update_contact>realmazharhussain_at_gmail.com</update_contact>
 </component>
