@@ -63,11 +63,11 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>AGPL-3.0-or-later</project_license>
 
-  <url type="bugtracker">https://gitlab.com/daikhan/daikhan/-/issues</url>
-  <url type="donation">https://realmazharhussain.github.io/donate</url>
   <url type="homepage">https://gitlab.com/daikhan/daikhan</url>
   <url type="vcs-browser">https://gitlab.com/daikhan/daikhan</url>
+  <url type="bugtracker">https://gitlab.com/daikhan/daikhan/-/issues</url>
   <url type="translate">https://hosted.weblate.org/projects/daikhan</url>
+  <url type="donation">https://realmazharhussain.github.io/donate</url>
 
   <update_contact>realmazharhussain_at_gmail.com</update_contact>
 </component>
