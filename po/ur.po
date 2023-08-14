@@ -8,30 +8,33 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-12 16:02+0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-08-14 05:56+0000\n"
+"Last-Translator: Mazhar Hussain <realmazharhussain@gmail.com>\n"
+"Language-Team: Urdu <https://hosted.weblate.org/projects/daikhan/"
+"translations/ur/>\n"
 "Language: ur\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
 #: src/PlayerWindow.vala:189 src/Title.vala:17 src/window.blp:13
 msgid "Daikhan (Early Access)"
-msgstr ""
+msgstr "ڈیکھن (ارلی ایکسس)"
 
 #: data/daikhan.desktop.in:5
 msgid "Media player"
-msgstr ""
+msgstr "میڈیا پلیئر"
 
 #: data/daikhan.desktop.in:6 data/daikhan.metainfo.xml.in:7
 msgid "Play Videos/Music with style"
-msgstr ""
+msgstr "سٹائل کے ساتھ میوزک سنیں"
 
 #: data/daikhan.metainfo.xml.in:8 src/PlayerWindow.vala:192
 msgid "Mazhar Hussain"
-msgstr ""
+msgstr "مظیر حسین"
 
 #: data/daikhan.metainfo.xml.in:10
 msgid "A simple media player with beautiful interface."
