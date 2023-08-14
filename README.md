@@ -41,3 +41,7 @@ A media player for the modern desktop
 - Increase Volume (2%) -> Shift+Up or Shift+K
 - Decrease Volume (5%) -> Down or J
 - Decrease Volume (2%) -> Shift+Down or Shift+J
+
+## Translate
+
+Translations for this app happen on [Hosted Weblate](https://hosted.weblate.org/projects/daikhan).
