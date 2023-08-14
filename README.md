@@ -4,16 +4,16 @@ A media player for the modern desktop
 
 <picture>
   <source media="(prefers-color-scheme: dark)"
-    srcset="https://gitlab.com/daikhan/daikhan/-/raw/screenshots/dark.png">
+    srcset="https://gitlab.com/daikhan/screenshots/-/raw/main/dark.png">
   <img alt="windowed-screenshot" title="Windowed Mode"
-    src="https://gitlab.com/daikhan/daikhan/-/raw/screenshots/light.png">
+    src="https://gitlab.com/daikhan/screenshots/-/raw/main/light.png">
 </picture>
 
 <picture>
   <source media="(prefers-color-scheme: dark)"
-    srcset="https://gitlab.com/daikhan/daikhan/-/raw/screenshots/dark-fullscreen.png">
+    srcset="https://gitlab.com/daikhan/screenshots/-/raw/main/dark-fullscreen.png">
   <img alt="fullscreen-screenshot" title="Fullscreen Mode"
-    src="https://gitlab.com/daikhan/daikhan/-/raw/screenshots/light-fullscreen.png">
+    src="https://gitlab.com/daikhan/screenshots/-/raw/main/light-fullscreen.png">
 </picture>
 
 ## Current Features (More Planned)
