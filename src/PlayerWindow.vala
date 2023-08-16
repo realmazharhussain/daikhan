@@ -51,6 +51,7 @@ class PlayerWindow : Adw.ApplicationWindow {
         settings.bind ("maximized", this, "maximized", DEFAULT);
         settings.bind ("volume", playback, "volume", DEFAULT);
         settings.bind ("repeat", playback, "repeat", DEFAULT);
+        settings.bind ("paused", playback, "paused", DEFAULT);
 
         ActionEntry[] entries = {
             {"seek", seek_cb, "i"},
@@ -211,7 +212,6 @@ class PlayerWindow : Adw.ApplicationWindow {
 
         settings.set_strv ("queue", uri_list);
         settings.set_int ("track", playback.track);
-        settings.set_boolean("paused", playback.target_state != PLAYING);
     }
 
     public void restore_state () {
@@ -227,7 +227,6 @@ class PlayerWindow : Adw.ApplicationWindow {
 
         playback.set_queue (file_list);
         playback.load_track (settings.get_int ("track"));
-        playback.set_state(settings.get_boolean("paused")? Gst.State.PAUSED : Gst.State.PLAYING);
 
         restoring_state = false;
     }

@@ -42,6 +42,7 @@ public class Playback : Object {
     public string? artist { get; private set; }
     public string? album { get; private set; }
 
+    public bool paused { get; set; default = false; }
     public bool can_play { get; private set; default = false; }
     public bool can_next { get; private set; default = false; }
     public bool can_prev { get; private set; default = false; }
@@ -211,7 +212,6 @@ public class Playback : Object {
         }
 
         var file = queue[track_index];
-        var play = (target_state == PLAYING);
 
         if (target_state != NULL) {
             set_state(NULL);
@@ -219,7 +219,7 @@ public class Playback : Object {
 
         pipeline["uri"] = file.get_uri();
 
-        if (!set_state(play ? Gst.State.PLAYING : Gst.State.PAUSED)) {
+        if (!set_state(paused ? Gst.State.PAUSED : Gst.State.PLAYING)) {
             critical("Cannot load track!");
             return false;
         }
@@ -281,6 +281,8 @@ public class Playback : Object {
     }
 
     public bool play() {
+        paused = false;
+
         if (target_state != NULL) {
             return set_state(PLAYING);
         } else if (prev_queue != null) {
@@ -290,6 +292,8 @@ public class Playback : Object {
     }
 
     public bool pause() {
+        paused = true;
+
         if (target_state == NULL) {
             return false;
         }
