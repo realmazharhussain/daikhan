@@ -51,6 +51,8 @@ public class Playback : Object {
     public RepeatMode repeat { get; set; default = OFF; }
     public uint flags { get; set; }
 
+    public signal void unsupported_file ();
+
     public File[]? prev_queue;
     public File[]? queue;
     public void set_queue(File[]? queue) {
@@ -217,6 +219,7 @@ public class Playback : Object {
 
         if (!is_file_type_supported(file)) {
             set_state(NULL);
+            unsupported_file();
             return false;
         }
 

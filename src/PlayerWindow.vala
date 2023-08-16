@@ -43,6 +43,14 @@ class PlayerWindow : Adw.ApplicationWindow {
             }
         });
 
+        playback.unsupported_file.connect (() => {
+            var dialog = new Adw.MessageDialog (this, _("Unsupported File Type"), null);
+            dialog.body = _("The file '%s' is not an audio or a video file.").printf (playback.filename);
+            dialog.add_response ("ok", _("OK"));
+            dialog.response.connect (() => { playback.next(); });
+            dialog.present ();
+        });
+
         playback_history = PlaybackHistory.get_default ();
 
         settings = new Settings (Conf.APP_ID + ".state");
