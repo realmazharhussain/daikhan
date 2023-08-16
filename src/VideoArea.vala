@@ -161,27 +161,8 @@ class Daikhan.VideoArea : Adw.Bin {
     bool drop_value_is_acceptable(Value value) {
         var flist = (Gdk.FileList) value;
         var file = flist.get_files().last().data;
-        string? mimetype;
 
-        try {
-            mimetype = file.query_info("standard::", NONE).get_content_type();
-        } catch (Error err) {
-            return false;
-        }
-
-        if (mimetype == null) {
-            return false;
-        }
-
-        if (mimetype.has_prefix("video/")) {
-            return true;
-        }
-
-        if (mimetype.has_prefix("audio/")) {
-            return true;
-        }
-
-        return false;
+        return Playback.is_file_type_supported(file);
     }
 
     void notify_drop_value_cb(Object obj, ParamSpec pspec) {
