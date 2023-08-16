@@ -159,10 +159,15 @@ class Daikhan.VideoArea : Adw.Bin {
     }
 
     bool drop_value_is_acceptable(Value value) {
-        var flist = (Gdk.FileList) value;
-        var file = flist.get_files().last().data;
+        var files = ((Gdk.FileList) value).get_files ();
 
-        return Playback.is_file_type_supported(file);
+        foreach (var file in files) {
+            if (Playback.is_file_type_supported(file)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     void notify_drop_value_cb(Object obj, ParamSpec pspec) {
@@ -179,8 +184,16 @@ class Daikhan.VideoArea : Adw.Bin {
     }
 
     bool drop_cb(Gtk.DropTarget target, Value value, double x, double y) {
-        var file = ((Gdk.FileList) value).get_files().last().data;
-        return playback.open({file});
+        var file_list = ((Gdk.FileList) value).get_files();
+        var file_array = new File[file_list.length()];
+
+        int i = 0;
+        foreach (var file in file_list) {
+            file_array[i] = file;
+            i++;
+        }
+
+        return playback.open(file_array);
     }
 
     void drag_gesture_update_cb(Gtk.GestureDrag gesture,
