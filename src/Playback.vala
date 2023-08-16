@@ -64,7 +64,7 @@ public class Playback : Object {
             this.can_next = false;
         } else {
             this.multiple_tracks = queue.length > 1;
-            this.can_next = can_play_track(0);
+            this.can_next = track_exists(0);
         }
     }
 
@@ -80,8 +80,8 @@ public class Playback : Object {
                 return;
             }
 
-            can_prev = can_play_track(value - 1);
-            can_next = can_play_track(value + 1);
+            can_prev = track_exists(value - 1);
+            can_next = track_exists(value + 1);
 
             if (current_record != null) {
                 history.update(current_record);
@@ -181,7 +181,7 @@ public class Playback : Object {
         return default_playback;
     }
 
-    private bool can_play_track(int track_index) {
+    private bool track_exists(int track_index) {
         if (queue == null) {
             return false;
         }
@@ -194,7 +194,7 @@ public class Playback : Object {
     }
 
     public bool load_track(int track_index) {
-        if (!can_play_track(track_index)) {
+        if (!track_exists(track_index)) {
             return false;
         }
 
