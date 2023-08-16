@@ -215,6 +215,11 @@ public class Playback : Object {
 
         var file = queue[track_index];
 
+        if (!is_file_type_supported(file)) {
+            set_state(NULL);
+            return false;
+        }
+
         if (target_state != NULL) {
             set_state(NULL);
         }
