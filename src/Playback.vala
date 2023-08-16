@@ -238,6 +238,10 @@ public class Playback : Object {
         return true;
     }
 
+    /* Loads the next track expected to be played in the list. In case
+     * there is no track is expected to be played next, it stops playback.
+     * This also implements the `queue` repeat mode.
+     */
     public bool next() {
         if (can_next) {
             return load_track(track + 1);
