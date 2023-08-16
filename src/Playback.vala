@@ -440,11 +440,19 @@ public class Playback : Object {
         current_state = pipeline.current_state;
     }
 
+    public signal void unsupported_codec (string debug_info);
+
     void pipeline_error_cb (Gst.Bus bus, Gst.Message msg) {
         Error err;
         string debug_info;
 
         msg.parse_error(out err, out debug_info);
+
+        if (err is Gst.CoreError.MISSING_PLUGIN) {
+            set_state(NULL);
+            unsupported_codec(debug_info);
+            return;
+        }
 
         warning(@"Error message received from $(msg.src.name): $(err.message)");
         warning(@"Debugging info: $(debug_info)");

@@ -51,6 +51,38 @@ class PlayerWindow : Adw.ApplicationWindow {
             dialog.present ();
         });
 
+        playback.unsupported_codec.connect ((debug_info) => {
+            var dialog = new Adw.MessageDialog (this, _("Unsupported Codec"),
+                _("Encoding of one or more streams in '%s' is not supported.\n"
+                  + "\n"
+                  + "If this is unexpected, please, file a bug report with the following"
+                  + " debug information.\n"
+                  ).printf(playback.filename)
+            );
+
+            var debug_view = new Gtk.TextView () {
+                editable = false,
+                monospace = true,
+            };
+            debug_view.buffer.text = debug_info.strip ();
+
+            var scrld_win = new Gtk.ScrolledWindow () {
+                child = debug_view,
+                vscrollbar_policy = NEVER,
+            };
+
+            dialog.extra_child = scrld_win;
+            dialog.add_response ("report-bug", _("Report Bug"));
+            dialog.add_response ("ok", _("OK"));
+            dialog.default_response = "ok";
+            dialog.response.connect (() => { playback.next(); });
+            dialog.response["report-bug"].connect (() => {
+                new Gtk.UriLauncher ("https://gitlab.com/daikhan/daikhan/-/issues")
+                    .launch.begin (this, null);
+            });
+            dialog.present ();
+        });
+
         playback_history = PlaybackHistory.get_default ();
 
         settings = new Settings (Conf.APP_ID + ".state");
