@@ -136,6 +136,18 @@ public class Playback : Object {
                                AudioVolume.logarithmic_to_linear);
     }
 
+    public static bool is_file_type_supported (File file) {
+        string mimetype;
+
+        try {
+            mimetype = file.query_info ("standard::", NONE).get_content_type ();
+        } catch (Error err) {
+            return false;
+        }
+
+        return mimetype.has_prefix("video/") || mimetype.has_prefix("audio/");
+    }
+
     private Gst.State _target_state = NULL;
     public Gst.State target_state {
         get {
