@@ -224,7 +224,7 @@ public class Playback : Object {
             return false;
         }
 
-	ulong handler_id = 0;
+        ulong handler_id = 0;
         handler_id = notify["current-state"].connect(() => {
             if (current_state == PAUSED) {
                 update_duration ();
