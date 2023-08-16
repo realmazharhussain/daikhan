@@ -211,6 +211,8 @@ public class Playback : Object {
             return false;
         }
 
+        track = track_index;
+
         var file = queue[track_index];
 
         if (target_state != NULL) {
@@ -232,8 +234,6 @@ public class Playback : Object {
                 SignalHandler.disconnect (this, handler_id);
             }
         });
-
-        track = track_index;
 
         return true;
     }
