@@ -239,15 +239,14 @@ public class Playback : Object {
     }
 
     public bool next() {
-        if (!can_next) {
+        if (can_next) {
+            return load_track(track + 1);
+        } else if (repeat == QUEUE) {
+            return load_track(0);
+        } else {
+            stop();
             return false;
         }
-
-        if (!load_track(track + 1)) {
-            return false;
-        }
-
-        return true;
     }
 
     public bool prev() {
@@ -448,12 +447,8 @@ public class Playback : Object {
 
         if (repeat == TRACK) {
             seek_absolute(0);
-        } else if (can_next) {
-            next();
-        } else if (repeat == QUEUE) {
-            load_track(0);
         } else {
-            stop();
+            next();
         }
     }
 
