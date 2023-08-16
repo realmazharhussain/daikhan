@@ -258,11 +258,7 @@ public class Playback : Object {
             return false;
         }
 
-        if (!load_track(track - 1)) {
-            return false;
-        }
-
-        return true;
+        return load_track(track - 1);
     }
 
     public bool open(File[] files) {
