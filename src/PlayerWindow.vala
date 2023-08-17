@@ -11,6 +11,7 @@ class PlayerWindow : Adw.ApplicationWindow {
     }
 
     construct {
+        add_css_class ("player");
         title_widget.bind_property ("title", this, "title", SYNC_CREATE);
 
         playback = Playback.get_default();
