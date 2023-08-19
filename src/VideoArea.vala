@@ -17,6 +17,7 @@ class Daikhan.CursorTimeout {
 
 [GtkTemplate (ui = "/app/video-area.ui")]
 class Daikhan.VideoArea : Adw.Bin {
+    [GtkChild] unowned Gtk.Picture video;
     [GtkChild] unowned Gtk.Revealer top_revealer;
     [GtkChild] unowned Daikhan.Title title_overlay;
     [GtkChild] unowned MediaControls controls_overlay;
@@ -31,12 +32,10 @@ class Daikhan.VideoArea : Adw.Bin {
     double cursor_y_cached;
     Gdk.Cursor none_cursor = new Gdk.Cursor.from_name("none", null);
 
-    static construct {
-        typeof(Video).ensure();
-    }
-
     construct {
         playback = Playback.get_default();
+
+        video.paintable = playback.paintable;
 
         var ctrlr = new Gtk.EventControllerMotion();
         ctrlr.motion.connect(cursor_motion_cb);

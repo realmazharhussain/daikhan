@@ -13,7 +13,11 @@ template $DaikhanVideoArea : Adw.Bin {
         };
       }
 
-      $Video video {}
+      Picture video {
+        hexpand: true;
+        vexpand: true;
+        styles ["video"]
+      }
 
       [overlay] Revealer bottom_revealer {
         valign: end;

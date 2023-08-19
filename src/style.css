@@ -5,6 +5,10 @@
 
 /* Styling */
 
+.video {
+  background: black;
+}
+
 .player headerbar {
   border-bottom: solid 1px @envision_overlay_border_color;
 }
