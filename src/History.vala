@@ -19,20 +19,20 @@ public class HistoryRecord {
     }
 }
 
-internal unowned PlaybackHistory? default_instance;
+internal unowned Daikhan.History? default_instance;
 
-public class PlaybackHistory {
+public class Daikhan.History {
     SList<HistoryRecord> data;
     File file;
 
-    private PlaybackHistory() {
+    private History() {
         var statedir = Environment.get_user_state_dir () + "/daikhan";
         var path = statedir + "/history";
         file = File.new_for_path (path);
     }
 
-    public static PlaybackHistory get_default () {
-        default_instance = default_instance ?? new PlaybackHistory ();
+    public static History get_default () {
+        default_instance = default_instance ?? new History ();
         return default_instance;
     }
 

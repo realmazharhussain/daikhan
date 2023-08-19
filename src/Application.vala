@@ -1,5 +1,5 @@
 class Daikhan.Application : Adw.Application {
-    PlaybackHistory playback_history;
+    Daikhan.History playback_history;
     Settings settings;
 
     public Application() {
@@ -7,7 +7,7 @@ class Daikhan.Application : Adw.Application {
         application_id = Conf.APP_ID;
         flags |= HANDLES_OPEN;
 
-        playback_history = PlaybackHistory.get_default();
+        playback_history = Daikhan.History.get_default();
         settings = new Settings (Conf.APP_ID);
 
         var style_mgr = Adw.StyleManager.get_default ();

@@ -31,7 +31,7 @@ public class Playback : Object {
     Settings settings;
 
     public Gst.Pipeline pipeline { get; private set; }
-    public PlaybackHistory history { get; private construct; }
+    public Daikhan.History history { get; private construct; }
 
     public string? filename { get; private set; }
     public double volume { get; set; default = 1; }
@@ -123,7 +123,7 @@ public class Playback : Object {
 
     construct {
         settings = new Settings(Conf.APP_ID);
-        history = PlaybackHistory.get_default();
+        history = Daikhan.History.get_default();
 
         pipeline = Gst.ElementFactory.make("playbin", null) as Gst.Pipeline;
         pipeline.bus.add_signal_watch();

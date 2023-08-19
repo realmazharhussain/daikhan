@@ -3,7 +3,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     [GtkChild] unowned Daikhan.Title title_widget;
     public Playback playback { get; private set; }
     public Settings settings { get; private construct; }
-    PlaybackHistory playback_history;
+    Daikhan.History playback_history;
     bool restoring_state = false;
 
     static construct {
@@ -84,7 +84,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
             dialog.present ();
         });
 
-        playback_history = PlaybackHistory.get_default ();
+        playback_history = Daikhan.History.get_default ();
 
         settings = new Settings (Conf.APP_ID + ".state");
         settings.bind ("width", this, "default-width", DEFAULT);
