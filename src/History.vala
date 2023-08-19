@@ -1,4 +1,4 @@
-public class HistoryRecord {
+public class Daikhan.HistoryRecord {
     public string uri_hash;
     public string content_id;
     public int64 progress;
@@ -6,7 +6,7 @@ public class HistoryRecord {
     public int text_track;
     public int video_track;
 
-    public HistoryRecord.with_uri (string uri) {
+    public Daikhan.HistoryRecord.with_uri (string uri) {
         this.uri_hash = XXH.v3_128bits (uri.data).to_string ();
 
         if (uri.has_prefix ("file://")) {
@@ -22,7 +22,7 @@ public class HistoryRecord {
 internal unowned Daikhan.History? default_instance;
 
 public class Daikhan.History {
-    SList<HistoryRecord> data;
+    SList<Daikhan.HistoryRecord> data;
     File file;
 
     private History() {
@@ -38,7 +38,7 @@ public class Daikhan.History {
 
     public void load () throws Error {
         const int LENGTH_OF_HASH_STRING = 32;
-        data = new SList<HistoryRecord>();
+        data = new SList<Daikhan.HistoryRecord>();
         DataInputStream istream;
 
         try {
@@ -57,7 +57,7 @@ public class Daikhan.History {
             }
 
             var parts = line.split (",");
-            var record = new HistoryRecord();
+            var record = new Daikhan.HistoryRecord();
 
             var id_parts =  parts[0].split (":");
             if (id_parts[0].length == LENGTH_OF_HASH_STRING) {
@@ -79,8 +79,8 @@ public class Daikhan.History {
         data.reverse ();
     }
 
-    public HistoryRecord? find (string uri) {
-        HistoryRecord? record = null;
+    public Daikhan.HistoryRecord? find (string uri) {
+        Daikhan.HistoryRecord? record = null;
         string? content_id = null;
 
         if (uri.has_prefix ("file://")) {
@@ -103,7 +103,7 @@ public class Daikhan.History {
         return record;
     }
 
-    private HistoryRecord? find_by_content_id (string content_id) {
+    private Daikhan.HistoryRecord? find_by_content_id (string content_id) {
         foreach (var record in data) {
             if (record.content_id == content_id) {
                 return record;
@@ -113,7 +113,7 @@ public class Daikhan.History {
         return null;
     }
 
-    private HistoryRecord? find_by_uri_hash (string uri_hash) {
+    private Daikhan.HistoryRecord? find_by_uri_hash (string uri_hash) {
         foreach (var record in data) {
             if (record.uri_hash == uri_hash) {
                 return record;
@@ -123,7 +123,7 @@ public class Daikhan.History {
         return null;
     }
 
-    public void update (HistoryRecord current) {
+    public void update (Daikhan.HistoryRecord current) {
         var previous = find_by_content_id (current.content_id)
                        ?? find_by_uri_hash (current.uri_hash);
 

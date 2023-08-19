@@ -71,7 +71,7 @@ public class Playback : Object {
         }
     }
 
-    public HistoryRecord? current_record = null;
+    public Daikhan.HistoryRecord? current_record = null;
     private int _track = -1;
     public int track {
         get {
@@ -96,7 +96,7 @@ public class Playback : Object {
             } else try {
                 var info = queue[value].query_info("standard::display-name", NONE);
                 filename = info.get_display_name();
-                current_record = new HistoryRecord.with_uri(queue[value].get_uri());
+                current_record = new Daikhan.HistoryRecord.with_uri(queue[value].get_uri());
 
                 if ((flags & PipelinePlayFlags.AUDIO) == 0) {
                     current_record.audio_track = -1;
