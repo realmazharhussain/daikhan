@@ -10,7 +10,7 @@ config_file = configure_file(
   configuration: conf_data,
 )
 
-blp_sources = files('window.blp',
+blp_sources = files('app-window.blp',
                     'shortcuts.blp',
                     'video-area.blp',
                     'preferences.blp',
