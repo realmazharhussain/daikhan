@@ -1,4 +1,4 @@
-class ActionDialog : Adw.MessageDialog {
+class Daikhan.ActionDialog : Adw.MessageDialog {
     public ActionDialog (Gtk.Window? parent, string question) {
         Object(
             transient_for: parent,
