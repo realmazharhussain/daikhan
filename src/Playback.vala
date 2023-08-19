@@ -32,6 +32,7 @@ public class Playback : Object {
 
     public Gst.Pipeline pipeline { get; private set; }
     public Daikhan.History history { get; private construct; }
+    public Gdk.Paintable paintable { get; private construct; }
 
     public string? filename { get; private set; }
     public double volume { get; set; default = 1; }
@@ -122,10 +123,22 @@ public class Playback : Object {
     }
 
     construct {
+        pipeline = Gst.ElementFactory.make("playbin", null) as Gst.Pipeline;
         settings = new Settings(Conf.APP_ID);
         history = Daikhan.History.get_default();
 
-        pipeline = Gst.ElementFactory.make("playbin", null) as Gst.Pipeline;
+        dynamic var gtksink = Gst.ElementFactory.make("gtk4paintablesink", "null");
+        dynamic Gdk.Paintable paintable = gtksink.paintable;
+        this.paintable = paintable;
+
+        if (paintable.gl_context != null) {
+            var glsink = Gst.ElementFactory.make("glsinkbin", "glsinkbin");
+            glsink["sink"] = gtksink;
+            pipeline["video-sink"] = glsink;
+        } else {
+            pipeline["video-sink"] = gtksink;
+        }
+
         pipeline.bus.add_signal_watch();
         pipeline.bus.message["eos"].connect(pipeline_eos_cb);
         pipeline.bus.message["error"].connect(pipeline_error_cb);
