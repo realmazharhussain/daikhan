@@ -12,19 +12,6 @@ public enum RepeatMode {
 }
 
 
-namespace AudioVolume {
-    bool linear_to_logarithmic (Binding binding, Value linear, ref Value logarithmic) {
-        logarithmic = Gst.Audio.StreamVolume.convert_volume (LINEAR, CUBIC, (double) linear);
-        return true;
-    }
-
-    bool logarithmic_to_linear (Binding binding, Value logarithmic, ref Value linear) {
-        linear = Gst.Audio.StreamVolume.convert_volume (CUBIC, LINEAR, (double) logarithmic);
-        return true;
-    }
-}
-
-
 internal unowned Playback? default_playback;
 
 public class Playback : Object {
@@ -35,7 +22,6 @@ public class Playback : Object {
     public Gdk.Paintable paintable { get; private construct; }
 
     public string? filename { get; private set; }
-    public double volume { get; set; default = 1; }
     public int64 progress { get; private set; default = -1; }
     public int64 duration { get; private set; default = -1; }
 
@@ -53,6 +39,17 @@ public class Playback : Object {
     public uint flags { get; set; }
 
     public signal void unsupported_file ();
+
+    [CCode (notify = false)]
+    public double volume {
+        get {
+            return Gst.Audio.StreamVolume.convert_volume (LINEAR, CUBIC, pipeline.volume);
+        }
+
+        set {
+            pipeline.volume = Gst.Audio.StreamVolume.convert_volume (CUBIC, LINEAR, value);
+        }
+    }
 
     public File[]? prev_queue;
     public File[]? queue;
@@ -146,10 +143,7 @@ public class Playback : Object {
         pipeline.bus.message["tag"].connect(pipeline_tag_message_cb);
 
         pipeline.bind_property("flags", this, "flags", SYNC_CREATE|BIDIRECTIONAL);
-        pipeline.bind_property("volume", this, "volume",
-                               SYNC_CREATE|BIDIRECTIONAL,
-                               AudioVolume.linear_to_logarithmic,
-                               AudioVolume.logarithmic_to_linear);
+        pipeline.notify["volume"].connect(()=> { notify_property("volume"); });
     }
 
     public static bool is_file_type_supported (File file) {
