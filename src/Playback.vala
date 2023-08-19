@@ -14,12 +14,12 @@ public enum RepeatMode {
 
 namespace AudioVolume {
     bool linear_to_logarithmic (Binding binding, Value linear, ref Value logarithmic) {
-        logarithmic = Math.cbrt((double)linear);
+        logarithmic = Gst.Audio.StreamVolume.convert_volume (LINEAR, CUBIC, (double) linear);
         return true;
     }
 
     bool logarithmic_to_linear (Binding binding, Value logarithmic, ref Value linear) {
-        linear = Math.pow((double)logarithmic, 3);
+        linear = Gst.Audio.StreamVolume.convert_volume (CUBIC, LINEAR, (double) logarithmic);
         return true;
     }
 }
