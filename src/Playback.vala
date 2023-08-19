@@ -17,7 +17,7 @@ internal unowned Playback? default_playback;
 public class Playback : Object {
     Settings settings;
 
-    public dynamic Gst.Pipeline pipeline { get; private set; }
+    public dynamic Gst.Pipeline pipeline { get; private construct; }
     public dynamic Gdk.Paintable paintable { get; private construct; }
     public Daikhan.History history { get; private construct; }
 
