@@ -146,7 +146,7 @@ class Daikhan.VideoArea : Adw.Bin {
             return;
         }
 
-        var window = this.get_root() as PlayerWindow;
+        var window = this.get_root() as Daikhan.AppWindow;
         assert(window != null);
 
         if (n_press != 2) {

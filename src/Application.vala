@@ -14,8 +14,8 @@ class Daikhan.Application : Adw.Application {
         settings.bind("color-scheme", style_mgr, "color-scheme", DEFAULT);
     }
 
-    PlayerWindow get_main_window() {
-        return get_active_window() as PlayerWindow ?? new PlayerWindow(this);
+    Daikhan.AppWindow get_main_window() {
+        return get_active_window() as Daikhan.AppWindow ?? new Daikhan.AppWindow(this);
     }
 
     public override void activate() {
