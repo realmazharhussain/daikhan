@@ -1,8 +1,8 @@
-class MediaPlayer : Adw.Application {
+class Daikhan.Application : Adw.Application {
     PlaybackHistory playback_history;
     Settings settings;
 
-    public MediaPlayer() {
+    public Application() {
         resource_base_path = "/app";
         application_id = Conf.APP_ID;
         flags |= HANDLES_OPEN;

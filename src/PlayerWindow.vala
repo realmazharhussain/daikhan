@@ -111,7 +111,7 @@ class PlayerWindow : Adw.ApplicationWindow {
 	add_action(repeat_act);
 
         notify["application"].connect(()=> {
-            if (!(application is MediaPlayer)) {
+            if (!(application is Application)) {
                 return;
             }
 
