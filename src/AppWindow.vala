@@ -39,7 +39,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
                 perform_seek (record.progress);
             } else {
                 var dialog = new ActionDialog (this, _("Resume playback?"));
-                dialog.response["accept"].connect (()=> { perform_seek (record.progress); });
+                dialog.response["yes"].connect (()=> { perform_seek (record.progress); });
                 dialog.present ();
             }
         });

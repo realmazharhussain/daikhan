@@ -7,9 +7,9 @@ class ActionDialog : Adw.MessageDialog {
     }
 
     construct {
-        add_response ("deny", _("No"));
-        add_response ("accept", _("Yes"));
-        set_response_appearance ("accept", SUGGESTED);
-        default_response = "accept";
+        add_response ("no", _("No"));
+        add_response ("yes", _("Yes"));
+        set_response_appearance ("yes", SUGGESTED);
+        default_response = "yes";
     }
 }
