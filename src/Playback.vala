@@ -120,13 +120,12 @@ public class Playback : Object {
     }
 
     construct {
+        dynamic var gtksink = Gst.ElementFactory.make("gtk4paintablesink", "null");
+
         pipeline = Gst.ElementFactory.make("playbin", null) as Gst.Pipeline;
         settings = new Settings(Conf.APP_ID);
         history = Daikhan.History.get_default();
-
-        dynamic var gtksink = Gst.ElementFactory.make("gtk4paintablesink", "null");
-        dynamic Gdk.Paintable paintable = gtksink.paintable;
-        this.paintable = paintable;
+        paintable = gtksink.paintable;
 
         if (paintable.gl_context != null) {
             var glsink = Gst.ElementFactory.make("glsinkbin", "glsinkbin");
