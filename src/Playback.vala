@@ -351,7 +351,7 @@ public class Playback : Object {
     }
 
     void pipeline_state_changed_message_cb() {
-        state_changed.emit();
+        state_changed();
 
         current_state = pipeline.current_state;
 
