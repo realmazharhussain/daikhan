@@ -19,9 +19,7 @@ public class MediaControls : Adw.Bin {
         playback = Playback.get_default ();
 
         playback.notify["queue"].connect (notify_queue_cb);
-
-        playback.bind_property ("can-prev", prev_btn, "sensitive", SYNC_CREATE);
-        playback.bind_property ("can-next", next_btn, "sensitive", SYNC_CREATE);
+        playback.notify["current-track"].connect (notify_current_track_cb);
 
         streams_btn.menu_model = StreamMenuBuilder.get_menu();
     }
@@ -38,5 +36,10 @@ public class MediaControls : Adw.Bin {
 
     void notify_queue_cb () {
         prev_btn.visible = next_btn.visible = (playback.queue != null && playback.queue.length > 1);
+    }
+
+    void notify_current_track_cb () {
+        prev_btn.sensitive = playback.current_track > 0;
+        next_btn.sensitive = (playback.queue != null && playback.current_track + 1 < playback.queue.length);
     }
 }

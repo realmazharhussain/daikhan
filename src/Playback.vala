@@ -22,8 +22,6 @@ public class Playback : Object {
 
     public bool paused { get; set; default = false; }
     public bool can_play { get; private set; default = false; }
-    public bool can_next { get; private set; default = false; }
-    public bool can_prev { get; private set; default = false; }
 
     public RepeatMode repeat { get; set; default = OFF; }
     public Daikhan.PlayFlags flags { get; set; }
@@ -46,15 +44,8 @@ public class Playback : Object {
         set construct {
             _queue = value;
             this.current_track = -1;
-            this.can_prev = false;
 
             can_play = (prev_queue != null || value != null);
-
-            if (value == null) {
-                this.can_next = false;
-            } else {
-                this.can_next = track_exists(0);
-            }
         }
     }
 
@@ -69,9 +60,6 @@ public class Playback : Object {
             if (value == _current_track) {
                 return;
             }
-
-            can_prev = track_exists(value - 1);
-            can_next = track_exists(value + 1);
 
             if (current_record != null) {
                 history.update(current_record);
@@ -232,7 +220,7 @@ public class Playback : Object {
      * This also implements the `queue` repeat mode.
      */
     public bool next() {
-        if (can_next) {
+        if (queue != null && current_track + 1 < queue.length) {
             return load_track(current_track + 1);
         } else if (repeat == QUEUE) {
             return load_track(0);
@@ -243,7 +231,7 @@ public class Playback : Object {
     }
 
     public bool prev() {
-        if (!can_prev) {
+        if (current_track < 1 || queue == null || queue.length == 0) {
             return false;
         }
 
