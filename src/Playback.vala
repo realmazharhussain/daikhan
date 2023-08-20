@@ -120,7 +120,7 @@ public class Playback : Object {
         paintable = gtksink.paintable;
 
         if (paintable.gl_context != null) {
-            dynamic var glsink = Gst.ElementFactory.make("glsinkbin", "glsinkbin");
+            dynamic var glsink = Gst.ElementFactory.make("glsinkbin", null);
             glsink.sink = gtksink;
             pipeline.video_sink = glsink;
         } else {
