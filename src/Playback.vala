@@ -120,45 +120,8 @@ public class Playback : Object {
         pipeline.notify["volume"].connect(()=> { notify_property("volume"); });
     }
 
-    private Gst.State _target_state = NULL;
-    public Gst.State target_state {
-        get {
-            return _target_state;
-        }
-
-        private set {
-            if (value == _target_state) {
-                return;
-            }
-
-            if (value != PLAYING) {
-                stop_progress_tracking();
-            }
-
-            _target_state = value;
-        }
-    }
-
-    private Gst.State _current_state = NULL;
-    public Gst.State current_state {
-        get {
-            return _current_state;
-        }
-
-        private set {
-            if (value == _current_state) {
-                return;
-            }
-
-            if (value == PLAYING) {
-                ensure_progress_tracking();
-            } else {
-                stop_progress_tracking();
-            }
-
-            _current_state = value;
-        }
-    }
+    public Gst.State target_state { get; private set; default = NULL; }
+    public Gst.State current_state { get; private set; default = NULL; }
 
     public static Playback get_default() {
         default_playback = default_playback ?? new Playback();
@@ -388,6 +351,12 @@ public class Playback : Object {
 
     void pipeline_state_changed_message_cb() {
         current_state = pipeline.current_state;
+
+        if (pipeline.current_state == pipeline.target_state == Gst.State.PLAYING) {
+            ensure_progress_tracking ();
+        } else {
+            stop_progress_tracking ();
+        }
     }
 
     public signal void unsupported_codec (string debug_info);
