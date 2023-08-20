@@ -38,6 +38,7 @@ sources = [config_file] + blueprints + resources + files(
   'Playback.vala',
   'TimeLabels.vala',
   'Title.vala',
+  'TrackInfo.vala',
   'VideoArea.vala',
   'PreferencesWindow.vala',
   'StreamMenuBuilder.vala',
