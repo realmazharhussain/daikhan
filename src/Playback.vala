@@ -111,7 +111,7 @@ public class Playback : Object {
     }
 
     construct {
-        dynamic var gtksink = Gst.ElementFactory.make("gtk4paintablesink", "null");
+        dynamic var gtksink = Gst.ElementFactory.make("gtk4paintablesink", null);
 
         pipeline = Gst.ElementFactory.make("playbin", null) as Gst.Pipeline;
         settings = new Settings(Conf.APP_ID);
