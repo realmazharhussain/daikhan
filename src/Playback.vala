@@ -1,10 +1,3 @@
-[Flags]
-public enum PipelinePlayFlags {
-    VIDEO,
-    AUDIO,
-    SUBTITLES
-}
-
 public enum RepeatMode {
     OFF,
     TRACK,
@@ -34,7 +27,7 @@ public class Playback : Object {
     public bool multiple_tracks { get; private set; default = false; }
 
     public RepeatMode repeat { get; set; default = OFF; }
-    public uint flags { get; set; }
+    public Daikhan.PlayFlags flags { get; set; }
 
     public signal void unsupported_file ();
 
@@ -89,13 +82,13 @@ public class Playback : Object {
                 filename = info.get_display_name();
                 current_record = new Daikhan.HistoryRecord.with_uri(queue[value].get_uri());
 
-                if ((flags & PipelinePlayFlags.AUDIO) == 0) {
+                if (!(AUDIO in flags)) {
                     current_record.audio_track = -1;
                 }
-                if ((flags & PipelinePlayFlags.SUBTITLES) == 0) {
+                if (!(SUBTITLES in flags)) {
                     current_record.text_track = -1;
                 }
-                if ((flags & PipelinePlayFlags.VIDEO) == 0) {
+                if (!(VIDEO in flags)) {
                     current_record.video_track = -1;
                 }
             } catch (Error err) {

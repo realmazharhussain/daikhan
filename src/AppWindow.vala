@@ -172,9 +172,9 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
     void select_audio_cb (SimpleAction action, Variant? stream_index) {
         if (stream_index.get_int32 () < 0) {
-            playback.flags &= ~PipelinePlayFlags.AUDIO;
+            playback.flags &= ~Daikhan.PlayFlags.AUDIO;
         } else {
-            playback.flags |= PipelinePlayFlags.AUDIO;
+            playback.flags |= AUDIO;
             playback.pipeline["current-audio"] = stream_index.get_int32 ();
         }
 
@@ -187,9 +187,9 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
     void select_text_cb (SimpleAction action, Variant? stream_index) {
         if (stream_index.get_int32 () < 0) {
-            playback.flags &= ~PipelinePlayFlags.SUBTITLES;
+            playback.flags &= ~Daikhan.PlayFlags.SUBTITLES;
         } else {
-            playback.flags |= PipelinePlayFlags.SUBTITLES;
+            playback.flags |= SUBTITLES;
             playback.pipeline["current-text"] = stream_index.get_int32 ();
         }
 
@@ -202,9 +202,9 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
     void select_video_cb (SimpleAction action, Variant? stream_index) {
         if (stream_index.get_int32 () < 0) {
-            playback.flags &= ~PipelinePlayFlags.VIDEO;
+            playback.flags &= ~Daikhan.PlayFlags.VIDEO;
         } else {
-            playback.flags |= PipelinePlayFlags.VIDEO;
+            playback.flags |= VIDEO;
             playback.pipeline["current-video"] = stream_index.get_int32 ();
         }
 

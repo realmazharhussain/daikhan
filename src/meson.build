@@ -45,6 +45,7 @@ sources = [config_file] + blueprints + resources + files(
   'ActionDialog.vala',
   'Utils.vala',
   'Queue.vala',
+  'PlayFlags.vala',
   'MediaControls.vala',
   'media-controls/PlayButton.vala',
   'media-controls/ProgressBar.vala',
