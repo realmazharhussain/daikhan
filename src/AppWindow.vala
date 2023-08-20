@@ -253,7 +253,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
         var uri_array = settings.get_strv ("queue");
 
-        playback.set_queue (new Daikhan.Queue.from_uri_array (uri_array));
+        playback.queue = new Daikhan.Queue.from_uri_array (uri_array);
         playback.load_track (settings.get_int ("track"));
 
         restoring_state = false;

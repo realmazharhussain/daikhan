@@ -38,20 +38,26 @@ public class Playback : Object {
     }
 
     public Daikhan.Queue? prev_queue;
-    public Daikhan.Queue? queue;
-    public void set_queue(Daikhan.Queue? queue) {
-        this.queue = queue;
-        this.current_track = -1;
-        this.can_prev = false;
+    private Daikhan.Queue? _queue = new Daikhan.Queue();
+    public Daikhan.Queue? queue {
+        get {
+            return _queue;
+        }
 
-        can_play = (prev_queue != null || queue != null);
+        set construct {
+            _queue = value;
+            this.current_track = -1;
+            this.can_prev = false;
 
-        if (queue == null) {
-            this.multiple_tracks = false;
-            this.can_next = false;
-        } else {
-            this.multiple_tracks = queue.length > 1;
-            this.can_next = track_exists(0);
+            can_play = (prev_queue != null || value != null);
+
+            if (value == null) {
+                this.multiple_tracks = false;
+                this.can_next = false;
+            } else {
+                this.multiple_tracks = queue.length > 1;
+                this.can_next = track_exists(0);
+            }
         }
     }
 
@@ -252,7 +258,7 @@ public class Playback : Object {
     }
 
     public bool open_queue(Daikhan.Queue queue) {
-        set_queue(queue);
+        this.queue = queue;
 
         var status = false;
         if (load_track(0)) {
@@ -297,7 +303,7 @@ public class Playback : Object {
 
         if (queue != null) {
             prev_queue = queue;
-            set_queue(null);
+            queue = null;
         }
     }
 
