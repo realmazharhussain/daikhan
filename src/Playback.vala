@@ -121,10 +121,10 @@ public class Playback : Object {
 
         if (paintable.gl_context != null) {
             dynamic var glsink = Gst.ElementFactory.make("glsinkbin", "glsinkbin");
-            glsink["sink"] = gtksink;
-            pipeline["video-sink"] = glsink;
+            glsink.sink = gtksink;
+            pipeline.video_sink = glsink;
         } else {
-            pipeline["video-sink"] = gtksink;
+            pipeline.video_sink = gtksink;
         }
 
         pipeline.bus.add_signal_watch();
