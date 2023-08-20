@@ -41,7 +41,7 @@ public class Playback : Object {
     public Daikhan.Queue? queue;
     public void set_queue(Daikhan.Queue? queue) {
         this.queue = queue;
-        this.track = -1;
+        this.current_track = -1;
         this.can_prev = false;
 
         can_play = (prev_queue != null || queue != null);
@@ -56,14 +56,14 @@ public class Playback : Object {
     }
 
     public Daikhan.HistoryRecord? current_record = null;
-    private int _track = -1;
-    public int track {
+    private int _current_track = -1;
+    public int current_track {
         get {
-            return _track;
+            return _current_track;
         }
 
         private set {
-            if (value == _track) {
+            if (value == _current_track) {
                 return;
             }
 
@@ -99,7 +99,7 @@ public class Playback : Object {
             duration = -1;
             track_info.reset();
 
-            _track = value;
+            _current_track = value;
         }
     }
 
@@ -191,7 +191,7 @@ public class Playback : Object {
             return false;
         }
 
-        track = track_index;
+        current_track = track_index;
 
         var file = queue[track_index];
 
@@ -230,7 +230,7 @@ public class Playback : Object {
      */
     public bool next() {
         if (can_next) {
-            return load_track(track + 1);
+            return load_track(current_track + 1);
         } else if (repeat == QUEUE) {
             return load_track(0);
         } else {
@@ -244,7 +244,7 @@ public class Playback : Object {
             return false;
         }
 
-        return load_track(track - 1);
+        return load_track(current_track - 1);
     }
 
     public bool open_files(File[] files) {

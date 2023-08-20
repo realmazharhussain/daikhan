@@ -16,12 +16,12 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
         playback = Playback.get_default();
         playback.notify["target-state"].connect(notify_playback_state_cb);
-        playback.notify["track"].connect(()=> {
-            if (playback.track < 0) {
+        playback.notify["current-track"].connect(()=> {
+            if (playback.current_track < 0) {
                 return;
             }
 
-            var record = playback_history.find (playback.queue[playback.track].get_uri ());
+            var record = playback_history.find (playback.queue[playback.current_track].get_uri ());
 
             if (record == null) {
                 return;
@@ -245,7 +245,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
         }
 
         settings.set_strv ("queue", playback.queue.to_uri_array ());
-        settings.set_int ("track", playback.track);
+        settings.set_int ("track", playback.current_track);
     }
 
     public void restore_state () {
