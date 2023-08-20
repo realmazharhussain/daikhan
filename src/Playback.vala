@@ -40,13 +40,8 @@ public class Playback : Object {
 
     [CCode (notify = false)]
     public double volume {
-        get {
-            return Gst.Audio.StreamVolume.convert_volume (LINEAR, CUBIC, pipeline.volume);
-        }
-
-        set {
-            pipeline.volume = Gst.Audio.StreamVolume.convert_volume (CUBIC, LINEAR, value);
-        }
+        get { return Gst.Audio.StreamVolume.convert_volume (LINEAR, CUBIC, pipeline.volume); }
+        set { pipeline.volume = Gst.Audio.StreamVolume.convert_volume (CUBIC, LINEAR, value); }
     }
 
     public Daikhan.Queue? prev_queue;
