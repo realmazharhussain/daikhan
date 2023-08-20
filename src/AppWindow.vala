@@ -133,7 +133,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     }
 
     public bool open(File[] files) {
-        return playback.open(files);
+        return playback.open_files(files);
     }
 
     uint inhibit_id = 0;
@@ -239,34 +239,21 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     }
 
     public void save_state () {
-        if (playback.queue.length == 0) {
+        if (playback.queue == null || playback.queue.length == 0) {
             settings.set_strv ("queue", null);
             return;
         }
 
-        string[] uri_list = {};
-        uri_list.resize (playback.queue.length);
-
-        for (int i = 0; i < uri_list.length; i++) {
-            uri_list[i] = playback.queue[i].get_uri ();
-        }
-
-        settings.set_strv ("queue", uri_list);
+        settings.set_strv ("queue", playback.queue.to_uri_array ());
         settings.set_int ("track", playback.track);
     }
 
     public void restore_state () {
         restoring_state = true;
 
-        string[] uri_list = settings.get_strv ("queue");
-        File[] file_list = null;
-        file_list.resize (uri_list.length);
+        var uri_array = settings.get_strv ("queue");
 
-        for (int i = 0; i < uri_list.length; i++) {
-            file_list[i] = File.new_for_uri (uri_list[i]);
-        }
-
-        playback.set_queue (file_list);
+        playback.set_queue (new Daikhan.Queue.from_uri_array (uri_array));
         playback.load_track (settings.get_int ("track"));
 
         restoring_state = false;
