@@ -27,6 +27,7 @@ public class Playback : Object {
     public Daikhan.PlayFlags flags { get; set; }
 
     public signal void unsupported_file ();
+    public signal void state_changed ();
 
     [CCode (notify = false)]
     public double volume {
@@ -350,6 +351,8 @@ public class Playback : Object {
     }
 
     void pipeline_state_changed_message_cb() {
+        state_changed.emit();
+
         current_state = pipeline.current_state;
 
         if (pipeline.current_state == pipeline.target_state == Gst.State.PLAYING) {
