@@ -161,7 +161,7 @@ class Daikhan.VideoArea : Adw.Bin {
         var files = ((Gdk.FileList) value).get_files ();
 
         foreach (var file in files) {
-            if (Playback.is_file_type_supported(file)) {
+            if (Daikhan.Utils.is_file_type_supported(file)) {
                 return true;
             }
         }

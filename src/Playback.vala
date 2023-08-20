@@ -145,18 +145,6 @@ public class Playback : Object {
         pipeline.notify["volume"].connect(()=> { notify_property("volume"); });
     }
 
-    public static bool is_file_type_supported (File file) {
-        string mimetype;
-
-        try {
-            mimetype = file.query_info ("standard::", NONE).get_content_type ();
-        } catch (Error err) {
-            return false;
-        }
-
-        return mimetype.has_prefix("video/") || mimetype.has_prefix("audio/");
-    }
-
     private Gst.State _target_state = NULL;
     public Gst.State target_state {
         get {
@@ -223,7 +211,7 @@ public class Playback : Object {
 
         var file = queue[track_index];
 
-        if (!is_file_type_supported(file)) {
+        if (!Daikhan.Utils.is_file_type_supported(file)) {
             set_state(NULL);
             unsupported_file();
             return false;

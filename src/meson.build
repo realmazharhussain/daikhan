@@ -42,6 +42,7 @@ sources = [config_file] + blueprints + resources + files(
   'PreferencesWindow.vala',
   'StreamMenuBuilder.vala',
   'ActionDialog.vala',
+  'Utils.vala',
   'MediaControls.vala',
   'media-controls/PlayButton.vala',
   'media-controls/ProgressBar.vala',
