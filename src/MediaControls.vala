@@ -18,10 +18,9 @@ public class MediaControls : Adw.Bin {
 
         playback = Playback.get_default ();
 
-        playback.bind_property ("multiple-tracks", prev_btn, "visible", SYNC_CREATE);
-        playback.bind_property ("can-prev", prev_btn, "sensitive", SYNC_CREATE);
+        playback.notify["queue"].connect (notify_queue_cb);
 
-        playback.bind_property ("multiple-tracks", next_btn, "visible", SYNC_CREATE);
+        playback.bind_property ("can-prev", prev_btn, "sensitive", SYNC_CREATE);
         playback.bind_property ("can-next", next_btn, "sensitive", SYNC_CREATE);
 
         streams_btn.menu_model = StreamMenuBuilder.get_menu();
@@ -35,5 +34,9 @@ public class MediaControls : Adw.Bin {
     [GtkCallback]
     void next_cb() {
         playback.next();
+    }
+
+    void notify_queue_cb () {
+        prev_btn.visible = next_btn.visible = (playback.queue != null && playback.queue.length > 1);
     }
 }
