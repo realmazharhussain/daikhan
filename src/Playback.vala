@@ -114,9 +114,9 @@ public class Playback : Object {
         dynamic var gtksink = Gst.ElementFactory.make("gtk4paintablesink", null);
 
         pipeline = Gst.ElementFactory.make("playbin", null) as Gst.Pipeline;
+        track_info = new Daikhan.TrackInfo(pipeline);
         settings = new Settings(Conf.APP_ID);
         history = Daikhan.History.get_default();
-        track_info = new Daikhan.TrackInfo(pipeline);
         paintable = gtksink.paintable;
 
         if (paintable.gl_context != null) {
