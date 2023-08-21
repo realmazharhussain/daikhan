@@ -8,216 +8,222 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-14 12:20+0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-08-21 07:54+0000\n"
+"Last-Translator: Сергей Ворон <voron.s.a@gmail.com>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/daikhan/"
+"translations/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
 #: src/PlayerWindow.vala:189 src/Title.vala:17 src/window.blp:13
 msgid "Daikhan (Early Access)"
-msgstr ""
+msgstr "Daikhan (Ранний доступ)"
 
 #: data/daikhan.desktop.in:5
 msgid "Media player"
-msgstr ""
+msgstr "Медиа плеер"
 
 #: data/daikhan.desktop.in:6 data/daikhan.metainfo.xml.in:7
 msgid "Play Videos/Music with style"
-msgstr ""
+msgstr "Воспроизведение видео/музыки со стилем"
 
 #: data/daikhan.metainfo.xml.in:8 src/PlayerWindow.vala:192
 msgid "Mazhar Hussain"
-msgstr ""
+msgstr "Mazhar Hussain"
 
 #: data/daikhan.metainfo.xml.in:10
 msgid "A simple media player with beautiful interface."
-msgstr ""
+msgstr "Простой медиаплеер с красивым интерфейсом."
 
 #: data/daikhan.metainfo.xml.in:12
 msgid ""
 "NOTE: The app is in early stages of development and bound to change "
 "significantly in the future."
 msgstr ""
+"ПРИМЕЧАНИЕ. Приложение находится на ранних стадиях разработки и в будущем "
+"оно должно существенно измениться."
 
 #: data/daikhan.metainfo.xml.in:58
 msgid "Not released yet."
-msgstr ""
+msgstr "Еще не выпущен."
 
 #: src/ActionDialog.vala:10
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 #: src/ActionDialog.vala:11
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: src/MediaPlayer.vala:26
 msgid "Restore last session?"
-msgstr ""
+msgstr "Восстановить последнюю сессию?"
 
 #: src/PlayerWindow.vala:40
 msgid "Resume playback?"
-msgstr ""
+msgstr "Возобновить воспроизведение?"
 
 #: src/PlayerWindow.vala:190
 msgid "Copyright 2022-2023 Mazhar Hussain"
-msgstr ""
+msgstr "Copyright 2022-2023 Mazhar Hussain"
 
 #: src/preferences.blp:7
 msgid "Appearance"
-msgstr ""
+msgstr "Внешний вид"
 
 #: src/preferences.blp:10
 msgid "Color Scheme"
-msgstr ""
+msgstr "Цветовая схема"
 
 #: src/preferences.blp:15
 msgid "Behavior"
-msgstr ""
+msgstr "Поведение"
 
 #: src/preferences.blp:19
 msgid "Seeking Method"
-msgstr ""
+msgstr "Метод поиска"
 
 #: src/PreferencesWindow.vala:14
 msgid "Follow System"
-msgstr ""
+msgstr "Следовать за системой"
 
 #: src/PreferencesWindow.vala:15
 msgid "Light"
-msgstr ""
+msgstr "Светлый"
 
 #: src/PreferencesWindow.vala:16
 msgid "Dark"
-msgstr ""
+msgstr "Темный"
 
 #: src/PreferencesWindow.vala:19
 msgid "Fast"
-msgstr ""
+msgstr "Быстрый"
 
 #: src/PreferencesWindow.vala:20
 msgid "Balanced"
-msgstr ""
+msgstr "Сбалансированный"
 
 #: src/PreferencesWindow.vala:21
 msgid "Accurate"
-msgstr ""
+msgstr "Точный"
 
 #: src/shortcuts.blp:8
 msgid "Application"
-msgstr ""
+msgstr "Приложение"
 
 #: src/shortcuts.blp:11
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Включить полноэкранный режим"
 
 #: src/shortcuts.blp:16
 msgid "Open Preferences"
-msgstr ""
+msgstr "Открыть настройки"
 
 #: src/shortcuts.blp:21
 msgid "Show Keyboard Shortcuts"
-msgstr ""
+msgstr "Показать комбинации клавиш"
 
 #: src/shortcuts.blp:26
 msgid "Quit"
-msgstr ""
+msgstr "Выйти"
 
 #: src/shortcuts.blp:32
 msgid "Playback"
-msgstr ""
+msgstr "Воспроизведение"
 
 #: src/shortcuts.blp:35
 msgid "Play/Pause"
-msgstr ""
+msgstr "Воспроизведение/Пауза"
 
 #: src/shortcuts.blp:40
 msgid "Seek Forward (10s)"
-msgstr ""
+msgstr "Поиск вперед (10с)"
 
 #: src/shortcuts.blp:45
 msgid "Seek Backwards (10s)"
-msgstr ""
+msgstr "Поиск назад (10с)"
 
 #: src/shortcuts.blp:50
 msgid "Increase Volume (5%)"
-msgstr ""
+msgstr "Увеличить громкость (5%)"
 
 #: src/shortcuts.blp:55
 msgid "Decrease Volume (5%)"
-msgstr ""
+msgstr "Уменьшить громкость (5%)"
 
 #: src/shortcuts.blp:60
 msgid "Seek Forward (3s)"
-msgstr ""
+msgstr "Поиск вперед (3с)"
 
 #: src/shortcuts.blp:65
 msgid "Seek Backwards (3s)"
-msgstr ""
+msgstr "Поиск назад (3с)"
 
 #: src/shortcuts.blp:70
 msgid "Increase Volume (2%)"
-msgstr ""
+msgstr "Увеличить громкость (2%)"
 
 #: src/shortcuts.blp:75
 msgid "Decrease Volume (2%)"
-msgstr ""
+msgstr "Уменьшить громкость (2%)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
-msgstr ""
+msgstr "Аудио"
 
 #: src/StreamMenuBuilder.vala:19
 msgid "Subtitles"
-msgstr ""
+msgstr "Субтитры"
 
 #: src/StreamMenuBuilder.vala:20
 msgid "Video"
-msgstr ""
+msgstr "Видео"
 
 #: src/StreamMenuBuilder.vala:28
 msgid "Repeat"
-msgstr ""
+msgstr "Повтор"
 
 #: src/StreamMenuBuilder.vala:29 src/StreamMenuBuilder.vala:89
 #: src/StreamMenuBuilder.vala:121
 msgid "Off"
-msgstr ""
+msgstr "Выкл."
 
 #: src/StreamMenuBuilder.vala:30
 msgid "Single File"
-msgstr ""
+msgstr "Отдельный файл"
 
 #: src/StreamMenuBuilder.vala:31
 msgid "Whole Queue"
-msgstr ""
+msgstr "Вся очередь"
 
 #: src/StreamMenuBuilder.vala:103
 msgid "Unknown Language"
-msgstr ""
+msgstr "Неизвестный язык"
 
 #: src/StreamMenuBuilder.vala:124
 msgid "On"
-msgstr ""
+msgstr "Вкл."
 
 #. Translators: Keep %i as is. It will be replaced by the track number for each track.
 #: src/StreamMenuBuilder.vala:127
 #, c-format
 msgid "Track %i"
-msgstr ""
+msgstr "Трек %i"
 
 #: src/window.blp:6
 msgid "Preferences"
-msgstr ""
+msgstr "Настройки"
 
 #: src/window.blp:7
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Комбинации клавиш"
 
 #: src/window.blp:8
 msgid "About Daikhan"
-msgstr ""
+msgstr "О программе"
