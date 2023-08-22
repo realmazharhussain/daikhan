@@ -212,14 +212,8 @@ public class Playback : Object {
     }
 
     public bool seek(int64 seconds) {
-        var absolute_time = progress + (seconds * Gst.SECOND);
-
-        if (absolute_time < 0) {
-            absolute_time = 0;
-        } else if (absolute_time > duration) {
-            absolute_time = duration;
-        }
-        return seek_absolute(absolute_time);
+        var seek_pos = progress + (seconds * Gst.SECOND);
+        return seek_absolute(seek_pos);
     }
 
     public bool seek_absolute(int64 seek_pos) {
@@ -230,6 +224,12 @@ public class Playback : Object {
             seek_flags |= KEY_UNIT;
         } else if (seeking_method == "accurate") {
             seek_flags |= ACCURATE;
+        }
+
+        if (seek_pos < 0) {
+            seek_pos = 0;
+        } else if (seek_pos > duration > 0) {
+            seek_pos = duration;
         }
 
         if (pipeline.seek_simple(TIME, seek_flags, seek_pos)) {
