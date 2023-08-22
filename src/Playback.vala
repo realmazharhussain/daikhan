@@ -244,9 +244,7 @@ public class Playback : Object {
     }
 
     public void stop() {
-        if (pipeline.target_state != NULL) {
-            set_state(NULL);
-        }
+        set_state(READY);
 
         if (queue != null) {
             prev_queue = queue;
