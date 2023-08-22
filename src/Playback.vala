@@ -35,7 +35,7 @@ public class Playback : Object {
 
     public Daikhan.Queue queue { get; set; default = new Daikhan.Queue(); }
 
-    public Daikhan.HistoryRecord? current_record = null;
+    public Daikhan.HistoryRecord? current_record { get; private set; default = null; }
     public int current_track { get; private set; default = -1; }
 
     construct {
