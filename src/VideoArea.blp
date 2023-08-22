@@ -25,7 +25,7 @@ template $DaikhanVideoArea : Adw.Bin {
         visible: bind top_revealer.visible bidirectional;
         reveal-child: bind top_revealer.reveal-child bidirectional;
         transition-duration: bind top_revealer.transition-duration bidirectional;
-        child: $MediaControls controls_overlay { styles ["background"] };
+        child: $DaikhanMediaControls controls_overlay { styles ["background"] };
       }
     }
 }

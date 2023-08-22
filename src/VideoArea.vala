@@ -20,7 +20,7 @@ class Daikhan.VideoArea : Adw.Bin {
     [GtkChild] unowned Gtk.Picture video;
     [GtkChild] unowned Gtk.Revealer top_revealer;
     [GtkChild] unowned Daikhan.Title title_overlay;
-    [GtkChild] unowned MediaControls controls_overlay;
+    [GtkChild] unowned Daikhan.MediaControls controls_overlay;
 
     Gtk.EventControllerMotion title_ctrlr;
     Gtk.EventControllerMotion ctrls_ctrlr;
