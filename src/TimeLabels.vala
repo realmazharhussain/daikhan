@@ -1,18 +1,18 @@
-public class ProgressLabel : TimeLabel {
+public class ProgressLabel : Daikhan.TimeLabel {
     construct {
         var playback = Daikhan.Playback.get_default();
         playback.bind_property("progress", this, "time", SYNC_CREATE);
     }
 }
 
-public class DurationLabel : TimeLabel {
+public class DurationLabel : Daikhan.TimeLabel {
     construct {
         var playback = Daikhan.Playback.get_default();
         playback.bind_property("duration", this, "time", SYNC_CREATE);
     }
 }
 
-public class TimeLabel : Gtk.Widget {
+public class Daikhan.TimeLabel : Gtk.Widget {
     public int64 time { get; set; default = -1;}
     Gtk.Label child;
 
