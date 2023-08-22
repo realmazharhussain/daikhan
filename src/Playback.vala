@@ -122,7 +122,6 @@ public class Playback : Object {
     }
 
     public Gst.State target_state { get; private set; default = NULL; }
-    public Gst.State current_state { get; private set; default = NULL; }
 
     public static Playback get_default() {
         default_playback = default_playback ?? new Playback();
@@ -169,7 +168,7 @@ public class Playback : Object {
 
         ulong handler_id = 0;
         handler_id = state_changed.connect(() => {
-            if (current_state == PAUSED) {
+            if (pipeline.current_state == PAUSED) {
                 update_duration ();
                 update_progress ();
                 SignalHandler.disconnect (this, handler_id);
@@ -352,8 +351,6 @@ public class Playback : Object {
 
     void pipeline_state_changed_message_cb() {
         state_changed();
-
-        current_state = pipeline.current_state;
 
         if (pipeline.current_state == pipeline.target_state == Gst.State.PLAYING) {
             ensure_progress_tracking ();
