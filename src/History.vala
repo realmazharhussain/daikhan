@@ -11,7 +11,7 @@ public class Daikhan.HistoryRecord {
 
         if (uri.has_prefix ("file://")) {
             try {
-                this.content_id = ContentId.for_uri (uri);
+                this.content_id = Daikhan.ContentId.for_uri (uri);
             } catch (Error e) {
                 warning ("Error calculating content-id: %s", e.message);
             }
@@ -85,7 +85,7 @@ public class Daikhan.History {
 
         if (uri.has_prefix ("file://")) {
             try {
-                content_id = ContentId.for_uri (uri);
+                content_id = Daikhan.ContentId.for_uri (uri);
             } catch (Error e) {
                 warning ("Error occured calculating content-id: %s", e.message);
             }

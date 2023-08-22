@@ -1,7 +1,7 @@
 internal const int SEGMENT_SIZE = 16 * 1024;    // 16 KiB
 internal const int SIZE_OF_FILE_SIZE = (int) sizeof(int64);
 
-namespace ContentId {
+namespace Daikhan.ContentId {
     public string for_path (string path) throws Error {
         var file = File.new_for_path (path);
         return for_file (file);
