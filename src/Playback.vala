@@ -222,7 +222,7 @@ public class Playback : Object {
         return seek_absolute(absolute_time);
     }
 
-    public bool seek_absolute(int64 nano_seconds) {
+    public bool seek_absolute(int64 seek_pos) {
         var seeking_method = settings.get_string("seeking-method");
 
         Gst.SeekFlags seek_flags = FLUSH;
@@ -232,8 +232,8 @@ public class Playback : Object {
             seek_flags |= ACCURATE;
         }
 
-        if (pipeline.seek_simple(TIME, seek_flags, nano_seconds)) {
-            progress = nano_seconds;
+        if (pipeline.seek_simple(TIME, seek_flags, seek_pos)) {
+            progress = seek_pos;
             return true;
         }
 
