@@ -136,7 +136,7 @@ public class Playback : Object {
 
         ulong handler_id = 0;
         handler_id = notify["current-state"].connect(() => {
-            if (pipeline.current_state == PAUSED) {
+            if (current_state == PAUSED) {
                 update_duration ();
                 update_progress ();
                 SignalHandler.disconnect (this, handler_id);
@@ -182,7 +182,7 @@ public class Playback : Object {
     }
 
     public bool toggle_playing() {
-        if (pipeline.target_state == PLAYING) {
+        if (target_state == PLAYING) {
             return pause();
         }
 
@@ -190,7 +190,7 @@ public class Playback : Object {
     }
 
     public bool play() {
-        if (pipeline.target_state >= Gst.State.PAUSED) {
+        if (target_state >= Gst.State.PAUSED) {
             return set_state(PLAYING);
         } else if (current_track == -1 && queue.length > 0) {
             return load_track(0);
@@ -199,7 +199,7 @@ public class Playback : Object {
     }
 
     public bool pause() {
-        if (pipeline.target_state < Gst.State.PAUSED) {
+        if (target_state < Gst.State.PAUSED) {
             return false;
         }
 
@@ -291,7 +291,7 @@ public class Playback : Object {
     }
 
     public bool set_state(Gst.State new_state) {
-        if (pipeline.target_state == new_state) {
+        if (target_state == new_state) {
             return true;
         }
 
@@ -305,7 +305,7 @@ public class Playback : Object {
     }
 
     public void decide_on_progress_tracking () {
-        if (pipeline.current_state == pipeline.target_state == Gst.State.PLAYING) {
+        if (current_state == target_state == Gst.State.PLAYING) {
             ensure_progress_tracking ();
         } else {
             stop_progress_tracking ();

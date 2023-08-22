@@ -137,7 +137,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
     uint inhibit_id = 0;
     void notify_target_state_cb() {
-        if (playback.pipeline.target_state == PLAYING) {
+        if (playback.target_state == PLAYING) {
             inhibit_id = application.inhibit(this, IDLE, "Media is playing");
         } else if (inhibit_id > 0) {
             application.uninhibit(inhibit_id);
@@ -146,10 +146,10 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     }
 
     void perform_seek (int64 position) {
-        if (playback.pipeline.current_state < Gst.State.PAUSED) {
+        if (playback.current_state < Gst.State.PAUSED) {
             ulong handler_id = 0;
             handler_id = playback.notify["current-state"].connect(()=> {
-                if (playback.pipeline.current_state < Gst.State.PAUSED) {
+                if (playback.current_state < Gst.State.PAUSED) {
                     return;
                 }
 

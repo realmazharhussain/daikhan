@@ -22,13 +22,13 @@ public class ProgressBar : Gtk.Scale {
     }
 
     void update_sensitivity () {
-        sensitive = playback.pipeline.current_state >= Gst.State.PAUSED;
+        sensitive = playback.current_state >= Gst.State.PAUSED;
     }
 
     double last_progress_change = 0;
 
     bool change_value_cb(Gtk.Range range, Gtk.ScrollType scrl_type, double value) {
-        if (last_progress_change == value || value < 0 || playback.pipeline.current_state < Gst.State.PAUSED) {
+        if (last_progress_change == value || value < 0 || playback.current_state < Gst.State.PAUSED) {
             return true;
         }
 
