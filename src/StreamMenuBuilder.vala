@@ -1,6 +1,6 @@
-internal StreamMenuBuilder menu_builder_instance;
+internal Daikhan.StreamMenuBuilder menu_builder_instance;
 
-class StreamMenuBuilder : Object {
+class Daikhan.StreamMenuBuilder : Object {
     public Menu menu;
 
     Menu audio_menu;

@@ -21,7 +21,7 @@ public class Daikhan.MediaControls : Adw.Bin {
         playback.notify["queue"].connect (notify_queue_cb);
         playback.notify["current-track"].connect (notify_current_track_cb);
 
-        streams_btn.menu_model = StreamMenuBuilder.get_menu();
+        streams_btn.menu_model = Daikhan.StreamMenuBuilder.get_menu();
     }
 
     [GtkCallback]
