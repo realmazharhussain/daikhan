@@ -132,7 +132,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     }
 
     public bool open(File[] files) {
-        return playback.open_files(files);
+        return playback.open(files);
     }
 
     uint inhibit_id = 0;

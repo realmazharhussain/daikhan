@@ -177,18 +177,9 @@ public class Playback : Object {
         return load_track(current_track - 1);
     }
 
-    public bool open_files(File[] files) {
-        return open_queue(new Daikhan.Queue(files));
-    }
-
-    public bool open_queue(Daikhan.Queue queue) {
-        this.queue = queue;
-
-        var status = false;
-        if (load_track(0)) {
-            status = set_state(PLAYING);
-        }
-        return status;
+    public bool open(File[] files) {
+        queue = new Daikhan.Queue(files);
+        return load_track(0);
     }
 
     public bool toggle_playing() {
