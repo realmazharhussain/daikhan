@@ -23,7 +23,6 @@ public class Playback : Object {
     public Daikhan.TrackInfo track_info { get; private construct; }
 
     public bool paused { get; set; default = false; }
-    public bool can_play { get; private set; default = false; }
 
     public RepeatMode repeat { get; set; default = OFF; }
     public Daikhan.PlayFlags flags { get; set; }
@@ -45,8 +44,6 @@ public class Playback : Object {
         set {
             _queue = value;
             load_track(-1);
-
-            can_play = value.length > 0;
         }
     }
 

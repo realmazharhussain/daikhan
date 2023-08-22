@@ -3,10 +3,11 @@ public class PlayButton : Gtk.Button {
 
     construct {
         playback = Playback.get_default();
-        playback.bind_property("can_play", this, "sensitive", SYNC_CREATE);
         playback.notify["target-state"].connect (update_icon);
+        playback.notify["queue"].connect (update_sensitivity);
 
         update_icon();
+        update_sensitivity ();
         clicked.connect(clicked_cb);
     }
 
@@ -16,6 +17,10 @@ public class PlayButton : Gtk.Button {
         } else {
             icon_name = "media-playback-start-symbolic";
         }
+    }
+
+    void update_sensitivity () {
+        sensitive = playback.queue.length > 0;
     }
 
     void clicked_cb() {
