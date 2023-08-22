@@ -40,7 +40,7 @@ sources = [config_file] + blueprints + resources + files(
   'PlaybinProxy.vala',
   'ProgressLabel.vala',
   'RepeatMode.vala',
-  'TimeLabels.vala',
+  'TimeLabel.vala',
   'Title.vala',
   'TrackInfo.vala',
   'VideoArea.vala',
