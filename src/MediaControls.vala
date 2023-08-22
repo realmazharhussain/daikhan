@@ -40,6 +40,6 @@ public class MediaControls : Adw.Bin {
 
     void notify_current_track_cb () {
         prev_btn.sensitive = playback.current_track > 0;
-        next_btn.sensitive = playback.current_track + 1 < playback.queue.length;
+        next_btn.sensitive = 0 < playback.current_track + 1 < playback.queue.length;
     }
 }
