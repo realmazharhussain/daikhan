@@ -219,10 +219,10 @@ public class Playback : Object {
         } else if (absolute_time > duration) {
             absolute_time = duration;
         }
-        return seek_absolute((Gst.ClockTime) absolute_time);
+        return seek_absolute(absolute_time);
     }
 
-    public bool seek_absolute(Gst.ClockTime nano_seconds) {
+    public bool seek_absolute(int64 nano_seconds) {
         var seeking_method = settings.get_string("seeking-method");
 
         Gst.SeekFlags seek_flags = FLUSH;
@@ -232,8 +232,8 @@ public class Playback : Object {
             seek_flags |= ACCURATE;
         }
 
-        if (pipeline.seek_simple(TIME, seek_flags, (int64)nano_seconds)) {
-            progress = (int64) nano_seconds;
+        if (pipeline.seek_simple(TIME, seek_flags, nano_seconds)) {
+            progress = nano_seconds;
             return true;
         }
 
