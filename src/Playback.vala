@@ -7,63 +7,30 @@ public enum RepeatMode {
 
 internal unowned Playback? default_playback;
 
-public class Playback : Object {
+public class Playback : Daikhan.PlaybinProxy {
     /* Read-Write properties */
     public Daikhan.Queue queue { get; set; default = new Daikhan.Queue(); }
     public RepeatMode repeat { get; set; default = OFF; }
-    public Daikhan.PlayFlags flags { get; set; }
 
     /* Read-only properties */
-    public dynamic Gst.Pipeline pipeline { get; private construct; }
-    public dynamic Gdk.Paintable paintable { get; private construct; }
     public Daikhan.History history { get; private construct; }
     public Daikhan.HistoryRecord? current_record { get; private set; default = null; }
     public Daikhan.TrackInfo track_info { get; private construct; }
-    public Gst.State target_state { get; private set; default = NULL; }
-    public Gst.State current_state { get; private set; default = NULL; }
     public int current_track { get; private set; default = -1; }
     public string? filename { get; private set; }
     public int64 progress { get; private set; default = -1; }
     public int64 duration { get; private set; default = -1; }
 
-    /* Forwarded/transformed properties */
-    [CCode (notify = false)]
-    public double volume {
-        get { return Gst.Audio.StreamVolume.convert_volume (LINEAR, CUBIC, pipeline.volume); }
-        set { pipeline.volume = Gst.Audio.StreamVolume.convert_volume (CUBIC, LINEAR, value); }
-    }
-
     /* Signals */
     public signal void unsupported_file ();
-    public signal void unsupported_codec (string debug_info);
 
     /* Private fields */
     Settings settings;
 
     construct {
-        dynamic var gtksink = Gst.ElementFactory.make("gtk4paintablesink", null);
-
-        pipeline = Gst.ElementFactory.make("playbin", null) as Gst.Pipeline;
         track_info = new Daikhan.TrackInfo(pipeline);
         settings = new Settings(Conf.APP_ID);
         history = Daikhan.History.get_default();
-        paintable = gtksink.paintable;
-
-        if (paintable.gl_context != null) {
-            dynamic var glsink = Gst.ElementFactory.make("glsinkbin", null);
-            glsink.sink = gtksink;
-            pipeline.video_sink = glsink;
-        } else {
-            pipeline.video_sink = gtksink;
-        }
-
-        pipeline.bus.add_signal_watch();
-        pipeline.bus.message["eos"].connect(pipeline_eos_cb);
-        pipeline.bus.message["error"].connect(pipeline_error_cb);
-        pipeline.bus.message["state-changed"].connect(pipeline_state_changed_cb);
-
-        pipeline.bind_property("flags", this, "flags", SYNC_CREATE|BIDIRECTIONAL);
-        pipeline.notify["volume"].connect(()=> { notify_property("volume"); });
 
         notify["target-state"].connect(decide_on_progress_tracking);
         notify["current-state"].connect(decide_on_progress_tracking);
@@ -290,20 +257,6 @@ public class Playback : Object {
         Source.remove(source_id);
     }
 
-    public bool set_state(Gst.State new_state) {
-        if (target_state == new_state) {
-            return true;
-        }
-
-        if (pipeline.set_state(new_state) == FAILURE) {
-            critical(@"Failed to set pipeline state to $(new_state)!");
-            return false;
-        }
-
-        target_state = new_state;
-        return true;
-    }
-
     public void decide_on_progress_tracking () {
         if (current_state == target_state == Gst.State.PLAYING) {
             ensure_progress_tracking ();
@@ -312,27 +265,7 @@ public class Playback : Object {
         }
     }
 
-    void pipeline_state_changed_cb (Gst.Bus bus, Gst.Message msg) {
-        current_state = pipeline.current_state;
-    }
-
-    void pipeline_error_cb (Gst.Bus bus, Gst.Message msg) {
-        Error err;
-        string debug_info;
-
-        msg.parse_error(out err, out debug_info);
-
-        if (err is Gst.CoreError.MISSING_PLUGIN) {
-            set_state(READY);
-            unsupported_codec(debug_info);
-            return;
-        }
-
-        warning(@"Error message received from $(msg.src.name): $(err.message)");
-        warning(@"Debugging info: $(debug_info)");
-    }
-
-    void pipeline_eos_cb () {
+    public override void end_of_stream () {
         current_record.progress = -1;
 
         if (repeat == TRACK) {

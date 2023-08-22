@@ -36,6 +36,7 @@ sources = [config_file] + blueprints + resources + files(
   'IdComboRow.vala',
   'History.vala',
   'Playback.vala',
+  'PlaybinProxy.vala',
   'TimeLabels.vala',
   'Title.vala',
   'TrackInfo.vala',
