@@ -33,17 +33,7 @@ public class Playback : Object {
         set { pipeline.volume = Gst.Audio.StreamVolume.convert_volume (CUBIC, LINEAR, value); }
     }
 
-    private Daikhan.Queue _queue = new Daikhan.Queue();
-    public Daikhan.Queue queue {
-        get {
-            return _queue;
-        }
-
-        set {
-            _queue = value;
-            load_track(-1);
-        }
-    }
+    public Daikhan.Queue queue { get; set; default = new Daikhan.Queue(); }
 
     public Daikhan.HistoryRecord? current_record = null;
     public int current_track { get; private set; default = -1; }
