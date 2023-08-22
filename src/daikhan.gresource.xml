@@ -8,6 +8,6 @@
     <file preprocess="xml-stripblanks">shortcuts.ui</file>
     <file preprocess="xml-stripblanks">preferences.ui</file>
     <file preprocess="xml-stripblanks">media-controls.ui</file>
-    <file preprocess="xml-stripblanks">media-controls/volume-button.ui</file>
+    <file preprocess="xml-stripblanks">volume-button.ui</file>
   </gresource>
 </gresources>

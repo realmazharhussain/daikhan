@@ -15,7 +15,7 @@ blp_sources = files('app-window.blp',
                     'video-area.blp',
                     'preferences.blp',
                     'media-controls.blp',
-                    'media-controls/volume-button.blp',
+                    'volume-button.blp',
                     )
 
 blueprints = custom_target('blueprints',
@@ -48,9 +48,9 @@ sources = [config_file] + blueprints + resources + files(
   'Queue.vala',
   'PlayFlags.vala',
   'MediaControls.vala',
-  'media-controls/PlayButton.vala',
-  'media-controls/ProgressBar.vala',
-  'media-controls/VolumeButton.vala',
+  'PlayButton.vala',
+  'ProgressBar.vala',
+  'VolumeButton.vala',
 )
 
 executable(meson.project_name(), sources,
