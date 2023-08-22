@@ -1,4 +1,4 @@
-[GtkTemplate (ui = "/app/app-window.ui")]
+[GtkTemplate (ui = "/app/AppWindow.ui")]
 class Daikhan.AppWindow : Adw.ApplicationWindow {
     [GtkChild] unowned Daikhan.Title title_widget;
     public Daikhan.Playback playback { get; private set; }

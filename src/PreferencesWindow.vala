@@ -1,4 +1,4 @@
-[GtkTemplate (ui = "/app/preferences.ui")]
+[GtkTemplate (ui = "/app/PreferencesWindow.ui")]
 class PreferencesWindow : Adw.PreferencesWindow {
     [GtkChild] unowned IdComboRow dark_mode_combo;
     [GtkChild] unowned IdComboRow seeking_combo;

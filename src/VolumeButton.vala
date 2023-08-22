@@ -1,4 +1,4 @@
-[GtkTemplate (ui = "/app/volume-button.ui")]
+[GtkTemplate (ui = "/app/VolumeButton.ui")]
 public class VolumeButton : Adw.Bin {
     [GtkChild] unowned Gtk.Adjustment adjustment;
     Daikhan.Playback playback;

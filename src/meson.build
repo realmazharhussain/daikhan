@@ -10,12 +10,12 @@ config_file = configure_file(
   configuration: conf_data,
 )
 
-blp_sources = files('app-window.blp',
-                    'shortcuts.blp',
-                    'video-area.blp',
-                    'preferences.blp',
-                    'media-controls.blp',
-                    'volume-button.blp',
+blp_sources = files('AppWindow.blp',
+                    'Shortcuts.blp',
+                    'VideoArea.blp',
+                    'PreferencesWindow.blp',
+                    'MediaControls.blp',
+                    'VolumeButton.blp',
                     )
 
 blueprints = custom_target('blueprints',

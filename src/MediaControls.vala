@@ -1,4 +1,4 @@
-[GtkTemplate (ui = "/app/media-controls.ui")]
+[GtkTemplate (ui = "/app/MediaControls.ui")]
 public class MediaControls : Adw.Bin {
     [GtkChild] unowned Gtk.Button prev_btn;
     [GtkChild] unowned Gtk.Button next_btn;

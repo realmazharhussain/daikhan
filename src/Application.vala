@@ -66,7 +66,7 @@ class Daikhan.Application : Adw.Application {
     Gtk.Window shortcuts_win;
 
     void show_shortcuts_cb() {
-      var builder = new Gtk.Builder.from_resource("/app/shortcuts.ui");
+      var builder = new Gtk.Builder.from_resource("/app/Shortcuts.ui");
       shortcuts_win = (Gtk.Window) builder.get_object("shortcuts_window");
 
       shortcuts_win.transient_for = get_active_window();

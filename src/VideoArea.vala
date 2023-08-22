@@ -15,7 +15,7 @@ class Daikhan.CursorTimeout {
     }
 }
 
-[GtkTemplate (ui = "/app/video-area.ui")]
+[GtkTemplate (ui = "/app/VideoArea.ui")]
 class Daikhan.VideoArea : Adw.Bin {
     [GtkChild] unowned Gtk.Picture video;
     [GtkChild] unowned Gtk.Revealer top_revealer;
