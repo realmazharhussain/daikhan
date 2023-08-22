@@ -92,7 +92,6 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
         settings.bind ("maximized", this, "maximized", DEFAULT);
         settings.bind ("volume", playback, "volume", DEFAULT);
         settings.bind ("repeat", playback, "repeat", DEFAULT);
-        settings.bind ("paused", playback, "paused", DEFAULT);
 
         ActionEntry[] entries = {
             {"seek", seek_cb, "i"},
@@ -246,6 +245,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
         settings.set_strv ("queue", playback.queue.to_uri_array ());
         settings.set_int ("track", playback.current_track);
+        settings.set_boolean ("paused", playback.target_state == PAUSED);
     }
 
     public void restore_state () {
@@ -255,6 +255,10 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
         playback.queue = new Daikhan.Queue.from_uri_array (uri_array);
         playback.load_track (settings.get_int ("track"));
+
+        if (settings.get_boolean ("paused")) {
+            playback.pause ();
+        }
 
         restoring_state = false;
     }

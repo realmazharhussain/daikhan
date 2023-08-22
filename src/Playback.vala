@@ -22,8 +22,6 @@ public class Playback : Object {
 
     public Daikhan.TrackInfo track_info { get; private construct; }
 
-    public bool paused { get; set; default = false; }
-
     public RepeatMode repeat { get; set; default = OFF; }
     public Daikhan.PlayFlags flags { get; set; }
 
@@ -94,6 +92,9 @@ public class Playback : Object {
         }
 
         /* Save information of previous track */
+
+        var desired_state = (target_state == PAUSED) ? Gst.State.PAUSED : Gst.State.PLAYING;
+
         if (current_record != null) {
             history.update(current_record);
         }
@@ -132,7 +133,7 @@ public class Playback : Object {
 
         pipeline["uri"] = file.get_uri();
 
-        if (!set_state(paused ? Gst.State.PAUSED : Gst.State.PLAYING)) {
+        if (!set_state(desired_state)) {
             critical("Cannot load track!");
             return false;
         }
@@ -207,8 +208,6 @@ public class Playback : Object {
     }
 
     public bool play() {
-        paused = false;
-
         if (pipeline.target_state >= Gst.State.PAUSED) {
             return set_state(PLAYING);
         } else if (current_track == -1 && queue.length > 0) {
@@ -218,8 +217,6 @@ public class Playback : Object {
     }
 
     public bool pause() {
-        paused = true;
-
         if (pipeline.target_state == NULL) {
             return false;
         }
