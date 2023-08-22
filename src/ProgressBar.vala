@@ -1,4 +1,4 @@
-public class ProgressBar : Gtk.Scale {
+public class Daikhan.ProgressBar : Gtk.Scale {
     Daikhan.Playback playback;
 
     construct {
