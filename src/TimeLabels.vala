@@ -43,9 +43,9 @@ public class TimeLabel : Gtk.Widget {
         if (time < 0) {
             child.label = "--:--";
         } else  if (hours > 0) {
-            child.label =  "%02ll:%02ll:%02ll".printf(hours, minutes, seconds);
+            child.label =  "%02lli:%02lli:%02lli".printf(hours, minutes, seconds);
         } else {
-            child.label =  "%02ll:%02ll".printf(minutes, seconds);
+            child.label =  "%02lli:%02lli".printf(minutes, seconds);
         }
     }
 }
