@@ -1,4 +1,4 @@
-public enum RepeatMode {
+public enum Daikhan.RepeatMode {
     OFF,
     TRACK,
     QUEUE
@@ -10,7 +10,7 @@ internal unowned Daikhan.Playback? default_playback;
 public class Daikhan.Playback : Daikhan.PlaybinProxy {
     /* Read-Write properties */
     public Daikhan.Queue queue { get; set; default = new Daikhan.Queue(); }
-    public RepeatMode repeat { get; set; default = OFF; }
+    public Daikhan.RepeatMode repeat { get; set; default = OFF; }
 
     /* Read-only properties */
     public Daikhan.History history { get; private construct; }
