@@ -37,6 +37,7 @@ sources = [config_file] + blueprints + resources + files(
   'History.vala',
   'Playback.vala',
   'PlaybinProxy.vala',
+  'RepeatMode.vala',
   'TimeLabels.vala',
   'Title.vala',
   'TrackInfo.vala',

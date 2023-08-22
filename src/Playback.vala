@@ -1,10 +1,3 @@
-public enum Daikhan.RepeatMode {
-    OFF,
-    TRACK,
-    QUEUE
-}
-
-
 internal unowned Daikhan.Playback? default_playback;
 
 public class Daikhan.Playback : Daikhan.PlaybinProxy {
