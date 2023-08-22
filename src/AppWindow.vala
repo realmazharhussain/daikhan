@@ -138,7 +138,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
     uint inhibit_id = 0;
     void state_requested_cb() {
-        if (playback.target_state == PLAYING) {
+        if (playback.pipeline.target_state == PLAYING) {
             inhibit_id = application.inhibit(this, IDLE, "Media is playing");
         } else if (inhibit_id > 0) {
             application.uninhibit(inhibit_id);

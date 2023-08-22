@@ -122,8 +122,6 @@ public class Playback : Object {
         pipeline.notify["volume"].connect(()=> { notify_property("volume"); });
     }
 
-    public Gst.State target_state { get; private set; default = NULL; }
-
     public static Playback get_default() {
         default_playback = default_playback ?? new Playback();
         return default_playback;
@@ -156,7 +154,7 @@ public class Playback : Object {
             return false;
         }
 
-        if (target_state != NULL) {
+        if (pipeline.target_state != NULL) {
             set_state(NULL);
         }
 
@@ -217,7 +215,7 @@ public class Playback : Object {
     }
 
     public bool toggle_playing() {
-        if (target_state == PLAYING) {
+        if (pipeline.target_state == PLAYING) {
             return pause();
         }
 
@@ -227,7 +225,7 @@ public class Playback : Object {
     public bool play() {
         paused = false;
 
-        if (target_state != NULL) {
+        if (pipeline.target_state != NULL) {
             return set_state(PLAYING);
         } else if (prev_queue != null) {
             return open_queue(prev_queue);
@@ -238,7 +236,7 @@ public class Playback : Object {
     public bool pause() {
         paused = true;
 
-        if (target_state == NULL) {
+        if (pipeline.target_state == NULL) {
             return false;
         }
 
@@ -246,7 +244,7 @@ public class Playback : Object {
     }
 
     public void stop() {
-        if (target_state != NULL) {
+        if (pipeline.target_state != NULL) {
             set_state(NULL);
         }
 
@@ -337,7 +335,7 @@ public class Playback : Object {
     }
 
     public bool set_state(Gst.State new_state) {
-        if (target_state == new_state) {
+        if (pipeline.target_state == new_state) {
             return true;
         }
 
@@ -346,7 +344,6 @@ public class Playback : Object {
             return false;
         }
 
-        target_state = new_state;
         state_requested();
         return true;
     }
