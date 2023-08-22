@@ -6,7 +6,7 @@ class StreamMenuBuilder : Object {
     Menu audio_menu;
     Menu subtitle_menu;
     Menu video_menu;
-    Playback playback;
+    Daikhan.Playback playback;
 
     construct {
         menu = new Menu ();
@@ -19,7 +19,7 @@ class StreamMenuBuilder : Object {
         menu.append_submenu (_("Subtitles"), subtitle_menu);
         menu.append_submenu (_("Video"), video_menu);
 
-        playback = Playback.get_default ();
+        playback = Daikhan.Playback.get_default ();
         Signal.connect_swapped (playback.pipeline, "audio-changed", (Callback) update_audio_cb, this);
         Signal.connect_swapped (playback.pipeline, "text-changed", (Callback) update_text_cb, this);
         Signal.connect_swapped (playback.pipeline, "video-changed", (Callback) update_video_cb, this);

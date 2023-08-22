@@ -5,9 +5,9 @@ public enum RepeatMode {
 }
 
 
-internal unowned Playback? default_playback;
+internal unowned Daikhan.Playback? default_playback;
 
-public class Playback : Daikhan.PlaybinProxy {
+public class Daikhan.Playback : Daikhan.PlaybinProxy {
     /* Read-Write properties */
     public Daikhan.Queue queue { get; set; default = new Daikhan.Queue(); }
     public RepeatMode repeat { get; set; default = OFF; }

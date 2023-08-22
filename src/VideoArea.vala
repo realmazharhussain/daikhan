@@ -26,14 +26,14 @@ class Daikhan.VideoArea : Adw.Bin {
     Gtk.EventControllerMotion ctrls_ctrlr;
     Daikhan.CursorTimeout[] timeouts = null;
     Source[] timeout_sources = null;
-    Playback playback;
+    Daikhan.Playback playback;
 
     double cursor_x_cached;
     double cursor_y_cached;
     Gdk.Cursor none_cursor = new Gdk.Cursor.from_name("none", null);
 
     construct {
-        playback = Playback.get_default();
+        playback = Daikhan.Playback.get_default();
 
         video.paintable = playback.paintable;
 

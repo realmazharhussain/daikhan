@@ -1,5 +1,5 @@
 public class ProgressBar : Gtk.Scale {
-    Playback playback;
+    Daikhan.Playback playback;
 
     construct {
         adjustment.lower = 0;
@@ -12,7 +12,7 @@ public class ProgressBar : Gtk.Scale {
         var trough = get_first_child();
         trough.overflow = HIDDEN;
 
-        playback = Playback.get_default();
+        playback = Daikhan.Playback.get_default();
         playback.bind_property("duration", adjustment, "upper", SYNC_CREATE);
         playback.bind_property("progress", adjustment, "value", SYNC_CREATE);
         playback.notify["current-state"].connect(update_sensitivity);

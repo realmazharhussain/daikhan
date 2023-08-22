@@ -1,10 +1,10 @@
 class Daikhan.Title: Adw.Bin {
     public string title { get; set; }
-    Playback playback;
+    Daikhan.Playback playback;
 
     construct {
         child = new Adw.WindowTitle ("", "");
-        playback = Playback.get_default ();
+        playback = Daikhan.Playback.get_default ();
 
         bind_property("title", child, "title", BIDIRECTIONAL);
         playback.notify["filename"].connect(update_title);

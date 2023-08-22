@@ -3,7 +3,7 @@ public class MediaControls : Adw.Bin {
     [GtkChild] unowned Gtk.Button prev_btn;
     [GtkChild] unowned Gtk.Button next_btn;
     [GtkChild] unowned Gtk.MenuButton streams_btn;
-    Playback playback;
+    Daikhan.Playback playback;
 
     static construct {
         typeof(PlayButton).ensure();
@@ -16,7 +16,7 @@ public class MediaControls : Adw.Bin {
     construct {
         set("css-name", "mediacontrols");
 
-        playback = Playback.get_default ();
+        playback = Daikhan.Playback.get_default ();
 
         playback.notify["queue"].connect (notify_queue_cb);
         playback.notify["current-track"].connect (notify_current_track_cb);
