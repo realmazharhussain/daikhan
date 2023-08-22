@@ -192,7 +192,8 @@ class Daikhan.VideoArea : Adw.Bin {
             i++;
         }
 
-        return playback.open(file_array);
+        playback.open(file_array);
+        return true;
     }
 
     void drag_gesture_update_cb(Gtk.GestureDrag gesture,

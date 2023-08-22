@@ -177,9 +177,9 @@ public class Playback : Object {
         return load_track(current_track - 1);
     }
 
-    public bool open(File[] files) {
+    public void open(File[] files) {
         queue = new Daikhan.Queue(files);
-        return load_track(0);
+        load_track(0);
     }
 
     public bool toggle_playing() {
