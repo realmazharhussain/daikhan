@@ -34,6 +34,7 @@ sources = [config_file] + blueprints + resources + files(
   'AppWindow.vala',
   'ContentId.vala',
   'ComboRow.vala',
+  'DurationLabel.vala',
   'History.vala',
   'Playback.vala',
   'PlaybinProxy.vala',
