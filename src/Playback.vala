@@ -28,7 +28,6 @@ public class Playback : Object {
 
     public signal void unsupported_file ();
     public signal void state_requested ();
-    public signal void state_changed ();
 
     [CCode (notify = false)]
     public double volume {
@@ -349,6 +348,7 @@ public class Playback : Object {
     void pipeline_state_changed_message_cb() {
         state_changed();
 
+    public signal void state_changed () {
         if (pipeline.current_state == pipeline.target_state == Gst.State.PLAYING) {
             ensure_progress_tracking ();
         } else {
