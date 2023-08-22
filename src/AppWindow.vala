@@ -149,7 +149,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     void perform_seek (int64 position) {
         if (playback.current_state < Gst.State.PAUSED) {
             ulong handler_id = 0;
-            handler_id = playback.notify["current-state"].connect(()=> {
+            handler_id = playback.state_changed.connect(()=> {
                 if (playback.current_state < Gst.State.PAUSED) {
                     return;
                 }

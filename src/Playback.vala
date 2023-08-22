@@ -168,7 +168,7 @@ public class Playback : Object {
         }
 
         ulong handler_id = 0;
-        handler_id = notify["current-state"].connect(() => {
+        handler_id = state_changed.connect(() => {
             if (current_state == PAUSED) {
                 update_duration ();
                 update_progress ();
