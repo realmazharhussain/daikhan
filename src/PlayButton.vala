@@ -1,4 +1,4 @@
-public class PlayButton : Gtk.Button {
+public class Daikhan.PlayButton : Gtk.Button {
     Daikhan.Playback playback;
 
     construct {

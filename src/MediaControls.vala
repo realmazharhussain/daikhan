@@ -6,7 +6,7 @@ public class Daikhan.MediaControls : Adw.Bin {
     Daikhan.Playback playback;
 
     static construct {
-        typeof(PlayButton).ensure();
+        typeof(Daikhan.PlayButton).ensure();
         typeof(Daikhan.ProgressLabel).ensure();
         typeof(ProgressBar).ensure();
         typeof(Daikhan.DurationLabel).ensure();
