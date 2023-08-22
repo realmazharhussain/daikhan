@@ -9,7 +9,7 @@ public class Daikhan.MediaControls : Adw.Bin {
         typeof(PlayButton).ensure();
         typeof(Daikhan.ProgressLabel).ensure();
         typeof(ProgressBar).ensure();
-        typeof(DurationLabel).ensure();
+        typeof(Daikhan.DurationLabel).ensure();
         typeof(VolumeButton).ensure();
     }
 
