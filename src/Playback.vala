@@ -214,6 +214,14 @@ public class Playback : Object {
     }
 
     public bool toggle_playing() {
+        if (current_track < 0) {
+            if (prev_queue == null || prev_queue.length == 0) {
+                return false;
+            }
+
+            return open_queue (prev_queue);
+        }
+
         if (pipeline.target_state == PLAYING) {
             return pause();
         }
