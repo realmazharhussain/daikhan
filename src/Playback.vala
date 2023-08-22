@@ -74,6 +74,11 @@ public class Playback : Object {
         return default_playback;
     }
 
+    public void open(File[] files) {
+        queue = new Daikhan.Queue(files);
+        load_track(0);
+    }
+
     public bool load_track(int track_index) {
         if (track_index < -1 || track_index >= queue.length) {
             return false;
@@ -177,11 +182,6 @@ public class Playback : Object {
         return load_track(current_track - 1);
     }
 
-    public void open(File[] files) {
-        queue = new Daikhan.Queue(files);
-        load_track(0);
-    }
-
     public bool toggle_playing() {
         if (pipeline.target_state == PLAYING) {
             return pause();
@@ -241,24 +241,6 @@ public class Playback : Object {
 
     }
 
-    TimeoutSource? progress_source;
-
-    void ensure_progress_tracking() {
-        if (progress_source != null && !progress_source.is_destroyed()) {
-            return;
-        }
-
-        if (duration == -1) {
-            update_duration();
-        }
-
-        update_progress();
-
-        progress_source = new TimeoutSource(250);
-        progress_source.set_callback(update_progress);
-        progress_source.attach();
-    }
-
     bool update_duration() {
         int64 duration;
         if (!pipeline.query_duration(TIME, out duration)) {
@@ -280,6 +262,24 @@ public class Playback : Object {
         current_record.progress = progress;
 
         return Source.CONTINUE;
+    }
+
+    TimeoutSource? progress_source;
+
+    void ensure_progress_tracking() {
+        if (progress_source != null && !progress_source.is_destroyed()) {
+            return;
+        }
+
+        if (duration == -1) {
+            update_duration();
+        }
+
+        update_progress();
+
+        progress_source = new TimeoutSource(250);
+        progress_source.set_callback(update_progress);
+        progress_source.attach();
     }
 
     void stop_progress_tracking() {
