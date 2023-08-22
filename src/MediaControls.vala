@@ -35,11 +35,11 @@ public class MediaControls : Adw.Bin {
     }
 
     void notify_queue_cb () {
-        prev_btn.visible = next_btn.visible = (playback.queue != null && playback.queue.length > 1);
+        prev_btn.visible = next_btn.visible = playback.queue.length > 1;
     }
 
     void notify_current_track_cb () {
         prev_btn.sensitive = playback.current_track > 0;
-        next_btn.sensitive = (playback.queue != null && playback.current_track + 1 < playback.queue.length);
+        next_btn.sensitive = playback.current_track + 1 < playback.queue.length;
     }
 }

@@ -239,7 +239,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     }
 
     public void save_state () {
-        if (playback.queue == null || playback.queue.length == 0) {
+        if (playback.current_track < 0) {
             settings.set_strv ("queue", null);
             return;
         }

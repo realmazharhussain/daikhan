@@ -36,18 +36,17 @@ public class Playback : Object {
         set { pipeline.volume = Gst.Audio.StreamVolume.convert_volume (CUBIC, LINEAR, value); }
     }
 
-    public Daikhan.Queue? prev_queue;
-    private Daikhan.Queue? _queue = new Daikhan.Queue();
-    public Daikhan.Queue? queue {
+    private Daikhan.Queue _queue = new Daikhan.Queue();
+    public Daikhan.Queue queue {
         get {
             return _queue;
         }
 
-        set construct {
+        set {
             _queue = value;
             load_track(-1);
 
-            can_play = (prev_queue != null || value != null);
+            can_play = value.length > 0;
         }
     }
 
@@ -89,7 +88,7 @@ public class Playback : Object {
     }
 
     public bool load_track(int track_index) {
-        if (track_index < -1 || (queue != null && track_index >= queue.length)) {
+        if (track_index < -1 || track_index >= queue.length) {
             return false;
         }
 
@@ -170,7 +169,7 @@ public class Playback : Object {
      * This also implements the `queue` repeat mode.
      */
     public bool next() {
-        if (queue != null && current_track + 1 < queue.length) {
+        if (current_track + 1 < queue.length) {
             return load_track(current_track + 1);
         } else if (repeat == QUEUE) {
             return load_track(0);
@@ -181,7 +180,7 @@ public class Playback : Object {
     }
 
     public bool prev() {
-        if (current_track < 1 || queue == null || queue.length == 0) {
+        if (current_track < 1 || queue.length == 0) {
             return false;
         }
 
@@ -203,14 +202,6 @@ public class Playback : Object {
     }
 
     public bool toggle_playing() {
-        if (current_track < 0) {
-            if (prev_queue == null || prev_queue.length == 0) {
-                return false;
-            }
-
-            return open_queue (prev_queue);
-        }
-
         if (pipeline.target_state == PLAYING) {
             return pause();
         }
@@ -221,10 +212,10 @@ public class Playback : Object {
     public bool play() {
         paused = false;
 
-        if (pipeline.target_state != NULL) {
+        if (pipeline.target_state >= Gst.State.PAUSED) {
             return set_state(PLAYING);
-        } else if (prev_queue != null) {
-            return open_queue(prev_queue);
+        } else if (current_track == -1 && queue.length > 0) {
+            return load_track(0);
         }
         return false;
     }
@@ -240,12 +231,7 @@ public class Playback : Object {
     }
 
     public void stop() {
-        set_state(READY);
-
-        if (queue != null) {
-            prev_queue = queue;
-            queue = null;
-        }
+        load_track(-1);
     }
 
     public bool seek(int64 seconds) {
