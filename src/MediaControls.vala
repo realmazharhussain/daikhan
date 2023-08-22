@@ -7,7 +7,7 @@ public class Daikhan.MediaControls : Adw.Bin {
 
     static construct {
         typeof(PlayButton).ensure();
-        typeof(ProgressLabel).ensure();
+        typeof(Daikhan.ProgressLabel).ensure();
         typeof(ProgressBar).ensure();
         typeof(DurationLabel).ensure();
         typeof(VolumeButton).ensure();
