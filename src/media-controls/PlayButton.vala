@@ -11,8 +11,11 @@ public class PlayButton : Gtk.Button {
     }
 
     void update_icon () {
-        var act = playback.pipeline.target_state != PLAYING ? "start" : "pause";
-        icon_name = @"media-playback-$(act)-symbolic";
+        if (playback.pipeline.target_state == PLAYING) {
+            icon_name = "media-playback-pause-symbolic";
+        } else {
+            icon_name = "media-playback-start-symbolic";
+        }
     }
 
     void clicked_cb() {
