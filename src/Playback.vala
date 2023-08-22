@@ -116,7 +116,7 @@ public class Playback : Object {
         pipeline.bus.add_signal_watch();
         pipeline.bus.message["eos"].connect(pipeline_eos_cb);
         pipeline.bus.message["error"].connect(pipeline_error_cb);
-        pipeline.bus.message["async-done"].connect(async_done_cb);
+        pipeline.bus.message["state-changed"].connect(pipeline_state_changed_cb);
 
         pipeline.bind_property("flags", this, "flags", SYNC_CREATE|BIDIRECTIONAL);
         pipeline.notify["volume"].connect(()=> { notify_property("volume"); });
@@ -348,24 +348,13 @@ public class Playback : Object {
             return true;
         }
 
-        var ret = pipeline.set_state(new_state);
-
-        if (ret == FAILURE) {
+        if (pipeline.set_state(new_state) == FAILURE) {
             critical(@"Failed to set pipeline state to $(new_state)!");
             return false;
         }
 
         target_state = new_state;
-
-        if (ret != ASYNC) {
-            current_state = new_state;
-        }
-
         return true;
-    }
-
-    private void async_done_cb () {
-        current_state = pipeline.current_state;
     }
 
     public void decide_on_progress_tracking () {
@@ -377,6 +366,10 @@ public class Playback : Object {
     }
 
     public signal void unsupported_codec (string debug_info);
+
+    void pipeline_state_changed_cb (Gst.Bus bus, Gst.Message msg) {
+        current_state = pipeline.current_state;
+    }
 
     void pipeline_error_cb (Gst.Bus bus, Gst.Message msg) {
         Error err;
