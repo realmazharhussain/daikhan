@@ -17,6 +17,8 @@ public class Playback : Object {
     public string? filename { get; private set; }
     public int64 progress { get; private set; default = -1; }
     public int64 duration { get; private set; default = -1; }
+    public Gst.State target_state { get; private set; default = NULL; }
+    public Gst.State current_state { get; private set; default = NULL; }
 
     public Daikhan.TrackInfo track_info { get; private construct; }
 
@@ -27,7 +29,6 @@ public class Playback : Object {
     public Daikhan.PlayFlags flags { get; set; }
 
     public signal void unsupported_file ();
-    public signal void state_requested ();
 
     [CCode (notify = false)]
     public double volume {
@@ -119,6 +120,9 @@ public class Playback : Object {
 
         pipeline.bind_property("flags", this, "flags", SYNC_CREATE|BIDIRECTIONAL);
         pipeline.notify["volume"].connect(()=> { notify_property("volume"); });
+
+        notify["target-state"].connect(decide_on_progress_tracking);
+        notify["current-state"].connect(decide_on_progress_tracking);
     }
 
     public static Playback get_default() {
@@ -165,7 +169,7 @@ public class Playback : Object {
         }
 
         ulong handler_id = 0;
-        handler_id = state_changed.connect(() => {
+        handler_id = notify["current-state"].connect(() => {
             if (pipeline.current_state == PAUSED) {
                 update_duration ();
                 update_progress ();
@@ -351,20 +355,20 @@ public class Playback : Object {
             return false;
         }
 
-        state_requested();
+        target_state = new_state;
 
         if (ret != ASYNC) {
-            state_changed ();
+            current_state = new_state;
         }
 
         return true;
     }
 
     private void async_done_cb () {
-        state_changed ();
+        current_state = pipeline.current_state;
     }
 
-    public signal void state_changed () {
+    public void decide_on_progress_tracking () {
         if (pipeline.current_state == pipeline.target_state == Gst.State.PLAYING) {
             ensure_progress_tracking ();
         } else {

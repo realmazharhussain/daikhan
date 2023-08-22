@@ -15,7 +15,7 @@ public class ProgressBar : Gtk.Scale {
         playback = Playback.get_default();
         playback.bind_property("duration", adjustment, "upper", SYNC_CREATE);
         playback.bind_property("progress", adjustment, "value", SYNC_CREATE);
-        playback.state_changed.connect(update_sensitivity);
+        playback.notify["current-state"].connect(update_sensitivity);
 
         update_sensitivity ();
         change_value.connect(change_value_cb);

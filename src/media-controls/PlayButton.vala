@@ -4,7 +4,7 @@ public class PlayButton : Gtk.Button {
     construct {
         playback = Playback.get_default();
         playback.bind_property("can_play", this, "sensitive", SYNC_CREATE);
-        playback.state_requested.connect (update_icon);
+        playback.notify["target-state"].connect (update_icon);
 
         update_icon();
         clicked.connect(clicked_cb);
