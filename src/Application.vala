@@ -56,10 +56,10 @@ class Daikhan.Application : Adw.Application {
         }
     }
 
-    PreferencesWindow pref_win;
+    Daikhan.PreferencesWindow pref_win;
 
     void preferences_cb() {
-      pref_win = new PreferencesWindow () { transient_for = get_active_window() };
+      pref_win = new Daikhan.PreferencesWindow () { transient_for = get_active_window() };
       pref_win.present();
     }
 
