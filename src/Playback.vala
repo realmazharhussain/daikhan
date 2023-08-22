@@ -8,35 +8,37 @@ public enum RepeatMode {
 internal unowned Playback? default_playback;
 
 public class Playback : Object {
-    Settings settings;
-
-    public dynamic Gst.Pipeline pipeline { get; private construct; }
-    public dynamic Gdk.Paintable paintable { get; private construct; }
-    public Daikhan.History history { get; private construct; }
-
-    public string? filename { get; private set; }
-    public int64 progress { get; private set; default = -1; }
-    public int64 duration { get; private set; default = -1; }
-    public Gst.State target_state { get; private set; default = NULL; }
-    public Gst.State current_state { get; private set; default = NULL; }
-
-    public Daikhan.TrackInfo track_info { get; private construct; }
-
+    /* Read-Write properties */
+    public Daikhan.Queue queue { get; set; default = new Daikhan.Queue(); }
     public RepeatMode repeat { get; set; default = OFF; }
     public Daikhan.PlayFlags flags { get; set; }
 
-    public signal void unsupported_file ();
+    /* Read-only properties */
+    public dynamic Gst.Pipeline pipeline { get; private construct; }
+    public dynamic Gdk.Paintable paintable { get; private construct; }
+    public Daikhan.History history { get; private construct; }
+    public Daikhan.HistoryRecord? current_record { get; private set; default = null; }
+    public Daikhan.TrackInfo track_info { get; private construct; }
+    public Gst.State target_state { get; private set; default = NULL; }
+    public Gst.State current_state { get; private set; default = NULL; }
+    public int current_track { get; private set; default = -1; }
+    public string? filename { get; private set; }
+    public int64 progress { get; private set; default = -1; }
+    public int64 duration { get; private set; default = -1; }
 
+    /* Forwarded/transformed properties */
     [CCode (notify = false)]
     public double volume {
         get { return Gst.Audio.StreamVolume.convert_volume (LINEAR, CUBIC, pipeline.volume); }
         set { pipeline.volume = Gst.Audio.StreamVolume.convert_volume (CUBIC, LINEAR, value); }
     }
 
-    public Daikhan.Queue queue { get; set; default = new Daikhan.Queue(); }
+    /* Signals */
+    public signal void unsupported_file ();
+    public signal void unsupported_codec (string debug_info);
 
-    public Daikhan.HistoryRecord? current_record { get; private set; default = null; }
-    public int current_track { get; private set; default = -1; }
+    /* Private fields */
+    Settings settings;
 
     construct {
         dynamic var gtksink = Gst.ElementFactory.make("gtk4paintablesink", null);
@@ -319,8 +321,6 @@ public class Playback : Object {
             stop_progress_tracking ();
         }
     }
-
-    public signal void unsupported_codec (string debug_info);
 
     void pipeline_state_changed_cb (Gst.Bus bus, Gst.Message msg) {
         current_state = pipeline.current_state;
