@@ -1,10 +1,3 @@
-public class ProgressLabel : Daikhan.TimeLabel {
-    construct {
-        var playback = Daikhan.Playback.get_default();
-        playback.bind_property("progress", this, "time", SYNC_CREATE);
-    }
-}
-
 public class DurationLabel : Daikhan.TimeLabel {
     construct {
         var playback = Daikhan.Playback.get_default();
