@@ -15,7 +15,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
         title_widget.bind_property ("title", this, "title", SYNC_CREATE);
 
         playback = Playback.get_default();
-        playback.notify["target-state"].connect(notify_playback_state_cb);
+        playback.state_requested.connect(state_requested_cb);
         playback.notify["current-track"].connect(()=> {
             if (playback.current_track < 0) {
                 return;
@@ -137,7 +137,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     }
 
     uint inhibit_id = 0;
-    void notify_playback_state_cb() {
+    void state_requested_cb() {
         if (playback.target_state == PLAYING) {
             inhibit_id = application.inhibit(this, IDLE, "Media is playing");
         } else if (inhibit_id > 0) {

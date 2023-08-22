@@ -27,6 +27,7 @@ public class Playback : Object {
     public Daikhan.PlayFlags flags { get; set; }
 
     public signal void unsupported_file ();
+    public signal void state_requested ();
     public signal void state_changed ();
 
     [CCode (notify = false)]
@@ -346,6 +347,7 @@ public class Playback : Object {
         }
 
         target_state = new_state;
+        state_requested();
         return true;
     }
 
