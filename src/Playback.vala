@@ -45,56 +45,14 @@ public class Playback : Object {
 
         set construct {
             _queue = value;
-            this.current_track = -1;
+            load_track(-1);
 
             can_play = (prev_queue != null || value != null);
         }
     }
 
     public Daikhan.HistoryRecord? current_record = null;
-    private int _current_track = -1;
-    public int current_track {
-        get {
-            return _current_track;
-        }
-
-        private set {
-            if (value == _current_track) {
-                return;
-            }
-
-            if (current_record != null) {
-                history.update(current_record);
-            }
-
-            if (value < 0 || value >= queue.length) {
-                filename = null;
-                current_record = null;
-            } else try {
-                var info = queue[value].query_info("standard::display-name", NONE);
-                filename = info.get_display_name();
-                current_record = new Daikhan.HistoryRecord.with_uri(queue[value].get_uri());
-
-                if (!(AUDIO in flags)) {
-                    current_record.audio_track = -1;
-                }
-                if (!(SUBTITLES in flags)) {
-                    current_record.text_track = -1;
-                }
-                if (!(VIDEO in flags)) {
-                    current_record.video_track = -1;
-                }
-            } catch (Error err) {
-                warning(err.message);
-            }
-
-            progress = -1;
-            duration = -1;
-            track_info.reset();
-
-            _current_track = value;
-        }
-    }
+    public int current_track { get; private set; default = -1; }
 
     construct {
         dynamic var gtksink = Gst.ElementFactory.make("gtk4paintablesink", null);
@@ -130,35 +88,50 @@ public class Playback : Object {
         return default_playback;
     }
 
-    private bool track_exists(int track_index) {
-        if (queue == null) {
-            return false;
-        }
-
-        if (track_index < 0 || track_index >= queue.length) {
-            return false;
-        }
-
-        return true;
-    }
-
     public bool load_track(int track_index) {
-        if (!track_exists(track_index)) {
+        if (track_index < -1 || (queue != null && track_index >= queue.length)) {
             return false;
         }
 
+        if (track_index == current_track) {
+            return true;
+        }
+
+        /* Save information of previous track */
+        if (current_record != null) {
+            history.update(current_record);
+        }
+
+        /* Set current track */
         current_track = track_index;
 
+        /* Clear information */
+        set_state(READY);
+        track_info.reset();
+        current_record = null;
+        filename = null;
+        progress = -1;
+        duration = -1;
+
+        if (current_track == -1) {
+            return true;
+        }
+
+        /* Load track & information */
+
         var file = queue[track_index];
+
+        try {
+            var info = file.query_info("standard::display-name", NONE);
+            filename = info.get_display_name();
+        } catch (Error err) {
+            filename = file.get_basename();
+        }
 
         if (!Daikhan.Utils.is_file_type_supported(file)) {
             set_state(NULL);
             unsupported_file();
             return false;
-        }
-
-        if (pipeline.target_state != NULL) {
-            set_state(NULL);
         }
 
         pipeline["uri"] = file.get_uri();
@@ -176,6 +149,18 @@ public class Playback : Object {
                 SignalHandler.disconnect (this, handler_id);
             }
         });
+
+        current_record = new Daikhan.HistoryRecord.with_uri(file.get_uri());
+
+        if (!(AUDIO in flags)) {
+            current_record.audio_track = -1;
+        }
+        if (!(SUBTITLES in flags)) {
+            current_record.text_track = -1;
+        }
+        if (!(VIDEO in flags)) {
+            current_record.video_track = -1;
+        }
 
         return true;
     }
