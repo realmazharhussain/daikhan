@@ -123,7 +123,6 @@ public class Playback : Object {
         }
 
         if (!Daikhan.Utils.is_file_type_supported(file)) {
-            set_state(NULL);
             unsupported_file();
             return false;
         }
@@ -200,7 +199,7 @@ public class Playback : Object {
     }
 
     public bool pause() {
-        if (pipeline.target_state == NULL) {
+        if (pipeline.target_state < Gst.State.PAUSED) {
             return false;
         }
 
@@ -324,7 +323,7 @@ public class Playback : Object {
         msg.parse_error(out err, out debug_info);
 
         if (err is Gst.CoreError.MISSING_PLUGIN) {
-            set_state(NULL);
+            set_state(READY);
             unsupported_codec(debug_info);
             return;
         }
