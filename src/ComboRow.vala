@@ -3,7 +3,7 @@ class Choice : Object {
     public string label { get; set; }
 }
 
-class IdComboRow : Adw.ComboRow {
+class Daikhan.ComboRow : Adw.ComboRow {
     [CCode (notify = false)]
     public string selected_id {
         get {
