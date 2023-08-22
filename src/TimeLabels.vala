@@ -40,14 +40,12 @@ public class TimeLabel : Gtk.Widget {
         var minutes = total_minutes % 60;
         var seconds = total_seconds % 60;
 
-        var format = "%02" + int64.FORMAT;
-
         if (time < 0) {
             child.label = "--:--";
         } else  if (hours > 0) {
-            child.label =  @"$format:$format:$format".printf(hours, minutes, seconds);
+            child.label =  "%02ll:%02ll:%02ll".printf(hours, minutes, seconds);
         } else {
-            child.label =  @"$format:$format".printf(minutes, seconds);
+            child.label =  "%02ll:%02ll".printf(minutes, seconds);
         }
     }
 }
