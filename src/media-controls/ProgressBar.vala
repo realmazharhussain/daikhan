@@ -22,7 +22,7 @@ public class ProgressBar : Gtk.Scale {
     }
 
     void update_sensitivity () {
-        sensitive = playback.pipeline.current_state != NULL;
+        sensitive = playback.pipeline.current_state >= Gst.State.PAUSED;
     }
 
     double last_progress_change = 0;
