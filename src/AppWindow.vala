@@ -1,20 +1,15 @@
 [GtkTemplate (ui = "/app/AppWindow.ui")]
 class Daikhan.AppWindow : Adw.ApplicationWindow {
-    [GtkChild] unowned Daikhan.Title title_widget;
     public Daikhan.Playback playback { get; private set; }
     public Settings settings { get; private construct; }
     Daikhan.History playback_history;
     bool restoring_state = false;
 
     static construct {
-        typeof(Daikhan.AppMenuButton).ensure();
-        typeof(Daikhan.VideoArea).ensure();
+        typeof(Daikhan.PlayerView).ensure();
     }
 
     construct {
-        add_css_class ("player");
-        title_widget.bind_property ("title", this, "title", SYNC_CREATE);
-
         playback = Daikhan.Playback.get_default();
         playback.notify["target-state"].connect(notify_target_state_cb);
         playback.notify["current-track"].connect(()=> {

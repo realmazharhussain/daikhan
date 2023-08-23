@@ -3,23 +3,8 @@ using Adw 1;
 
 template $DaikhanAppWindow: Adw.ApplicationWindow {
   width-request: 300;
+  title: bind player_view.title;
+  fullscreened: bind player_view.fullscreened bidirectional;
 
-  Box {
-    orientation: vertical;
-
-    Gtk.HeaderBar {
-      visible: bind template.fullscreened inverted;
-      styles ["flat"]
-
-      title-widget: $DaikhanTitle title_widget {};
-
-      [end] $DaikhanAppMenuButton {}
-    }
-
-    $DaikhanVideoArea video_area {}
-
-    $DaikhanMediaControls {
-      visible: bind template.fullscreened inverted;
-    }
-  }
+  $DaikhanPlayerView player_view {}
 }
