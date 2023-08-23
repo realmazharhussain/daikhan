@@ -11,6 +11,7 @@ config_file = configure_file(
 )
 
 blp_sources = files('AppWindow.blp',
+                    'AppMenuButton.blp',
                     'MediaControls.blp',
                     'PreferencesWindow.blp',
                     'Shortcuts.blp',
@@ -32,6 +33,7 @@ sources = [config_file] + blueprints + resources + files(
   'main.vala',
   'ActionDialog.vala',
   'Application.vala',
+  'AppMenuButton.vala',
   'AppWindow.vala',
   'ComboRow.vala',
   'ContentId.vala',

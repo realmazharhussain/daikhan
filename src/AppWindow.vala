@@ -7,6 +7,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     bool restoring_state = false;
 
     static construct {
+        typeof(Daikhan.AppMenuButton).ensure();
         typeof(Daikhan.VideoArea).ensure();
     }
 
