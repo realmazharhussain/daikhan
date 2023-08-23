@@ -96,7 +96,7 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
 
         ulong handler_id = 0;
         handler_id = notify["current-state"].connect(() => {
-            if (current_state == PAUSED) {
+            if (current_state == desired_state) {
                 update_duration ();
                 update_progress ();
                 SignalHandler.disconnect (this, handler_id);
