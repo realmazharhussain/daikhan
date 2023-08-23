@@ -18,6 +18,7 @@ blp_sources = files('AppWindow.blp',
                     'Shortcuts.blp',
                     'VideoArea.blp',
                     'VolumeButton.blp',
+                    'WelcomeView.blp',
                     )
 
 blueprints = custom_target('blueprints',
@@ -58,6 +59,7 @@ sources = [config_file] + blueprints + resources + files(
   'Utils.vala',
   'VideoArea.vala',
   'VolumeButton.vala',
+  'WelcomeView.vala',
 )
 
 executable(meson.project_name(), sources,

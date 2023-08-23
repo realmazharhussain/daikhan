@@ -1,0 +1,20 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DaikhanWelcomeView : Adw.Bin {
+  child: Box {
+    orientation: vertical;
+
+    HeaderBar {
+      styles ["flat"]
+
+      [end] $DaikhanAppMenuButton {}
+    }
+
+    Adw.StatusPage status {
+      icon-name: bind status.root as <ApplicationWindow>.application.application-id;
+      title: _("Daikhan (Early Access)");
+      description: _("Open some files to play");
+    }
+  };
+}

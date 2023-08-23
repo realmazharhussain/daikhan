@@ -6,5 +6,8 @@ template $DaikhanAppWindow: Adw.ApplicationWindow {
   title: bind player_view.title;
   fullscreened: bind player_view.fullscreened bidirectional;
 
-  $DaikhanPlayerView player_view {}
+  Stack stack {
+    $DaikhanWelcomeView welcome_view {}
+    $DaikhanPlayerView player_view {}
+  }
 }

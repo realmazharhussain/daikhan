@@ -1,21 +1,23 @@
 [GtkTemplate (ui = "/app/AppWindow.ui")]
 class Daikhan.AppWindow : Adw.ApplicationWindow {
+    [GtkChild] unowned Gtk.Stack stack;
+    [GtkChild] unowned Daikhan.PlayerView player_view;
+    [GtkChild] unowned Daikhan.WelcomeView welcome_view;
     public Daikhan.Playback playback { get; private set; }
     public Settings settings { get; private construct; }
     Daikhan.History playback_history;
     bool restoring_state = false;
-
-    static construct {
-        typeof(Daikhan.PlayerView).ensure();
-    }
 
     construct {
         playback = Daikhan.Playback.get_default();
         playback.notify["target-state"].connect(notify_target_state_cb);
         playback.notify["current-track"].connect(()=> {
             if (playback.current_track < 0) {
+                stack.visible_child = welcome_view;
                 return;
             }
+
+            stack.visible_child = player_view;
 
             var record = playback_history.find (playback.queue[playback.current_track].get_uri ());
 

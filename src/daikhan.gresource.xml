@@ -11,5 +11,6 @@
     <file preprocess="xml-stripblanks">Shortcuts.ui</file>
     <file preprocess="xml-stripblanks">VideoArea.ui</file>
     <file preprocess="xml-stripblanks">VolumeButton.ui</file>
+    <file preprocess="xml-stripblanks">WelcomeView.ui</file>
   </gresource>
 </gresources>
