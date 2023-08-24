@@ -104,8 +104,8 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
         add_action_entries(entries, this);
 
-	var repeat_act = new PropertyAction ("repeat", playback, "repeat");
-	add_action(repeat_act);
+        var repeat_act = new PropertyAction ("repeat", playback, "repeat");
+        add_action(repeat_act);
 
         notify["application"].connect(()=> {
             if (!(application is Application)) {
