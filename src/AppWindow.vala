@@ -14,7 +14,6 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
         playback.notify["current-track"].connect(()=> {
             if (playback.current_track < 0) {
                 stack.visible_child = welcome_view;
-                unfullscreen ();
                 return;
             }
 
@@ -132,6 +131,18 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
     public void open(File[] files) {
         playback.open(files);
+    }
+
+    unowned Binding _binding;
+
+    [GtkCallback]
+    void on_view_changed () {
+        if (stack.visible_child == player_view) {
+            _binding = player_view.bind_property ("fullscreened", this, "fullscreened", SYNC_CREATE | BIDIRECTIONAL);
+        } else {
+            _binding.unbind ();
+            unfullscreen ();
+        }
     }
 
     uint inhibit_id = 0;
