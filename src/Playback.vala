@@ -42,9 +42,10 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
     public bool load_track(int track_index) {
         if (track_index < -1 || track_index >= queue.length) {
             return false;
-        }
-
-        if (track_index == current_track) {
+        } else if (track_index == current_track == -1) {
+            return true;
+        } else if (track_index >= 0 && queue[track_index].get_uri () == (string) pipeline.current_uri) {
+            current_track = track_index;
             return true;
         }
 
