@@ -45,9 +45,20 @@ class Daikhan.Application : Adw.Application {
         };
 
         add_action_entries (entries, this);
+
         set_accels_for_action ("app.preferences", {"<Ctrl>comma"});
         set_accels_for_action ("app.show_shortcuts", {"<Ctrl>question"});
         set_accels_for_action ("app.quit", {"<Ctrl>q", "q"});
+        set_accels_for_action ("win.toggle_fullscreen", {"f"});
+        set_accels_for_action ("win.play_pause", {"space"});
+        set_accels_for_action ("win.seek(+10)", {"Right", "l"});
+        set_accels_for_action ("win.seek(-10)", {"Left", "h"});
+        set_accels_for_action ("win.seek(+3)", {"<Shift>Right", "<Shift>l"});
+        set_accels_for_action ("win.seek(-3)", {"<Shift>Left", "<Shift>h"});
+        set_accels_for_action ("win.volume_step(+0.05)", {"Up", "k"});
+        set_accels_for_action ("win.volume_step(-0.05)", {"Down", "j"});
+        set_accels_for_action ("win.volume_step(+0.02)", {"<Shift>Up", "<Shift>k"});
+        set_accels_for_action ("win.volume_step(-0.02)", {"<Shift>Down", "<Shift>j"});
 
         try {
             playback_history.load ();

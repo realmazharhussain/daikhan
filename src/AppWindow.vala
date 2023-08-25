@@ -107,23 +107,6 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
         var repeat_act = new PropertyAction ("repeat", playback, "repeat");
         add_action (repeat_act);
-
-        notify["application"].connect (()=> {
-            if (!(application is Application)) {
-                return;
-            }
-
-            application.set_accels_for_action ("win.toggle_fullscreen", {"f"});
-            application.set_accels_for_action ("win.play_pause", {"space"});
-            application.set_accels_for_action ("win.seek(+10)", {"Right", "l"});
-            application.set_accels_for_action ("win.seek(-10)", {"Left", "h"});
-            application.set_accels_for_action ("win.seek(+3)", {"<Shift>Right", "<Shift>l"});
-            application.set_accels_for_action ("win.seek(-3)", {"<Shift>Left", "<Shift>h"});
-            application.set_accels_for_action ("win.volume_step(+0.05)", {"Up", "k"});
-            application.set_accels_for_action ("win.volume_step(-0.05)", {"Down", "j"});
-            application.set_accels_for_action ("win.volume_step(+0.02)", {"<Shift>Up", "<Shift>k"});
-            application.set_accels_for_action ("win.volume_step(-0.02)", {"<Shift>Down", "<Shift>j"});
-        });
     }
 
     public AppWindow (Gtk.Application app) {
