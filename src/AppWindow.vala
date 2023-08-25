@@ -14,6 +14,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
         playback.notify["current-track"].connect(()=> {
             if (playback.current_track < 0) {
                 stack.visible_child = welcome_view;
+                unfullscreen ();
                 return;
             }
 
@@ -217,7 +218,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     }
 
     void toggle_fullscreen_cb () {
-        fullscreened = !fullscreened;
+        fullscreened = (stack.visible_child == welcome_view) ? false : !fullscreened;
     }
 
     void about_cb () {
