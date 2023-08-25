@@ -7,6 +7,8 @@ template $DaikhanAppWindow: Adw.ApplicationWindow {
   fullscreened: bind player_view.fullscreened bidirectional;
 
   Stack stack {
+    transition-type: crossfade;
+
     $DaikhanWelcomeView welcome_view {}
     $DaikhanPlayerView player_view {}
   }
