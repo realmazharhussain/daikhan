@@ -11,9 +11,6 @@ class Daikhan.Application : Adw.Application {
 
         playback_history = Daikhan.History.get_default ();
         settings = new Settings (Conf.APP_ID);
-
-        var style_mgr = Adw.StyleManager.get_default ();
-        settings.bind ("color-scheme", style_mgr, "color-scheme", DEFAULT);
     }
 
     Daikhan.AppWindow get_main_window () {
@@ -61,6 +58,9 @@ class Daikhan.Application : Adw.Application {
         set_accels_for_action ("win.volume_step(-0.05)", {"Down", "j"});
         set_accels_for_action ("win.volume_step(+0.02)", {"<Shift>Up", "<Shift>k"});
         set_accels_for_action ("win.volume_step(-0.02)", {"<Shift>Down", "<Shift>j"});
+
+        var style_mgr = Adw.StyleManager.get_default ();
+        settings.bind ("color-scheme", style_mgr, "color-scheme", DEFAULT);
 
         try {
             playback_history.load ();
