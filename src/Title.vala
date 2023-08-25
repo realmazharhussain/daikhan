@@ -19,15 +19,19 @@ class Daikhan.Title: Adw.Bin {
             return;
         }
 
-        child["subtitle"] = playback.filename;
-        title = playback.track_info.title;
+        var title_builder = new StringBuilder (playback.track_info.title);
 
         if (playback.track_info.album.length > 0) {
-            title += " – " + playback.track_info.album;
+            title_builder.append(" – ");
+            title_builder.append(playback.track_info.album);
         }
 
         if (playback.track_info.artist.length > 0) {
-            title += " – " + playback.track_info.artist;
+            title_builder.append(" – ");
+            title_builder.append(playback.track_info.artist);
         }
+
+        title = title_builder.str;
+        child["subtitle"] = playback.filename;
     }
 }
