@@ -13,7 +13,7 @@ class Daikhan.Title: Adw.Bin {
     }
 
     void update_title() {
-        if (playback.track_info.title.length == 0) {
+        if (playback.track_info.title == "") {
             title = playback.filename ?? _("Daikhan (Early Access)");
             child["subtitle"] = null;
             return;
@@ -21,12 +21,12 @@ class Daikhan.Title: Adw.Bin {
 
         var title_builder = new StringBuilder (playback.track_info.title);
 
-        if (playback.track_info.album.length > 0) {
+        if (playback.track_info.album != "") {
             title_builder.append(" – ");
             title_builder.append(playback.track_info.album);
         }
 
-        if (playback.track_info.artist.length > 0) {
+        if (playback.track_info.artist != "") {
             title_builder.append(" – ");
             title_builder.append(playback.track_info.artist);
         }
