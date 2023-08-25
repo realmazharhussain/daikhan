@@ -2,7 +2,7 @@ internal unowned Daikhan.Playback? default_playback;
 
 public class Daikhan.Playback : Daikhan.PlaybinProxy {
     /* Read-Write properties */
-    public Daikhan.Queue queue { get; set; default = new Daikhan.Queue(); }
+    public Daikhan.Queue queue { get; set; default = new Daikhan.Queue (); }
     public Daikhan.RepeatMode repeat { get; set; default = OFF; }
 
     /* Read-only properties */
@@ -21,25 +21,25 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
     Settings settings;
 
     construct {
-        track_info = new Daikhan.TrackInfo(pipeline);
-        settings = new Settings(Conf.APP_ID);
-        history = Daikhan.History.get_default();
+        track_info = new Daikhan.TrackInfo (pipeline);
+        settings = new Settings (Conf.APP_ID);
+        history = Daikhan.History.get_default ();
 
-        notify["target-state"].connect(decide_on_progress_tracking);
-        notify["current-state"].connect(decide_on_progress_tracking);
+        notify["target-state"].connect (decide_on_progress_tracking);
+        notify["current-state"].connect (decide_on_progress_tracking);
     }
 
-    public static Playback get_default() {
-        default_playback = default_playback ?? new Playback();
+    public static Playback get_default () {
+        default_playback = default_playback ?? new Playback ();
         return default_playback;
     }
 
-    public void open(File[] files) {
-        queue = new Daikhan.Queue(files);
-        load_track(0);
+    public void open (File[] files) {
+        queue = new Daikhan.Queue (files);
+        load_track (0);
     }
 
-    public bool load_track(int track_index) {
+    public bool load_track (int track_index) {
         if (track_index < -1 || track_index >= queue.length) {
             return false;
         } else if (track_index == current_track == -1) {
@@ -54,15 +54,15 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
         var desired_state = (target_state == PAUSED) ? Gst.State.PAUSED : Gst.State.PLAYING;
 
         if (current_record != null) {
-            history.update(current_record);
+            history.update (current_record);
         }
 
         /* Set current track */
         current_track = track_index;
 
         /* Clear information */
-        set_state(READY);
-        track_info.reset();
+        set_state (READY);
+        track_info.reset ();
         current_record = null;
         filename = null;
         progress = -1;
@@ -77,26 +77,26 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
         var file = queue[track_index];
 
         try {
-            var info = file.query_info("standard::display-name", NONE);
-            filename = info.get_display_name();
+            var info = file.query_info ("standard::display-name", NONE);
+            filename = info.get_display_name ();
         } catch (Error err) {
-            filename = file.get_basename();
+            filename = file.get_basename ();
         }
 
-        if (!Daikhan.Utils.is_file_type_supported(file)) {
-            unsupported_file();
+        if (!Daikhan.Utils.is_file_type_supported (file)) {
+            unsupported_file ();
             return false;
         }
 
-        pipeline["uri"] = file.get_uri();
+        pipeline["uri"] = file.get_uri ();
 
-        if (!set_state(desired_state)) {
-            critical("Cannot load track!");
+        if (!set_state (desired_state)) {
+            critical ("Cannot load track!");
             return false;
         }
 
         ulong handler_id = 0;
-        handler_id = notify["current-state"].connect(() => {
+        handler_id = notify["current-state"].connect (() => {
             if (current_state == desired_state) {
                 update_duration ();
                 update_progress ();
@@ -104,7 +104,7 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
             }
         });
 
-        current_record = new Daikhan.HistoryRecord.with_uri(file.get_uri());
+        current_record = new Daikhan.HistoryRecord.with_uri (file.get_uri ());
 
         if (!(AUDIO in flags)) {
             current_record.audio_track = -1;
@@ -123,61 +123,61 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
      * there is no track is expected to be played next, it stops playback.
      * This also implements the `queue` repeat mode.
      */
-    public bool next() {
+    public bool next () {
         if (current_track + 1 < queue.length) {
-            return load_track(current_track + 1);
+            return load_track (current_track + 1);
         } else if (repeat == QUEUE) {
-            return load_track(0);
+            return load_track (0);
         } else {
-            stop();
+            stop ();
             return false;
         }
     }
 
-    public bool prev() {
+    public bool prev () {
         if (current_track < 1 || queue.length == 0) {
             return false;
         }
 
-        return load_track(current_track - 1);
+        return load_track (current_track - 1);
     }
 
-    public bool toggle_playing() {
+    public bool toggle_playing () {
         if (target_state == PLAYING) {
-            return pause();
+            return pause ();
         }
 
-        return play();
+        return play ();
     }
 
-    public bool play() {
+    public bool play () {
         if (target_state >= Gst.State.PAUSED) {
-            return set_state(PLAYING);
+            return set_state (PLAYING);
         } else if (current_track == -1 && queue.length > 0) {
-            return load_track(0);
+            return load_track (0);
         }
         return false;
     }
 
-    public bool pause() {
+    public bool pause () {
         if (target_state < Gst.State.PAUSED) {
             return false;
         }
 
-        return set_state(PAUSED);
+        return set_state (PAUSED);
     }
 
-    public void stop() {
-        load_track(-1);
+    public void stop () {
+        load_track (-1);
     }
 
-    public bool seek(int64 seconds) {
+    public bool seek (int64 seconds) {
         var seek_pos = progress + (seconds * Gst.SECOND);
-        return seek_absolute(seek_pos);
+        return seek_absolute (seek_pos);
     }
 
-    public bool seek_absolute(int64 seek_pos) {
-        var seeking_method = settings.get_string("seeking-method");
+    public bool seek_absolute (int64 seek_pos) {
+        var seeking_method = settings.get_string ("seeking-method");
 
         Gst.SeekFlags seek_flags = FLUSH;
         if (seeking_method == "fast") {
@@ -192,7 +192,7 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
             seek_pos = duration;
         }
 
-        if (pipeline.seek_simple(TIME, seek_flags, seek_pos)) {
+        if (pipeline.seek_simple (TIME, seek_flags, seek_pos)) {
             progress = seek_pos;
             return true;
         }
@@ -201,9 +201,9 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
 
     }
 
-    bool update_duration() {
+    bool update_duration () {
         int64 duration;
-        if (!pipeline.query_duration(TIME, out duration)) {
+        if (!pipeline.query_duration (TIME, out duration)) {
             return false;
         }
 
@@ -211,10 +211,10 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
         return true;
     }
 
-    bool update_progress() {
+    bool update_progress () {
         int64 progress;
-        if (!pipeline.query_position(TIME, out progress)) {
-            warning("Failed to query playback position");
+        if (!pipeline.query_position (TIME, out progress)) {
+            warning ("Failed to query playback position");
             return Source.REMOVE;
         }
 
@@ -226,29 +226,29 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
 
     TimeoutSource? progress_source;
 
-    void ensure_progress_tracking() {
-        if (progress_source != null && !progress_source.is_destroyed()) {
+    void ensure_progress_tracking () {
+        if (progress_source != null && !progress_source.is_destroyed ()) {
             return;
         }
 
         if (duration == -1) {
-            update_duration();
+            update_duration ();
         }
 
-        update_progress();
+        update_progress ();
 
-        progress_source = new TimeoutSource(250);
-        progress_source.set_callback(update_progress);
-        progress_source.attach();
+        progress_source = new TimeoutSource (250);
+        progress_source.set_callback (update_progress);
+        progress_source.attach ();
     }
 
-    void stop_progress_tracking() {
-        if (progress_source == null || progress_source.is_destroyed()) {
+    void stop_progress_tracking () {
+        if (progress_source == null || progress_source.is_destroyed ()) {
             return;
         }
 
-        var source_id = progress_source.get_id();
-        Source.remove(source_id);
+        var source_id = progress_source.get_id ();
+        Source.remove (source_id);
     }
 
     public void decide_on_progress_tracking () {
@@ -263,13 +263,13 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
         current_record.progress = -1;
 
         if (repeat == TRACK) {
-            seek_absolute(0);
+            seek_absolute (0);
         } else {
-            next();
+            next ();
         }
     }
 
-    ~Playback() {
-        stop();
+    ~Playback () {
+        stop ();
     }
 }

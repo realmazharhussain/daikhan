@@ -2,13 +2,13 @@ public class Daikhan.PlayButton : Gtk.Button {
     Daikhan.Playback playback;
 
     construct {
-        playback = Daikhan.Playback.get_default();
+        playback = Daikhan.Playback.get_default ();
         playback.notify["target-state"].connect (update_icon);
         playback.notify["queue"].connect (update_sensitivity);
 
-        update_icon();
+        update_icon ();
         update_sensitivity ();
-        clicked.connect(clicked_cb);
+        clicked.connect (clicked_cb);
     }
 
     void update_icon () {
@@ -23,7 +23,7 @@ public class Daikhan.PlayButton : Gtk.Button {
         sensitive = playback.queue.length > 0;
     }
 
-    void clicked_cb() {
-        playback.toggle_playing();
+    void clicked_cb () {
+        playback.toggle_playing ();
     }
 }

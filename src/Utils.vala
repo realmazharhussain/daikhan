@@ -8,6 +8,6 @@ namespace Daikhan.Utils {
             return false;
         }
 
-        return mimetype.has_prefix("video/") || mimetype.has_prefix("audio/");
+        return mimetype.has_prefix ("video/") || mimetype.has_prefix ("audio/");
     }
 }

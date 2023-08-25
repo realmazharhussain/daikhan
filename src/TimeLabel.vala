@@ -7,19 +7,19 @@ public class Daikhan.TimeLabel : Gtk.Widget {
     }
 
     construct {
-        set("css-name", "timelabel");
+        set ("css-name", "timelabel");
 
         child = new Gtk.Label (null);
         child.set_parent (this);
 
-        notify["time"].connect(update_label);
+        notify["time"].connect (update_label);
     }
 
-    ~TimeLabel() {
-        child.unparent();
+    ~TimeLabel () {
+        child.unparent ();
     }
 
-    void update_label() {
+    void update_label () {
         var total_seconds = time / Gst.SECOND;
         var total_minutes = total_seconds / 60;
         var hours = total_minutes / 60;
@@ -28,10 +28,10 @@ public class Daikhan.TimeLabel : Gtk.Widget {
 
         if (time < 0) {
             child.label = "--:--";
-        } else  if (hours > 0) {
-            child.label =  "%02lli:%02lli:%02lli".printf(hours, minutes, seconds);
+        } else if (hours > 0) {
+            child.label = "%02lli:%02lli:%02lli".printf (hours, minutes, seconds);
         } else {
-            child.label =  "%02lli:%02lli".printf(minutes, seconds);
+            child.label = "%02lli:%02lli".printf (minutes, seconds);
         }
     }
 }

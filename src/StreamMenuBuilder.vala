@@ -37,7 +37,7 @@ class Daikhan.StreamMenuBuilder : Object {
     }
 
     public static Menu get_menu () {
-        return get_default().menu;
+        return get_default ().menu;
     }
 
     void update_audio_cb () {
@@ -112,7 +112,7 @@ class Daikhan.StreamMenuBuilder : Object {
 
         int total_streams;
         Object pipeline = playback.pipeline;
-        pipeline.get (@"n-video", out total_streams);
+        pipeline.get ("n-video", out total_streams);
 
         if (total_streams == 0) {
             return;
@@ -124,7 +124,7 @@ class Daikhan.StreamMenuBuilder : Object {
             video_menu.append (_("On"), "win.video(0)");
         } else for (int stream = 0; stream < total_streams; stream++) {
             // Translators: Keep %i as is. It will be replaced by the track number for each track.
-            video_menu.append (_("Track %i").printf(stream + 1), @"win.video($stream)");
+            video_menu.append (_("Track %i").printf (stream + 1), @"win.video($stream)");
         }
     }
 }

@@ -6,32 +6,32 @@ public class Daikhan.MediaControls : Adw.Bin {
     Daikhan.Playback playback;
 
     static construct {
-        typeof(Daikhan.PlayButton).ensure();
-        typeof(Daikhan.ProgressLabel).ensure();
-        typeof(Daikhan.ProgressBar).ensure();
-        typeof(Daikhan.DurationLabel).ensure();
-        typeof(Daikhan.VolumeButton).ensure();
+        typeof (Daikhan.PlayButton).ensure ();
+        typeof (Daikhan.ProgressLabel).ensure ();
+        typeof (Daikhan.ProgressBar).ensure ();
+        typeof (Daikhan.DurationLabel).ensure ();
+        typeof (Daikhan.VolumeButton).ensure ();
     }
 
     construct {
-        set("css-name", "mediacontrols");
+        set ("css-name", "mediacontrols");
 
         playback = Daikhan.Playback.get_default ();
 
         playback.notify["queue"].connect (notify_queue_cb);
         playback.notify["current-track"].connect (notify_current_track_cb);
 
-        streams_btn.menu_model = Daikhan.StreamMenuBuilder.get_menu();
+        streams_btn.menu_model = Daikhan.StreamMenuBuilder.get_menu ();
     }
 
     [GtkCallback]
-    void prev_cb() {
-        playback.prev();
+    void prev_cb () {
+        playback.prev ();
     }
 
     [GtkCallback]
-    void next_cb() {
-        playback.next();
+    void next_cb () {
+        playback.next ();
     }
 
     void notify_queue_cb () {

@@ -10,7 +10,7 @@ public class Daikhan.TrackInfo : Object {
     }
 
     public TrackInfo (Gst.Pipeline pipeline) {
-        Object(pipeline: pipeline);
+        Object (pipeline: pipeline);
     }
 
     public override void constructed () {

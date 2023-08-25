@@ -11,7 +11,7 @@ class Daikhan.ComboRow : Adw.ComboRow {
         }
 
         set {
-            selected = find(value);
+            selected = find (value);
         }
     }
 
@@ -19,12 +19,12 @@ class Daikhan.ComboRow : Adw.ComboRow {
         model = new ListStore (typeof (Choice));
         expression = new Gtk.PropertyExpression (typeof (Choice), null, "label");
 
-        notify["selected-item"].connect(() => { notify_property("selected-id"); });
+        notify["selected-item"].connect (() => { notify_property ("selected-id"); });
     }
 
     public uint find (string id) {
-        for (var i = 0; i < model.get_n_items(); i++) {
-            if (((Choice) model.get_item(i)).id == id) {
+        for (var i = 0; i < model.get_n_items (); i++) {
+            if (((Choice) model.get_item (i)).id == id) {
                 return i;
             }
         }
@@ -34,7 +34,7 @@ class Daikhan.ComboRow : Adw.ComboRow {
 
     public void append (string id, string label) {
         var model = (ListStore) this.model;
-        var new_choice  = new Choice () { id = id, label = label };
+        var new_choice = new Choice () { id = id, label = label };
         model.append (new_choice);
     }
 }

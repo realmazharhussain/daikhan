@@ -16,35 +16,35 @@ public class Daikhan.PlaybinProxy : Object {
     public signal void unsupported_codec (string debug_info);
 
     construct {
-        dynamic var gtksink = Gst.ElementFactory.make("gtk4paintablesink", null);
+        dynamic var gtksink = Gst.ElementFactory.make ("gtk4paintablesink", null);
 
-        pipeline = Gst.ElementFactory.make("playbin", null) as Gst.Pipeline;
+        pipeline = Gst.ElementFactory.make ("playbin", null) as Gst.Pipeline;
         paintable = gtksink.paintable;
 
         if (paintable.gl_context != null) {
-            dynamic var glsink = Gst.ElementFactory.make("glsinkbin", null);
+            dynamic var glsink = Gst.ElementFactory.make ("glsinkbin", null);
             glsink.sink = gtksink;
             pipeline.video_sink = glsink;
         } else {
             pipeline.video_sink = gtksink;
         }
 
-        pipeline.bus.add_signal_watch();
-        pipeline.bus.message["eos"].connect(pipeline_eos_cb);
-        pipeline.bus.message["error"].connect(pipeline_error_cb);
-        pipeline.bus.message["state-changed"].connect(pipeline_state_changed_cb);
+        pipeline.bus.add_signal_watch ();
+        pipeline.bus.message["eos"].connect (pipeline_eos_cb);
+        pipeline.bus.message["error"].connect (pipeline_error_cb);
+        pipeline.bus.message["state-changed"].connect (pipeline_state_changed_cb);
 
-        pipeline.bind_property("flags", this, "flags", SYNC_CREATE|BIDIRECTIONAL);
-        pipeline.notify["volume"].connect(()=> { notify_property("volume"); });
+        pipeline.bind_property ("flags", this, "flags", SYNC_CREATE | BIDIRECTIONAL);
+        pipeline.notify["volume"].connect (() => { notify_property ("volume"); });
     }
 
-    public bool set_state(Gst.State new_state) {
+    public bool set_state (Gst.State new_state) {
         if (pipeline.target_state == new_state) {
             return true;
         }
 
-        if (pipeline.set_state(new_state) == FAILURE) {
-            critical(@"Failed to set pipeline state to $(new_state)!");
+        if (pipeline.set_state (new_state) == FAILURE) {
+            critical (@"Failed to set pipeline state to $(new_state)!");
             return false;
         }
 
@@ -60,16 +60,16 @@ public class Daikhan.PlaybinProxy : Object {
         Error err;
         string debug_info;
 
-        msg.parse_error(out err, out debug_info);
+        msg.parse_error (out err, out debug_info);
 
         if (err is Gst.CoreError.MISSING_PLUGIN) {
-            set_state(READY);
-            unsupported_codec(debug_info);
+            set_state (READY);
+            unsupported_codec (debug_info);
             return;
         }
 
-        warning(@"Error message received from $(msg.src.name): $(err.message)");
-        warning(@"Debugging info: $(debug_info)");
+        warning (@"Error message received from $(msg.src.name): $(err.message)");
+        warning (@"Debugging info: $(debug_info)");
     }
 
     void pipeline_eos_cb () {

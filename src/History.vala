@@ -25,7 +25,7 @@ public class Daikhan.History {
     SList<Daikhan.HistoryRecord> data;
     File file;
 
-    private History() {
+    private History () {
         var statedir = Environment.get_user_state_dir () + "/daikhan";
         var path = statedir + "/history";
         file = File.new_for_path (path);
@@ -38,7 +38,7 @@ public class Daikhan.History {
 
     public void load () throws Error {
         const int LENGTH_OF_HASH_STRING = 32;
-        data = new SList<Daikhan.HistoryRecord>();
+        data = new SList<Daikhan.HistoryRecord> ();
         DataInputStream istream;
 
         try {
@@ -57,9 +57,9 @@ public class Daikhan.History {
             }
 
             var parts = line.split (",");
-            var record = new Daikhan.HistoryRecord();
+            var record = new Daikhan.HistoryRecord ();
 
-            var id_parts =  parts[0].split (":");
+            var id_parts = parts[0].split (":");
             if (id_parts[0].length == LENGTH_OF_HASH_STRING) {
                 record.uri_hash = id_parts[0];
                 record.content_id = id_parts[1];

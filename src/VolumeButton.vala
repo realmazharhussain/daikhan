@@ -4,7 +4,7 @@ public class Daikhan.VolumeButton : Adw.Bin {
     Daikhan.Playback playback;
 
     construct {
-        playback = Daikhan.Playback.get_default();
-        playback.bind_property("volume", adjustment, "value", SYNC_CREATE|BIDIRECTIONAL);
+        playback = Daikhan.Playback.get_default ();
+        playback.bind_property ("volume", adjustment, "value", SYNC_CREATE | BIDIRECTIONAL);
     }
 }

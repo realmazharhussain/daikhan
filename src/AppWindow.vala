@@ -9,9 +9,9 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     bool restoring_state = false;
 
     construct {
-        playback = Daikhan.Playback.get_default();
-        playback.notify["target-state"].connect(notify_target_state_cb);
-        playback.notify["current-track"].connect(()=> {
+        playback = Daikhan.Playback.get_default ();
+        playback.notify["target-state"].connect (notify_target_state_cb);
+        playback.notify["current-track"].connect (()=> {
             if (playback.current_track < 0) {
                 stack.visible_child = welcome_view;
                 return;
@@ -25,9 +25,9 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
                 return;
             }
 
-            activate_action ("audio", new Variant("i", record.audio_track));
-            activate_action ("text", new Variant("i", record.text_track));
-            activate_action ("video", new Variant("i", record.video_track));
+            activate_action ("audio", new Variant ("i", record.audio_track));
+            activate_action ("text", new Variant ("i", record.text_track));
+            activate_action ("video", new Variant ("i", record.video_track));
 
             if (record.progress <= 0) {
                 return;
@@ -46,7 +46,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
             var dialog = new Adw.MessageDialog (this, _("Unsupported File Type"), null);
             dialog.body = _("The file '%s' is not an audio or a video file.").printf (playback.filename);
             dialog.add_response ("ok", _("OK"));
-            dialog.response.connect (() => { playback.next(); });
+            dialog.response.connect (() => { playback.next (); });
             dialog.present ();
         });
 
@@ -56,7 +56,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
                   + "\n"
                   + "If this is unexpected, please, file a bug report with the following"
                   + " debug information.\n"
-                  ).printf(playback.filename)
+                  ).printf (playback.filename)
             );
 
             var debug_view = new Gtk.TextView () {
@@ -74,7 +74,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
             dialog.add_response ("report-bug", _("Report Bug"));
             dialog.add_response ("ok", _("OK"));
             dialog.default_response = "ok";
-            dialog.response.connect (() => { playback.next(); });
+            dialog.response.connect (() => { playback.next (); });
             dialog.response["report-bug"].connect (() => {
                 new Gtk.UriLauncher ("https://gitlab.com/daikhan/daikhan/-/issues")
                     .launch.begin (this, null);
@@ -103,35 +103,35 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
             {"about", about_cb},
         };
 
-        add_action_entries(entries, this);
+        add_action_entries (entries, this);
 
         var repeat_act = new PropertyAction ("repeat", playback, "repeat");
-        add_action(repeat_act);
+        add_action (repeat_act);
 
-        notify["application"].connect(()=> {
+        notify["application"].connect (()=> {
             if (!(application is Application)) {
                 return;
             }
 
-            application.set_accels_for_action("win.toggle_fullscreen", {"f"});
-            application.set_accels_for_action("win.play_pause", {"space"});
-            application.set_accels_for_action("win.seek(+10)", {"Right", "l"});
-            application.set_accels_for_action("win.seek(-10)", {"Left", "h"});
-            application.set_accels_for_action("win.seek(+3)", {"<Shift>Right", "<Shift>l"});
-            application.set_accels_for_action("win.seek(-3)", {"<Shift>Left", "<Shift>h"});
-            application.set_accels_for_action("win.volume_step(+0.05)", {"Up", "k"});
-            application.set_accels_for_action("win.volume_step(-0.05)", {"Down", "j"});
-            application.set_accels_for_action("win.volume_step(+0.02)", {"<Shift>Up", "<Shift>k"});
-            application.set_accels_for_action("win.volume_step(-0.02)", {"<Shift>Down", "<Shift>j"});
+            application.set_accels_for_action ("win.toggle_fullscreen", {"f"});
+            application.set_accels_for_action ("win.play_pause", {"space"});
+            application.set_accels_for_action ("win.seek(+10)", {"Right", "l"});
+            application.set_accels_for_action ("win.seek(-10)", {"Left", "h"});
+            application.set_accels_for_action ("win.seek(+3)", {"<Shift>Right", "<Shift>l"});
+            application.set_accels_for_action ("win.seek(-3)", {"<Shift>Left", "<Shift>h"});
+            application.set_accels_for_action ("win.volume_step(+0.05)", {"Up", "k"});
+            application.set_accels_for_action ("win.volume_step(-0.05)", {"Down", "j"});
+            application.set_accels_for_action ("win.volume_step(+0.02)", {"<Shift>Up", "<Shift>k"});
+            application.set_accels_for_action ("win.volume_step(-0.02)", {"<Shift>Down", "<Shift>j"});
         });
     }
 
     public AppWindow (Gtk.Application app) {
-        Object(application: app);
+        Object (application: app);
     }
 
-    public void open(File[] files) {
-        playback.open(files);
+    public void open (File[] files) {
+        playback.open (files);
     }
 
     unowned Binding _binding;
@@ -147,11 +147,11 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     }
 
     uint inhibit_id = 0;
-    void notify_target_state_cb() {
+    void notify_target_state_cb () {
         if (playback.target_state == PLAYING) {
-            inhibit_id = application.inhibit(this, IDLE, "Media is playing");
+            inhibit_id = application.inhibit (this, IDLE, "Media is playing");
         } else if (inhibit_id > 0) {
-            application.uninhibit(inhibit_id);
+            application.uninhibit (inhibit_id);
             inhibit_id = 0;
         }
     }
@@ -159,7 +159,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     void perform_seek (int64 position) {
         if (playback.current_state < Gst.State.PAUSED) {
             ulong handler_id = 0;
-            handler_id = playback.notify["current-state"].connect(()=> {
+            handler_id = playback.notify["current-state"].connect (()=> {
                 if (playback.current_state < Gst.State.PAUSED) {
                     return;
                 }
@@ -173,11 +173,11 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     }
 
     void seek_cb (SimpleAction action, Variant? step) {
-        playback.seek(step.get_int32());
+        playback.seek (step.get_int32 ());
     }
 
     void volume_step_cb (SimpleAction action, Variant? step) {
-        playback.volume += step.get_double();
+        playback.volume += step.get_double ();
     }
 
     void select_audio_cb (SimpleAction action, Variant? stream_index) {
@@ -192,7 +192,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
             playback.current_record.audio_track = stream_index.get_int32 ();
         }
 
-        action.set_state(stream_index);
+        action.set_state (stream_index);
     }
 
     void select_text_cb (SimpleAction action, Variant? stream_index) {
@@ -207,7 +207,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
             playback.current_record.text_track = stream_index.get_int32 ();
         }
 
-        action.set_state(stream_index);
+        action.set_state (stream_index);
     }
 
     void select_video_cb (SimpleAction action, Variant? stream_index) {
@@ -222,11 +222,11 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
             playback.current_record.video_track = stream_index.get_int32 ();
         }
 
-        action.set_state(stream_index);
+        action.set_state (stream_index);
     }
 
     void play_pause_cb () {
-        playback.toggle_playing();
+        playback.toggle_playing ();
     }
 
     void toggle_fullscreen_cb () {
@@ -245,7 +245,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
             version = "pre-alpha"
         };
 
-        win.present();
+        win.present ();
     }
 
     public void save_state () {
