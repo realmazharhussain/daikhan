@@ -1,12 +1,11 @@
 class Daikhan.Title: Adw.Bin {
-    public string title { get; set; }
+    public string title { get; private set; }
     Daikhan.Playback playback;
 
     construct {
         child = new Adw.WindowTitle ("", "");
         playback = Daikhan.Playback.get_default ();
 
-        bind_property("title", child, "title", BIDIRECTIONAL);
         playback.notify["filename"].connect(update_title);
         playback.track_info.notify["title"].connect(update_title);
         update_title();
@@ -15,6 +14,7 @@ class Daikhan.Title: Adw.Bin {
     void update_title() {
         if (playback.track_info.title == "") {
             title = playback.filename ?? _("Daikhan (Early Access)");
+            child["title"] = playback.filename ?? "";
             child["subtitle"] = "";
             return;
         }
@@ -32,6 +32,7 @@ class Daikhan.Title: Adw.Bin {
         }
 
         title = title_builder.str;
+        child["title"] = title_builder.str;
         child["subtitle"] = playback.filename;
     }
 }
