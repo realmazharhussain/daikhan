@@ -3,9 +3,11 @@ class Daikhan.Application : Adw.Application {
     Settings settings;
 
     public Application () {
-        resource_base_path = "/app";
-        application_id = Conf.APP_ID;
-        flags |= HANDLES_OPEN;
+        Object (
+            application_id: Conf.APP_ID,
+            flags: ApplicationFlags.HANDLES_OPEN,
+            resource_base_path: "/app"
+        );
 
         playback_history = Daikhan.History.get_default ();
         settings = new Settings (Conf.APP_ID);
