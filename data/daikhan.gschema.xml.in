@@ -36,6 +36,10 @@
        <default>false</default>
      </key>
 
+     <key name="player-fullscreened" type="b">
+       <default>false</default>
+     </key>
+
      <key name="queue" type="as">
        <default>[]</default>
      </key>
