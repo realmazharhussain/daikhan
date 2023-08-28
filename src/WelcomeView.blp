@@ -1,4 +1,5 @@
 using Gtk 4.0;
+using Gio 2.0;
 using Adw 1;
 
 template $DaikhanWelcomeView : Adw.Bin {
@@ -15,6 +16,39 @@ template $DaikhanWelcomeView : Adw.Bin {
       icon-name: bind status.root as <ApplicationWindow>.application.application-id;
       title: _("Daikhan (Early Access)");
       description: _("Open some files to play");
+
+      child: $DaikhanPillButton {
+          icon-name: "folder-symbolic";
+          label: _("Open Files");
+
+          clicked => $open_clicked();
+      };
+    }
+  };
+}
+
+FileDialog file_dialog {
+  default-filter: media_files_filter;
+
+  filters: Gio.ListStore {
+    FileFilter {
+      name: _("All Files");
+      patterns ["*"]
+    }
+
+    FileFilter media_files_filter {
+      name: _("Video & Audio Files");
+      mime-types ["video/*", "audio/*"]
+    }
+
+    FileFilter {
+      name: _("Video Files");
+      mime-types ["video/*"]
+    }
+
+    FileFilter {
+      name: _("Audio Files");
+      mime-types ["audio/*"]
     }
   };
 }

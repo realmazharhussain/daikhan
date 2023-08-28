@@ -10,4 +10,14 @@ namespace Daikhan.Utils {
 
         return mimetype.has_prefix ("video/") || mimetype.has_prefix ("audio/");
     }
+
+    public T[] list_model_to_array <T> (ListModel model) {
+        var array = new T[model.get_n_items ()];
+
+        for (int i = 0; i < array.length; i++) {
+            array[i] = (T) model.get_item (i);
+        }
+
+        return array;
+    }
 }
