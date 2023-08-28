@@ -40,6 +40,7 @@ class Daikhan.Application : Adw.Application {
         ActionEntry[] entries = {
             {"preferences", preferences_cb},
             {"show_shortcuts", show_shortcuts_cb},
+            {"about", about_cb},
             {"quit", quit},
         };
 
@@ -84,6 +85,21 @@ class Daikhan.Application : Adw.Application {
 
       shortcuts_win.transient_for = get_active_window ();
       shortcuts_win.present ();
+    }
+
+    void about_cb () {
+        var win = new Adw.AboutWindow () {
+            transient_for = get_active_window (),
+            issue_url = "https://gitlab.com/daikhan/daikhan/-/issues/new",
+            application_icon = Conf.APP_ID,
+            application_name = _("Daikhan (Early Access)"),
+            copyright = _("Copyright 2022-2023 Mazhar Hussain"),
+            license_type = Gtk.License.AGPL_3_0,
+            developer_name = _("Mazhar Hussain"),
+            version = "pre-alpha"
+        };
+
+        win.present ();
     }
 
     public override void shutdown () {

@@ -100,7 +100,6 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
             {"text", null, "i", "0", select_text_cb},
             {"video", null, "i", "0", select_video_cb},
             {"toggle_fullscreen", toggle_fullscreen_cb},
-            {"about", about_cb},
         };
 
         add_action_entries (entries, this);
@@ -214,21 +213,6 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
     void toggle_fullscreen_cb () {
         fullscreened = (stack.visible_child == welcome_view) ? false : !fullscreened;
-    }
-
-    void about_cb () {
-        var win = new Adw.AboutWindow () {
-            transient_for = this,
-            issue_url = "https://gitlab.com/daikhan/daikhan/-/issues/new",
-            application_icon = Conf.APP_ID,
-            application_name = _("Daikhan (Early Access)"),
-            copyright = _("Copyright 2022-2023 Mazhar Hussain"),
-            license_type = Gtk.License.AGPL_3_0,
-            developer_name = _("Mazhar Hussain"),
-            version = "pre-alpha"
-        };
-
-        win.present ();
     }
 
     public void save_state () {
