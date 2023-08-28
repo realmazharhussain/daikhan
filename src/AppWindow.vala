@@ -59,6 +59,16 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
         }
     }
 
+    uint inhibit_id = 0;
+    void notify_target_state_cb () {
+        if (playback.target_state == PLAYING) {
+            inhibit_id = application.inhibit (this, IDLE, "Media is playing");
+        } else if (inhibit_id > 0) {
+            application.uninhibit (inhibit_id);
+            inhibit_id = 0;
+        }
+    }
+
     void notify_current_track_cb () {
         if (playback.current_track < 0) {
             stack.visible_child = welcome_view;
@@ -128,16 +138,6 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
                 .launch.begin (this, null);
         });
         dialog.present ();
-    }
-
-    uint inhibit_id = 0;
-    void notify_target_state_cb () {
-        if (playback.target_state == PLAYING) {
-            inhibit_id = application.inhibit (this, IDLE, "Media is playing");
-        } else if (inhibit_id > 0) {
-            application.uninhibit (inhibit_id);
-            inhibit_id = 0;
-        }
     }
 
     void perform_seek (int64 position) {
