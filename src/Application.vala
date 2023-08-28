@@ -97,10 +97,7 @@ class Daikhan.Application : Adw.Application {
     }
 
     public override void shutdown () {
-        var win = get_main_window ();
-        win.save_state ();
-        win.playback.stop ();
-        win.close ();
+        get_main_window ().close ();
 
         try {
             playback_history.save ();

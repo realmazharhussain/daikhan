@@ -54,6 +54,8 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
         if (stack.visible_child == player_view) {
             _binding = player_view.bind_property ("fullscreened", this, "fullscreened", SYNC_CREATE | BIDIRECTIONAL);
         } else {
+            save_state ();
+            playback.stop ();
             _binding.unbind ();
             unfullscreen ();
         }
@@ -241,5 +243,10 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
         }
 
         restoring_state = false;
+    }
+
+    public override bool close_request () {
+        stack.visible_child = welcome_view;
+        return base.close_request ();
     }
 }
