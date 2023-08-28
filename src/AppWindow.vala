@@ -10,14 +10,14 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
     construct {
         playback = Daikhan.Playback.get_default ();
+        state_mem = new Settings (Conf.APP_ID + ".state");
+        playback_history = Daikhan.History.get_default ();
+
         playback.notify["target-state"].connect (notify_target_state_cb);
         playback.notify["current-track"].connect (notify_current_track_cb);
         playback.unsupported_file.connect (unsupported_file_cb);
         playback.unsupported_codec.connect (unsupported_codec_cb);
 
-        playback_history = Daikhan.History.get_default ();
-
-        state_mem = new Settings (Conf.APP_ID + ".state");
         state_mem.bind ("width", this, "default-width", DEFAULT);
         state_mem.bind ("height", this, "default-height", DEFAULT);
         state_mem.bind ("maximized", this, "maximized", DEFAULT);
