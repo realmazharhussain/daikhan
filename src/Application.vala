@@ -106,6 +106,7 @@ class Daikhan.Application : Adw.Application {
         var win = get_main_window ();
         win.save_state ();
         win.playback.stop ();
+        win.close ();
 
         try {
             playback_history.save ();
