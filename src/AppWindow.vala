@@ -11,76 +11,9 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     construct {
         playback = Daikhan.Playback.get_default ();
         playback.notify["target-state"].connect (notify_target_state_cb);
-        playback.notify["current-track"].connect (()=> {
-            if (playback.current_track < 0) {
-                stack.visible_child = welcome_view;
-                return;
-            }
-
-            stack.visible_child = player_view;
-
-            var record = playback_history.find (playback.queue[playback.current_track].get_uri ());
-
-            if (record == null) {
-                return;
-            }
-
-            activate_action ("audio", new Variant ("i", record.audio_track));
-            activate_action ("text", new Variant ("i", record.text_track));
-            activate_action ("video", new Variant ("i", record.video_track));
-
-            if (record.progress <= 0) {
-                return;
-            }
-
-            if (restoring_state) {
-                perform_seek (record.progress);
-            } else {
-                var dialog = new Daikhan.ActionDialog (this, _("Resume playback?"));
-                dialog.response["yes"].connect (()=> { perform_seek (record.progress); });
-                dialog.present ();
-            }
-        });
-
-        playback.unsupported_file.connect (() => {
-            var dialog = new Adw.MessageDialog (this, _("Unsupported File Type"), null);
-            dialog.body = _("The file '%s' is not an audio or a video file.").printf (playback.filename);
-            dialog.add_response ("ok", _("OK"));
-            dialog.response.connect (() => { playback.next (); });
-            dialog.present ();
-        });
-
-        playback.unsupported_codec.connect ((debug_info) => {
-            var dialog = new Adw.MessageDialog (this, _("Unsupported Codec"),
-                _("Encoding of one or more streams in '%s' is not supported.\n"
-                  + "\n"
-                  + "If this is unexpected, please, file a bug report with the following"
-                  + " debug information.\n"
-                  ).printf (playback.filename)
-            );
-
-            var debug_view = new Gtk.TextView () {
-                editable = false,
-                monospace = true,
-            };
-            debug_view.buffer.text = debug_info.strip ();
-
-            var scrld_win = new Gtk.ScrolledWindow () {
-                child = debug_view,
-                vscrollbar_policy = NEVER,
-            };
-
-            dialog.extra_child = scrld_win;
-            dialog.add_response ("report-bug", _("Report Bug"));
-            dialog.add_response ("ok", _("OK"));
-            dialog.default_response = "ok";
-            dialog.response.connect (() => { playback.next (); });
-            dialog.response["report-bug"].connect (() => {
-                new Gtk.UriLauncher ("https://gitlab.com/daikhan/daikhan/-/issues")
-                    .launch.begin (this, null);
-            });
-            dialog.present ();
-        });
+        playback.notify["current-track"].connect (notify_current_track_cb);
+        playback.unsupported_file.connect (unsupported_file_cb);
+        playback.unsupported_codec.connect (unsupported_codec_cb);
 
         playback_history = Daikhan.History.get_default ();
 
@@ -124,6 +57,77 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
             _binding.unbind ();
             unfullscreen ();
         }
+    }
+
+    void notify_current_track_cb () {
+        if (playback.current_track < 0) {
+            stack.visible_child = welcome_view;
+            return;
+        }
+
+        stack.visible_child = player_view;
+
+        var record = playback_history.find (playback.queue[playback.current_track].get_uri ());
+
+        if (record == null) {
+            return;
+        }
+
+        activate_action ("audio", new Variant ("i", record.audio_track));
+        activate_action ("text", new Variant ("i", record.text_track));
+        activate_action ("video", new Variant ("i", record.video_track));
+
+        if (record.progress <= 0) {
+            return;
+        }
+
+        if (restoring_state) {
+            perform_seek (record.progress);
+        } else {
+            var dialog = new Daikhan.ActionDialog (this, _("Resume playback?"));
+            dialog.response["yes"].connect (()=> { perform_seek (record.progress); });
+            dialog.present ();
+        }
+    }
+
+    void unsupported_file_cb () {
+        var dialog = new Adw.MessageDialog (this, _("Unsupported File Type"), null);
+        dialog.body = _("The file '%s' is not an audio or a video file.").printf (playback.filename);
+        dialog.add_response ("ok", _("OK"));
+        dialog.response.connect (() => { playback.next (); });
+        dialog.present ();
+    }
+
+    void unsupported_codec_cb (string debug_info) {
+        var dialog = new Adw.MessageDialog (this, _("Unsupported Codec"),
+            _("Encoding of one or more streams in '%s' is not supported.\n"
+              + "\n"
+              + "If this is unexpected, please, file a bug report with the following"
+              + " debug information.\n"
+              ).printf (playback.filename)
+        );
+
+        var debug_view = new Gtk.TextView () {
+            editable = false,
+            monospace = true,
+        };
+        debug_view.buffer.text = debug_info.strip ();
+
+        var scrld_win = new Gtk.ScrolledWindow () {
+            child = debug_view,
+            vscrollbar_policy = NEVER,
+        };
+
+        dialog.extra_child = scrld_win;
+        dialog.add_response ("report-bug", _("Report Bug"));
+        dialog.add_response ("ok", _("OK"));
+        dialog.default_response = "ok";
+        dialog.response.connect (() => { playback.next (); });
+        dialog.response["report-bug"].connect (() => {
+            new Gtk.UriLauncher ("https://gitlab.com/daikhan/daikhan/-/issues")
+                .launch.begin (this, null);
+        });
+        dialog.present ();
     }
 
     uint inhibit_id = 0;
