@@ -21,7 +21,7 @@ class Daikhan.Application : Adw.Application {
         var win = get_main_window ();
         win.present ();
 
-        if (win.settings.get_strv ("queue").length > 0) {
+        if (win.state_mem.get_strv ("queue").length > 0) {
             var dialog = new Daikhan.ActionDialog (win, _("Restore last session?"));
             dialog.response["yes"].connect (win.restore_state);
             dialog.present ();

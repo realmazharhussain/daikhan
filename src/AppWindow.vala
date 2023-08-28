@@ -4,7 +4,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     [GtkChild] unowned Daikhan.PlayerView player_view;
     [GtkChild] unowned Daikhan.WelcomeView welcome_view;
     public Daikhan.Playback playback { get; private set; }
-    public Settings settings { get; private construct; }
+    public Settings state_mem { get; private construct; }
     Daikhan.History playback_history;
     bool restoring_state = false;
 
@@ -84,11 +84,11 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
         playback_history = Daikhan.History.get_default ();
 
-        settings = new Settings (Conf.APP_ID + ".state");
-        settings.bind ("width", this, "default-width", DEFAULT);
-        settings.bind ("height", this, "default-height", DEFAULT);
-        settings.bind ("maximized", this, "maximized", DEFAULT);
-        settings.bind ("player-fullscreened", player_view, "fullscreened", DEFAULT);
+        state_mem = new Settings (Conf.APP_ID + ".state");
+        state_mem.bind ("width", this, "default-width", DEFAULT);
+        state_mem.bind ("height", this, "default-height", DEFAULT);
+        state_mem.bind ("maximized", this, "maximized", DEFAULT);
+        state_mem.bind ("player-fullscreened", player_view, "fullscreened", DEFAULT);
 
         ActionEntry[] entries = {
             {"seek", seek_cb, "i"},
@@ -215,24 +215,24 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
     public void save_state () {
         if (playback.current_track < 0) {
-            settings.set_strv ("queue", null);
+            state_mem.set_strv ("queue", null);
             return;
         }
 
-        settings.set_strv ("queue", playback.queue.to_uri_array ());
-        settings.set_int ("track", playback.current_track);
-        settings.set_boolean ("paused", playback.target_state == PAUSED);
+        state_mem.set_strv ("queue", playback.queue.to_uri_array ());
+        state_mem.set_int ("track", playback.current_track);
+        state_mem.set_boolean ("paused", playback.target_state == PAUSED);
     }
 
     public void restore_state () {
         restoring_state = true;
 
-        var uri_array = settings.get_strv ("queue");
+        var uri_array = state_mem.get_strv ("queue");
 
         playback.queue = new Daikhan.Queue.from_uri_array (uri_array);
-        playback.load_track (settings.get_int ("track"));
+        playback.load_track (state_mem.get_int ("track"));
 
-        if (settings.get_boolean ("paused")) {
+        if (state_mem.get_boolean ("paused")) {
             playback.pause ();
         }
 
