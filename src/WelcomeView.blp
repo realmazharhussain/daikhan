@@ -35,6 +35,14 @@ template $DaikhanWelcomeView : Adw.Bin {
 
           clicked => $replay_clicked();
         }
+
+        $DaikhanPillButton restore_btn {
+          icon-name: "media-playback-start-symbolic";
+          label: _("Continue where you left off");
+          styles ["suggested-action"]
+
+          clicked => $restore_clicked();
+        }
       };
     }
   };

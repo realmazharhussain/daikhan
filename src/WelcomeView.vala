@@ -2,7 +2,9 @@
 public class Daikhan.WelcomeView : Adw.Bin {
     [GtkChild] unowned Gtk.FileDialog file_dialog;
     [GtkChild] unowned Daikhan.PillButton replay_btn;
+    [GtkChild] unowned Daikhan.PillButton restore_btn;
     Daikhan.Playback playback;
+    Settings state_mem;
 
     static construct {
         typeof (Daikhan.AppMenuButton).ensure ();
@@ -10,8 +12,14 @@ public class Daikhan.WelcomeView : Adw.Bin {
 
     construct {
         playback = Daikhan.Playback.get_default ();
+        state_mem = new Settings (Conf.APP_ID + ".state");
+
         playback.notify["queue"].connect (update_replay_btn_visibility);
+        replay_btn.notify["visible"].connect (update_restore_btn_visibility);
+        state_mem.changed["queue"].connect (update_restore_btn_visibility);
+
         update_replay_btn_visibility ();
+        update_restore_btn_visibility ();
     }
 
     [GtkCallback]
@@ -35,7 +43,16 @@ public class Daikhan.WelcomeView : Adw.Bin {
         playback.load_track (0);
     }
 
+    [GtkCallback]
+    void restore_clicked () {
+        ((Daikhan.AppWindow) root).restore_state ();
+    }
+
     void update_replay_btn_visibility () {
         replay_btn.visible = playback.queue.length > 0;
+    }
+
+    void update_restore_btn_visibility () {
+        restore_btn.visible = !replay_btn.visible && state_mem.get_strv ("queue").length > 0;
     }
 }
