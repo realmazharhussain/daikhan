@@ -88,8 +88,6 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
         settings.bind ("width", this, "default-width", DEFAULT);
         settings.bind ("height", this, "default-height", DEFAULT);
         settings.bind ("maximized", this, "maximized", DEFAULT);
-        settings.bind ("volume", playback, "volume", DEFAULT);
-        settings.bind ("repeat", playback, "repeat", DEFAULT);
         settings.bind ("player-fullscreened", player_view, "fullscreened", DEFAULT);
 
         ActionEntry[] entries = {

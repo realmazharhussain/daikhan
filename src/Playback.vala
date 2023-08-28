@@ -19,11 +19,16 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
 
     /* Private fields */
     Settings settings;
+    Settings state_mem;
 
     construct {
         track_info = new Daikhan.TrackInfo (pipeline);
         settings = new Settings (Conf.APP_ID);
         history = Daikhan.History.get_default ();
+
+        state_mem = new Settings (Conf.APP_ID + ".state");
+        state_mem.bind ("volume", this, "volume", DEFAULT);
+        state_mem.bind ("repeat", this, "repeat", DEFAULT);
 
         notify["target-state"].connect (decide_on_progress_tracking);
         notify["current-state"].connect (decide_on_progress_tracking);
