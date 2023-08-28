@@ -17,11 +17,24 @@ template $DaikhanWelcomeView : Adw.Bin {
       title: _("Daikhan (Early Access)");
       description: _("Open some files to play");
 
-      child: $DaikhanPillButton {
+      child: Box {
+        spacing: 8;
+        orientation: vertical;
+
+        $DaikhanPillButton {
           icon-name: "folder-symbolic";
           label: _("Open Files");
 
           clicked => $open_clicked();
+        }
+
+        $DaikhanPillButton replay_btn {
+          icon-name: "view-refresh-symbolic";
+          label: _("Play Again");
+          styles ["suggested-action"]
+
+          clicked => $replay_clicked();
+        }
       };
     }
   };
