@@ -15,7 +15,6 @@ public class Daikhan.WelcomeView : Adw.Bin {
         state_mem = new Settings (Conf.APP_ID + ".state");
 
         playback.notify["queue"].connect (update_replay_btn_visibility);
-        replay_btn.notify["visible"].connect (update_restore_btn_visibility);
         state_mem.changed["queue"].connect (update_restore_btn_visibility);
 
         update_replay_btn_visibility ();
@@ -53,6 +52,6 @@ public class Daikhan.WelcomeView : Adw.Bin {
     }
 
     void update_restore_btn_visibility () {
-        restore_btn.visible = !replay_btn.visible && state_mem.get_strv ("queue").length > 0;
+        restore_btn.visible = state_mem.get_strv ("queue").length > 0;
     }
 }
