@@ -25,11 +25,11 @@
   <schema id="@app_id@.state" path="@gschema_path@state/">
 
      <key name="width" type="u">
-       <default>601</default>
+       <default>686</default>
      </key>
 
      <key name="height" type="u">
-       <default>432</default>
+       <default>480</default>
      </key>
 
      <key name="maximized" type="b">
