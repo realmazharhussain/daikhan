@@ -63,11 +63,7 @@ class Daikhan.VideoArea : Adw.Bin {
                 top_revealer.reveal_child = true;
             });
 
-        var target = new Gtk.DropTarget (typeof (Gdk.FileList), COPY);
-        target.preload = true;
-        target.notify["value"].connect (notify_drop_value_cb);
-        target.drop.connect (drop_cb);
-        add_controller (target);
+        add_controller (Daikhan.DropTarget.new ());
 
         var click_gesture = new Gtk.GestureClick ();
         click_gesture.button = Gdk.BUTTON_PRIMARY;
@@ -149,44 +145,5 @@ class Daikhan.VideoArea : Adw.Bin {
         gesture.set_state (CLAIMED);
         window.activate_action ("toggle_fullscreen", null);
         gesture.reset ();
-    }
-
-    bool drop_value_is_acceptable (Value value) {
-        var files = ((Gdk.FileList) value).get_files ();
-
-        foreach (var file in files) {
-            if (Daikhan.Utils.is_file_type_supported (file)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    void notify_drop_value_cb (Object obj, ParamSpec pspec) {
-        var target = (Gtk.DropTarget) obj;
-
-        var value = target.get_value ();
-        if (value == null) {
-            return;
-        }
-
-        if (!drop_value_is_acceptable (value)) {
-            target.reject ();
-        }
-    }
-
-    bool drop_cb (Gtk.DropTarget target, Value value, double x, double y) {
-        var file_list = ((Gdk.FileList) value).get_files ();
-        var file_array = new File[file_list.length ()];
-
-        int i = 0;
-        foreach (var file in file_list) {
-            file_array[i] = file;
-            i++;
-        }
-
-        playback.open (file_array);
-        return true;
     }
 }

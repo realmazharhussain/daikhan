@@ -41,6 +41,7 @@ sources = [config_file] + blueprints + resources + files(
   'ComboRow.vala',
   'ContentId.vala',
   'DurationLabel.vala',
+  'DropTarget.vala',
   'GestureDragWindow.vala',
   'History.vala',
   'MediaControls.vala',
