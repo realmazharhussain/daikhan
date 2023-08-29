@@ -1,0 +1,295 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the daikhan package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: daikhan pre-alpha\n"
+"Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
+"POT-Creation-Date: 2023-08-29 17:17+0500\n"
+"PO-Revision-Date: 2023-08-18 22:53+0000\n"
+"Last-Translator: rene-coty <irenee.thirion@e.email>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/daikhan/"
+"translations/fr/>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.0-dev\n"
+
+#: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
+#: src/Application.vala:89 src/Title.vala:16 src/WelcomeView.blp:17
+msgid "Daikhan (Early Access)"
+msgstr "Daikhan (Accès anticipé)"
+
+#: data/daikhan.desktop.in:5
+msgid "Media player"
+msgstr "Lecteur multimédia"
+
+#: data/daikhan.desktop.in:6 data/daikhan.metainfo.xml.in:7
+msgid "Play Videos/Music with style"
+msgstr "Jouez vos vidéos et votre musique avec style"
+
+#: data/daikhan.metainfo.xml.in:8 src/Application.vala:92
+msgid "Mazhar Hussain"
+msgstr "Mazhar Hussain"
+
+#: data/daikhan.metainfo.xml.in:10
+msgid "A simple media player with beautiful interface."
+msgstr "Un lecteur multimédia simple avec une belle interface."
+
+#: data/daikhan.metainfo.xml.in:12
+msgid ""
+"NOTE: The app is in early stages of development and bound to change "
+"significantly in the future."
+msgstr ""
+"NOTE : L’application est en phase précoce de développement et peut être "
+"amenée à changer significativement."
+
+#: data/daikhan.metainfo.xml.in:58
+msgid "Not released yet."
+msgstr "Pas encore réalisé."
+
+#: src/ActionDialog.vala:10
+msgid "No"
+msgstr "Non"
+
+#: src/ActionDialog.vala:11
+msgid "Yes"
+msgstr "Oui"
+
+#: src/Application.vala:90
+msgid "Copyright 2022-2023 Mazhar Hussain"
+msgstr "Copyright 2022-2023 Mazhar Hussain"
+
+#: src/AppMenuButton.blp:6
+msgid "Preferences"
+msgstr "Préférences"
+
+#: src/AppMenuButton.blp:7
+msgid "Keyboard Shortcuts"
+msgstr "Raccourcis clavier"
+
+#: src/AppMenuButton.blp:8
+msgid "About Daikhan"
+msgstr "À propos de Daikhan"
+
+#: src/AppWindow.vala:99
+msgid "Resume playback?"
+msgstr "Reprendre la lecture ?"
+
+#: src/AppWindow.vala:106
+msgid "Unsupported File Type"
+msgstr ""
+
+#: src/AppWindow.vala:107
+#, c-format
+msgid "The file '%s' is not an audio or a video file."
+msgstr ""
+
+#: src/AppWindow.vala:108 src/AppWindow.vala:135
+msgid "OK"
+msgstr ""
+
+#: src/AppWindow.vala:114
+msgid "Unsupported Codec"
+msgstr ""
+
+#: src/AppWindow.vala:115
+#, c-format
+msgid ""
+"Encoding of one or more streams in '%s' is not supported.\n"
+"\n"
+"If this is unexpected, please, file a bug report with the following debug "
+"information.\n"
+msgstr ""
+
+#: src/AppWindow.vala:134
+msgid "Report Bug"
+msgstr ""
+
+#: src/PreferencesWindow.blp:7
+msgid "Appearance"
+msgstr "Apparence"
+
+#: src/PreferencesWindow.blp:10
+msgid "Color Scheme"
+msgstr "Thème de couleurs"
+
+#: src/PreferencesWindow.blp:15
+msgid "Behavior"
+msgstr "Comportement"
+
+#: src/PreferencesWindow.blp:19
+msgid "Seeking Method"
+msgstr "Méthode d’avancement"
+
+#: src/PreferencesWindow.vala:14
+msgid "Follow System"
+msgstr "Suivre le système"
+
+#: src/PreferencesWindow.vala:15
+msgid "Light"
+msgstr "Clair"
+
+#: src/PreferencesWindow.vala:16
+msgid "Dark"
+msgstr "Sombre"
+
+#: src/PreferencesWindow.vala:19
+msgid "Fast"
+msgstr "Rapide"
+
+#: src/PreferencesWindow.vala:20
+msgid "Balanced"
+msgstr "Balancé"
+
+#: src/PreferencesWindow.vala:21
+msgid "Accurate"
+msgstr "Précis"
+
+#: src/Shortcuts.blp:8
+msgid "Application"
+msgstr "Application"
+
+#: src/Shortcuts.blp:11
+msgid "Toggle Fullscreen"
+msgstr "Bascule du plein écran"
+
+#: src/Shortcuts.blp:16
+msgid "Open Preferences"
+msgstr "Ouvrir les Préférences"
+
+#: src/Shortcuts.blp:21
+msgid "Show Keyboard Shortcuts"
+msgstr "Afficher les raccourcis clavier"
+
+#: src/Shortcuts.blp:26
+msgid "Quit"
+msgstr "Quitter"
+
+#: src/Shortcuts.blp:32
+msgid "Playback"
+msgstr "Lecture"
+
+#: src/Shortcuts.blp:35
+msgid "Play/Pause"
+msgstr "Lecture / Pause"
+
+#: src/Shortcuts.blp:40
+msgid "Seek Forward (10s)"
+msgstr "Avancer (10 s)"
+
+#: src/Shortcuts.blp:45
+msgid "Seek Backwards (10s)"
+msgstr "Reculer (10 s)"
+
+#: src/Shortcuts.blp:50
+msgid "Increase Volume (5%)"
+msgstr "Augmenter le volume (5 %)"
+
+#: src/Shortcuts.blp:55
+msgid "Decrease Volume (5%)"
+msgstr "Diminuer le volume (5 %)"
+
+#: src/Shortcuts.blp:60
+msgid "Seek Forward (3s)"
+msgstr "Avancer (3 s)"
+
+#: src/Shortcuts.blp:65
+msgid "Seek Backwards (3s)"
+msgstr "Reculer (3 s)"
+
+#: src/Shortcuts.blp:70
+msgid "Increase Volume (2%)"
+msgstr "Augmenter le volume (2 %)"
+
+#: src/Shortcuts.blp:75
+msgid "Decrease Volume (2%)"
+msgstr "Réduire le volume (2 %)"
+
+#: src/StreamMenuBuilder.vala:18
+msgid "Audio"
+msgstr "Audio"
+
+#: src/StreamMenuBuilder.vala:19
+msgid "Subtitles"
+msgstr "Sous-titres"
+
+#: src/StreamMenuBuilder.vala:20
+msgid "Video"
+msgstr "Vidéo"
+
+#: src/StreamMenuBuilder.vala:28
+msgid "Repeat"
+msgstr "Répétition"
+
+#: src/StreamMenuBuilder.vala:29 src/StreamMenuBuilder.vala:89
+#: src/StreamMenuBuilder.vala:121
+msgid "Off"
+msgstr "Désactivée"
+
+#: src/StreamMenuBuilder.vala:30
+msgid "Single File"
+msgstr "Fichier seul"
+
+#: src/StreamMenuBuilder.vala:31
+msgid "Whole Queue"
+msgstr "Toute la file d’attente"
+
+#: src/StreamMenuBuilder.vala:103
+msgid "Unknown Language"
+msgstr "Langue inconnue"
+
+#: src/StreamMenuBuilder.vala:124
+msgid "On"
+msgstr "Activée"
+
+#. Translators: Keep %i as is. It will be replaced by the track number for each track.
+#: src/StreamMenuBuilder.vala:127
+#, c-format
+msgid "Track %i"
+msgstr "Piste %i"
+
+#: src/WelcomeView.blp:18
+msgid "You can drop files here to play"
+msgstr ""
+
+#: src/WelcomeView.blp:26
+msgid "Open Files"
+msgstr ""
+
+#: src/WelcomeView.blp:33
+msgid "Play Again"
+msgstr ""
+
+#: src/WelcomeView.blp:41
+msgid "Continue where you left off"
+msgstr ""
+
+#: src/WelcomeView.blp:56
+#, fuzzy
+#| msgid "Single File"
+msgid "All Files"
+msgstr "Fichier seul"
+
+#: src/WelcomeView.blp:61
+msgid "Video & Audio Files"
+msgstr ""
+
+#: src/WelcomeView.blp:66
+#, fuzzy
+#| msgid "Single File"
+msgid "Video Files"
+msgstr "Fichier seul"
+
+#: src/WelcomeView.blp:71
+#, fuzzy
+#| msgid "Audio"
+msgid "Audio Files"
+msgstr "Audio"
+
+#~ msgid "Restore last session?"
+#~ msgstr "Restaurer la session précédente ?"
