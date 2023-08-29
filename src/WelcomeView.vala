@@ -1,6 +1,5 @@
 [GtkTemplate (ui = "/app/WelcomeView.ui")]
 public class Daikhan.WelcomeView : Adw.Bin {
-    [GtkChild] unowned Adw.StatusPage status;
     [GtkChild] unowned Gtk.FileDialog file_dialog;
     [GtkChild] unowned Daikhan.PillButton replay_btn;
     [GtkChild] unowned Daikhan.PillButton restore_btn;
@@ -22,7 +21,7 @@ public class Daikhan.WelcomeView : Adw.Bin {
         update_restore_btn_visibility ();
 
         add_controller (Daikhan.DropTarget.new ());
-        status.add_controller (Daikhan.GestureDragWindow.new ());
+        add_controller (Daikhan.GestureDragWindow.new ());
     }
 
     [GtkCallback]
