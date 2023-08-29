@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
-"POT-Creation-Date: 2023-08-14 12:20+0500\n"
+"POT-Creation-Date: 2023-08-29 17:17+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
-#: src/PlayerWindow.vala:189 src/Title.vala:17 src/window.blp:13
+#: src/Application.vala:89 src/Title.vala:16 src/WelcomeView.blp:17
 msgid "Daikhan (Early Access)"
 msgstr ""
 
@@ -30,7 +30,7 @@ msgstr ""
 msgid "Play Videos/Music with style"
 msgstr ""
 
-#: data/daikhan.metainfo.xml.in:8 src/PlayerWindow.vala:192
+#: data/daikhan.metainfo.xml.in:8 src/Application.vala:92
 msgid "Mazhar Hussain"
 msgstr ""
 
@@ -56,31 +56,69 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: src/MediaPlayer.vala:26
-msgid "Restore last session?"
-msgstr ""
-
-#: src/PlayerWindow.vala:40
-msgid "Resume playback?"
-msgstr ""
-
-#: src/PlayerWindow.vala:190
+#: src/Application.vala:90
 msgid "Copyright 2022-2023 Mazhar Hussain"
 msgstr ""
 
-#: src/preferences.blp:7
+#: src/AppMenuButton.blp:6
+msgid "Preferences"
+msgstr ""
+
+#: src/AppMenuButton.blp:7
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: src/AppMenuButton.blp:8
+msgid "About Daikhan"
+msgstr ""
+
+#: src/AppWindow.vala:99
+msgid "Resume playback?"
+msgstr ""
+
+#: src/AppWindow.vala:106
+msgid "Unsupported File Type"
+msgstr ""
+
+#: src/AppWindow.vala:107
+#, c-format
+msgid "The file '%s' is not an audio or a video file."
+msgstr ""
+
+#: src/AppWindow.vala:108 src/AppWindow.vala:135
+msgid "OK"
+msgstr ""
+
+#: src/AppWindow.vala:114
+msgid "Unsupported Codec"
+msgstr ""
+
+#: src/AppWindow.vala:115
+#, c-format
+msgid ""
+"Encoding of one or more streams in '%s' is not supported.\n"
+"\n"
+"If this is unexpected, please, file a bug report with the following debug "
+"information.\n"
+msgstr ""
+
+#: src/AppWindow.vala:134
+msgid "Report Bug"
+msgstr ""
+
+#: src/PreferencesWindow.blp:7
 msgid "Appearance"
 msgstr ""
 
-#: src/preferences.blp:10
+#: src/PreferencesWindow.blp:10
 msgid "Color Scheme"
 msgstr ""
 
-#: src/preferences.blp:15
+#: src/PreferencesWindow.blp:15
 msgid "Behavior"
 msgstr ""
 
-#: src/preferences.blp:19
+#: src/PreferencesWindow.blp:19
 msgid "Seeking Method"
 msgstr ""
 
@@ -108,63 +146,63 @@ msgstr ""
 msgid "Accurate"
 msgstr ""
 
-#: src/shortcuts.blp:8
+#: src/Shortcuts.blp:8
 msgid "Application"
 msgstr ""
 
-#: src/shortcuts.blp:11
+#: src/Shortcuts.blp:11
 msgid "Toggle Fullscreen"
 msgstr ""
 
-#: src/shortcuts.blp:16
+#: src/Shortcuts.blp:16
 msgid "Open Preferences"
 msgstr ""
 
-#: src/shortcuts.blp:21
+#: src/Shortcuts.blp:21
 msgid "Show Keyboard Shortcuts"
 msgstr ""
 
-#: src/shortcuts.blp:26
+#: src/Shortcuts.blp:26
 msgid "Quit"
 msgstr ""
 
-#: src/shortcuts.blp:32
+#: src/Shortcuts.blp:32
 msgid "Playback"
 msgstr ""
 
-#: src/shortcuts.blp:35
+#: src/Shortcuts.blp:35
 msgid "Play/Pause"
 msgstr ""
 
-#: src/shortcuts.blp:40
+#: src/Shortcuts.blp:40
 msgid "Seek Forward (10s)"
 msgstr ""
 
-#: src/shortcuts.blp:45
+#: src/Shortcuts.blp:45
 msgid "Seek Backwards (10s)"
 msgstr ""
 
-#: src/shortcuts.blp:50
+#: src/Shortcuts.blp:50
 msgid "Increase Volume (5%)"
 msgstr ""
 
-#: src/shortcuts.blp:55
+#: src/Shortcuts.blp:55
 msgid "Decrease Volume (5%)"
 msgstr ""
 
-#: src/shortcuts.blp:60
+#: src/Shortcuts.blp:60
 msgid "Seek Forward (3s)"
 msgstr ""
 
-#: src/shortcuts.blp:65
+#: src/Shortcuts.blp:65
 msgid "Seek Backwards (3s)"
 msgstr ""
 
-#: src/shortcuts.blp:70
+#: src/Shortcuts.blp:70
 msgid "Increase Volume (2%)"
 msgstr ""
 
-#: src/shortcuts.blp:75
+#: src/Shortcuts.blp:75
 msgid "Decrease Volume (2%)"
 msgstr ""
 
@@ -211,14 +249,34 @@ msgstr ""
 msgid "Track %i"
 msgstr ""
 
-#: src/window.blp:6
-msgid "Preferences"
+#: src/WelcomeView.blp:18
+msgid "You can drop files here to play"
 msgstr ""
 
-#: src/window.blp:7
-msgid "Keyboard Shortcuts"
+#: src/WelcomeView.blp:26
+msgid "Open Files"
 msgstr ""
 
-#: src/window.blp:8
-msgid "About Daikhan"
+#: src/WelcomeView.blp:33
+msgid "Play Again"
+msgstr ""
+
+#: src/WelcomeView.blp:41
+msgid "Continue where you left off"
+msgstr ""
+
+#: src/WelcomeView.blp:56
+msgid "All Files"
+msgstr ""
+
+#: src/WelcomeView.blp:61
+msgid "Video & Audio Files"
+msgstr ""
+
+#: src/WelcomeView.blp:66
+msgid "Video Files"
+msgstr ""
+
+#: src/WelcomeView.blp:71
+msgid "Audio Files"
 msgstr ""
