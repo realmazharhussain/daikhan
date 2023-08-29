@@ -3,11 +3,15 @@
   <gresource prefix="/app">
     <file>style.css</file>
     <file>style-hc.css</file>
-    <file preprocess="xml-stripblanks">window.ui</file>
-    <file preprocess="xml-stripblanks">video-area.ui</file>
-    <file preprocess="xml-stripblanks">shortcuts.ui</file>
-    <file preprocess="xml-stripblanks">preferences.ui</file>
-    <file preprocess="xml-stripblanks">media-controls.ui</file>
-    <file preprocess="xml-stripblanks">media-controls/volume-button.ui</file>
+    <file preprocess="xml-stripblanks">AppWindow.ui</file>
+    <file preprocess="xml-stripblanks">AppMenuButton.ui</file>
+    <file preprocess="xml-stripblanks">MediaControls.ui</file>
+    <file preprocess="xml-stripblanks">PillButton.ui</file>
+    <file preprocess="xml-stripblanks">PlayerView.ui</file>
+    <file preprocess="xml-stripblanks">PreferencesWindow.ui</file>
+    <file preprocess="xml-stripblanks">Shortcuts.ui</file>
+    <file preprocess="xml-stripblanks">VideoArea.ui</file>
+    <file preprocess="xml-stripblanks">VolumeButton.ui</file>
+    <file preprocess="xml-stripblanks">WelcomeView.ui</file>
   </gresource>
 </gresources>

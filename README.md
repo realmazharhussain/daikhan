@@ -2,6 +2,8 @@
 
 A media player for the modern desktop
 
+<a href='https://flathub.org/apps/io.gitlab.daikhan.stable'><img width='160' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
+
 <picture>
   <source media="(prefers-color-scheme: dark)"
     srcset="https://gitlab.com/daikhan/screenshots/-/raw/main/dark.png">

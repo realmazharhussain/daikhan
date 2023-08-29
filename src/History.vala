@@ -1,4 +1,4 @@
-public class HistoryRecord {
+public class Daikhan.HistoryRecord {
     public string uri_hash;
     public string content_id;
     public int64 progress;
@@ -6,12 +6,12 @@ public class HistoryRecord {
     public int text_track;
     public int video_track;
 
-    public HistoryRecord.with_uri (string uri) {
+    public Daikhan.HistoryRecord.with_uri (string uri) {
         this.uri_hash = XXH.v3_128bits (uri.data).to_string ();
 
         if (uri.has_prefix ("file://")) {
             try {
-                this.content_id = ContentId.for_uri (uri);
+                this.content_id = Daikhan.ContentId.for_uri (uri);
             } catch (Error e) {
                 warning ("Error calculating content-id: %s", e.message);
             }
@@ -19,26 +19,26 @@ public class HistoryRecord {
     }
 }
 
-internal unowned PlaybackHistory? default_instance;
+internal unowned Daikhan.History? default_instance;
 
-public class PlaybackHistory {
-    SList<HistoryRecord> data;
+public class Daikhan.History {
+    SList<Daikhan.HistoryRecord> data;
     File file;
 
-    private PlaybackHistory() {
+    private History () {
         var statedir = Environment.get_user_state_dir () + "/daikhan";
         var path = statedir + "/history";
         file = File.new_for_path (path);
     }
 
-    public static PlaybackHistory get_default () {
-        default_instance = default_instance ?? new PlaybackHistory ();
+    public static History get_default () {
+        default_instance = default_instance ?? new History ();
         return default_instance;
     }
 
     public void load () throws Error {
         const int LENGTH_OF_HASH_STRING = 32;
-        data = new SList<HistoryRecord>();
+        data = new SList<Daikhan.HistoryRecord> ();
         DataInputStream istream;
 
         try {
@@ -57,9 +57,9 @@ public class PlaybackHistory {
             }
 
             var parts = line.split (",");
-            var record = new HistoryRecord();
+            var record = new Daikhan.HistoryRecord ();
 
-            var id_parts =  parts[0].split (":");
+            var id_parts = parts[0].split (":");
             if (id_parts[0].length == LENGTH_OF_HASH_STRING) {
                 record.uri_hash = id_parts[0];
                 record.content_id = id_parts[1];
@@ -79,13 +79,13 @@ public class PlaybackHistory {
         data.reverse ();
     }
 
-    public HistoryRecord? find (string uri) {
-        HistoryRecord? record = null;
+    public Daikhan.HistoryRecord? find (string uri) {
+        Daikhan.HistoryRecord? record = null;
         string? content_id = null;
 
         if (uri.has_prefix ("file://")) {
             try {
-                content_id = ContentId.for_uri (uri);
+                content_id = Daikhan.ContentId.for_uri (uri);
             } catch (Error e) {
                 warning ("Error occured calculating content-id: %s", e.message);
             }
@@ -103,7 +103,7 @@ public class PlaybackHistory {
         return record;
     }
 
-    private HistoryRecord? find_by_content_id (string content_id) {
+    private Daikhan.HistoryRecord? find_by_content_id (string content_id) {
         foreach (var record in data) {
             if (record.content_id == content_id) {
                 return record;
@@ -113,7 +113,7 @@ public class PlaybackHistory {
         return null;
     }
 
-    private HistoryRecord? find_by_uri_hash (string uri_hash) {
+    private Daikhan.HistoryRecord? find_by_uri_hash (string uri_hash) {
         foreach (var record in data) {
             if (record.uri_hash == uri_hash) {
                 return record;
@@ -123,7 +123,7 @@ public class PlaybackHistory {
         return null;
     }
 
-    public void update (HistoryRecord current) {
+    public void update (Daikhan.HistoryRecord current) {
         var previous = find_by_content_id (current.content_id)
                        ?? find_by_uri_hash (current.uri_hash);
 

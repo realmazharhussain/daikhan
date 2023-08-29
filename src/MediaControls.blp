@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $MediaControls : Adw.Bin {
+template $DaikhanMediaControls : Adw.Bin {
   child: Box {
     orientation: horizontal;
     styles ["toolbar"]
@@ -17,7 +17,7 @@ template $MediaControls : Adw.Bin {
         clicked => $prev_cb();
       }
 
-      $PlayButton {}
+      $DaikhanPlayButton {}
 
       Button next_btn {
         icon-name: "media-skip-forward-symbolic";
@@ -29,13 +29,13 @@ template $MediaControls : Adw.Bin {
 
     Separator { styles ["spacer"] }
 
-    $ProgressLabel { sensitive: bind progress_bar.sensitive; }
-    $ProgressBar progress_bar {}
-    $DurationLabel { sensitive: bind progress_bar.sensitive; }
+    $DaikhanProgressLabel { sensitive: bind progress_bar.sensitive; }
+    $DaikhanProgressBar progress_bar {}
+    $DaikhanDurationLabel { sensitive: bind progress_bar.sensitive; }
 
     Separator { styles ["spacer"] }
 
-    $VolumeButton {}
+    $DaikhanVolumeButton {}
     MenuButton streams_btn {
       icon-name: "view-more-symbolic";
       direction: up;

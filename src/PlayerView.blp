@@ -1,0 +1,26 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DaikhanPlayerView: Adw.Bin {
+  title: bind title_widget.title;
+  styles ["player"]
+
+  Box {
+    orientation: vertical;
+
+    Gtk.HeaderBar {
+      visible: bind template.fullscreened inverted;
+      styles ["flat"]
+
+      title-widget: $DaikhanTitle title_widget {};
+
+      [end] $DaikhanAppMenuButton {}
+    }
+
+    $DaikhanVideoArea video_area {}
+
+    $DaikhanMediaControls {
+      visible: bind template.fullscreened inverted;
+    }
+  }
+}

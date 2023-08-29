@@ -1,0 +1,15 @@
+using Gtk 4.0;
+
+template $DaikhanPillButton : Button {
+  halign: center;
+  valign: center;
+  styles ["pill"]
+
+  child: Box {
+    orientation: horizontal;
+    spacing: 10;
+
+    Image { icon-name: bind template.icon-name bidirectional; }
+    Label { label: bind template.label bidirectional; }
+  };
+}

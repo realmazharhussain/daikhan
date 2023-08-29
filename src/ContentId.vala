@@ -1,7 +1,7 @@
 internal const int SEGMENT_SIZE = 16 * 1024;    // 16 KiB
-internal const int SIZE_OF_FILE_SIZE = (int) sizeof(int64);
+internal const int SIZE_OF_FILE_SIZE = (int) sizeof (int64);
 
-namespace ContentId {
+namespace Daikhan.ContentId {
     public string for_path (string path) throws Error {
         var file = File.new_for_path (path);
         return for_file (file);
@@ -17,7 +17,7 @@ namespace ContentId {
         var file_size = info.get_size ();
         var stream = file.read ();
 
-        uint8[] hash_input = new uint8[SEGMENT_SIZE*3 + SIZE_OF_FILE_SIZE];
+        uint8[] hash_input = new uint8[SEGMENT_SIZE * 3 + SIZE_OF_FILE_SIZE];
 
         if (file_size > SEGMENT_SIZE * 3) {
             unowned var file_start = hash_input[0 : SEGMENT_SIZE];
@@ -30,7 +30,7 @@ namespace ContentId {
             unowned var file_end = hash_input[SEGMENT_SIZE * 2 : SEGMENT_SIZE * 3];
             stream.seek (-SEGMENT_SIZE, END);
             stream.read (file_end);
-        } else if (file_size > 0){
+        } else if (file_size > 0) {
             unowned var contents = hash_input[0 : file_size];
             stream.read (contents);
             hash_input.resize ((int) file_size + SIZE_OF_FILE_SIZE);

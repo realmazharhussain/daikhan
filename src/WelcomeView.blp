@@ -1,0 +1,75 @@
+using Gtk 4.0;
+using Gio 2.0;
+using Adw 1;
+
+template $DaikhanWelcomeView : Adw.Bin {
+  child: Box {
+    orientation: vertical;
+
+    HeaderBar {
+      styles ["flat"]
+      title-widget: Adw.Bin {};
+      [end] $DaikhanAppMenuButton {}
+    }
+
+    Adw.StatusPage status {
+      icon-name: bind status.root as <ApplicationWindow>.application.application-id;
+      title: _("Daikhan (Early Access)");
+      description: _("You can drop files here to play");
+
+      child: Box {
+        spacing: 8;
+        orientation: vertical;
+
+        $DaikhanPillButton {
+          icon-name: "folder-symbolic";
+          label: _("Open Files");
+
+          clicked => $open_clicked();
+        }
+
+        $DaikhanPillButton replay_btn {
+          icon-name: "view-refresh-symbolic";
+          label: _("Play Again");
+          styles ["suggested-action"]
+
+          clicked => $replay_clicked();
+        }
+
+        $DaikhanPillButton restore_btn {
+          icon-name: "media-playback-start-symbolic";
+          label: _("Continue where you left off");
+          styles ["suggested-action"]
+
+          clicked => $restore_clicked();
+        }
+      };
+    }
+  };
+}
+
+FileDialog file_dialog {
+  default-filter: media_files_filter;
+
+  filters: Gio.ListStore {
+    FileFilter {
+      name: _("All Files");
+      patterns ["*"]
+    }
+
+    FileFilter media_files_filter {
+      name: _("Video & Audio Files");
+      mime-types ["video/*", "audio/*"]
+    }
+
+    FileFilter {
+      name: _("Video Files");
+      mime-types ["video/*"]
+    }
+
+    FileFilter {
+      name: _("Audio Files");
+      mime-types ["audio/*"]
+    }
+  };
+}

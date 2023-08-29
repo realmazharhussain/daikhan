@@ -1,0 +1,17 @@
+using Gtk 4.0;
+using Adw 1;
+
+menu app_menu {
+  section {
+    item (_("Preferences"), "app.preferences")
+    item (_("Keyboard Shortcuts"), "app.show_shortcuts")
+    item (_("About Daikhan"), "app.about")
+  }
+}
+
+template $DaikhanAppMenuButton : Adw.Bin {
+  MenuButton {
+    icon-name: 'open-menu-symbolic';
+    menu-model: app_menu;
+  }
+}

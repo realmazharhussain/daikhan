@@ -5,33 +5,37 @@
 
 /* Styling */
 
-headerbar {
+.video {
+  background: black;
+}
+
+.player headerbar {
   border-bottom: solid 1px @envision_overlay_border_color;
 }
 
-mediacontrols {
+.player mediacontrols {
   border-top: solid 1px @envision_overlay_border_color;
 }
 
-timelabel > label {
+.player timelabel > label {
   font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
 
-scale.progress > trough {
+.player scale.progress > trough {
   min-height: 0.9rem;
   border-radius: 0.25rem;
 }
 
-scale.progress > trough > slider {
+.player scale.progress > trough > slider {
   opacity: 0;
 }
 
-scale.progress > trough > highlight {
+.player scale.progress > trough > highlight {
   border-radius: 0;
 }
 
-overlay > revealer > * {
+.player overlay > revealer > * {
   opacity: 0.96;
   min-height: 4rem;
   border: solid 1px @envision_overlay_border_color;
@@ -39,29 +43,29 @@ overlay > revealer > * {
   margin: 0.8rem;
 }
 
-overlay > revealer * windowtitle {
+.player overlay > revealer * windowtitle {
   padding: .75rem;
 }
 
-overlay > revealer * windowtitle .title {
+.player overlay > revealer * windowtitle .title {
   font-size: 1.75rem;
 }
 
-overlay > revealer * windowtitle .subtitle {
+.player overlay > revealer * windowtitle .subtitle {
   font-size: 1.25rem;
 }
 
-overlay > revealer * button {
+.player overlay > revealer * button {
   -gtk-icon-size: 1.7rem;
   margin: 0.5rem;
 }
 
-overlay > revealer * timelabel > label {
+.player overlay > revealer * timelabel > label {
   font-size: 1.5rem;
   font-weight: 550;
 }
 
-overlay > revealer * scale.progress > trough {
+.player overlay > revealer * scale.progress > trough {
   min-height: 1.5rem;
   border-radius: 0.4rem;
 }

@@ -7,13 +7,18 @@ template $DaikhanVideoArea : Adw.Bin {
         valign: start;
         transition-duration: 750;
         transition-type: slide_down;
+        visible: bind template.root as <Window>.fullscreened;
         child: $DaikhanTitle title_overlay {
           halign: center;
           styles ["background"]
         };
       }
 
-      $Video video {}
+      Picture video {
+        hexpand: true;
+        vexpand: true;
+        styles ["video"]
+      }
 
       [overlay] Revealer bottom_revealer {
         valign: end;
@@ -21,7 +26,7 @@ template $DaikhanVideoArea : Adw.Bin {
         visible: bind top_revealer.visible bidirectional;
         reveal-child: bind top_revealer.reveal-child bidirectional;
         transition-duration: bind top_revealer.transition-duration bidirectional;
-        child: $MediaControls controls_overlay { styles ["background"] };
+        child: $DaikhanMediaControls controls_overlay { styles ["background"] };
       }
     }
 }

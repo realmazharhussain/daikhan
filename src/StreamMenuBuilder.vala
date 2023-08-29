@@ -1,12 +1,12 @@
-internal StreamMenuBuilder menu_builder_instance;
+internal Daikhan.StreamMenuBuilder menu_builder_instance;
 
-class StreamMenuBuilder : Object {
+class Daikhan.StreamMenuBuilder : Object {
     public Menu menu;
 
     Menu audio_menu;
     Menu subtitle_menu;
     Menu video_menu;
-    Playback playback;
+    Daikhan.Playback playback;
 
     construct {
         menu = new Menu ();
@@ -19,7 +19,7 @@ class StreamMenuBuilder : Object {
         menu.append_submenu (_("Subtitles"), subtitle_menu);
         menu.append_submenu (_("Video"), video_menu);
 
-        playback = Playback.get_default ();
+        playback = Daikhan.Playback.get_default ();
         Signal.connect_swapped (playback.pipeline, "audio-changed", (Callback) update_audio_cb, this);
         Signal.connect_swapped (playback.pipeline, "text-changed", (Callback) update_text_cb, this);
         Signal.connect_swapped (playback.pipeline, "video-changed", (Callback) update_video_cb, this);
@@ -37,7 +37,7 @@ class StreamMenuBuilder : Object {
     }
 
     public static Menu get_menu () {
-        return get_default().menu;
+        return get_default ().menu;
     }
 
     void update_audio_cb () {
@@ -112,7 +112,7 @@ class StreamMenuBuilder : Object {
 
         int total_streams;
         Object pipeline = playback.pipeline;
-        pipeline.get (@"n-video", out total_streams);
+        pipeline.get ("n-video", out total_streams);
 
         if (total_streams == 0) {
             return;
@@ -124,7 +124,7 @@ class StreamMenuBuilder : Object {
             video_menu.append (_("On"), "win.video(0)");
         } else for (int stream = 0; stream < total_streams; stream++) {
             // Translators: Keep %i as is. It will be replaced by the track number for each track.
-            video_menu.append (_("Track %i").printf(stream + 1), @"win.video($stream)");
+            video_menu.append (_("Track %i").printf (stream + 1), @"win.video($stream)");
         }
     }
 }

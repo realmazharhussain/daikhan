@@ -1,39 +1,45 @@
-[GtkTemplate (ui = "/app/media-controls.ui")]
-public class MediaControls : Adw.Bin {
+[GtkTemplate (ui = "/app/MediaControls.ui")]
+public class Daikhan.MediaControls : Adw.Bin {
     [GtkChild] unowned Gtk.Button prev_btn;
     [GtkChild] unowned Gtk.Button next_btn;
     [GtkChild] unowned Gtk.MenuButton streams_btn;
-    Playback playback;
+    Daikhan.Playback playback;
 
     static construct {
-        typeof(PlayButton).ensure();
-        typeof(ProgressLabel).ensure();
-        typeof(ProgressBar).ensure();
-        typeof(DurationLabel).ensure();
-        typeof(VolumeButton).ensure();
+        typeof (Daikhan.PlayButton).ensure ();
+        typeof (Daikhan.ProgressLabel).ensure ();
+        typeof (Daikhan.ProgressBar).ensure ();
+        typeof (Daikhan.DurationLabel).ensure ();
+        typeof (Daikhan.VolumeButton).ensure ();
     }
 
     construct {
-        set("css-name", "mediacontrols");
+        set ("css-name", "mediacontrols");
 
-        playback = Playback.get_default ();
+        playback = Daikhan.Playback.get_default ();
 
-        playback.bind_property ("multiple-tracks", prev_btn, "visible", SYNC_CREATE);
-        playback.bind_property ("can-prev", prev_btn, "sensitive", SYNC_CREATE);
+        playback.notify["queue"].connect (notify_queue_cb);
+        playback.notify["current-track"].connect (notify_current_track_cb);
 
-        playback.bind_property ("multiple-tracks", next_btn, "visible", SYNC_CREATE);
-        playback.bind_property ("can-next", next_btn, "sensitive", SYNC_CREATE);
-
-        streams_btn.menu_model = StreamMenuBuilder.get_menu();
+        streams_btn.menu_model = Daikhan.StreamMenuBuilder.get_menu ();
     }
 
     [GtkCallback]
-    void prev_cb() {
-        playback.prev();
+    void prev_cb () {
+        playback.prev ();
     }
 
     [GtkCallback]
-    void next_cb() {
-        playback.next();
+    void next_cb () {
+        playback.next ();
+    }
+
+    void notify_queue_cb () {
+        prev_btn.visible = next_btn.visible = playback.queue.length > 1;
+    }
+
+    void notify_current_track_cb () {
+        prev_btn.sensitive = playback.current_track > 0;
+        next_btn.sensitive = 0 < playback.current_track + 1 < playback.queue.length;
     }
 }

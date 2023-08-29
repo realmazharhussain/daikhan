@@ -1,0 +1,16 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DaikhanAppWindow: Adw.ApplicationWindow {
+  width-request: 300;
+  title: bind player_view.title;
+
+  Stack stack {
+    transition-type: crossfade;
+
+    $DaikhanWelcomeView welcome_view {}
+    $DaikhanPlayerView player_view {}
+
+    notify::visible-child => $on_view_changed();
+  }
+}
