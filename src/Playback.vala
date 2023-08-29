@@ -66,7 +66,7 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
         current_track = track_index;
 
         /* Clear information */
-        set_state (READY);
+        set_state (NULL);
         track_info.reset ();
         current_record = null;
         filename = null;
