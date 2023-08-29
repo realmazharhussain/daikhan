@@ -77,10 +77,6 @@ class Daikhan.VideoArea : Adw.Bin {
         var drag_gesture = new Gtk.GestureDrag ();
         drag_gesture.drag_update.connect (drag_gesture_update_cb);
         add_controller (drag_gesture);
-
-        var root_expr = new Gtk.PropertyExpression (typeof (VideoArea), null, "root");
-        var fllscrn_expr = new Gtk.PropertyExpression (typeof (Gtk.Window), root_expr, "fullscreened");
-        fllscrn_expr.bind (top_revealer, "visible", this);
     }
 
     Daikhan.CursorTimeout add_motion_timeout (uint interval,

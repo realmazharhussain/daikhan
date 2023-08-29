@@ -7,6 +7,7 @@ template $DaikhanVideoArea : Adw.Bin {
         valign: start;
         transition-duration: 750;
         transition-type: slide_down;
+        visible: bind template.root as <Window>.fullscreened;
         child: $DaikhanTitle title_overlay {
           halign: center;
           styles ["background"]
