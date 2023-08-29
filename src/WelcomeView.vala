@@ -19,6 +19,8 @@ public class Daikhan.WelcomeView : Adw.Bin {
 
         update_replay_btn_visibility ();
         update_restore_btn_visibility ();
+
+        add_controller (Daikhan.DropTarget.new ());
     }
 
     [GtkCallback]
