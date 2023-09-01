@@ -8,76 +8,81 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-29 17:17+0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-09-01 07:53+0000\n"
+"Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/daikhan/"
+"translations/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.0.1-dev\n"
 
 #: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
 #: src/Application.vala:89 src/Title.vala:16 src/WelcomeView.blp:17
 msgid "Daikhan (Early Access)"
-msgstr ""
+msgstr "Daikhan (vroege toegang)"
 
 #: data/daikhan.desktop.in:5
 msgid "Media player"
-msgstr ""
+msgstr "Media­speler"
 
 #: data/daikhan.desktop.in:6 data/daikhan.metainfo.xml.in:7
 msgid "Play Videos/Music with style"
-msgstr ""
+msgstr "Speel videos of muziek af met stijl"
 
 #: data/daikhan.metainfo.xml.in:8 src/Application.vala:92
 msgid "Mazhar Hussain"
-msgstr ""
+msgstr "Mazhar Hussain"
 
 #: data/daikhan.metainfo.xml.in:10
 msgid "A simple media player with beautiful interface."
-msgstr ""
+msgstr "Een eenvoudige mediaspeler met een mooie interface"
 
 #: data/daikhan.metainfo.xml.in:12
 msgid ""
 "NOTE: The app is in early stages of development and bound to change "
 "significantly in the future."
 msgstr ""
+"OPMERKING: De app is in een vroeg stadium van ontwikkeling en zal in de "
+"toekomst aanzienlijk veranderen."
 
 #: data/daikhan.metainfo.xml.in:58
 msgid "Not released yet."
-msgstr ""
+msgstr "Nog niet uitgegeven"
 
 #: src/ActionDialog.vala:10
 msgid "No"
-msgstr ""
+msgstr "Nee"
 
 #: src/ActionDialog.vala:11
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: src/Application.vala:90
 msgid "Copyright 2022-2023 Mazhar Hussain"
-msgstr ""
+msgstr "Copyright 2022-2023, Mazhar Hussain"
 
 #: src/AppMenuButton.blp:6
 msgid "Preferences"
-msgstr ""
+msgstr "Voorkeuren"
 
 #: src/AppMenuButton.blp:7
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Sneltoetsen"
 
 #: src/AppMenuButton.blp:8
 msgid "About Daikhan"
-msgstr ""
+msgstr "Over Daikhan"
 
 #: src/AppWindow.vala:99
 msgid "Resume playback?"
-msgstr ""
+msgstr "Afspelen hervatten?"
 
 #: src/AppWindow.vala:106
 msgid "Unsupported File Type"
-msgstr ""
+msgstr "Niet-ondersteund bestandstype"
 
 #: src/AppWindow.vala:107
 #, c-format
@@ -86,7 +91,7 @@ msgstr ""
 
 #: src/AppWindow.vala:108 src/AppWindow.vala:135
 msgid "OK"
-msgstr ""
+msgstr "Oké"
 
 #: src/AppWindow.vala:114
 msgid "Unsupported Codec"
@@ -107,7 +112,7 @@ msgstr ""
 
 #: src/PreferencesWindow.blp:7
 msgid "Appearance"
-msgstr ""
+msgstr "Uiterlijk"
 
 #: src/PreferencesWindow.blp:10
 msgid "Color Scheme"
@@ -115,7 +120,7 @@ msgstr ""
 
 #: src/PreferencesWindow.blp:15
 msgid "Behavior"
-msgstr ""
+msgstr "Gedrag"
 
 #: src/PreferencesWindow.blp:19
 msgid "Seeking Method"
@@ -127,15 +132,15 @@ msgstr ""
 
 #: src/PreferencesWindow.vala:15
 msgid "Light"
-msgstr ""
+msgstr "Licht"
 
 #: src/PreferencesWindow.vala:16
 msgid "Dark"
-msgstr ""
+msgstr "Donker"
 
 #: src/PreferencesWindow.vala:19
 msgid "Fast"
-msgstr ""
+msgstr "Snel"
 
 #: src/PreferencesWindow.vala:20
 msgid "Balanced"
