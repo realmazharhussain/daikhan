@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-29 17:17+0500\n"
-"PO-Revision-Date: 2023-09-01 08:54+0000\n"
+"PO-Revision-Date: 2023-09-01 12:53+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/daikhan/"
 "translations/nl/>\n"
@@ -87,7 +87,7 @@ msgstr "Niet-ondersteund bestandstype"
 #: src/AppWindow.vala:107
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
-msgstr ""
+msgstr "Het bestand ‘%s’ is geen audio- of video­bestand."
 
 #: src/AppWindow.vala:108 src/AppWindow.vala:135
 msgid "OK"
@@ -105,6 +105,10 @@ msgid ""
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
+"Het coderen van één of meer streams in ‘%s’ wordt niet ondersteund.\n"
+"\n"
+"Als dit onverwacht is, dien dan een foutrapport in met de volgende "
+"fout­opsporings­informatie.\n"
 
 #: src/AppWindow.vala:134
 msgid "Report Bug"
@@ -180,35 +184,35 @@ msgstr "Afspelen/pauzeren"
 
 #: src/Shortcuts.blp:40
 msgid "Seek Forward (10s)"
-msgstr ""
+msgstr "Vooruit­spoelen (10s)"
 
 #: src/Shortcuts.blp:45
 msgid "Seek Backwards (10s)"
-msgstr ""
+msgstr "Achteruit­spoelen (10s)"
 
 #: src/Shortcuts.blp:50
 msgid "Increase Volume (5%)"
-msgstr ""
+msgstr "Volume verhogen (5%)"
 
 #: src/Shortcuts.blp:55
 msgid "Decrease Volume (5%)"
-msgstr ""
+msgstr "Volume verlagen (5%)"
 
 #: src/Shortcuts.blp:60
 msgid "Seek Forward (3s)"
-msgstr ""
+msgstr "Vooruit­spoelen (3s)"
 
 #: src/Shortcuts.blp:65
 msgid "Seek Backwards (3s)"
-msgstr ""
+msgstr "Achteruit­spoelen (3s)"
 
 #: src/Shortcuts.blp:70
 msgid "Increase Volume (2%)"
-msgstr ""
+msgstr "Volume verhogen (2%)"
 
 #: src/Shortcuts.blp:75
 msgid "Decrease Volume (2%)"
-msgstr ""
+msgstr "Volume verlagen (2%)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
@@ -255,7 +259,7 @@ msgstr "Spoor %i"
 
 #: src/WelcomeView.blp:18
 msgid "You can drop files here to play"
-msgstr ""
+msgstr "Sleep bestanden hierheen om af te spelen"
 
 #: src/WelcomeView.blp:26
 msgid "Open Files"
@@ -267,7 +271,7 @@ msgstr "Opnieuw afspelen"
 
 #: src/WelcomeView.blp:41
 msgid "Continue where you left off"
-msgstr ""
+msgstr "Doorgaan waar u was gebleven"
 
 #: src/WelcomeView.blp:56
 msgid "All Files"
@@ -275,7 +279,7 @@ msgstr "Alle bestanden"
 
 #: src/WelcomeView.blp:61
 msgid "Video & Audio Files"
-msgstr ""
+msgstr "Video- en audio­bestanden"
 
 #: src/WelcomeView.blp:66
 msgid "Video Files"
