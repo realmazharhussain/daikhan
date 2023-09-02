@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-29 17:17+0500\n"
-"PO-Revision-Date: 2023-08-30 18:49+0000\n"
+"PO-Revision-Date: 2023-09-02 20:45+0000\n"
 "Last-Translator: Сергей Ворон <voron.s.a@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/daikhan/"
 "translations/ru/>\n"
@@ -51,7 +51,7 @@ msgstr ""
 
 #: data/daikhan.metainfo.xml.in:58
 msgid "Not released yet."
-msgstr "Еще не выпущен."
+msgstr "Еще не выпущено."
 
 #: src/ActionDialog.vala:10
 msgid "No"
@@ -63,7 +63,7 @@ msgstr "Да"
 
 #: src/Application.vala:90
 msgid "Copyright 2022-2023 Mazhar Hussain"
-msgstr "Copyright 2022-2023 Mazhar Hussain"
+msgstr "Авторское право 2022-2023 Mazhar Hussain"
 
 #: src/AppMenuButton.blp:6
 msgid "Preferences"
@@ -75,7 +75,7 @@ msgstr "Комбинации клавиш"
 
 #: src/AppMenuButton.blp:8
 msgid "About Daikhan"
-msgstr "О программе"
+msgstr "О приложении"
 
 #: src/AppWindow.vala:99
 msgid "Resume playback?"
