@@ -72,7 +72,7 @@ public class Daikhan.PlaybinProxy : Object {
             warning (@"Debugging info: $(debug_info)");
         }
 
-        set_state (READY);
+        set_state (NULL);
     }
 
     void pipeline_eos_cb () {
