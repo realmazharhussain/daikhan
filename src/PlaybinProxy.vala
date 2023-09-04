@@ -68,8 +68,13 @@ public class Daikhan.PlaybinProxy : Object {
         } else if (err is Gst.StreamError.TYPE_NOT_FOUND) {
             unsupported_file ();
         } else {
-            warning (@"Error message received from $(msg.src.name): $(err.message)");
-            warning (@"Debugging info: $(debug_info)");
+            warning ("Received error from pipeline\n"
+                     + @"Source: $(msg.src.name)\n"
+                     + @"Domain: $(err.domain)\n"
+                     + @"Code:   $(err.code)\n"
+                     + @"Message: $(err.message)\n"
+                     + @"Debugging info: $(debug_info)"
+                     );
         }
 
         set_state (NULL);
