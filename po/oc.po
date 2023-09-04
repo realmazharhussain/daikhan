@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-29 17:17+0500\n"
-"PO-Revision-Date: 2023-09-02 17:15+0000\n"
+"PO-Revision-Date: 2023-09-04 07:54+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/daikhan/"
 "translations/oc/>\n"
@@ -26,7 +26,7 @@ msgstr "Daikhan (Accès anticipat)"
 
 #: data/daikhan.desktop.in:5
 msgid "Media player"
-msgstr ""
+msgstr "Lector multimèdia"
 
 #: data/daikhan.desktop.in:6 data/daikhan.metainfo.xml.in:7
 msgid "Play Videos/Music with style"
@@ -34,7 +34,7 @@ msgstr ""
 
 #: data/daikhan.metainfo.xml.in:8 src/Application.vala:92
 msgid "Mazhar Hussain"
-msgstr ""
+msgstr "Mazhar Hussain"
 
 #: data/daikhan.metainfo.xml.in:10
 msgid "A simple media player with beautiful interface."
@@ -52,11 +52,11 @@ msgstr ""
 
 #: src/ActionDialog.vala:10
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #: src/ActionDialog.vala:11
 msgid "Yes"
-msgstr ""
+msgstr "Òc"
 
 #: src/Application.vala:90
 msgid "Copyright 2022-2023 Mazhar Hussain"
@@ -64,11 +64,11 @@ msgstr ""
 
 #: src/AppMenuButton.blp:6
 msgid "Preferences"
-msgstr ""
+msgstr "Preferéncias"
 
 #: src/AppMenuButton.blp:7
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Acorchis de clavièr"
 
 #: src/AppMenuButton.blp:8
 msgid "About Daikhan"
@@ -110,15 +110,15 @@ msgstr ""
 
 #: src/PreferencesWindow.blp:7
 msgid "Appearance"
-msgstr ""
+msgstr "Aparéncia"
 
 #: src/PreferencesWindow.blp:10
 msgid "Color Scheme"
-msgstr ""
+msgstr "Jòc de colors"
 
 #: src/PreferencesWindow.blp:15
 msgid "Behavior"
-msgstr ""
+msgstr "Compòrtament"
 
 #: src/PreferencesWindow.blp:19
 msgid "Seeking Method"
@@ -126,31 +126,31 @@ msgstr ""
 
 #: src/PreferencesWindow.vala:14
 msgid "Follow System"
-msgstr ""
+msgstr "Seguir lo sistèma"
 
 #: src/PreferencesWindow.vala:15
 msgid "Light"
-msgstr ""
+msgstr "Clar"
 
 #: src/PreferencesWindow.vala:16
 msgid "Dark"
-msgstr ""
+msgstr "Escur"
 
 #: src/PreferencesWindow.vala:19
 msgid "Fast"
-msgstr ""
+msgstr "Rapid"
 
 #: src/PreferencesWindow.vala:20
 msgid "Balanced"
-msgstr ""
+msgstr "Equilibrat"
 
 #: src/PreferencesWindow.vala:21
 msgid "Accurate"
-msgstr ""
+msgstr "Precís"
 
 #: src/Shortcuts.blp:8
 msgid "Application"
-msgstr ""
+msgstr "Aplicacion"
 
 #: src/Shortcuts.blp:11
 msgid "Toggle Fullscreen"
@@ -158,23 +158,23 @@ msgstr ""
 
 #: src/Shortcuts.blp:16
 msgid "Open Preferences"
-msgstr ""
+msgstr "Dobrir las preferéncias"
 
 #: src/Shortcuts.blp:21
 msgid "Show Keyboard Shortcuts"
-msgstr ""
+msgstr "Mostrar los acorchis clavièr"
 
 #: src/Shortcuts.blp:26
 msgid "Quit"
-msgstr ""
+msgstr "Sortir"
 
 #: src/Shortcuts.blp:32
 msgid "Playback"
-msgstr ""
+msgstr "Lectura"
 
 #: src/Shortcuts.blp:35
 msgid "Play/Pause"
-msgstr ""
+msgstr "Lectura/Pausa"
 
 #: src/Shortcuts.blp:40
 msgid "Seek Forward (10s)"
@@ -210,19 +210,19 @@ msgstr ""
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
-msgstr ""
+msgstr "Àudio"
 
 #: src/StreamMenuBuilder.vala:19
 msgid "Subtitles"
-msgstr ""
+msgstr "Sostítols"
 
 #: src/StreamMenuBuilder.vala:20
 msgid "Video"
-msgstr ""
+msgstr "Vidèos"
 
 #: src/StreamMenuBuilder.vala:28
 msgid "Repeat"
-msgstr ""
+msgstr "Repetir"
 
 #: src/StreamMenuBuilder.vala:29 src/StreamMenuBuilder.vala:89
 #: src/StreamMenuBuilder.vala:121
@@ -239,7 +239,7 @@ msgstr ""
 
 #: src/StreamMenuBuilder.vala:103
 msgid "Unknown Language"
-msgstr ""
+msgstr "Lenga desconeguda"
 
 #: src/StreamMenuBuilder.vala:124
 msgid "On"
@@ -269,7 +269,7 @@ msgstr ""
 
 #: src/WelcomeView.blp:56
 msgid "All Files"
-msgstr ""
+msgstr "Totes los fichièrs"
 
 #: src/WelcomeView.blp:61
 msgid "Video & Audio Files"
@@ -277,8 +277,8 @@ msgstr ""
 
 #: src/WelcomeView.blp:66
 msgid "Video Files"
-msgstr ""
+msgstr "Fichièrs vidèo"
 
 #: src/WelcomeView.blp:71
 msgid "Audio Files"
-msgstr ""
+msgstr "Fichièrs àudio"
