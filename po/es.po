@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-29 17:17+0500\n"
-"PO-Revision-Date: 2023-09-07 12:56+0000\n"
+"PO-Revision-Date: 2023-09-07 14:28+0000\n"
 "Last-Translator: David Prieto <frandavid100@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/daikhan/"
 "translations/es/>\n"
@@ -61,7 +61,6 @@ msgid "Yes"
 msgstr "Sí"
 
 #: src/Application.vala:90
-#, fuzzy
 msgid "Copyright 2022-2023 Mazhar Hussain"
 msgstr "Copyright 2022-2023 Mazhar Hussain"
 
@@ -256,36 +255,36 @@ msgstr "Encendido"
 #: src/StreamMenuBuilder.vala:127
 #, c-format
 msgid "Track %i"
-msgstr ""
+msgstr "Pista %i"
 
 #: src/WelcomeView.blp:18
 msgid "You can drop files here to play"
-msgstr ""
+msgstr "Puedes soltar archivos aquí para reproducirlos"
 
 #: src/WelcomeView.blp:26
 msgid "Open Files"
-msgstr ""
+msgstr "Abrir archivos"
 
 #: src/WelcomeView.blp:33
 msgid "Play Again"
-msgstr ""
+msgstr "Reproducir otra vez"
 
 #: src/WelcomeView.blp:41
 msgid "Continue where you left off"
-msgstr ""
+msgstr "Continuar donde lo dejaste"
 
 #: src/WelcomeView.blp:56
 msgid "All Files"
-msgstr ""
+msgstr "Todos los archivos"
 
 #: src/WelcomeView.blp:61
 msgid "Video & Audio Files"
-msgstr ""
+msgstr "Archivos de audio y vídeo"
 
 #: src/WelcomeView.blp:66
 msgid "Video Files"
-msgstr ""
+msgstr "Archivos de vídeo"
 
 #: src/WelcomeView.blp:71
 msgid "Audio Files"
-msgstr ""
+msgstr "Archivos de audio"
