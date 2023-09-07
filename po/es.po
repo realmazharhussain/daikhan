@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-29 17:17+0500\n"
-"PO-Revision-Date: 2023-09-07 09:56+0000\n"
+"PO-Revision-Date: 2023-09-07 12:56+0000\n"
 "Last-Translator: David Prieto <frandavid100@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/daikhan/"
 "translations/es/>\n"
@@ -50,52 +50,53 @@ msgstr ""
 
 #: data/daikhan.metainfo.xml.in:58
 msgid "Not released yet."
-msgstr ""
+msgstr "Todavía no publicado."
 
 #: src/ActionDialog.vala:10
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: src/ActionDialog.vala:11
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #: src/Application.vala:90
+#, fuzzy
 msgid "Copyright 2022-2023 Mazhar Hussain"
-msgstr ""
+msgstr "Copyright 2022-2023 Mazhar Hussain"
 
 #: src/AppMenuButton.blp:6
 msgid "Preferences"
-msgstr ""
+msgstr "Preferencias"
 
 #: src/AppMenuButton.blp:7
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Atajos de teclado"
 
 #: src/AppMenuButton.blp:8
 msgid "About Daikhan"
-msgstr ""
+msgstr "Acerca de Daikhan"
 
 #: src/AppWindow.vala:99
 msgid "Resume playback?"
-msgstr ""
+msgstr "¿Reanudar la reproducción?"
 
 #: src/AppWindow.vala:106
 msgid "Unsupported File Type"
-msgstr ""
+msgstr "Tipo de archivo no soportado"
 
 #: src/AppWindow.vala:107
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
-msgstr ""
+msgstr "El archivo '%s' no es un archivo de audio ni de vídeo."
 
 #: src/AppWindow.vala:108 src/AppWindow.vala:135
 msgid "OK"
-msgstr ""
+msgstr "De acuerdo"
 
 #: src/AppWindow.vala:114
 msgid "Unsupported Codec"
-msgstr ""
+msgstr "Códec no soportado"
 
 #: src/AppWindow.vala:115
 #, c-format
@@ -105,147 +106,151 @@ msgid ""
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
+"La codificación de una o más transmisiones en '%s' no está soportada.\n"
+"\n"
+"Por favor, si esto es inesperado envía un informe de error con la siguiente "
+"información de depuración.\n"
 
 #: src/AppWindow.vala:134
 msgid "Report Bug"
-msgstr ""
+msgstr "Informar de un error"
 
 #: src/PreferencesWindow.blp:7
 msgid "Appearance"
-msgstr ""
+msgstr "Apariencia"
 
 #: src/PreferencesWindow.blp:10
 msgid "Color Scheme"
-msgstr ""
+msgstr "Esquema de colores"
 
 #: src/PreferencesWindow.blp:15
 msgid "Behavior"
-msgstr ""
+msgstr "Comportamiento"
 
 #: src/PreferencesWindow.blp:19
 msgid "Seeking Method"
-msgstr ""
+msgstr "Método de búsqueda"
 
 #: src/PreferencesWindow.vala:14
 msgid "Follow System"
-msgstr ""
+msgstr "Según el sistema"
 
 #: src/PreferencesWindow.vala:15
 msgid "Light"
-msgstr ""
+msgstr "Claro"
 
 #: src/PreferencesWindow.vala:16
 msgid "Dark"
-msgstr ""
+msgstr "Oscuro"
 
 #: src/PreferencesWindow.vala:19
 msgid "Fast"
-msgstr ""
+msgstr "Rápido"
 
 #: src/PreferencesWindow.vala:20
 msgid "Balanced"
-msgstr ""
+msgstr "Equilibrado"
 
 #: src/PreferencesWindow.vala:21
 msgid "Accurate"
-msgstr ""
+msgstr "Preciso"
 
 #: src/Shortcuts.blp:8
 msgid "Application"
-msgstr ""
+msgstr "Aplicación"
 
 #: src/Shortcuts.blp:11
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Alternar pantalla completa"
 
 #: src/Shortcuts.blp:16
 msgid "Open Preferences"
-msgstr ""
+msgstr "Abrir las preferencias"
 
 #: src/Shortcuts.blp:21
 msgid "Show Keyboard Shortcuts"
-msgstr ""
+msgstr "Mostrar los atajos de teclado"
 
 #: src/Shortcuts.blp:26
 msgid "Quit"
-msgstr ""
+msgstr "Salir"
 
 #: src/Shortcuts.blp:32
 msgid "Playback"
-msgstr ""
+msgstr "Reproducción"
 
 #: src/Shortcuts.blp:35
 msgid "Play/Pause"
-msgstr ""
+msgstr "Reproducir/Pausar"
 
 #: src/Shortcuts.blp:40
 msgid "Seek Forward (10s)"
-msgstr ""
+msgstr "Avanzar (10s)"
 
 #: src/Shortcuts.blp:45
 msgid "Seek Backwards (10s)"
-msgstr ""
+msgstr "Retroceder (10s)"
 
 #: src/Shortcuts.blp:50
 msgid "Increase Volume (5%)"
-msgstr ""
+msgstr "Aumentar el volumen (5%)"
 
 #: src/Shortcuts.blp:55
 msgid "Decrease Volume (5%)"
-msgstr ""
+msgstr "Disminuir el volumen (5%)"
 
 #: src/Shortcuts.blp:60
 msgid "Seek Forward (3s)"
-msgstr ""
+msgstr "Avanzar (3s)"
 
 #: src/Shortcuts.blp:65
 msgid "Seek Backwards (3s)"
-msgstr ""
+msgstr "Retroceder (3s)"
 
 #: src/Shortcuts.blp:70
 msgid "Increase Volume (2%)"
-msgstr ""
+msgstr "Aumentar el volumen (2%)"
 
 #: src/Shortcuts.blp:75
 msgid "Decrease Volume (2%)"
-msgstr ""
+msgstr "Disminuir el volumen (2%)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: src/StreamMenuBuilder.vala:19
 msgid "Subtitles"
-msgstr ""
+msgstr "Subtítulos"
 
 #: src/StreamMenuBuilder.vala:20
 msgid "Video"
-msgstr ""
+msgstr "Vídeo"
 
 #: src/StreamMenuBuilder.vala:28
 msgid "Repeat"
-msgstr ""
+msgstr "Repetir"
 
 #: src/StreamMenuBuilder.vala:29 src/StreamMenuBuilder.vala:89
 #: src/StreamMenuBuilder.vala:121
 msgid "Off"
-msgstr ""
+msgstr "Apagado"
 
 #: src/StreamMenuBuilder.vala:30
 msgid "Single File"
-msgstr ""
+msgstr "Archivo único"
 
 #: src/StreamMenuBuilder.vala:31
 msgid "Whole Queue"
-msgstr ""
+msgstr "Cola entera"
 
 #: src/StreamMenuBuilder.vala:103
 msgid "Unknown Language"
-msgstr ""
+msgstr "Idioma desconocido"
 
 #: src/StreamMenuBuilder.vala:124
 msgid "On"
-msgstr ""
+msgstr "Encendido"
 
 #. Translators: Keep %i as is. It will be replaced by the track number for each track.
 #: src/StreamMenuBuilder.vala:127
