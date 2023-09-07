@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-29 17:17+0500\n"
-"PO-Revision-Date: 2023-09-07 06:56+0000\n"
+"PO-Revision-Date: 2023-09-07 09:56+0000\n"
 "Last-Translator: David Prieto <frandavid100@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/daikhan/"
 "translations/es/>\n"
@@ -30,21 +30,23 @@ msgstr "Reproductor de medios"
 
 #: data/daikhan.desktop.in:6 data/daikhan.metainfo.xml.in:7
 msgid "Play Videos/Music with style"
-msgstr ""
+msgstr "Reproduce vídeos y música con estilo"
 
 #: data/daikhan.metainfo.xml.in:8 src/Application.vala:92
 msgid "Mazhar Hussain"
-msgstr ""
+msgstr "Mazhar Hussain"
 
 #: data/daikhan.metainfo.xml.in:10
 msgid "A simple media player with beautiful interface."
-msgstr ""
+msgstr "Un reproductor de medios sencillo con interfaz agradable."
 
 #: data/daikhan.metainfo.xml.in:12
 msgid ""
 "NOTE: The app is in early stages of development and bound to change "
 "significantly in the future."
 msgstr ""
+"NOTA: Esta app está en fase temprana de desarrollo y en el futuro tendrá "
+"cambios significativos."
 
 #: data/daikhan.metainfo.xml.in:58
 msgid "Not released yet."
