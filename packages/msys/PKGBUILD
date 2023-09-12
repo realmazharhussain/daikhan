@@ -3,27 +3,35 @@
 _realname=daikhan
 pkgbase=mingw-w64-${_realname}-git
 pkgname=${MINGW_PACKAGE_PREFIX}-${_realname}
-pkgver=r0
+pkgver=r430.1bfa1bf
 pkgrel=1
 arch=(any)
-mingw_arch=(mingw32 mingw64 ucrt64 clang64 clang32)
-pkgdesc="Daikhan Media Player (mingw-w64)"
+mingw_arch=(ucrt64 mingw64 mingw32 clang64 clang32)
+pkgdesc="Media player for the modern desktop (mingw-w64)"
 url="https://gitlab.com/daikhan/daikhan"
-depends=(${MINGW_PACKAGE_PREFIX}-libadwaita)
-makedepends=(git
-             ${MINGW_PACKAGE_PREFIX}-cc
-             ${MINGW_PACKAGE_PREFIX}-vala
-             ${MINGW_PACKAGE_PREFIX}-appstream-glib
-             ${MINGW_PACKAGE_PREFIX}-desktop-file-utils
-             ${MINGW_PACKAGE_PREFIX}-meson)
-options=(strip staticlibs)
+depends=("${MINGW_PACKAGE_PREFIX}-libadwaita"
+	 "${MINGW_PACKAGE_PREFIX}-xxhash"
+	 "${MINGW_PACKAGE_PREFIX}-gstreamer"
+	 "${MINGW_PACKAGE_PREFIX}-gst-plugins-base"
+	 "${MINGW_PACKAGE_PREFIX}-gst-plugins-good"
+	 "${MINGW_PACKAGE_PREFIX}-gst-plugins-ugly"
+	 "${MINGW_PACKAGE_PREFIX}-gst-plugins-bad"
+	 "${MINGW_PACKAGE_PREFIX}-gst-plugins-rs")
+makedepends=("${MINGW_PACKAGE_PREFIX}-pkgconf"
+             "${MINGW_PACKAGE_PREFIX}-cc"
+             "${MINGW_PACKAGE_PREFIX}-vala"
+             "${MINGW_PACKAGE_PREFIX}-appstream-glib"
+             "${MINGW_PACKAGE_PREFIX}-desktop-file-utils"
+             "${MINGW_PACKAGE_PREFIX}-meson"
+             "${MINGW_PACKAGE_PREFIX}-blueprint-compiler"
+	     git)
 license=(GPL3)
 source=("git+${url}.git")
 md5sums=(SKIP)
 
 pkgver() {
   cd $_realname
-  echo r$(git rev-list --count HAED).$(git rev-parse --short HEAD)
+  echo r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)
 }
 
 build() {
@@ -31,12 +39,12 @@ build() {
   mkdir -p build-${MINGW_CHOST} && cd build-${MINGW_CHOST}
 
   MSYS2_ARG_CONV_EXCL="--prefix=" \
-  ${MINGW_PREFIX}/bin/meson \
+  ${MINGW_PREFIX}/bin/meson setup \
     --prefix=${MINGW_PREFIX} \
     --buildtype=plain \
     "${srcdir}/${_realname}"
 
-  meson compile
+  ninja || ninja
 }
 
 check() {
@@ -45,7 +53,8 @@ check() {
 }
 
 package() {
-  cd build-${MINGW_CHOST}
-  meson install --destdir="${pkgdir}"
+  cd "${srcdir}/build-${MINGW_CHOST}"
+
+  DESTDIR="${pkgdir}" ninja install
 }
 
