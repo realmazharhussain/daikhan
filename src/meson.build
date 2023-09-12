@@ -66,6 +66,10 @@ sources = [config_file] + blueprints + resources + files(
   'WelcomeView.vala',
 )
 
+if host_machine.system() == 'windows'
+  sources += ico_src
+endif
+
 executable(meson.project_name(), sources,
            dependencies: deps,
            c_args: ['-DGETTEXT_PACKAGE="daikhan"'],
