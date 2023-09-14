@@ -15,6 +15,7 @@ public class Daikhan.PlaybinProxy : Object {
     public signal void unsupported_file ();
     public virtual signal void end_of_stream () {}
     public signal void unsupported_codec (string debug_info);
+    public signal void pipeline_error (Gst.Object source, Error error, string debug_info);
 
     construct {
         dynamic var gtksink = Gst.ElementFactory.make ("gtk4paintablesink", null);
@@ -68,13 +69,7 @@ public class Daikhan.PlaybinProxy : Object {
         } else if (err is Gst.StreamError.TYPE_NOT_FOUND) {
             unsupported_file ();
         } else {
-            warning ("Received error from pipeline\n"
-                     + @"Source: $(msg.src.name)\n"
-                     + @"Domain: $(err.domain)\n"
-                     + @"Code:   $(err.code)\n"
-                     + @"Message: $(err.message)\n"
-                     + @"Debugging info: $(debug_info)"
-                     );
+            pipeline_error (msg.src, err, debug_info);
         }
 
         set_state (NULL);

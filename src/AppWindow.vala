@@ -17,6 +17,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
         playback.notify["current-track"].connect (notify_current_track_cb);
         playback.unsupported_file.connect (unsupported_file_cb);
         playback.unsupported_codec.connect (unsupported_codec_cb);
+        playback.pipeline_error.connect (pipeline_error_cb);
 
         state_mem.bind ("width", this, "default-width", DEFAULT);
         state_mem.bind ("height", this, "default-height", DEFAULT);
@@ -124,6 +125,46 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
             monospace = true,
         };
         debug_view.buffer.text = debug_info.strip ();
+
+        var scrld_win = new Gtk.ScrolledWindow () {
+            child = debug_view,
+            vscrollbar_policy = NEVER,
+        };
+
+        dialog.extra_child = scrld_win;
+        dialog.add_response ("report-bug", _("Report Bug"));
+        dialog.add_response ("ok", _("OK"));
+        dialog.default_response = "ok";
+        dialog.response.connect (() => { playback.next (); });
+        dialog.response["report-bug"].connect (() => {
+            new Gtk.UriLauncher ("https://gitlab.com/daikhan/daikhan/-/issues")
+                .launch.begin (this, null);
+        });
+        dialog.present ();
+    }
+
+    void pipeline_error_cb (Gst.Object source, Error error, string debug_info) {
+
+        var dialog = new Adw.MessageDialog (this, _("Error"),
+            _("If this is unexpected, please, file a bug report"
+              + " with the following information.\n"
+              )
+        );
+
+        var dbg_info = debug_info.strip ().replace ("\n", "\n\t");
+        var info = (@"Source: $(source.name)\n"
+                    + @"Domain: $(error.domain)\n"
+                    + @"Code:   $(error.code)\n"
+                    + @"Message: $(error.message)\n"
+                    + "Debug info:\n"
+                    + @"\t$(dbg_info)"
+                    );
+
+        var debug_view = new Gtk.TextView () {
+            editable = false,
+            monospace = true,
+        };
+        debug_view.buffer.text = info;
 
         var scrld_win = new Gtk.ScrolledWindow () {
             child = debug_view,
