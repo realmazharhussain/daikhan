@@ -18,8 +18,9 @@ public class Daikhan.MediaControls : Adw.Bin {
 
         playback = Daikhan.Playback.get_default ();
 
-        playback.notify["queue"].connect (notify_queue_cb);
-        playback.notify["current-track"].connect (notify_current_track_cb);
+        playback.notify["queue"].connect (update_prev_next_visibility);
+        playback.notify["queue"].connect (update_prev_next_sensitivity);
+        playback.notify["current-track"].connect (update_prev_next_sensitivity);
 
         streams_btn.menu_model = Daikhan.StreamMenuBuilder.get_menu ();
     }
@@ -34,11 +35,11 @@ public class Daikhan.MediaControls : Adw.Bin {
         playback.next ();
     }
 
-    void notify_queue_cb () {
+    void update_prev_next_visibility () {
         prev_btn.visible = next_btn.visible = playback.queue.length > 1;
     }
 
-    void notify_current_track_cb () {
+    void update_prev_next_sensitivity () {
         prev_btn.sensitive = playback.current_track > 0;
         next_btn.sensitive = 0 < playback.current_track + 1 < playback.queue.length;
     }
