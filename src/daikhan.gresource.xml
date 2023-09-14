@@ -5,6 +5,7 @@
     <file>style-hc.css</file>
     <file preprocess="xml-stripblanks">AppWindow.ui</file>
     <file preprocess="xml-stripblanks">AppMenuButton.ui</file>
+    <file preprocess="xml-stripblanks">ErrorDialog.ui</file>
     <file preprocess="xml-stripblanks">MediaControls.ui</file>
     <file preprocess="xml-stripblanks">PillButton.ui</file>
     <file preprocess="xml-stripblanks">PlayerView.ui</file>

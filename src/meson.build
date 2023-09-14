@@ -12,6 +12,7 @@ config_file = configure_file(
 
 blp_sources = files('AppWindow.blp',
                     'AppMenuButton.blp',
+                    'ErrorDialog.blp',
                     'MediaControls.blp',
                     'PillButton.blp',
                     'PlayerView.blp',
@@ -42,6 +43,7 @@ sources = [config_file] + blueprints + resources + files(
   'ContentId.vala',
   'DurationLabel.vala',
   'DropTarget.vala',
+  'ErrorDialog.vala',
   'GestureDragWindow.vala',
   'History.vala',
   'MediaControls.vala',
