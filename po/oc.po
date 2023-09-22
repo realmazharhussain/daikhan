@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-29 17:17+0500\n"
-"PO-Revision-Date: 2023-09-07 06:56+0000\n"
+"PO-Revision-Date: 2023-09-22 17:03+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/daikhan/"
 "translations/oc/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.0.1-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
 #: src/Application.vala:89 src/Title.vala:16 src/WelcomeView.blp:17
@@ -103,6 +103,10 @@ msgid ""
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
+"L’encodatge d’un o mai d’un flux dins « %s » es pas pres en carga.\n"
+"\n"
+"Se vos plau, s’aquò es pas previst, enviatz un senhalament d’avaria amb las "
+"entresenhas de desbugatge.\n"
 
 #: src/AppWindow.vala:134
 msgid "Report Bug"
@@ -265,7 +269,7 @@ msgstr "Tornar legir"
 
 #: src/WelcomeView.blp:41
 msgid "Continue where you left off"
-msgstr ""
+msgstr "Contunhar ont èretz"
 
 #: src/WelcomeView.blp:56
 msgid "All Files"
