@@ -2,7 +2,6 @@
 <gresources>
   <gresource prefix="/app">
     <file>style.css</file>
-    <file>style-hc.css</file>
     <file preprocess="xml-stripblanks">AppWindow.ui</file>
     <file preprocess="xml-stripblanks">AppMenuButton.ui</file>
     <file preprocess="xml-stripblanks">ErrorDialog.ui</file>
