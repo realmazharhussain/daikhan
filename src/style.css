@@ -9,14 +9,6 @@
   background: black;
 }
 
-.player headerbar {
-  border-bottom: solid 1px @envision_overlay_border_color;
-}
-
-.player mediacontrols {
-  border-top: solid 1px @envision_overlay_border_color;
-}
-
 .player timelabel > label {
   font-weight: 500;
   font-variant-numeric: tabular-nums;
