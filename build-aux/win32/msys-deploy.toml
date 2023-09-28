@@ -1,0 +1,22 @@
+[global]
+post_deploy = "post_deploy.sh"
+install = [
+  "lib/gstreamer-1.0/gstgtk4.dll",
+  "lib/gstreamer-1.0/libgstlibav.dll",
+  "lib/gstreamer-1.0/libgstd3d11.dll",
+  "lib/gstreamer-1.0/libgstqsv.dll",
+  "lib/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-svg.dll",
+  "share/glib-2.0/schemas/gschemas.compiled",
+]
+
+[daikhan-git]
+skip = ["share/glib-2.0/schemas/*.gschema.xml"]
+
+[gstreamer]
+install = ["lib/gstreamer-1.0/*.dll"]
+
+[gst-plugins-base]
+install = ["lib/gstreamer-1.0/*.dll"]
+
+[gst-plugins-good]
+install = ["lib/gstreamer-1.0/*.dll"]
