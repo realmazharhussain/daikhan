@@ -1,4 +1,6 @@
+AppDir/
 daikhan/
+daikhan-setup.exe
 src/
 pkg/
 *.tar.zst
