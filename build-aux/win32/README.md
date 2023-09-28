@@ -4,7 +4,7 @@
 
 1. Install **NSIS**
 2. Install **MSYS2**
-3. Update MSYS to the latest version
+3. Update MSYS packages
    1. Open "MSYS2 UCRT64" from MSYS2 folder in the start menu
    2. Run the command `pacman -Syu`
    3. Repeat above 2 steps till everything is up-to-date
