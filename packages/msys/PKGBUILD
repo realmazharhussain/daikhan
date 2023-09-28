@@ -57,5 +57,7 @@ package() {
   cd "${srcdir}/build-${MINGW_CHOST}"
 
   DESTDIR="${pkgdir}" ninja install
+
+  cp -t "${pkgdir}/${MINGW_PREFIX}" data/icons/daikhan.ico
 }
 
