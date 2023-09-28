@@ -9,5 +9,5 @@
    ```bash
    makepkg-mingw -fsi       # Builds & Installs Daikhan inside MSYS
    ./msys-deploy.py         # Copies all Daikhan files into "AppDir" folder
-   makensisw daikhan.nsi    # Creates a setup.exe out of "AppDir" folder
+   makensis daikhan.nsi     # Creates a setup.exe out of "AppDir" folder
    ```
