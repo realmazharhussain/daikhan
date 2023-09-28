@@ -21,7 +21,7 @@ if host_machine.system() == 'windows'
   find_program('rsvg-convert', required: true)  # Needed by svg2ico
   find_program('icotool', required: true)       # Needed by svg2ico
 
-  svg2ico = find_program(meson.project_source_root() / 'build-aux/svg2ico.sh')
+  svg2ico = find_program(meson.project_source_root() / 'build-aux/win32/svg2ico.sh')
   daikhan_ico = custom_target('daikhan_ico',
     command: [svg2ico, '@OUTPUT@', '@INPUT@', '16', '24', '32', '48', '256'],
     input: regular_svg,
