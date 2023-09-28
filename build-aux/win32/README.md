@@ -12,7 +12,7 @@
    ```powershell
    winget install MSYS2.MSYS2
    ```
-3. In MSYS2 (Open "MSYS2 UCRT64" from "MSYS2" folder in start menu)
+3. In MSYS2 (Open "**MSYS2 UCRT64**" from "MSYS2" folder in start menu)
    1. Update all packages (Repeat the following command till everything is up-to-date)
 
       ```bash
