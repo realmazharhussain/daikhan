@@ -4,7 +4,7 @@
 2. In MSYS, make sure you have python-pyalpm installed
 3. Install NSIS
 4. From inside the MSYS environment with this directory as the current working directory,
-   run the following following commands
+   run the following commands
 
    ```bash
    makepkg-mingw -fsi       # Builds & Installs Daikhan inside MSYS
