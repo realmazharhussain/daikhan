@@ -58,6 +58,7 @@ package() {
 
   DESTDIR="${pkgdir}" ninja install
 
+  cp -t "${pkgdir}/${MINGW_PREFIX}" "${srcdir}/${_realname}"/LICENSE
   cp -t "${pkgdir}/${MINGW_PREFIX}" data/icons/daikhan.ico
 }
 
