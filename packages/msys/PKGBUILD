@@ -25,6 +25,8 @@ makedepends=("${MINGW_PACKAGE_PREFIX}-pkgconf"
              "${MINGW_PACKAGE_PREFIX}-meson"
              "${MINGW_PACKAGE_PREFIX}-blueprint-compiler"
 	     git)
+provides=(${MINGW_PACKAGE_PREFIX}-${_realname})
+conflicts=(${MINGW_PACKAGE_PREFIX}-${_realname})
 license=(GPL3)
 source=("git+${url}.git")
 md5sums=(SKIP)
