@@ -7,6 +7,11 @@ timelabel > label {
   font-variant-numeric: tabular-nums;
 }
 
+.progressbar {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .progressbar trough {
   min-height: 0.9rem;
   border-radius: 0.25rem;
