@@ -13,6 +13,7 @@ template $DaikhanMediaControls : Adw.Bin {
       Button prev_btn {
         icon-name: "media-skip-backward-symbolic";
         visible: false;
+        styles ["prevbutton"]
 
         clicked => $prev_cb();
       }
@@ -22,6 +23,7 @@ template $DaikhanMediaControls : Adw.Bin {
       Button next_btn {
         icon-name: "media-skip-forward-symbolic";
         visible: false;
+        styles ["nextbutton"]
 
         clicked => $next_cb();
       }

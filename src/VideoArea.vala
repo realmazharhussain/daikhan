@@ -32,6 +32,10 @@ class Daikhan.VideoArea : Adw.Bin {
     double cursor_y_cached;
     Gdk.Cursor none_cursor = new Gdk.Cursor.from_name ("none", null);
 
+    static construct {
+        set_css_name ("videoarea");
+    }
+
     construct {
         playback = Daikhan.Playback.get_default ();
 

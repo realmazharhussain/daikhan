@@ -9,6 +9,8 @@ class Daikhan.ErrorDialog : Adw.MessageDialog {
     }
 
     construct {
+        add_css_class ("errordialog");
+
         heading = _("Error");
         default_message = _("If this is unexpected, please, file a bug report"
                             + " with the following debug information.\n"

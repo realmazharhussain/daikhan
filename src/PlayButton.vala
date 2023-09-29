@@ -2,6 +2,8 @@ public class Daikhan.PlayButton : Gtk.Button {
     Daikhan.Playback playback;
 
     construct {
+        add_css_class ("playbutton");
+
         playback = Daikhan.Playback.get_default ();
         playback.notify["target-state"].connect (update_icon);
         playback.notify["queue"].connect (update_sensitivity);

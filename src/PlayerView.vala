@@ -4,6 +4,8 @@ class Daikhan.PlayerView : Adw.Bin {
     public bool fullscreened { get; set; default = false; }
 
     static construct {
+        set_css_name ("playerview");
+
         typeof (Daikhan.AppMenuButton).ensure ();
         typeof (Daikhan.MediaControls).ensure ();
         typeof (Daikhan.Title).ensure ();

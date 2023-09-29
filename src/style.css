@@ -7,21 +7,21 @@ timelabel > label {
   font-variant-numeric: tabular-nums;
 }
 
-.progress trough {
+.progressbar trough {
   min-height: 0.9rem;
   border-radius: 0.25rem;
 }
 
-.progress slider {
+.progressbar slider {
   opacity: 0;
 }
 
-.progress highlight {
+.progressbar highlight {
   border-radius: 0;
 }
 
-.fullscreen .player title,
-.fullscreen .player mediacontrols {
+.fullscreen playerview title,
+.fullscreen playerview mediacontrols {
   opacity: 0.96;
   min-height: 4rem;
   box-shadow: 0 0 0 1px @headerbar_darker_shade_color;
@@ -29,29 +29,29 @@ timelabel > label {
   margin: 0.8rem;
 }
 
-.fullscreen .player windowtitle {
+.fullscreen playerview windowtitle {
   padding: .75rem;
 }
 
-.fullscreen .player windowtitle .title {
+.fullscreen playerview windowtitle .title {
   font-size: 1.75rem;
 }
 
-.fullscreen .player windowtitle .subtitle {
+.fullscreen playerview windowtitle .subtitle {
   font-size: 1.25rem;
 }
 
-.fullscreen .player button {
+.fullscreen playerview button {
   -gtk-icon-size: 1.7rem;
   margin: 0.5rem;
 }
 
-.fullscreen .player timelabel > label {
+.fullscreen playerview timelabel > label {
   font-size: 1.5rem;
   font-weight: 550;
 }
 
-.fullscreen .player .progress > trough {
+.fullscreen playerview .progressbar trough {
   min-height: 1.5rem;
   border-radius: 0.4rem;
 }

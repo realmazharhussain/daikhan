@@ -6,6 +6,8 @@ public class Daikhan.MediaControls : Adw.Bin {
     Daikhan.Playback playback;
 
     static construct {
+        set_css_name ("mediacontrols");
+
         typeof (Daikhan.PlayButton).ensure ();
         typeof (Daikhan.ProgressLabel).ensure ();
         typeof (Daikhan.ProgressBar).ensure ();
@@ -14,8 +16,6 @@ public class Daikhan.MediaControls : Adw.Bin {
     }
 
     construct {
-        set ("css-name", "mediacontrols");
-
         playback = Daikhan.Playback.get_default ();
 
         playback.notify["queue"].connect (update_prev_next_visibility);

@@ -7,6 +7,7 @@ public class Daikhan.WelcomeView : Adw.Bin {
     Settings state_mem;
 
     static construct {
+        set_css_name ("welcomeview");
         typeof (Daikhan.AppMenuButton).ensure ();
     }
 
