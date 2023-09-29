@@ -41,7 +41,9 @@ timelabel > label {
   font-size: 1.25rem;
 }
 
-.fullscreen playerview button {
+.fullscreen playerview mediacontrols > box > box > button,
+.fullscreen playerview volumebutton,
+.fullscreen playerview menubutton {
   -gtk-icon-size: 1.7rem;
   margin: 0.5rem;
 }
