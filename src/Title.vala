@@ -2,6 +2,10 @@ class Daikhan.Title: Adw.Bin {
     public string title { get; private set; }
     Daikhan.Playback playback;
 
+    static construct {
+        set_css_name ("title");
+    }
+
     construct {
         child = new Adw.WindowTitle ("", "");
         playback = Daikhan.Playback.get_default ();

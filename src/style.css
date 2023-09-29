@@ -20,7 +20,8 @@ timelabel > label {
   border-radius: 0;
 }
 
-.player overlay > revealer > * {
+.fullscreen .player title,
+.fullscreen .player mediacontrols {
   opacity: 0.96;
   min-height: 4rem;
   box-shadow: 0 0 0 1px @headerbar_darker_shade_color;
@@ -28,29 +29,29 @@ timelabel > label {
   margin: 0.8rem;
 }
 
-.player overlay windowtitle {
+.fullscreen .player windowtitle {
   padding: .75rem;
 }
 
-.player overlay windowtitle .title {
+.fullscreen .player windowtitle .title {
   font-size: 1.75rem;
 }
 
-.player overlay windowtitle .subtitle {
+.fullscreen .player windowtitle .subtitle {
   font-size: 1.25rem;
 }
 
-.player overlay button {
+.fullscreen .player button {
   -gtk-icon-size: 1.7rem;
   margin: 0.5rem;
 }
 
-.player overlay timelabel > label {
+.fullscreen .player timelabel > label {
   font-size: 1.5rem;
   font-weight: 550;
 }
 
-.player overlay .progress > trough {
+.fullscreen .player .progress > trough {
   min-height: 1.5rem;
   border-radius: 0.4rem;
 }
