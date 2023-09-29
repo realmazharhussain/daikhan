@@ -2,21 +2,21 @@
   background: black;
 }
 
-.player timelabel > label {
+timelabel > label {
   font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
 
-.player scale.progress > trough {
+.progress trough {
   min-height: 0.9rem;
   border-radius: 0.25rem;
 }
 
-.player scale.progress > trough > slider {
+.progress slider {
   opacity: 0;
 }
 
-.player scale.progress > trough > highlight {
+.progress highlight {
   border-radius: 0;
 }
 
@@ -28,29 +28,29 @@
   margin: 0.8rem;
 }
 
-.player overlay > revealer * windowtitle {
+.player overlay windowtitle {
   padding: .75rem;
 }
 
-.player overlay > revealer * windowtitle .title {
+.player overlay windowtitle .title {
   font-size: 1.75rem;
 }
 
-.player overlay > revealer * windowtitle .subtitle {
+.player overlay windowtitle .subtitle {
   font-size: 1.25rem;
 }
 
-.player overlay > revealer * button {
+.player overlay button {
   -gtk-icon-size: 1.7rem;
   margin: 0.5rem;
 }
 
-.player overlay > revealer * timelabel > label {
+.player overlay timelabel > label {
   font-size: 1.5rem;
   font-weight: 550;
 }
 
-.player overlay > revealer * scale.progress > trough {
+.player overlay .progress > trough {
   min-height: 1.5rem;
   border-radius: 0.4rem;
 }
