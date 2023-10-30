@@ -2,6 +2,24 @@
   background: black;
 }
 
+mediacontrols,
+playerview headerbar {
+  background-color: @headerbar_bg_color;
+}
+
+playerview > revealer.top {
+  box-shadow: 0 1px @headerbar_darker_shade_color;
+}
+
+playerview > revealer.bottom {
+  box-shadow: 0 -1px @headerbar_darker_shade_color;
+}
+
+.fullscreen playerview > revealer.top,
+.fullscreen playerview > revealer.bottom {
+  box-shadow: none;
+}
+
 timelabel > label {
   font-weight: 500;
   font-variant-numeric: tabular-nums;
@@ -25,7 +43,7 @@ timelabel > label {
   border-radius: 0;
 }
 
-.fullscreen playerview title,
+.fullscreen playerview headerbar,
 .fullscreen playerview mediacontrols {
   opacity: 0.96;
   min-height: 4rem;

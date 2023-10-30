@@ -18,7 +18,6 @@ blp_sources = files('AppWindow.blp',
                     'PlayerView.blp',
                     'PreferencesWindow.blp',
                     'Shortcuts.blp',
-                    'VideoArea.blp',
                     'VolumeButton.blp',
                     'WelcomeView.blp',
                     )
@@ -63,7 +62,6 @@ sources = [config_file] + blueprints + resources + files(
   'Title.vala',
   'TrackInfo.vala',
   'Utils.vala',
-  'VideoArea.vala',
   'VolumeButton.vala',
   'WelcomeView.vala',
 )
