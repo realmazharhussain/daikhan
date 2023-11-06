@@ -55,6 +55,16 @@ public class Daikhan.PlayerView : Gtk.Widget {
         // notify["fullscreened"].connect (queue_resize);
         // notify["fullscreened"].connect (queue_draw);
 
+        notify["fullscreened"].connect (() => {
+            top.transition_type = NONE;
+            bottom.transition_type = NONE;
+
+            do_motion_stuff ();
+
+            top.transition_type = SLIDE_DOWN;
+            bottom.transition_type = SLIDE_UP;
+        });
+
         var ctrlr = new Gtk.EventControllerMotion ();
         ctrlr.motion.connect (cursor_motion_cb);
         this.add_controller (ctrlr);
@@ -170,6 +180,11 @@ public class Daikhan.PlayerView : Gtk.Widget {
 
         cursor_x_cached = x;
         cursor_y_cached = y;
+
+        do_motion_stuff ();
+    }
+
+    void do_motion_stuff () {
 
         // Run motion callbacks
         foreach (var timeout in timeouts)
