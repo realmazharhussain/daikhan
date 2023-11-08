@@ -15,6 +15,10 @@ playerview > revealer.bottom {
   box-shadow: 0 -1px @headerbar_darker_shade_color;
 }
 
+mediacontrols > box:backdrop {
+  filter: opacity(0.5);
+}
+
 .fullscreen playerview > revealer.top,
 .fullscreen playerview > revealer.bottom {
   box-shadow: none;
