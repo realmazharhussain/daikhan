@@ -13,20 +13,20 @@ timelabel > label {
 
 /* ProgressBar */
 
-.progressbar {
+scale.progressbar {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-.progressbar trough {
+scale.progressbar trough {
   min-height: 0.9rem;
   border-radius: 0.25rem;
 }
 
-.progressbar highlight {
+scale.progressbar highlight {
   border-radius: 0;
 }
 
-.progressbar slider {
+scale.progressbar slider {
   opacity: 0;
 }
