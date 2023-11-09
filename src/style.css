@@ -1,33 +1,17 @@
-.video {
-  background: black;
-}
-
-mediacontrols,
-playerview headerbar {
-  background-color: @headerbar_bg_color;
-}
-
-playerview > revealer.top {
-  box-shadow: 0 1px @headerbar_darker_shade_color;
-}
-
-playerview > revealer.bottom {
-  box-shadow: 0 -1px @headerbar_darker_shade_color;
-}
+/* Media Controls */
 
 mediacontrols > box:backdrop {
   filter: opacity(0.5);
 }
 
-.fullscreen playerview > revealer.top,
-.fullscreen playerview > revealer.bottom {
-  box-shadow: none;
-}
+/* TimeLabels */
 
 timelabel > label {
   font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
+
+/* ProgressBar */
 
 .progressbar {
   padding-top: 0;
@@ -39,12 +23,52 @@ timelabel > label {
   border-radius: 0.25rem;
 }
 
+.progressbar highlight {
+  border-radius: 0;
+}
+
 .progressbar slider {
   opacity: 0;
 }
 
-.progressbar highlight {
-  border-radius: 0;
+
+/*************
+* PlayerView *
+*************/
+
+/* Video */
+
+.video {
+  background: black;
+}
+
+/* Top & Bottom Bars */
+
+mediacontrols,
+playerview headerbar {
+  background-color: @headerbar_bg_color;
+}
+
+/* Top Bar */
+playerview > revealer.top {
+  box-shadow: 0 1px @headerbar_darker_shade_color;
+}
+
+/* Bottom Bar */
+playerview > revealer.bottom {
+  box-shadow: 0 -1px @headerbar_darker_shade_color;
+}
+
+
+/************************
+* Fullscreen PlayerView *
+************************/
+
+/* Top & Bottom Bars */
+
+.fullscreen playerview > revealer.top,
+.fullscreen playerview > revealer.bottom {
+  box-shadow: none;
 }
 
 .fullscreen playerview headerbar,
@@ -56,8 +80,16 @@ timelabel > label {
   margin: 0.8rem;
 }
 
+/* WindowTitle */
+
 .fullscreen playerview windowtitle {
   padding: 0.5rem;
+}
+
+.fullscreen playerview windowtitle .title,
+.fullscreen playerview windowtitle .subtitle {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .fullscreen playerview windowtitle .title {
@@ -68,12 +100,9 @@ timelabel > label {
   font-size: 1.15rem;
 }
 
-.fullscreen playerview windowtitle .title,
-.fullscreen playerview windowtitle .subtitle {
-  padding-left: 0;
-  padding-right: 0;
-}
+/* Media Controls */
 
+/* Buttons */
 .fullscreen playerview mediacontrols > box > box > button,
 .fullscreen playerview volumebutton,
 .fullscreen playerview menubutton {
@@ -81,11 +110,13 @@ timelabel > label {
   margin: 0.5rem;
 }
 
+/* Time Labels */
 .fullscreen playerview timelabel > label {
   font-size: 1.5rem;
   font-weight: 550;
 }
 
+/* ProgressBar */
 .fullscreen playerview .progressbar trough {
   min-height: 1.5rem;
   border-radius: 0.4rem;
