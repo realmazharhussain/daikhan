@@ -10,6 +10,10 @@
        </choices>
      </key>
 
+     <key name="overlay-ui" type="b">
+       <default>false</default>
+     </key>
+
      <key name="seeking-method" type="s">
        <default>"balanced"</default>
        <choices>

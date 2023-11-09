@@ -26,6 +26,7 @@ public class Daikhan.PlayerView : Gtk.Widget {
     [GtkChild] unowned Gtk.HeaderBar headerbar;
     [GtkChild] unowned Daikhan.MediaControls controls;
 
+    Settings settings = new Settings (Conf.APP_ID);
     Gdk.Cursor none_cursor = new Gdk.Cursor.from_name ("none", null);
     Gtk.EventControllerMotion headerbar_ctrlr;
     Gtk.EventControllerMotion controls_ctrlr;
@@ -65,6 +66,12 @@ public class Daikhan.PlayerView : Gtk.Widget {
             bottom.transition_type = SLIDE_UP;
         });
 
+        settings.changed["overlay-ui"].connect (() => {
+            if (!fullscreened) {
+                top.reveal_child = !settings.get_boolean ("overlay-ui");
+            }
+        });
+
         var ctrlr = new Gtk.EventControllerMotion ();
         ctrlr.motion.connect (cursor_motion_cb);
         this.add_controller (ctrlr);
@@ -86,7 +93,7 @@ public class Daikhan.PlayerView : Gtk.Widget {
 
         add_motion_timeout (2000,
             () => {
-                if (fullscreened) {
+                if (fullscreened || settings.get_boolean ("overlay-ui")) {
                     top.reveal_child = false;
                 }
             }, () => {
@@ -120,7 +127,7 @@ public class Daikhan.PlayerView : Gtk.Widget {
         if (orientation == HORIZONTAL) {
             minimum = int.max (video_min, int.max (top_min, bottom_min));
             natural = int.max (video_nat, int.max (top_nat, bottom_nat));
-        } else if (fullscreened) {
+        } else if (fullscreened || settings.get_boolean ("overlay-ui")) {
             minimum = int.max (video_min, top_min + bottom_min);
             natural = int.max (video_nat, top_nat + bottom_nat);
         } else {
@@ -149,8 +156,9 @@ public class Daikhan.PlayerView : Gtk.Widget {
         int bottom_height = (height - video_min - top_min).clamp (bottom_min, bottom_nat);
         int bottom_offset = height - bottom_height;
 
-        int video_height = fullscreened ? height : int.max (0, height - top_height - bottom_height);
-        int video_offset = fullscreened ? 0 : top_height;
+        bool overlay = fullscreened || settings.get_boolean ("overlay-ui");
+        int video_height = overlay ? height : int.max (0, height - top_height - bottom_height);
+        int video_offset = overlay ? 0 : top_height;
 
         top.allocate (width, top_height, -1, null);
         video.allocate (width, video_height, -1, y_transform (video_offset));

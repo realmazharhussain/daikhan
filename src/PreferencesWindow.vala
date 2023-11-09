@@ -2,6 +2,7 @@
 class Daikhan.PreferencesWindow : Adw.PreferencesWindow {
     [GtkChild] unowned Daikhan.ComboRow dark_mode_combo;
     [GtkChild] unowned Daikhan.ComboRow seeking_combo;
+    [GtkChild] unowned Adw.SwitchRow overlay_switch;
     Settings settings;
 
     static construct {
@@ -10,6 +11,8 @@ class Daikhan.PreferencesWindow : Adw.PreferencesWindow {
 
     construct {
         settings = new Settings (Conf.APP_ID);
+
+        settings.bind ("overlay-ui", overlay_switch, "active", DEFAULT);
 
         dark_mode_combo.append ("default", _("Follow System"));
         dark_mode_combo.append ("force-light", _("Light"));
