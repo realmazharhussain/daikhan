@@ -34,6 +34,7 @@ public class Daikhan.PlayerView : Gtk.Widget {
     Source[] timeout_sources = null;
     double cursor_x_cached;
     double cursor_y_cached;
+    bool overlay_ui_turning_on = false;
 
     static construct {
         set_css_name ("playerview");
@@ -68,9 +69,13 @@ public class Daikhan.PlayerView : Gtk.Widget {
 
         settings.changed["overlay-ui"].connect (() => {
             if (!fullscreened) {
-                top.reveal_child = !settings.get_boolean ("overlay-ui");
+                bool overlay_ui = settings.get_boolean ("overlay-ui");
+                top.reveal_child = !overlay_ui;
+                overlay_ui_turning_on = overlay_ui;
             }
         });
+
+        top.notify["child-revealed"].connect (() => { overlay_ui_turning_on = false; });
 
         var ctrlr = new Gtk.EventControllerMotion ();
         ctrlr.motion.connect (cursor_motion_cb);
@@ -127,7 +132,7 @@ public class Daikhan.PlayerView : Gtk.Widget {
         if (orientation == HORIZONTAL) {
             minimum = int.max (video_min, int.max (top_min, bottom_min));
             natural = int.max (video_nat, int.max (top_nat, bottom_nat));
-        } else if (fullscreened || settings.get_boolean ("overlay-ui")) {
+        } else if (fullscreened || (settings.get_boolean ("overlay-ui") && !overlay_ui_turning_on)) {
             minimum = int.max (video_min, top_min + bottom_min);
             natural = int.max (video_nat, top_nat + bottom_nat);
         } else {
@@ -156,7 +161,7 @@ public class Daikhan.PlayerView : Gtk.Widget {
         int bottom_height = (height - video_min - top_min).clamp (bottom_min, bottom_nat);
         int bottom_offset = height - bottom_height;
 
-        bool overlay = fullscreened || settings.get_boolean ("overlay-ui");
+        bool overlay = fullscreened || (settings.get_boolean ("overlay-ui") && !overlay_ui_turning_on);
         int video_height = overlay ? height : int.max (0, height - top_height - bottom_height);
         int video_offset = overlay ? 0 : top_height;
 
