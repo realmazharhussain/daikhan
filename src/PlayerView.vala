@@ -240,12 +240,19 @@ public class Daikhan.PlayerView : Gtk.Widget {
         var window = this.get_root () as Daikhan.AppWindow;
         assert (window != null);
 
-        if (n_press != 2) {
+        if (n_press == 1 &&
+            !(headerbar_ctrlr.contains_pointer || controls_ctrlr.contains_pointer) &&
+            (fullscreened || settings.get_boolean ("overlay-ui")))
+        {
+            top.reveal_child = !top.reveal_child;
+            cursor = none_cursor;
+        } else if (n_press == 2) {
+            window.activate_action ("toggle_fullscreen", null);
+        } else {
             return;
         }
 
         gesture.set_state (CLAIMED);
-        window.activate_action ("toggle_fullscreen", null);
         gesture.reset ();
     }
 }
