@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-29 17:17+0500\n"
-"PO-Revision-Date: 2023-08-18 22:53+0000\n"
+"PO-Revision-Date: 2023-10-08 04:18+0000\n"
 "Last-Translator: rene-coty <irenee.thirion@e.email>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/daikhan/"
 "translations/fr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
 #: src/Application.vala:89 src/Title.vala:16 src/WelcomeView.blp:17
@@ -82,20 +82,20 @@ msgstr "Reprendre la lecture ?"
 
 #: src/AppWindow.vala:106
 msgid "Unsupported File Type"
-msgstr ""
+msgstr "Type de fichier non pris en charge"
 
 #: src/AppWindow.vala:107
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
-msgstr ""
+msgstr "Le fichier '%s' n’est pas un fichier audio ou vidéo."
 
 #: src/AppWindow.vala:108 src/AppWindow.vala:135
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/AppWindow.vala:114
 msgid "Unsupported Codec"
-msgstr ""
+msgstr "Codec non pris en charge"
 
 #: src/AppWindow.vala:115
 #, c-format
@@ -105,10 +105,14 @@ msgid ""
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
+"L’encodage d’un ou plusieurs flux dans '%s' n’est pas pris en charge.\n"
+"\n"
+"Si ce n’était pas prévu veuillez remplir un rapport de bogue les "
+"informations de débogage suivantes.\n"
 
 #: src/AppWindow.vala:134
 msgid "Report Bug"
-msgstr ""
+msgstr "Signaler un bogue"
 
 #: src/PreferencesWindow.blp:7
 msgid "Appearance"
@@ -255,41 +259,35 @@ msgstr "Piste %i"
 
 #: src/WelcomeView.blp:18
 msgid "You can drop files here to play"
-msgstr ""
+msgstr "Vous pouvez déposez des fichiers ici pour les lire"
 
 #: src/WelcomeView.blp:26
 msgid "Open Files"
-msgstr ""
+msgstr "Ouvrir les fichiers"
 
 #: src/WelcomeView.blp:33
 msgid "Play Again"
-msgstr ""
+msgstr "Rejouer"
 
 #: src/WelcomeView.blp:41
 msgid "Continue where you left off"
-msgstr ""
+msgstr "Continuer là ou vous vous êtes arrêté"
 
 #: src/WelcomeView.blp:56
-#, fuzzy
-#| msgid "Single File"
 msgid "All Files"
-msgstr "Fichier seul"
+msgstr "Tous les fichiers"
 
 #: src/WelcomeView.blp:61
 msgid "Video & Audio Files"
-msgstr ""
+msgstr "Fichiers Vidéo et Audio"
 
 #: src/WelcomeView.blp:66
-#, fuzzy
-#| msgid "Single File"
 msgid "Video Files"
-msgstr "Fichier seul"
+msgstr "Fichiers vidéo"
 
 #: src/WelcomeView.blp:71
-#, fuzzy
-#| msgid "Audio"
 msgid "Audio Files"
-msgstr "Audio"
+msgstr "Fichiers audio"
 
 #~ msgid "Restore last session?"
 #~ msgstr "Restaurer la session précédente ?"

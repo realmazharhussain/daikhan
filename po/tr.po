@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-29 17:17+0500\n"
-"PO-Revision-Date: 2023-08-18 00:15+0000\n"
+"PO-Revision-Date: 2023-08-31 07:52+0000\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/daikhan/"
 "translations/tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.0.1-dev\n"
 
 #: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
 #: src/Application.vala:89 src/Title.vala:16 src/WelcomeView.blp:17
@@ -82,20 +82,20 @@ msgstr "Oynatma sürdürülsün mü?"
 
 #: src/AppWindow.vala:106
 msgid "Unsupported File Type"
-msgstr ""
+msgstr "Desteklenmeyen Dosya Türü"
 
 #: src/AppWindow.vala:107
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
-msgstr ""
+msgstr "'%s' ses ya da video dosyası değil."
 
 #: src/AppWindow.vala:108 src/AppWindow.vala:135
 msgid "OK"
-msgstr ""
+msgstr "Tamam"
 
 #: src/AppWindow.vala:114
 msgid "Unsupported Codec"
-msgstr ""
+msgstr "Desteklenmeyen Kod Çözücü"
 
 #: src/AppWindow.vala:115
 #, c-format
@@ -105,10 +105,14 @@ msgid ""
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
+"'%s' bir ya da daha fazla akışın kodlanması desteklemiyor.\n"
+"\n"
+"Beklenmedik bir durumda aşağıdaki hata ayıklama bilgilerini içeren bir hata "
+"bildirin.\n"
 
 #: src/AppWindow.vala:134
 msgid "Report Bug"
-msgstr ""
+msgstr "Hata Bildir"
 
 #: src/PreferencesWindow.blp:7
 msgid "Appearance"
@@ -255,41 +259,35 @@ msgstr "Parça %i"
 
 #: src/WelcomeView.blp:18
 msgid "You can drop files here to play"
-msgstr ""
+msgstr "Oynatılacak dosyaları buraya bırakabilirsiniz"
 
 #: src/WelcomeView.blp:26
 msgid "Open Files"
-msgstr ""
+msgstr "Dosya Aç"
 
 #: src/WelcomeView.blp:33
 msgid "Play Again"
-msgstr ""
+msgstr "Yeniden Oynat"
 
 #: src/WelcomeView.blp:41
 msgid "Continue where you left off"
-msgstr ""
+msgstr "Kaldığı yerden devam et"
 
 #: src/WelcomeView.blp:56
-#, fuzzy
-#| msgid "Single File"
 msgid "All Files"
-msgstr "Tek Dosya"
+msgstr "Tüm Dosyalar"
 
 #: src/WelcomeView.blp:61
 msgid "Video & Audio Files"
-msgstr ""
+msgstr "Video ve Ses Dosyaları"
 
 #: src/WelcomeView.blp:66
-#, fuzzy
-#| msgid "Single File"
 msgid "Video Files"
-msgstr "Tek Dosya"
+msgstr "Video Dosyaları"
 
 #: src/WelcomeView.blp:71
-#, fuzzy
-#| msgid "Audio"
 msgid "Audio Files"
-msgstr "Ses"
+msgstr "Ses Dosyaları"
 
 #~ msgid "Restore last session?"
 #~ msgstr "Son oturum geri yüklensin mi?"

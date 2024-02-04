@@ -8,30 +8,29 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-29 17:17+0500\n"
-"PO-Revision-Date: 2023-09-02 20:45+0000\n"
-"Last-Translator: Сергей Ворон <voron.s.a@gmail.com>\n"
-"Language-Team: Russian <https://hosted.weblate.org/projects/daikhan/"
-"translations/ru/>\n"
-"Language: ru\n"
+"PO-Revision-Date: 2023-09-01 12:53+0000\n"
+"Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/daikhan/"
+"translations/nl/>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.0.1-dev\n"
 
 #: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
 #: src/Application.vala:89 src/Title.vala:16 src/WelcomeView.blp:17
 msgid "Daikhan (Early Access)"
-msgstr "Daikhan (Ранний доступ)"
+msgstr "Daikhan (vroege toegang)"
 
 #: data/daikhan.desktop.in:5
 msgid "Media player"
-msgstr "Медиа плеер"
+msgstr "Media­speler"
 
 #: data/daikhan.desktop.in:6 data/daikhan.metainfo.xml.in:7
 msgid "Play Videos/Music with style"
-msgstr "Воспроизведение видео/музыки со стилем"
+msgstr "Speel videos of muziek af met stijl"
 
 #: data/daikhan.metainfo.xml.in:8 src/Application.vala:92
 msgid "Mazhar Hussain"
@@ -39,64 +38,64 @@ msgstr "Mazhar Hussain"
 
 #: data/daikhan.metainfo.xml.in:10
 msgid "A simple media player with beautiful interface."
-msgstr "Простой медиаплеер с красивым интерфейсом."
+msgstr "Een eenvoudige mediaspeler met een mooie interface"
 
 #: data/daikhan.metainfo.xml.in:12
 msgid ""
 "NOTE: The app is in early stages of development and bound to change "
 "significantly in the future."
 msgstr ""
-"ПРИМЕЧАНИЕ. Приложение находится на ранних стадиях разработки и в будущем "
-"оно должно существенно измениться."
+"OPMERKING: De app is in een vroeg stadium van ontwikkeling en zal in de "
+"toekomst aanzienlijk veranderen."
 
 #: data/daikhan.metainfo.xml.in:58
 msgid "Not released yet."
-msgstr "Еще не выпущено."
+msgstr "Nog niet uitgegeven"
 
 #: src/ActionDialog.vala:10
 msgid "No"
-msgstr "Нет"
+msgstr "Nee"
 
 #: src/ActionDialog.vala:11
 msgid "Yes"
-msgstr "Да"
+msgstr "Ja"
 
 #: src/Application.vala:90
 msgid "Copyright 2022-2023 Mazhar Hussain"
-msgstr "Авторское право 2022-2023 Mazhar Hussain"
+msgstr "Copyright 2022-2023, Mazhar Hussain"
 
 #: src/AppMenuButton.blp:6
 msgid "Preferences"
-msgstr "Настройки"
+msgstr "Voorkeuren"
 
 #: src/AppMenuButton.blp:7
 msgid "Keyboard Shortcuts"
-msgstr "Комбинации клавиш"
+msgstr "Sneltoetsen"
 
 #: src/AppMenuButton.blp:8
 msgid "About Daikhan"
-msgstr "О приложении"
+msgstr "Over Daikhan"
 
 #: src/AppWindow.vala:99
 msgid "Resume playback?"
-msgstr "Возобновить воспроизведение?"
+msgstr "Afspelen hervatten?"
 
 #: src/AppWindow.vala:106
 msgid "Unsupported File Type"
-msgstr "Неподдерживаемый тип файла"
+msgstr "Niet-ondersteund bestandstype"
 
 #: src/AppWindow.vala:107
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
-msgstr "Файл '%s' не является аудио или видео файлом."
+msgstr "Het bestand ‘%s’ is geen audio- of video­bestand."
 
 #: src/AppWindow.vala:108 src/AppWindow.vala:135
 msgid "OK"
-msgstr "ОК"
+msgstr "Oké"
 
 #: src/AppWindow.vala:114
 msgid "Unsupported Codec"
-msgstr "Неподдерживаемый кодек"
+msgstr "Niet-ondersteunde codec"
 
 #: src/AppWindow.vala:115
 #, c-format
@@ -106,189 +105,186 @@ msgid ""
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
-"Кодирование одного или нескольких потоков в '%s' не поддерживается.\n"
+"Het coderen van één of meer streams in ‘%s’ wordt niet ondersteund.\n"
 "\n"
-"Если это не ожидалось, отправьте отчет об ошибке со следующей отладочной "
-"информацией.\n"
+"Als dit onverwacht is, dien dan een foutrapport in met de volgende "
+"fout­opsporings­informatie.\n"
 
 #: src/AppWindow.vala:134
 msgid "Report Bug"
-msgstr "Сообщить об ошибке"
+msgstr "Fout melden"
 
 #: src/PreferencesWindow.blp:7
 msgid "Appearance"
-msgstr "Внешний вид"
+msgstr "Uiterlijk"
 
 #: src/PreferencesWindow.blp:10
 msgid "Color Scheme"
-msgstr "Цветовая схема"
+msgstr "Kleurenschema"
 
 #: src/PreferencesWindow.blp:15
 msgid "Behavior"
-msgstr "Поведение"
+msgstr "Gedrag"
 
 #: src/PreferencesWindow.blp:19
 msgid "Seeking Method"
-msgstr "Метод поиска"
+msgstr "Zoekmethode"
 
 #: src/PreferencesWindow.vala:14
 msgid "Follow System"
-msgstr "Системная"
+msgstr "Systeem volgen"
 
 #: src/PreferencesWindow.vala:15
 msgid "Light"
-msgstr "Светлая"
+msgstr "Licht"
 
 #: src/PreferencesWindow.vala:16
 msgid "Dark"
-msgstr "Темная"
+msgstr "Donker"
 
 #: src/PreferencesWindow.vala:19
 msgid "Fast"
-msgstr "Быстрый"
+msgstr "Snel"
 
 #: src/PreferencesWindow.vala:20
 msgid "Balanced"
-msgstr "Сбалансированный"
+msgstr "Gebalanceerd"
 
 #: src/PreferencesWindow.vala:21
 msgid "Accurate"
-msgstr "Точный"
+msgstr "Accuraat"
 
 #: src/Shortcuts.blp:8
 msgid "Application"
-msgstr "Приложение"
+msgstr "App"
 
 #: src/Shortcuts.blp:11
 msgid "Toggle Fullscreen"
-msgstr "Включить полноэкранный режим"
+msgstr "Volledig scherm omschakelen"
 
 #: src/Shortcuts.blp:16
 msgid "Open Preferences"
-msgstr "Открыть настройки"
+msgstr "Voorkeuren openen"
 
 #: src/Shortcuts.blp:21
 msgid "Show Keyboard Shortcuts"
-msgstr "Показать комбинации клавиш"
+msgstr "Sneltoetsen tonen"
 
 #: src/Shortcuts.blp:26
 msgid "Quit"
-msgstr "Выйти"
+msgstr "Afsluiten"
 
 #: src/Shortcuts.blp:32
 msgid "Playback"
-msgstr "Воспроизведение"
+msgstr "Afspelen"
 
 #: src/Shortcuts.blp:35
 msgid "Play/Pause"
-msgstr "Воспроизведение/Пауза"
+msgstr "Afspelen/pauzeren"
 
 #: src/Shortcuts.blp:40
 msgid "Seek Forward (10s)"
-msgstr "Поиск вперед (10с)"
+msgstr "Vooruit­spoelen (10s)"
 
 #: src/Shortcuts.blp:45
 msgid "Seek Backwards (10s)"
-msgstr "Поиск назад (10с)"
+msgstr "Achteruit­spoelen (10s)"
 
 #: src/Shortcuts.blp:50
 msgid "Increase Volume (5%)"
-msgstr "Увеличить громкость (5%)"
+msgstr "Volume verhogen (5%)"
 
 #: src/Shortcuts.blp:55
 msgid "Decrease Volume (5%)"
-msgstr "Уменьшить громкость (5%)"
+msgstr "Volume verlagen (5%)"
 
 #: src/Shortcuts.blp:60
 msgid "Seek Forward (3s)"
-msgstr "Поиск вперед (3с)"
+msgstr "Vooruit­spoelen (3s)"
 
 #: src/Shortcuts.blp:65
 msgid "Seek Backwards (3s)"
-msgstr "Поиск назад (3с)"
+msgstr "Achteruit­spoelen (3s)"
 
 #: src/Shortcuts.blp:70
 msgid "Increase Volume (2%)"
-msgstr "Увеличить громкость (2%)"
+msgstr "Volume verhogen (2%)"
 
 #: src/Shortcuts.blp:75
 msgid "Decrease Volume (2%)"
-msgstr "Уменьшить громкость (2%)"
+msgstr "Volume verlagen (2%)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
-msgstr "Аудио"
+msgstr "Audio"
 
 #: src/StreamMenuBuilder.vala:19
 msgid "Subtitles"
-msgstr "Субтитры"
+msgstr "Ondertiteling"
 
 #: src/StreamMenuBuilder.vala:20
 msgid "Video"
-msgstr "Видео"
+msgstr "Video"
 
 #: src/StreamMenuBuilder.vala:28
 msgid "Repeat"
-msgstr "Повтор"
+msgstr "Herhalen"
 
 #: src/StreamMenuBuilder.vala:29 src/StreamMenuBuilder.vala:89
 #: src/StreamMenuBuilder.vala:121
 msgid "Off"
-msgstr "Выкл."
+msgstr "Uit"
 
 #: src/StreamMenuBuilder.vala:30
 msgid "Single File"
-msgstr "Отдельный файл"
+msgstr "Enkel bestand"
 
 #: src/StreamMenuBuilder.vala:31
 msgid "Whole Queue"
-msgstr "Вся очередь"
+msgstr "Hele wachtrij"
 
 #: src/StreamMenuBuilder.vala:103
 msgid "Unknown Language"
-msgstr "Неизвестный язык"
+msgstr "Onbekende taal"
 
 #: src/StreamMenuBuilder.vala:124
 msgid "On"
-msgstr "Вкл."
+msgstr "Aan"
 
 #. Translators: Keep %i as is. It will be replaced by the track number for each track.
 #: src/StreamMenuBuilder.vala:127
 #, c-format
 msgid "Track %i"
-msgstr "Трек %i"
+msgstr "Spoor %i"
 
 #: src/WelcomeView.blp:18
 msgid "You can drop files here to play"
-msgstr "Вы можете перекинуть сюда файлы для воспроизведения"
+msgstr "Sleep bestanden hierheen om af te spelen"
 
 #: src/WelcomeView.blp:26
 msgid "Open Files"
-msgstr "Открыть файлы"
+msgstr "Bestanden openen"
 
 #: src/WelcomeView.blp:33
 msgid "Play Again"
-msgstr "Воспроизвести снова"
+msgstr "Opnieuw afspelen"
 
 #: src/WelcomeView.blp:41
 msgid "Continue where you left off"
-msgstr "Продолжить с того места, где вы остановились"
+msgstr "Doorgaan waar u was gebleven"
 
 #: src/WelcomeView.blp:56
 msgid "All Files"
-msgstr "Все файлы"
+msgstr "Alle bestanden"
 
 #: src/WelcomeView.blp:61
 msgid "Video & Audio Files"
-msgstr "Видео и аудио файлы"
+msgstr "Video- en audio­bestanden"
 
 #: src/WelcomeView.blp:66
 msgid "Video Files"
-msgstr "Видео файлы"
+msgstr "Video­bestanden"
 
 #: src/WelcomeView.blp:71
 msgid "Audio Files"
-msgstr "Аудио файлы"
-
-#~ msgid "Restore last session?"
-#~ msgstr "Восстановить последнюю сессию?"
+msgstr "Audio­bestanden"
