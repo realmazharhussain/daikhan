@@ -1,26 +1,36 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $DaikhanPlayerView: Adw.Bin {
+template $DaikhanPlayerView : Gtk.Widget {
   title: bind title_widget.title;
-  styles ["player"]
 
-  Box {
-    orientation: vertical;
+  Picture video {
+    hexpand: true;
+    vexpand: true;
+    styles ["video"]
+  }
 
-    Gtk.HeaderBar {
-      visible: bind template.fullscreened inverted;
+  Revealer top {
+    reveal-child: true;
+    transition-duration: 750;
+    transition-type: slide_down;
+    styles ["top"]
+
+    child: HeaderBar headerbar {
+      show-title-buttons: bind template.fullscreened inverted;
       styles ["flat"]
 
       title-widget: $DaikhanTitle title_widget {};
+      [end] $DaikhanAppMenuButton { visible: bind template.fullscreened inverted; }
+    };
+  }
 
-      [end] $DaikhanAppMenuButton {}
-    }
+  Revealer bottom {
+    transition-type: slide_up;
+    reveal-child: bind top.reveal-child bidirectional;
+    transition-duration: bind top.transition-duration bidirectional;
+    styles ["bottom"]
 
-    $DaikhanVideoArea video_area {}
-
-    $DaikhanMediaControls {
-      visible: bind template.fullscreened inverted;
-    }
+    child: $DaikhanMediaControls controls {};
   }
 }

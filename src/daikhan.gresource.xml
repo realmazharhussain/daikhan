@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/app">
+    <file>base.css</file>
+    <file>PlayerView.css</file>
     <file>style.css</file>
-    <file>style-hc.css</file>
     <file preprocess="xml-stripblanks">AppWindow.ui</file>
     <file preprocess="xml-stripblanks">AppMenuButton.ui</file>
+    <file preprocess="xml-stripblanks">ErrorDialog.ui</file>
     <file preprocess="xml-stripblanks">MediaControls.ui</file>
     <file preprocess="xml-stripblanks">PillButton.ui</file>
     <file preprocess="xml-stripblanks">PlayerView.ui</file>
     <file preprocess="xml-stripblanks">PreferencesWindow.ui</file>
     <file preprocess="xml-stripblanks">Shortcuts.ui</file>
-    <file preprocess="xml-stripblanks">VideoArea.ui</file>
     <file preprocess="xml-stripblanks">VolumeButton.ui</file>
     <file preprocess="xml-stripblanks">WelcomeView.ui</file>
   </gresource>

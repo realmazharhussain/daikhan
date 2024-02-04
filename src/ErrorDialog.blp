@@ -1,0 +1,26 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $DaikhanErrorDialog : Adw.MessageDialog {
+  default-response: "ok";
+
+  extra-child: ScrolledWindow {
+    vscrollbar-policy: never;
+
+    child: TextView {
+      editable: false;
+      monospace: true;
+
+      buffer: TextBuffer {
+        text: bind template.debug_info;
+      };
+    };
+  };
+
+  responses [
+    report-bug: _("Report Bug"),
+    ok: _("OK"),
+  ]
+
+  response::report-bug => $report_bug_cb();
+}

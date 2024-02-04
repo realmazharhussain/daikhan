@@ -9,6 +9,11 @@ template $DaikhanPreferencesWindow : Adw.PreferencesWindow {
       $DaikhanComboRow dark_mode_combo {
         title: _("Color Scheme");
       }
+
+      Adw.SwitchRow overlay_switch {
+        title: _("Overlay UI");
+        subtitle: _("Show controls/UI elements on top of the video");
+      }
     }
 
     Adw.PreferencesGroup {

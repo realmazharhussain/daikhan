@@ -12,12 +12,12 @@ config_file = configure_file(
 
 blp_sources = files('AppWindow.blp',
                     'AppMenuButton.blp',
+                    'ErrorDialog.blp',
                     'MediaControls.blp',
                     'PillButton.blp',
                     'PlayerView.blp',
                     'PreferencesWindow.blp',
                     'Shortcuts.blp',
-                    'VideoArea.blp',
                     'VolumeButton.blp',
                     'WelcomeView.blp',
                     )
@@ -42,6 +42,7 @@ sources = [config_file] + blueprints + resources + files(
   'ContentId.vala',
   'DurationLabel.vala',
   'DropTarget.vala',
+  'ErrorDialog.vala',
   'GestureDragWindow.vala',
   'History.vala',
   'MediaControls.vala',
@@ -61,10 +62,13 @@ sources = [config_file] + blueprints + resources + files(
   'Title.vala',
   'TrackInfo.vala',
   'Utils.vala',
-  'VideoArea.vala',
   'VolumeButton.vala',
   'WelcomeView.vala',
 )
+
+if host_machine.system() == 'windows'
+  sources += ico_src
+endif
 
 executable(meson.project_name(), sources,
            dependencies: deps,

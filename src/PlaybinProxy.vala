@@ -12,8 +12,10 @@ public class Daikhan.PlaybinProxy : Object {
         set { pipeline.volume = Gst.Audio.StreamVolume.convert_volume (CUBIC, LINEAR, value); }
     }
 
+    public signal void unsupported_file ();
     public virtual signal void end_of_stream () {}
     public signal void unsupported_codec (string debug_info);
+    public signal void pipeline_error (Gst.Object source, Error error, string debug_info);
 
     construct {
         dynamic var gtksink = Gst.ElementFactory.make ("gtk4paintablesink", null);
@@ -63,13 +65,14 @@ public class Daikhan.PlaybinProxy : Object {
         msg.parse_error (out err, out debug_info);
 
         if (err is Gst.CoreError.MISSING_PLUGIN) {
-            set_state (READY);
             unsupported_codec (debug_info);
-            return;
+        } else if (err is Gst.StreamError.TYPE_NOT_FOUND) {
+            unsupported_file ();
+        } else {
+            pipeline_error (msg.src, err, debug_info);
         }
 
-        warning (@"Error message received from $(msg.src.name): $(err.message)");
-        warning (@"Debugging info: $(debug_info)");
+        set_state (NULL);
     }
 
     void pipeline_eos_cb () {

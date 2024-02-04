@@ -7,6 +7,7 @@ class Daikhan.ActionDialog : Adw.MessageDialog {
     }
 
     construct {
+        add_css_class ("actiondialog");
         add_response ("no", _("No"));
         add_response ("yes", _("Yes"));
         set_response_appearance ("yes", SUGGESTED);

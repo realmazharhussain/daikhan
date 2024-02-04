@@ -3,12 +3,11 @@ public class Daikhan.TimeLabel : Gtk.Widget {
     Gtk.Label child;
 
     class construct {
+        set_css_name ("timelabel");
         set_layout_manager_type (typeof (Gtk.BinLayout));
     }
 
     construct {
-        set ("css-name", "timelabel");
-
         child = new Gtk.Label (null);
         child.set_parent (this);
 

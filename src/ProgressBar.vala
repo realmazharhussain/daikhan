@@ -2,12 +2,12 @@ public class Daikhan.ProgressBar : Gtk.Scale {
     Daikhan.Playback playback;
 
     construct {
+        add_css_class ("progressbar");
+
         adjustment.lower = 0;
         adjustment.value = 0;
         adjustment.upper = 1;
         hexpand = true;
-
-        add_css_class ("progress");
 
         var trough = get_first_child ();
         trough.overflow = HIDDEN;

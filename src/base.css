@@ -1,0 +1,32 @@
+/* Media Controls */
+
+mediacontrols > box:backdrop {
+  filter: opacity(0.5);
+}
+
+/* TimeLabels */
+
+timelabel > label {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ProgressBar */
+
+scale.progressbar {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+scale.progressbar trough {
+  min-height: 0.9rem;
+  border-radius: 0.25rem;
+}
+
+scale.progressbar highlight {
+  border-radius: 0;
+}
+
+scale.progressbar slider {
+  opacity: 0;
+}

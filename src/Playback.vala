@@ -14,9 +14,6 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
     public int64 progress { get; private set; default = -1; }
     public int64 duration { get; private set; default = -1; }
 
-    /* Signals */
-    public signal void unsupported_file ();
-
     /* Private fields */
     Settings settings;
     Settings state_mem;
@@ -86,11 +83,6 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
             filename = info.get_display_name ();
         } catch (Error err) {
             filename = file.get_basename ();
-        }
-
-        if (!Daikhan.Utils.is_file_type_supported (file)) {
-            unsupported_file ();
-            return false;
         }
 
         pipeline["uri"] = file.get_uri ();

@@ -1,0 +1,82 @@
+/* Video */
+
+playerview > .video {
+  background: black;
+}
+
+/* Top & Bottom Bars */
+
+playerview > revealer > * {
+  background-color: @headerbar_bg_color;
+}
+
+/* Top Bar */
+playerview > revealer.top {
+  box-shadow: 0 1px @headerbar_darker_shade_color;
+}
+
+/* Bottom Bar */
+playerview > revealer.bottom {
+  box-shadow: 0 -1px @headerbar_darker_shade_color;
+}
+
+
+/*************
+* Fullscreen *
+*************/
+
+/* Top & Bottom Bars */
+
+.fullscreen playerview > revealer {
+  box-shadow: none;
+}
+
+.fullscreen playerview > revealer > * {
+  opacity: 0.96;
+  min-height: 4rem;
+  box-shadow: 0 0 0 1px @headerbar_darker_shade_color;
+  border-radius: 0.5rem;
+  margin: 0.8rem;
+}
+
+/* WindowTitle */
+
+.fullscreen playerview windowtitle {
+  padding: 0.5rem;
+}
+
+.fullscreen playerview windowtitle .title,
+.fullscreen playerview windowtitle .subtitle {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.fullscreen playerview windowtitle .title {
+  font-size: 1.45rem;
+}
+
+.fullscreen playerview windowtitle .subtitle {
+  font-size: 1.15rem;
+}
+
+/* Media Controls */
+
+/* Buttons */
+.fullscreen playerview mediacontrols > box > box > button,
+.fullscreen playerview volumebutton,
+.fullscreen playerview menubutton {
+  -gtk-icon-size: 1.7rem;
+  margin: 0.5rem;
+}
+
+/* Time Labels */
+.fullscreen playerview timelabel > label {
+  font-size: 1.5rem;
+  font-weight: 550;
+}
+
+/* ProgressBar */
+.fullscreen playerview scale.progressbar trough {
+  min-height: 1.5rem;
+  border-radius: 0.4rem;
+}
