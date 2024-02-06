@@ -110,6 +110,7 @@ public class Daikhan.PlayerView : Gtk.Widget {
         var click_gesture = new Gtk.GestureClick ();
         click_gesture.button = Gdk.BUTTON_PRIMARY;
         click_gesture.pressed.connect (click_gesture_pressed_cb);
+        click_gesture.stopped.connect (click_gesture_stopped_cb);
         add_controller (click_gesture);
 
         add_controller (Daikhan.GestureDragWindow.new ());
@@ -229,30 +230,33 @@ public class Daikhan.PlayerView : Gtk.Widget {
         }
     }
 
+    bool show_hide_gui = false;
+
     void click_gesture_pressed_cb (Gtk.GestureClick gesture,
                                    int n_press, double x, double y)
     {
-        // Don't do anything if the cursor is on media controls
-        if (controls_ctrlr.contains_pointer) {
+        show_hide_gui = false;
+
+        if (headerbar_ctrlr.contains_pointer || controls_ctrlr.contains_pointer) {
             return;
         }
 
-        var window = this.get_root () as Daikhan.AppWindow;
-        assert (window != null);
+        if (n_press == 2) {
+            var window = this.get_root () as Daikhan.AppWindow;
+            window.activate_action ("toggle_fullscreen", null);
+            gesture.set_state (CLAIMED);
+            gesture.reset ();
+        } else if (n_press == 1 && (fullscreened || settings.get_boolean ("overlay-ui"))) {
+            show_hide_gui = true;
+            gesture.set_state (CLAIMED);
+        }
 
-        if (n_press == 1 &&
-            !(headerbar_ctrlr.contains_pointer || controls_ctrlr.contains_pointer) &&
-            (fullscreened || settings.get_boolean ("overlay-ui")))
-        {
+    }
+
+    void click_gesture_stopped_cb (Gtk.GestureClick gesture) {
+        if (show_hide_gui) {
             top.reveal_child = !top.reveal_child;
             cursor = none_cursor;
-        } else if (n_press == 2) {
-            window.activate_action ("toggle_fullscreen", null);
-        } else {
-            return;
         }
-
-        gesture.set_state (CLAIMED);
-        gesture.reset ();
     }
 }
