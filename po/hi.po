@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-29 17:17+0500\n"
-"PO-Revision-Date: 2024-02-09 13:02+0000\n"
+"PO-Revision-Date: 2024-02-09 14:02+0000\n"
 "Last-Translator: Nitin Khalia <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/daikhan/"
 "translations/hi/>\n"
@@ -259,32 +259,32 @@ msgstr "ट्रैक %i"
 
 #: src/WelcomeView.blp:18
 msgid "You can drop files here to play"
-msgstr ""
+msgstr "आप बाद में चलाने के लिए फ़ाइलें यहां छोड़ सकते हैं"
 
 #: src/WelcomeView.blp:26
 msgid "Open Files"
-msgstr ""
+msgstr "फ़ाइल खोलें"
 
 #: src/WelcomeView.blp:33
 msgid "Play Again"
-msgstr ""
+msgstr "फिर से चालू करें"
 
 #: src/WelcomeView.blp:41
 msgid "Continue where you left off"
-msgstr ""
+msgstr "जहां छोड़ा था वहीं से जारी रखें"
 
 #: src/WelcomeView.blp:56
 msgid "All Files"
-msgstr ""
+msgstr "सभी फाइलें"
 
 #: src/WelcomeView.blp:61
 msgid "Video & Audio Files"
-msgstr ""
+msgstr "वीडियो और ऑडियो फ़ाइलें"
 
 #: src/WelcomeView.blp:66
 msgid "Video Files"
-msgstr ""
+msgstr "वीडियो फ़ाइलें"
 
 #: src/WelcomeView.blp:71
 msgid "Audio Files"
-msgstr ""
+msgstr "ऑडियो फ़ाइलें"
