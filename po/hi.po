@@ -1,0 +1,290 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the daikhan package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: daikhan pre-alpha\n"
+"Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
+"POT-Creation-Date: 2023-08-29 17:17+0500\n"
+"PO-Revision-Date: 2024-02-10 17:02+0000\n"
+"Last-Translator: Nitin Khalia <weblate.scrambled777@simplelogin.com>\n"
+"Language-Team: Hindi <https://hosted.weblate.org/projects/daikhan/"
+"translations/hi/>\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.4-dev\n"
+
+#: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
+#: src/Application.vala:89 src/Title.vala:16 src/WelcomeView.blp:17
+msgid "Daikhan (Early Access)"
+msgstr "Daikhan (प्रारंभिक पहुंच)"
+
+#: data/daikhan.desktop.in:5
+msgid "Media player"
+msgstr "मीडिया प्लेयर"
+
+#: data/daikhan.desktop.in:6 data/daikhan.metainfo.xml.in:7
+msgid "Play Videos/Music with style"
+msgstr "स्टाइल के साथ वीडियो/संगीत चलाएं"
+
+#: data/daikhan.metainfo.xml.in:8 src/Application.vala:92
+msgid "Mazhar Hussain"
+msgstr "मजहर हुसैन"
+
+#: data/daikhan.metainfo.xml.in:10
+msgid "A simple media player with beautiful interface."
+msgstr "सुंदर इंटरफ़ेस वाला एक सरल मीडिया प्लेयर।"
+
+#: data/daikhan.metainfo.xml.in:12
+msgid ""
+"NOTE: The app is in early stages of development and bound to change "
+"significantly in the future."
+msgstr ""
+"ध्यान दें: ऐप विकास के प्रारंभिक चरण में है और भविष्य में इसमें महत्वपूर्ण "
+"बदलाव होने की संभावना है।"
+
+#: data/daikhan.metainfo.xml.in:58
+msgid "Not released yet."
+msgstr "अभी तक जारी नहीं।"
+
+#: src/ActionDialog.vala:10
+msgid "No"
+msgstr "नहीं"
+
+#: src/ActionDialog.vala:11
+msgid "Yes"
+msgstr "हाँ"
+
+#: src/Application.vala:90
+msgid "Copyright 2022-2023 Mazhar Hussain"
+msgstr "कॉपीराइट 2022-2023 मजहर हुसैन"
+
+#: src/AppMenuButton.blp:6
+msgid "Preferences"
+msgstr "प्राथमिकताएँ"
+
+#: src/AppMenuButton.blp:7
+msgid "Keyboard Shortcuts"
+msgstr "कीबोर्ड शॉर्टकट"
+
+#: src/AppMenuButton.blp:8
+msgid "About Daikhan"
+msgstr "Daikhan के बारे में"
+
+#: src/AppWindow.vala:99
+msgid "Resume playback?"
+msgstr "प्लेबैक वापस चालू करें?"
+
+#: src/AppWindow.vala:106
+msgid "Unsupported File Type"
+msgstr "असमर्थित फाइल प्रकार"
+
+#: src/AppWindow.vala:107
+#, c-format
+msgid "The file '%s' is not an audio or a video file."
+msgstr "फाइल '%s' कोई ऑडियो या वीडियो फाइल नहीं है।"
+
+#: src/AppWindow.vala:108 src/AppWindow.vala:135
+msgid "OK"
+msgstr "ठीक है"
+
+#: src/AppWindow.vala:114
+msgid "Unsupported Codec"
+msgstr "असमर्थित कोडेक"
+
+#: src/AppWindow.vala:115
+#, c-format
+msgid ""
+"Encoding of one or more streams in '%s' is not supported.\n"
+"\n"
+"If this is unexpected, please, file a bug report with the following debug "
+"information.\n"
+msgstr ""
+"'%s' में एक या अधिक स्ट्रीम का एन्कोडिंग समर्थित नहीं है।\n"
+"\n"
+"यदि यह अप्रत्याशित है, तो कृपया निम्नलिखित डिबग जानकारी के साथ एक बग रिपोर्ट "
+"दर्ज करें।\n"
+
+#: src/AppWindow.vala:134
+msgid "Report Bug"
+msgstr "बग रिपोर्ट करें"
+
+#: src/PreferencesWindow.blp:7
+msgid "Appearance"
+msgstr "दिखावट"
+
+#: src/PreferencesWindow.blp:10
+msgid "Color Scheme"
+msgstr "रंग योजना"
+
+#: src/PreferencesWindow.blp:15
+msgid "Behavior"
+msgstr "व्यवहार"
+
+#: src/PreferencesWindow.blp:19
+msgid "Seeking Method"
+msgstr "खोज विधि"
+
+#: src/PreferencesWindow.vala:14
+msgid "Follow System"
+msgstr "सिस्टम का पालन करें"
+
+#: src/PreferencesWindow.vala:15
+msgid "Light"
+msgstr "हल्का"
+
+#: src/PreferencesWindow.vala:16
+msgid "Dark"
+msgstr "गहरा"
+
+#: src/PreferencesWindow.vala:19
+msgid "Fast"
+msgstr "तेज़"
+
+#: src/PreferencesWindow.vala:20
+msgid "Balanced"
+msgstr "संतुलित"
+
+#: src/PreferencesWindow.vala:21
+msgid "Accurate"
+msgstr "सटीक"
+
+#: src/Shortcuts.blp:8
+msgid "Application"
+msgstr "एप्लिकेशन"
+
+#: src/Shortcuts.blp:11
+msgid "Toggle Fullscreen"
+msgstr "फ़ुलस्क्रीन टॉगल करें"
+
+#: src/Shortcuts.blp:16
+msgid "Open Preferences"
+msgstr "प्राथमिकताएँ खोलें"
+
+#: src/Shortcuts.blp:21
+msgid "Show Keyboard Shortcuts"
+msgstr "कीबोर्ड शॉर्टकट दिखाएं"
+
+#: src/Shortcuts.blp:26
+msgid "Quit"
+msgstr "छोड़ें"
+
+#: src/Shortcuts.blp:32
+msgid "Playback"
+msgstr "प्लेबैक"
+
+#: src/Shortcuts.blp:35
+msgid "Play/Pause"
+msgstr "चलाएं/रोकें"
+
+#: src/Shortcuts.blp:40
+msgid "Seek Forward (10s)"
+msgstr "आगे की ओर खोजें (10s)"
+
+#: src/Shortcuts.blp:45
+msgid "Seek Backwards (10s)"
+msgstr "पीछे की ओर खोजें (10s)"
+
+#: src/Shortcuts.blp:50
+msgid "Increase Volume (5%)"
+msgstr "वॉल्यूम बढ़ाएँ (5%)"
+
+#: src/Shortcuts.blp:55
+msgid "Decrease Volume (5%)"
+msgstr "वॉल्यूम घटाएं (5%)"
+
+#: src/Shortcuts.blp:60
+msgid "Seek Forward (3s)"
+msgstr "आगे की ओर खोजें (3s)"
+
+#: src/Shortcuts.blp:65
+msgid "Seek Backwards (3s)"
+msgstr "पीछे की ओर खोजें (3s)"
+
+#: src/Shortcuts.blp:70
+msgid "Increase Volume (2%)"
+msgstr "वॉल्यूम बढ़ाएँ (2%)"
+
+#: src/Shortcuts.blp:75
+msgid "Decrease Volume (2%)"
+msgstr "वॉल्यूम घटाएं (2%)"
+
+#: src/StreamMenuBuilder.vala:18
+msgid "Audio"
+msgstr "ऑडियो"
+
+#: src/StreamMenuBuilder.vala:19
+msgid "Subtitles"
+msgstr "उपशीर्षक"
+
+#: src/StreamMenuBuilder.vala:20
+msgid "Video"
+msgstr "वीडियो"
+
+#: src/StreamMenuBuilder.vala:28
+msgid "Repeat"
+msgstr "दोहराएं"
+
+#: src/StreamMenuBuilder.vala:29 src/StreamMenuBuilder.vala:89
+#: src/StreamMenuBuilder.vala:121
+msgid "Off"
+msgstr "बंद"
+
+#: src/StreamMenuBuilder.vala:30
+msgid "Single File"
+msgstr "सिंगल फाइल"
+
+#: src/StreamMenuBuilder.vala:31
+msgid "Whole Queue"
+msgstr "पूरी कतार"
+
+#: src/StreamMenuBuilder.vala:103
+msgid "Unknown Language"
+msgstr "अज्ञात भाषा"
+
+#: src/StreamMenuBuilder.vala:124
+msgid "On"
+msgstr "चालू"
+
+#. Translators: Keep %i as is. It will be replaced by the track number for each track.
+#: src/StreamMenuBuilder.vala:127
+#, c-format
+msgid "Track %i"
+msgstr "ट्रैक %i"
+
+#: src/WelcomeView.blp:18
+msgid "You can drop files here to play"
+msgstr "आप चलाने के लिए फाइलें यहां छोड़ सकते हैं"
+
+#: src/WelcomeView.blp:26
+msgid "Open Files"
+msgstr "फाइल खोलें"
+
+#: src/WelcomeView.blp:33
+msgid "Play Again"
+msgstr "फिर से चालू करें"
+
+#: src/WelcomeView.blp:41
+msgid "Continue where you left off"
+msgstr "जहां छोड़ा था वहीं से जारी रखें"
+
+#: src/WelcomeView.blp:56
+msgid "All Files"
+msgstr "सभी फाइलें"
+
+#: src/WelcomeView.blp:61
+msgid "Video & Audio Files"
+msgstr "वीडियो और ऑडियो फाइलें"
+
+#: src/WelcomeView.blp:66
+msgid "Video Files"
+msgstr "वीडियो फाइलें"
+
+#: src/WelcomeView.blp:71
+msgid "Audio Files"
+msgstr "ऑडियो फाइलें"
