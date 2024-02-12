@@ -53,10 +53,6 @@ public class Daikhan.PlayerView : Gtk.Widget {
             }
         );
 
-        // notify["fullscreened"].connect (queue_allocate);
-        // notify["fullscreened"].connect (queue_resize);
-        // notify["fullscreened"].connect (queue_draw);
-
         notify["fullscreened"].connect (() => {
             top.transition_type = NONE;
             bottom.transition_type = NONE;
