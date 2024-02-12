@@ -110,7 +110,6 @@ public class Daikhan.PlayerView : Gtk.Widget {
         var click_gesture = new Gtk.GestureClick ();
         click_gesture.button = Gdk.BUTTON_PRIMARY;
         click_gesture.pressed.connect (click_gesture_pressed_cb);
-        click_gesture.stopped.connect (click_gesture_stopped_cb);
         add_controller (click_gesture);
 
         add_controller (Daikhan.GestureDragWindow.new ());
@@ -230,12 +229,14 @@ public class Daikhan.PlayerView : Gtk.Widget {
         }
     }
 
-    bool show_hide_gui = false;
+    TimeoutSource? click_timeout_source = null;
 
     void click_gesture_pressed_cb (Gtk.GestureClick gesture,
                                    int n_press, double x, double y)
     {
-        show_hide_gui = false;
+        if (click_timeout_source != null && !click_timeout_source.is_destroyed ()) {
+            click_timeout_source.destroy ();
+        }
 
         if (headerbar_ctrlr.contains_pointer || controls_ctrlr.contains_pointer) {
             return;
@@ -247,16 +248,15 @@ public class Daikhan.PlayerView : Gtk.Widget {
             gesture.set_state (CLAIMED);
             gesture.reset ();
         } else if (n_press == 1 && (fullscreened || settings.get_boolean ("overlay-ui"))) {
-            show_hide_gui = true;
+            click_timeout_source = new TimeoutSource (250);
+            click_timeout_source.set_callback (() => {
+                top.reveal_child = !top.reveal_child;
+                cursor = none_cursor;
+                return Source.REMOVE;
+            });
+            click_timeout_source.attach ();
             gesture.set_state (CLAIMED);
         }
 
-    }
-
-    void click_gesture_stopped_cb (Gtk.GestureClick gesture) {
-        if (show_hide_gui) {
-            top.reveal_child = !top.reveal_child;
-            cursor = none_cursor;
-        }
     }
 }
