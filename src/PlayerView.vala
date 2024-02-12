@@ -53,10 +53,6 @@ public class Daikhan.PlayerView : Gtk.Widget {
             }
         );
 
-        // notify["fullscreened"].connect (queue_allocate);
-        // notify["fullscreened"].connect (queue_resize);
-        // notify["fullscreened"].connect (queue_draw);
-
         notify["fullscreened"].connect (() => {
             top.transition_type = NONE;
             bottom.transition_type = NONE;
@@ -229,30 +225,34 @@ public class Daikhan.PlayerView : Gtk.Widget {
         }
     }
 
+    TimeoutSource? click_timeout_source = null;
+
     void click_gesture_pressed_cb (Gtk.GestureClick gesture,
                                    int n_press, double x, double y)
     {
-        // Don't do anything if the cursor is on media controls
-        if (controls_ctrlr.contains_pointer) {
+        if (click_timeout_source != null && !click_timeout_source.is_destroyed ()) {
+            click_timeout_source.destroy ();
+        }
+
+        if (headerbar_ctrlr.contains_pointer || controls_ctrlr.contains_pointer) {
             return;
         }
 
-        var window = this.get_root () as Daikhan.AppWindow;
-        assert (window != null);
-
-        if (n_press == 1 &&
-            !(headerbar_ctrlr.contains_pointer || controls_ctrlr.contains_pointer) &&
-            (fullscreened || settings.get_boolean ("overlay-ui")))
-        {
-            top.reveal_child = !top.reveal_child;
-            cursor = none_cursor;
-        } else if (n_press == 2) {
+        if (n_press == 2) {
+            var window = this.get_root () as Daikhan.AppWindow;
             window.activate_action ("toggle_fullscreen", null);
-        } else {
-            return;
+            gesture.set_state (CLAIMED);
+            gesture.reset ();
+        } else if (n_press == 1 && (fullscreened || settings.get_boolean ("overlay-ui"))) {
+            click_timeout_source = new TimeoutSource (250);
+            click_timeout_source.set_callback (() => {
+                top.reveal_child = !top.reveal_child;
+                cursor = none_cursor;
+                return Source.REMOVE;
+            });
+            click_timeout_source.attach ();
+            gesture.set_state (CLAIMED);
         }
 
-        gesture.set_state (CLAIMED);
-        gesture.reset ();
     }
 }
