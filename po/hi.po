@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-29 17:17+0500\n"
-"PO-Revision-Date: 2024-02-10 17:02+0000\n"
-"Last-Translator: Nitin Khalia <weblate.scrambled777@simplelogin.com>\n"
+"PO-Revision-Date: 2024-03-27 19:02+0000\n"
+"Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/daikhan/"
 "translations/hi/>\n"
 "Language: hi\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
 #: src/Application.vala:89 src/Title.vala:16 src/WelcomeView.blp:17
@@ -184,35 +184,35 @@ msgstr "चलाएं/रोकें"
 
 #: src/Shortcuts.blp:40
 msgid "Seek Forward (10s)"
-msgstr "आगे की ओर खोजें (10s)"
+msgstr "आगे खोजें (10s)"
 
 #: src/Shortcuts.blp:45
 msgid "Seek Backwards (10s)"
-msgstr "पीछे की ओर खोजें (10s)"
+msgstr "पीछे खोजें (10s)"
 
 #: src/Shortcuts.blp:50
 msgid "Increase Volume (5%)"
-msgstr "वॉल्यूम बढ़ाएँ (5%)"
+msgstr "आवाज़ बढ़ाएँ (5%)"
 
 #: src/Shortcuts.blp:55
 msgid "Decrease Volume (5%)"
-msgstr "वॉल्यूम घटाएं (5%)"
+msgstr "आवाज़ घटाएं (5%)"
 
 #: src/Shortcuts.blp:60
 msgid "Seek Forward (3s)"
-msgstr "आगे की ओर खोजें (3s)"
+msgstr "आगे खोजें (3s)"
 
 #: src/Shortcuts.blp:65
 msgid "Seek Backwards (3s)"
-msgstr "पीछे की ओर खोजें (3s)"
+msgstr "पीछे खोजें (3s)"
 
 #: src/Shortcuts.blp:70
 msgid "Increase Volume (2%)"
-msgstr "वॉल्यूम बढ़ाएँ (2%)"
+msgstr "आवाज़ बढ़ाएँ (2%)"
 
 #: src/Shortcuts.blp:75
 msgid "Decrease Volume (2%)"
-msgstr "वॉल्यूम घटाएं (2%)"
+msgstr "आवाज़ घटाएं (2%)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
