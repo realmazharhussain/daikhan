@@ -74,7 +74,7 @@ executable(meson.project_name(), sources,
            dependencies: deps,
            c_args: ['-DGETTEXT_PACKAGE="daikhan"'],
            vala_args: ['--gresourcesdir', meson.current_build_dir(),
-                       '--vapidir', meson.source_root() / 'vapi',
+                       '--vapidir', meson.project_source_root() / 'vapi',
                        ],
            win_subsystem: 'windows',
            install: true)
