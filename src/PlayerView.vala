@@ -251,7 +251,6 @@ public class Daikhan.PlayerView : Gtk.Widget {
                 return Source.REMOVE;
             });
             click_timeout_source.attach ();
-            gesture.set_state (CLAIMED);
         }
 
     }
