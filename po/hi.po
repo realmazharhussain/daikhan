@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-29 17:17+0500\n"
-"PO-Revision-Date: 2024-03-27 19:02+0000\n"
+"PO-Revision-Date: 2024-05-07 18:07+0000\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/daikhan/"
 "translations/hi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.5.4-rc\n"
 
 #: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
 #: src/Application.vala:89 src/Title.vala:16 src/WelcomeView.blp:17
@@ -30,7 +30,7 @@ msgstr "मीडिया प्लेयर"
 
 #: data/daikhan.desktop.in:6 data/daikhan.metainfo.xml.in:7
 msgid "Play Videos/Music with style"
-msgstr "स्टाइल के साथ वीडियो/संगीत चलाएं"
+msgstr "अंदाज़ के साथ वीडियो/संगीत चलाएं"
 
 #: data/daikhan.metainfo.xml.in:8 src/Application.vala:92
 msgid "Mazhar Hussain"
@@ -66,7 +66,7 @@ msgstr "कॉपीराइट 2022-2023 मजहर हुसैन"
 
 #: src/AppMenuButton.blp:6
 msgid "Preferences"
-msgstr "प्राथमिकताएँ"
+msgstr "प्राथमिकताएं"
 
 #: src/AppMenuButton.blp:7
 msgid "Keyboard Shortcuts"
@@ -132,19 +132,19 @@ msgstr "खोज विधि"
 
 #: src/PreferencesWindow.vala:14
 msgid "Follow System"
-msgstr "सिस्टम का पालन करें"
+msgstr "सिस्टम की पालना"
 
 #: src/PreferencesWindow.vala:15
 msgid "Light"
-msgstr "हल्का"
+msgstr "हल्की"
 
 #: src/PreferencesWindow.vala:16
 msgid "Dark"
-msgstr "गहरा"
+msgstr "गहरी"
 
 #: src/PreferencesWindow.vala:19
 msgid "Fast"
-msgstr "तेज़"
+msgstr "तेज"
 
 #: src/PreferencesWindow.vala:20
 msgid "Balanced"
@@ -156,15 +156,15 @@ msgstr "सटीक"
 
 #: src/Shortcuts.blp:8
 msgid "Application"
-msgstr "एप्लिकेशन"
+msgstr "अनुप्रयोग"
 
 #: src/Shortcuts.blp:11
 msgid "Toggle Fullscreen"
-msgstr "फ़ुलस्क्रीन टॉगल करें"
+msgstr "पूर्णस्क्रीन टॉगल करें"
 
 #: src/Shortcuts.blp:16
 msgid "Open Preferences"
-msgstr "प्राथमिकताएँ खोलें"
+msgstr "प्राथमिकताएं खोलें"
 
 #: src/Shortcuts.blp:21
 msgid "Show Keyboard Shortcuts"
@@ -192,7 +192,7 @@ msgstr "पीछे खोजें (10s)"
 
 #: src/Shortcuts.blp:50
 msgid "Increase Volume (5%)"
-msgstr "आवाज़ बढ़ाएँ (5%)"
+msgstr "आवाज़ बढ़ाएं (5%)"
 
 #: src/Shortcuts.blp:55
 msgid "Decrease Volume (5%)"
@@ -208,7 +208,7 @@ msgstr "पीछे खोजें (3s)"
 
 #: src/Shortcuts.blp:70
 msgid "Increase Volume (2%)"
-msgstr "आवाज़ बढ़ाएँ (2%)"
+msgstr "आवाज़ बढ़ाएं (2%)"
 
 #: src/Shortcuts.blp:75
 msgid "Decrease Volume (2%)"
@@ -237,7 +237,7 @@ msgstr "बंद"
 
 #: src/StreamMenuBuilder.vala:30
 msgid "Single File"
-msgstr "सिंगल फाइल"
+msgstr "एकल फाइल"
 
 #: src/StreamMenuBuilder.vala:31
 msgid "Whole Queue"
