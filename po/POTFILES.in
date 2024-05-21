@@ -13,6 +13,8 @@ src/ComboRow.vala
 src/ContentId.vala
 src/DropTarget.vala
 src/DurationLabel.vala
+src/ErrorDialog.blp
+src/ErrorDialog.vala
 src/GestureDragWindow.vala
 src/History.vala
 src/main.vala
@@ -38,8 +40,6 @@ src/TimeLabel.vala
 src/Title.vala
 src/TrackInfo.vala
 src/Utils.vala
-src/VideoArea.blp
-src/VideoArea.vala
 src/VolumeButton.blp
 src/VolumeButton.vala
 src/WelcomeView.blp
