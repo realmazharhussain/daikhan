@@ -47,6 +47,8 @@ class Daikhan.Application : Adw.Application {
         set_accels_for_action ("win.play_pause", {"space"});
         set_accels_for_action ("win.seek(+10)", {"Right", "l"});
         set_accels_for_action ("win.seek(-10)", {"Left", "h"});
+        set_accels_for_action ("win.seek(+60)", {"<Ctrl>Right", "<Ctrl>l"});
+        set_accels_for_action ("win.seek(-60)", {"<Ctrl>Left", "<Ctrl>h"});
         set_accels_for_action ("win.seek(+3)", {"<Shift>Right", "<Shift>l"});
         set_accels_for_action ("win.seek(-3)", {"<Shift>Left", "<Shift>h"});
         set_accels_for_action ("win.volume_step(+0.05)", {"Up", "k"});
