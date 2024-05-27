@@ -64,6 +64,19 @@ class Daikhan.Application : Adw.Application {
         } catch (Error e) {
             warning ("Error occured while loading history: %s", e.message);
         }
+
+        Bus.own_name (SESSION, "org.mpris.MediaPlayer2.daikhan", ALLOW_REPLACEMENT | REPLACE,
+            (conn) => {
+                try {
+                    conn.register_object("/org/mpris/MediaPlayer2", new MPRIS.App (conn));
+                    conn.register_object("/org/mpris/MediaPlayer2", new MPRIS.Player (conn));
+                } catch (IOError e) {
+                    stderr.printf ("Could not register service\n");
+                }
+            },
+            () => {},
+            () => { stderr.printf ("Could not aquire name\n"); }
+        );
     }
 
     Daikhan.PreferencesWindow pref_win;

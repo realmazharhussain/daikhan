@@ -46,6 +46,7 @@ sources = [config_file] + blueprints + resources + files(
   'GestureDragWindow.vala',
   'History.vala',
   'MediaControls.vala',
+  'MPRIS.vala',
   'PillButton.vala',
   'Playback.vala',
   'PlaybinProxy.vala',
