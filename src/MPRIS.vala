@@ -180,11 +180,29 @@ public class Daikhan.MPRIS.Player: Daikhan.MPRIS.ServerBase {
 
     private void update_metadata() {
         var new_metadata = new HashTable<string, Variant>(str_hash, str_equal);
+
+        unowned var filename = playback.filename;
+        unowned var title = playback.track_info.title;
+        unowned var album = playback.track_info.album;
+        unowned var artist = playback.track_info.artist;
+
         new_metadata["mpris:length"] = playback.duration / 1000;
         new_metadata["xesam:trackNumber"] = playback.current_track;
-        new_metadata["xesam:title"] = playback.track_info.title;
-        new_metadata["xesam:album"] = playback.track_info.album;
-        new_metadata["xesam:artist"] = new string[] {playback.track_info.artist};
+
+        if (title.length > 0) {
+            new_metadata["xesam:title"] = title;
+        } else if (filename != null && filename.length > 0) {
+            new_metadata["xesam:title"] = filename;
+        }
+
+        if (album.length > 0) {
+            new_metadata["xesam:album"] = album;
+        }
+
+        if (artist.length > 0) {
+            new_metadata["xesam:artist"] = new string[] {artist};
+        }
+
         metadata = new_metadata;
     }
 
