@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-29 17:17+0500\n"
-"PO-Revision-Date: 2024-08-20 22:09+0000\n"
+"PO-Revision-Date: 2024-08-20 23:09+0000\n"
 "Last-Translator: Cirnos <cirnos@tuta.io>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "daikhan/translations/pt_BR/>\n"
@@ -241,50 +241,50 @@ msgstr "Arquivo único"
 
 #: src/StreamMenuBuilder.vala:31
 msgid "Whole Queue"
-msgstr ""
+msgstr "Fila inteira"
 
 #: src/StreamMenuBuilder.vala:103
 msgid "Unknown Language"
-msgstr ""
+msgstr "Idioma desconhecido"
 
 #: src/StreamMenuBuilder.vala:124
 msgid "On"
-msgstr ""
+msgstr "Ativo"
 
 #. Translators: Keep %i as is. It will be replaced by the track number for each track.
 #: src/StreamMenuBuilder.vala:127
 #, c-format
 msgid "Track %i"
-msgstr ""
+msgstr "Faixa %i"
 
 #: src/WelcomeView.blp:18
 msgid "You can drop files here to play"
-msgstr ""
+msgstr "Você pode soltar arquivos aqui para os reproduzir"
 
 #: src/WelcomeView.blp:26
 msgid "Open Files"
-msgstr ""
+msgstr "Abrir arquivos"
 
 #: src/WelcomeView.blp:33
 msgid "Play Again"
-msgstr ""
+msgstr "Reproduzir novamente"
 
 #: src/WelcomeView.blp:41
 msgid "Continue where you left off"
-msgstr ""
+msgstr "Continuar de onde parou"
 
 #: src/WelcomeView.blp:56
 msgid "All Files"
-msgstr ""
+msgstr "Todos arquivos"
 
 #: src/WelcomeView.blp:61
 msgid "Video & Audio Files"
-msgstr ""
+msgstr "Arquivos de vídeo e áudio"
 
 #: src/WelcomeView.blp:66
 msgid "Video Files"
-msgstr ""
+msgstr "Arquivos de vídeo"
 
 #: src/WelcomeView.blp:71
 msgid "Audio Files"
-msgstr ""
+msgstr "Arquivos de áudio"
