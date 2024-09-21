@@ -104,15 +104,15 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     }
 
     void unsupported_file_cb () {
-        var dialog = new Adw.MessageDialog (this, _("Unsupported File Type"), null);
+        var dialog = new Adw.AlertDialog (_("Unsupported File Type"), null);
         dialog.body = _("The file '%s' is not an audio or a video file.").printf (playback.filename);
         dialog.add_response ("ok", _("OK"));
         dialog.response.connect (() => { playback.next (); });
-        dialog.present ();
+        dialog.present (this);
     }
 
     void unsupported_codec_cb (string debug_info) {
-        var dialog = new Daikhan.ErrorDialog (this) {
+        var dialog = new Daikhan.ErrorDialog () {
             heading = _("Unsupported Codec"),
             additional_message = _(
                 "Encoding of one or more streams in '%s' is not supported."
@@ -121,7 +121,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
         };
 
         dialog.response.connect (() => { playback.next (); });
-        dialog.present ();
+        dialog.present (this);
     }
 
     void pipeline_error_cb (Gst.Object source, Error error, string debug_info) {
@@ -134,9 +134,9 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
                     + @"\t$(dbg_info)"
                     );
 
-        var dialog = new Daikhan.ErrorDialog (this) { debug_info = info };
+        var dialog = new Daikhan.ErrorDialog () { debug_info = info };
         dialog.response.connect (() => { playback.next (); });
-        dialog.present ();
+        dialog.present (this);
     }
 
     void perform_seek (int64 position) {

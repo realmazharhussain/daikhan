@@ -82,8 +82,8 @@ class Daikhan.Application : Adw.Application {
     Daikhan.PreferencesWindow pref_win;
 
     void preferences_cb () {
-      pref_win = new Daikhan.PreferencesWindow () { transient_for = get_active_window () };
-      pref_win.present ();
+      pref_win = new Daikhan.PreferencesWindow ();
+      pref_win.present (active_window);
     }
 
     Gtk.Window shortcuts_win;
@@ -97,8 +97,7 @@ class Daikhan.Application : Adw.Application {
     }
 
     void about_cb () {
-        var win = new Adw.AboutWindow () {
-            transient_for = get_active_window (),
+        var win = new Adw.AboutDialog () {
             issue_url = "https://gitlab.com/daikhan/daikhan/-/issues/new",
             application_icon = Conf.APP_ID,
             application_name = _("Daikhan (Early Access)"),
@@ -108,7 +107,7 @@ class Daikhan.Application : Adw.Application {
             version = "pre-alpha"
         };
 
-        win.present ();
+        win.present (active_window);
     }
 
     public override void shutdown () {

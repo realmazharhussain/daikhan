@@ -1,5 +1,5 @@
 [GtkTemplate (ui = "/app/PreferencesWindow.ui")]
-class Daikhan.PreferencesWindow : Adw.PreferencesWindow {
+class Daikhan.PreferencesWindow : Adw.PreferencesDialog {
     [GtkChild] unowned Daikhan.ComboRow dark_mode_combo;
     [GtkChild] unowned Daikhan.ComboRow seeking_combo;
     [GtkChild] unowned Adw.SwitchRow overlay_switch;
