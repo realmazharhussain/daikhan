@@ -11,7 +11,7 @@ gnome = import('gnome')
 cc = meson.get_compiler('c')
 
 deps = [
-  dependency('libadwaita-1'),
+  dependency('libadwaita-1', version: '>=1.6.0'),
   dependency('gstreamer-1.0'),
   dependency('gstreamer-audio-1.0'),
   dependency('gstreamer-tag-1.0'),
