@@ -10,14 +10,27 @@ i18n = import('i18n')
 gnome = import('gnome')
 cc = meson.get_compiler('c')
 
-deps = [
-  dependency('libadwaita-1', version: '>=1.6.0'),
-  dependency('gstreamer-1.0'),
-  dependency('gstreamer-audio-1.0'),
-  dependency('gstreamer-tag-1.0'),
-  dependency('libxxhash'),
+add_project_arguments(
+  '-DGETTEXT_PACKAGE="daikhan"',
+  language: 'c'
+)
+
+add_project_arguments(
+  '--vapidir', meson.project_source_root() / 'vapi',
+  language: 'vala'
+)
+
+add_project_dependencies(
   cc.find_library('m', required: false),
-]
+  language: ['vala', 'c']
+)
+
+dep_adw = dependency('libadwaita-1', version: '>=1.6.0')
+dep_gio = dependency('gio-2.0')
+dep_gst = dependency('gstreamer-1.0')
+dep_gst_audio = dependency('gstreamer-audio-1.0')
+dep_gst_tag = dependency('gstreamer-tag-1.0')
+dep_xxhash = dependency('libxxhash')
 
 dependency('gstgtk4')   # Has no header or vaapi file
 
