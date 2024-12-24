@@ -44,7 +44,11 @@ public class Daikhan.PlayerView : Gtk.Widget {
     }
 
     construct {
-        video.paintable = Daikhan.Playback.get_default ().paintable;
+        var playback = Daikhan.Playback.get_default ();
+        playback.track_info.notify["image"].connect (video_cb);
+        playback.pipeline.notify["n-video"].connect (video_cb);
+        playback.notify["flags"].connect (video_cb);
+        video_cb ();
 
         bind_property ("fullscreened", headerbar, "halign", SYNC_CREATE,
             (binding, fullscreened, ref halign) => {
@@ -253,5 +257,28 @@ public class Daikhan.PlayerView : Gtk.Widget {
             click_timeout_source.attach ();
         }
 
+    }
+
+    private void video_cb () {
+        var playback = Daikhan.Playback.get_default ();
+
+        var n_video = 0;
+        playback.pipeline.get ("n-video", out n_video);
+
+        var file = playback.track_info.image;
+        Gdk.Paintable? file_paintable = null;
+        if (file != null) {
+            try {
+                file_paintable = Gdk.Texture.from_file (file);
+            } catch (Error err) {
+                critical ("%s:%s:%s", err.domain.to_string (), err.code.to_string (), err.message);
+            }
+        }
+
+        if (file_paintable != null && n_video <= 0 || !(VIDEO in playback.flags)) {
+            video.paintable = file_paintable;
+        } else {
+            video.paintable = playback.paintable;
+        }
     }
 }

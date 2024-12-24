@@ -185,6 +185,7 @@ public class Daikhan.MPRIS.Player: Daikhan.MPRIS.ServerBase {
         unowned var title = playback.track_info.title;
         unowned var album = playback.track_info.album;
         unowned var artist = playback.track_info.artist;
+        unowned var image = playback.track_info.image;
 
         new_metadata["mpris:length"] = playback.duration / 1000;
         new_metadata["xesam:trackNumber"] = playback.current_track;
@@ -201,6 +202,10 @@ public class Daikhan.MPRIS.Player: Daikhan.MPRIS.ServerBase {
 
         if (artist.length > 0) {
             new_metadata["xesam:artist"] = new string[] {artist};
+        }
+
+        if (image != null) {
+            new_metadata["mpris:artUrl"] = image.get_uri ();
         }
 
         metadata = new_metadata;
