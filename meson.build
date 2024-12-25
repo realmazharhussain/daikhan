@@ -26,6 +26,7 @@ add_project_dependencies(
 )
 
 dep_adw = dependency('libadwaita-1', version: '>=1.6.0')
+dep_gdk_pixbuf = dependency('gdk-pixbuf-2.0')
 dep_gio = dependency('gio-2.0')
 dep_gst = dependency('gstreamer-1.0')
 dep_gst_audio = dependency('gstreamer-audio-1.0')

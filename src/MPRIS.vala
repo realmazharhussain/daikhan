@@ -185,7 +185,7 @@ public class Daikhan.MPRIS.Player: Daikhan.MPRIS.ServerBase {
         unowned var title = playback.track_info.title;
         unowned var album = playback.track_info.album;
         unowned var artist = playback.track_info.artist;
-        unowned var image = playback.track_info.image;
+        unowned var image = playback.track_info.image_square;
 
         new_metadata["mpris:length"] = playback.duration / 1000;
         new_metadata["xesam:trackNumber"] = playback.current_track;

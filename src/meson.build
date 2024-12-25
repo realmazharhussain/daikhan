@@ -73,6 +73,7 @@ endif
 
 deps = [
   dep_adw,
+  dep_gdk_pixbuf,
   dep_gst,
   dep_gst_audio,
   dep_gst_tag,
