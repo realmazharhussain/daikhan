@@ -74,6 +74,7 @@ public class Daikhan.PlayerView : Adw.Bin {
         settings.changed["overlay-ui"].connect (() => {
             if (!fullscreened) {
                 top.reveal_child = !settings.get_boolean ("overlay-ui");
+                bottom.reveal_child = !settings.get_boolean ("overlay-ui");
             }
         });
 
@@ -100,9 +101,11 @@ public class Daikhan.PlayerView : Adw.Bin {
             () => {
                 if (fullscreened || settings.get_boolean ("overlay-ui")) {
                     top.reveal_child = false;
+                    bottom.reveal_child = false;
                 }
             }, () => {
                 top.reveal_child = true;
+                bottom.reveal_child = true;
             });
 
         add_controller (Daikhan.DropTarget.new ());
@@ -204,6 +207,7 @@ public class Daikhan.PlayerView : Adw.Bin {
             click_timeout_source = new TimeoutSource (250);
             click_timeout_source.set_callback (() => {
                 top.reveal_child = !top.reveal_child;
+                bottom.reveal_child = !bottom.reveal_child;
                 cursor = none_cursor;
                 return Source.REMOVE;
             });

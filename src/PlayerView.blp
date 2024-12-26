@@ -49,7 +49,7 @@ template $DaikhanPlayerView : Adw.Bin {
     [bottom]
     Revealer bottom {
       transition-type: slide_up;
-      reveal-child: bind top.reveal-child bidirectional;
+      reveal-child: true;
       transition-duration: bind top.transition-duration bidirectional;
       styles ["bottom"]
 
