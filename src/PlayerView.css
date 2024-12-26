@@ -1,22 +1,22 @@
 /* Video */
 
-playerview > .video {
+playerview .video {
   background: black;
 }
 
 /* Top & Bottom Bars */
 
-playerview > revealer > * {
+playerview revealer > * {
   background-color: var(--headerbar-bg-color);
 }
 
 /* Top Bar */
-playerview > revealer.top {
+playerview revealer.top {
   box-shadow: 0 1px var(--headerbar-darker-shade-color);
 }
 
 /* Bottom Bar */
-playerview > revealer.bottom {
+playerview revealer.bottom {
   box-shadow: 0 -1px var(--headerbar-darker-shade-color);
 }
 
@@ -27,11 +27,11 @@ playerview > revealer.bottom {
 
 /* Top & Bottom Bars */
 
-.fullscreen playerview > revealer {
+.fullscreen playerview revealer {
   box-shadow: none;
 }
 
-.fullscreen playerview > revealer > * {
+.fullscreen playerview revealer > * {
   opacity: 0.96;
   min-height: 4rem;
   box-shadow: 0 0 0 1px var(--headerbar-darker-shade-color);

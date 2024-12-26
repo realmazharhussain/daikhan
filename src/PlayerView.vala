@@ -16,7 +16,7 @@ class Daikhan.CursorTimeout {
 }
 
 [GtkTemplate (ui = "/app/PlayerView.ui")]
-public class Daikhan.PlayerView : Gtk.Widget {
+public class Daikhan.PlayerView : Adw.Bin {
     public string title { get; set; default = ""; }
     public bool fullscreened { get; set; default = false; }
 
@@ -25,6 +25,7 @@ public class Daikhan.PlayerView : Gtk.Widget {
     [GtkChild] unowned Gtk.Revealer bottom;
     [GtkChild] unowned Gtk.HeaderBar headerbar;
     [GtkChild] unowned Daikhan.MediaControls controls;
+    [GtkChild] unowned Adw.MultiLayoutView layout_controller;
 
     Settings settings = new Settings (Conf.APP_ID);
     Gdk.Cursor none_cursor = new Gdk.Cursor.from_name ("none", null);
@@ -34,7 +35,6 @@ public class Daikhan.PlayerView : Gtk.Widget {
     Source[] timeout_sources = null;
     double cursor_x_cached;
     double cursor_y_cached;
-    bool overlay_ui_turning_on = false;
 
     static construct {
         set_css_name ("playerview");
@@ -67,15 +67,15 @@ public class Daikhan.PlayerView : Gtk.Widget {
             bottom.transition_type = SLIDE_UP;
         });
 
+        notify["fullscreened"].connect (update_layout);
+        top.notify["child-revealed"].connect (update_layout);
+        settings.changed["overlay-ui"].connect (update_layout);
+
         settings.changed["overlay-ui"].connect (() => {
             if (!fullscreened) {
-                bool overlay_ui = settings.get_boolean ("overlay-ui");
-                top.reveal_child = !overlay_ui;
-                overlay_ui_turning_on = overlay_ui;
+                top.reveal_child = !settings.get_boolean ("overlay-ui");
             }
         });
-
-        top.notify["child-revealed"].connect (() => { overlay_ui_turning_on = false; });
 
         var ctrlr = new Gtk.EventControllerMotion ();
         ctrlr.motion.connect (cursor_motion_cb);
@@ -115,59 +115,12 @@ public class Daikhan.PlayerView : Gtk.Widget {
         add_controller (Daikhan.GestureDragWindow.new ());
     }
 
-    public override void measure (Gtk.Orientation orientation,
-                                  int for_size,
-                                  out int minimum,
-                                  out int natural,
-                                  out int minimum_baseline,
-                                  out int natural_baseline)
-    {
-        int top_min, video_min, bottom_min;
-        int top_nat, video_nat, bottom_nat;
+    private void update_layout () {
+        // Wait for revealer's hide animation to complete before switching to overlay layout
+        var temp_disable_overlay = layout_controller.layout_name != "overlay" && top.child_revealed;
+        var use_overlay = fullscreened || (settings.get_boolean ("overlay-ui") && !temp_disable_overlay);
 
-        top.measure (orientation, -1, out top_min, out top_nat, null, null);
-        video.measure (orientation, for_size, out video_min, out video_nat, null, null);
-        bottom.measure (orientation, -1, out bottom_min, out bottom_nat, null, null);
-
-        if (orientation == HORIZONTAL) {
-            minimum = int.max (video_min, int.max (top_min, bottom_min));
-            natural = int.max (video_nat, int.max (top_nat, bottom_nat));
-        } else if (fullscreened || (settings.get_boolean ("overlay-ui") && !overlay_ui_turning_on)) {
-            minimum = int.max (video_min, top_min + bottom_min);
-            natural = int.max (video_nat, top_nat + bottom_nat);
-        } else {
-            minimum = top_min + video_min + bottom_min;
-            natural = top_nat + video_nat + bottom_nat;
-        }
-
-        minimum_baseline = -1;
-        natural_baseline = -1;
-    }
-
-    private static Gsk.Transform? y_transform (int y_offset) {
-        return new Gsk.Transform ().translate (Graphene.Point () { x = 0, y = y_offset });
-    }
-
-    public override void size_allocate (int width, int height, int baseline) {
-        int top_min, bottom_min, video_min;
-        int top_nat, bottom_nat;
-
-        top.measure (VERTICAL, -1, out top_min, out top_nat, null, null);
-        bottom.measure (VERTICAL, -1, out bottom_min, out bottom_nat, null, null);
-        video.measure (VERTICAL, -1, out video_min, null, null, null);
-
-        int top_height = (height - video_min - bottom_min).clamp (top_min, top_nat);
-
-        int bottom_height = (height - video_min - top_min).clamp (bottom_min, bottom_nat);
-        int bottom_offset = height - bottom_height;
-
-        bool overlay = fullscreened || (settings.get_boolean ("overlay-ui") && !overlay_ui_turning_on);
-        int video_height = overlay ? height : int.max (0, height - top_height - bottom_height);
-        int video_offset = overlay ? 0 : top_height;
-
-        top.allocate (width, top_height, -1, null);
-        video.allocate (width, video_height, -1, y_transform (video_offset));
-        bottom.allocate (width, bottom_height, -1, y_transform (bottom_offset));
+        layout_controller.layout_name = use_overlay ? "overlay" : "box";
     }
 
     Daikhan.CursorTimeout add_motion_timeout (uint interval,

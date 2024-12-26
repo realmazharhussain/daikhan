@@ -1,36 +1,59 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $DaikhanPlayerView : Gtk.Widget {
+template $DaikhanPlayerView : Adw.Bin {
   title: bind title_widget.title;
+  child: Adw.MultiLayoutView layout_controller {
+    Adw.Layout {
+      name: "box";
+      content: Gtk.Box {
+        orientation: vertical;
+        Adw.LayoutSlot { id: "top"; }
+        Adw.LayoutSlot { id: "video"; }
+        Adw.LayoutSlot { id: "bottom"; }
+      };
+    }
 
-  Picture video {
-    hexpand: true;
-    vexpand: true;
-    styles ["video"]
-  }
+    Adw.Layout {
+      name: "overlay";
+      content: Gtk.Overlay {
+        child: Adw.LayoutSlot { id: "video"; };
+        [overlay] Adw.LayoutSlot { id: "top"; valign: start; }
+        [overlay] Adw.LayoutSlot { id: "bottom"; valign: end; }
+      };
+    }
 
-  Revealer top {
-    reveal-child: true;
-    transition-duration: 750;
-    transition-type: slide_down;
-    styles ["top"]
+    [video]
+    Picture video {
+      hexpand: true;
+      vexpand: true;
+      styles ["video"]
+    }
 
-    child: HeaderBar headerbar {
-      show-title-buttons: bind template.fullscreened inverted;
-      styles ["flat"]
+    [top]
+    Revealer top {
+      reveal-child: true;
+      transition-duration: 750;
+      transition-type: slide_down;
+      styles ["top"]
 
-      title-widget: $DaikhanTitle title_widget {};
-      [end] $DaikhanAppMenuButton { visible: bind template.fullscreened inverted; }
-    };
-  }
+      child: HeaderBar headerbar {
+        show-title-buttons: bind template.fullscreened inverted;
+        styles ["flat"]
 
-  Revealer bottom {
-    transition-type: slide_up;
-    reveal-child: bind top.reveal-child bidirectional;
-    transition-duration: bind top.transition-duration bidirectional;
-    styles ["bottom"]
+        title-widget: $DaikhanTitle title_widget {};
+        [end] $DaikhanAppMenuButton { visible: bind template.fullscreened inverted; }
+      };
+    }
 
-    child: $DaikhanMediaControls controls {};
-  }
+    [bottom]
+    Revealer bottom {
+      transition-type: slide_up;
+      reveal-child: bind top.reveal-child bidirectional;
+      transition-duration: bind top.transition-duration bidirectional;
+      styles ["bottom"]
+
+      child: $DaikhanMediaControls controls {};
+    }
+  };
 }
