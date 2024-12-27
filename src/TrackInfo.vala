@@ -31,7 +31,8 @@ public class Daikhan.TrackInfo : Object {
         msg.parse_tag (out tag_list);
 
         string artist, album, title;
-        Gst.Sample sample;
+        Gst.Sample full_sample, preview_sample = null;
+        string? orientation;
 
         if (tag_list.get_string (Gst.Tags.ARTIST, out artist)) {
             this.artist = artist;
@@ -45,10 +46,13 @@ public class Daikhan.TrackInfo : Object {
             this.title = title;
         }
 
-        if (tag_list.get_sample (Gst.Tags.IMAGE, out sample)) {
-            string? orientation;
-            tag_list.get_string (Gst.Tags.IMAGE_ORIENTATION, out orientation);
+        tag_list.get_string (Gst.Tags.IMAGE_ORIENTATION, out orientation);
+        if (!tag_list.get_sample (Gst.Tags.IMAGE, out full_sample)) {
+            tag_list.get_sample (Gst.Tags.PREVIEW_IMAGE, out preview_sample);
+        }
 
+        var sample = full_sample ?? preview_sample;
+        if (sample != null) {
             save_album_art.begin (sample, orientation);
         }
     }
@@ -59,7 +63,8 @@ public class Daikhan.TrackInfo : Object {
         while (saving_album_art) { yield; }
         saving_album_art = true;
         try {
-            yield delete_images ();
+            File?[] old_files = {image, image_square};
+
             var file = yield save_sample_to_tmp (sample);
 
             var rotated_pixbuf = get_rotated_image (file, orientation);
@@ -69,6 +74,7 @@ public class Daikhan.TrackInfo : Object {
             image_square = yield save_pixbuf_to_tmp (cropped_pixbuf);
 
             yield delete_file (file);
+            foreach (var item in old_files) { yield delete_file (item); }
         } catch (Error err) {
             warning ("%s", err.message);
         }

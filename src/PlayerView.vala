@@ -20,8 +20,13 @@ public class Daikhan.PlayerView : Adw.Bin {
     public string title { get; set; default = ""; }
     public bool fullscreened { get; set; default = false; }
 
-    [GtkChild] unowned Gtk.Revealer top;
+    [GtkChild] unowned Gtk.Widget empty;
+    [GtkChild] unowned Adw.Spinner spinner;
+    [GtkChild] unowned Gtk.Image icon;
     [GtkChild] unowned Gtk.Picture video;
+
+    [GtkChild] unowned Gtk.Revealer top;
+    [GtkChild] unowned Gtk.Stack content;
     [GtkChild] unowned Gtk.Revealer bottom;
     [GtkChild] unowned Gtk.HeaderBar headerbar;
     [GtkChild] unowned Daikhan.MediaControls controls;
@@ -45,10 +50,14 @@ public class Daikhan.PlayerView : Adw.Bin {
 
     construct {
         var playback = Daikhan.Playback.get_default ();
-        playback.track_info.notify["image"].connect (video_cb);
-        playback.pipeline.notify["n-video"].connect (video_cb);
-        playback.notify["flags"].connect (video_cb);
-        video_cb ();
+        dynamic Object pipeline = playback.pipeline;
+
+        playback.track_info.notify["image"].connect (content_cb);
+        playback.notify["flags"].connect (content_cb);
+        playback.notify["target-state"].connect (content_cb);
+        pipeline.audio_changed.connect (content_cb);
+        pipeline.video_changed.connect (content_cb);
+        content_cb ();
 
         bind_property ("fullscreened", headerbar, "halign", SYNC_CREATE,
             (binding, fullscreened, ref halign) => {
@@ -216,26 +225,39 @@ public class Daikhan.PlayerView : Adw.Bin {
 
     }
 
-    private void video_cb () {
+    private void content_cb () {
         var playback = Daikhan.Playback.get_default ();
+        var pipeline = playback.pipeline;
 
-        var n_video = 0;
-        playback.pipeline.get ("n-video", out n_video);
+        int n_audio = pipeline.n_audio;
+        int n_video = pipeline.n_video;
 
-        var file = playback.track_info.image;
-        Gdk.Paintable? file_paintable = null;
-        if (file != null) {
+        var image = playback.track_info.image;
+        Gdk.Paintable? image_paintable = null;
+        if (image != null) {
             try {
-                file_paintable = Gdk.Texture.from_file (file);
+                image_paintable = Gdk.Texture.from_file (image);
             } catch (Error err) {
                 critical ("%s:%s:%s", err.domain.to_string (), err.code.to_string (), err.message);
             }
         }
 
-        if (file_paintable != null && n_video <= 0 || !(VIDEO in playback.flags)) {
-            video.paintable = file_paintable;
-        } else {
+        if (VIDEO in playback.flags && n_video > 0) {
             video.paintable = playback.paintable;
+            video.remove_css_class ("album_art");
+            video.add_css_class ("video");
+            content.visible_child = video;
+        } else if (image_paintable != null) {
+            video.paintable = image_paintable;
+            video.remove_css_class ("video");
+            video.add_css_class ("album_art");
+            content.visible_child = video;
+        } else if (n_audio > 0) {
+            content.visible_child = icon;
+        } else if (playback.target_state > playback.current_state) {
+            content.visible_child = spinner;
+        } else {
+            content.visible_child = empty;
         }
     }
 }

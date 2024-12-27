@@ -6,28 +6,39 @@ template $DaikhanPlayerView : Adw.Bin {
   child: Adw.MultiLayoutView layout_controller {
     Adw.Layout {
       name: "box";
-      content: Gtk.Box {
+      // We are using CenterBox here because box-shadow doesn't properly
+      // work with regular old Box.
+      content: CenterBox {
         orientation: vertical;
-        Adw.LayoutSlot { id: "top"; }
-        Adw.LayoutSlot { id: "video"; }
-        Adw.LayoutSlot { id: "bottom"; }
+        [start] Adw.LayoutSlot { id: "top"; }
+        [center] Adw.LayoutSlot { id: "content"; }
+        [end] Adw.LayoutSlot { id: "bottom"; }
       };
     }
 
     Adw.Layout {
       name: "overlay";
-      content: Gtk.Overlay {
-        child: Adw.LayoutSlot { id: "video"; };
+      content: Overlay {
+        child: Adw.LayoutSlot { id: "content"; };
         [overlay] Adw.LayoutSlot { id: "top"; valign: start; }
         [overlay] Adw.LayoutSlot { id: "bottom"; valign: end; }
       };
     }
 
-    [video]
-    Picture video {
-      hexpand: true;
-      vexpand: true;
-      styles ["video"]
+    [content]
+    Stack content {
+      Adw.Bin empty {}
+      Adw.Spinner spinner {}
+
+      Image icon {
+        icon-name: "audio-x-generic";
+        pixel-size: 96;
+      }
+
+      Picture video {
+        hexpand: true;
+        vexpand: true;
+      }
     }
 
     [top]
