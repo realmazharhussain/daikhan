@@ -5,7 +5,7 @@ public class Daikhan.TrackInfo : Object {
     public File? image { get; private set; }
     public File? image_square { get; private set; }
 
-    public Gst.Pipeline pipeline { get; construct; }
+    public weak Gst.Pipeline pipeline { get; construct; }
 
     construct {
         reset ();
