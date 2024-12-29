@@ -54,7 +54,7 @@ public class Daikhan.PlayerView : Adw.Bin {
         player.notify["n-audio"].connect (content_cb);
         player.notify["n-video"].connect (content_cb);
         player.notify["current-video"].connect (content_cb);
-        player.notify["target-state"].connect (content_cb);
+        player.notify["state"].connect (content_cb);
         content_cb ();
 
         bind_property ("fullscreened", headerbar, "halign", SYNC_CREATE,
@@ -250,7 +250,7 @@ public class Daikhan.PlayerView : Adw.Bin {
             } else {
                 content.visible_child = icon;
             }
-        } else if (player.target_state > player.current_state) {
+        } else if (player.state == INITIALIZING || player.state == BUFFERING) {
             content.visible_child = spinner;
         } else {
             content.visible_child = empty;

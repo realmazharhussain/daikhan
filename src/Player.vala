@@ -22,8 +22,8 @@ public class Daikhan.Player : Object {
     public int current_video { get; set; }
     public int current_text { get; set; }
     public string filename { get { return playback.filename; } }
-    public Gst.State current_state { get { return playback.current_state; } }
-    public Gst.State target_state { get { return playback.target_state; } }
+    public Daikhan.Playback.TargetState target_state { get { return playback.target_state; } }
+    public Daikhan.Playback.State state { get { return playback.state; } }
     public Gdk.Paintable paintable { get { return playback.paintable; } }
     public Gst.Element pipeline { get { return playback.pipeline; } }
 
@@ -52,7 +52,8 @@ public class Daikhan.Player : Object {
         playback.notify["n-video"].connect (() => { notify_property ("n-video"); });
         playback.notify["n-text"].connect (() => { notify_property ("n-text"); });
         playback.notify["filename"].connect (() => { notify_property ("filename"); });
-        playback.notify["current-state"].connect (() => { notify_property ("current-state"); });
+        playback.notify["target-state"].connect (() => { notify_property ("target-state"); });
+        playback.notify["state"].connect (() => { notify_property ("state"); });
         playback.notify["target-state"].connect (() => { notify_property ("target-state"); });
 
         playback.unsupported_file.connect (() => { unsupported_file.emit (); });
@@ -87,7 +88,7 @@ public class Daikhan.Player : Object {
 
         /* Save information of previous track */
 
-        var desired_state = (playback.target_state == PAUSED) ? Gst.State.PAUSED : Gst.State.PLAYING;
+        var play = playback.target_state != PAUSED;
 
         if (playback.current_record != null) {
             history.update (playback.current_record);
@@ -104,7 +105,7 @@ public class Daikhan.Player : Object {
         }
 
         /* Load track & information */
-        return playback.open_file (queue[track_index], desired_state);
+        return playback.open_file (queue[track_index], play);
     }
 
     /* Loads the next track expected to be played in the list. In case
@@ -139,8 +140,9 @@ public class Daikhan.Player : Object {
     }
 
     public bool play () {
-        if (playback.target_state >= Gst.State.PAUSED) {
-            return playback.set_state (PLAYING);
+        if (playback.target_state >= Daikhan.Playback.TargetState.PAUSED) {
+            playback.target_state = PLAYING;
+            return true;
         } else if (current_track == -1 && queue.length > 0) {
             return load_track (0);
         }
@@ -148,11 +150,12 @@ public class Daikhan.Player : Object {
     }
 
     public bool pause () {
-        if (playback.target_state < Gst.State.PAUSED) {
+        if (playback.target_state < Daikhan.Playback.TargetState.PAUSED) {
             return false;
         }
 
-        return playback.set_state (PAUSED);
+        playback.target_state = PAUSED;
+        return true;
     }
 
     public bool seek (int64 seconds) {
