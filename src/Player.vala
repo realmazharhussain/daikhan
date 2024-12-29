@@ -42,7 +42,7 @@ public class Daikhan.Player : Daikhan.PlaybinProxy {
 
         /* Save information of previous track */
 
-        var desired_state = (target_state == PAUSED) ? Gst.State.PAUSED : Gst.State.PLAYING;
+        var play = target_state != PAUSED;
 
         if (current_record != null) {
             history.update (current_record);
@@ -59,7 +59,7 @@ public class Daikhan.Player : Daikhan.PlaybinProxy {
         }
 
         /* Load track & information */
-        return open_file (queue[track_index], desired_state);
+        return open_file (queue[track_index], play);
     }
 
     /* Loads the next track expected to be played in the list. In case
@@ -94,8 +94,9 @@ public class Daikhan.Player : Daikhan.PlaybinProxy {
     }
 
     public bool play () {
-        if (target_state >= Gst.State.PAUSED) {
-            return set_state (PLAYING);
+        if (target_state >= Daikhan.PlaybinProxy.TargetState.PAUSED) {
+            target_state = PLAYING;
+            return true;
         } else if (current_track == -1 && queue.length > 0) {
             return load_track (0);
         }
@@ -103,11 +104,12 @@ public class Daikhan.Player : Daikhan.PlaybinProxy {
     }
 
     public bool pause () {
-        if (target_state < Gst.State.PAUSED) {
+        if (target_state < Daikhan.PlaybinProxy.TargetState.PAUSED) {
             return false;
         }
 
-        return set_state (PAUSED);
+        target_state = PAUSED;
+        return true;
     }
 
     public void stop () {

@@ -140,10 +140,10 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     }
 
     void perform_seek (int64 position) {
-        if (player.current_state < Gst.State.PAUSED) {
+        if (player.state < Daikhan.PlaybinProxy.State.PAUSED) {
             ulong handler_id = 0;
-            handler_id = player.notify["current-state"].connect (()=> {
-                if (player.current_state < Gst.State.PAUSED) {
+            handler_id = player.notify["state"].connect (()=> {
+                if (player.state < Daikhan.PlaybinProxy.State.PAUSED) {
                     return;
                 }
 

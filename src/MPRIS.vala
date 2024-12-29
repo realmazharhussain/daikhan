@@ -103,11 +103,11 @@ public class Daikhan.MPRIS.Player: Daikhan.MPRIS.ServerBase {
     public override void constructed () {
         base.constructed ();
 
-        player.bind_property ("current-state", this, "playback-status", SYNC_CREATE,
-            (binding, current_state, ref playback_status) => {
-                switch ((Gst.State) current_state) {
-                    case Gst.State.PLAYING: playback_status = "Playing"; break;
-                    case Gst.State.PAUSED: playback_status = "Paused"; break;
+        player.bind_property ("target-state", this, "playback-status", SYNC_CREATE,
+            (binding, state, ref playback_status) => {
+                switch ((Daikhan.PlaybinProxy.TargetState) state) {
+                    case PLAYING: playback_status = "Playing"; break;
+                    case PAUSED: playback_status = "Paused"; break;
                     default: playback_status = "Stopped"; break;
                 }
                 return true;

@@ -54,7 +54,7 @@ public class Daikhan.PlayerView : Adw.Bin {
 
         player.track_info.notify["image"].connect (content_cb);
         player.notify["flags"].connect (content_cb);
-        player.notify["target-state"].connect (content_cb);
+        player.notify["state"].connect (content_cb);
         pipeline.audio_changed.connect (content_cb);
         pipeline.video_changed.connect (content_cb);
         content_cb ();
@@ -247,14 +247,16 @@ public class Daikhan.PlayerView : Adw.Bin {
             video.remove_css_class ("album_art");
             video.add_css_class ("video");
             content.visible_child = video;
-        } else if (image_paintable != null) {
-            video.paintable = image_paintable;
-            video.remove_css_class ("video");
-            video.add_css_class ("album_art");
-            content.visible_child = video;
         } else if (n_audio > 0) {
-            content.visible_child = icon;
-        } else if (player.target_state > player.current_state) {
+            if (image_paintable != null) {
+                video.paintable = image_paintable;
+                video.remove_css_class ("video");
+                video.add_css_class ("album_art");
+                content.visible_child = video;
+            } else {
+                content.visible_child = icon;
+            }
+        } else if (player.state == INITIALIZING || player.state == BUFFERING) {
             content.visible_child = spinner;
         } else {
             content.visible_child = empty;

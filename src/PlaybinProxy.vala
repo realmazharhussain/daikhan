@@ -1,11 +1,38 @@
 /* A helper class to make using GstPlayBin easier */
 public class Daikhan.PlaybinProxy : Object {
+    public enum State {
+        STOPPED,
+        INITIALIZING,
+        BUFFERING,
+        PAUSED,
+        PLAYING,
+    }
+
+    public enum TargetState {
+        STOPPED = State.STOPPED,
+        PAUSED = State.PAUSED,
+        PLAYING = State.PLAYING;
+
+        public State to_state () {
+            return (State) this;
+        }
+
+        public Gst.State to_gst_state () {
+            switch (this) {
+                case STOPPED: return Gst.State.READY;
+                case PAUSED: return Gst.State.PAUSED;
+                case PLAYING: return Gst.State.PLAYING;
+            }
+            return_val_if_reached (Gst.State.NULL);
+        }
+    }
+
     public dynamic Gst.Pipeline pipeline { get; private construct; }
     public dynamic Gdk.Paintable paintable { get; private construct; }
     public Daikhan.TrackInfo track_info { get; private construct; }
     public Daikhan.HistoryRecord? current_record { get; private set; default = null; }
-    public Gst.State target_state { get; private set; default = NULL; }
-    public Gst.State current_state { get; private set; default = NULL; }
+    public TargetState target_state { get; set; default = STOPPED; }
+    public State state { get; private set; default = STOPPED; }
     public string? filename { get; private set; default = null; }
     public int64 progress { get; private set; default = -1; }
     public int64 duration { get; private set; default = -1; }
@@ -55,11 +82,13 @@ public class Daikhan.PlaybinProxy : Object {
         );
 
         notify["target-state"].connect (decide_on_progress_tracking);
-        notify["current-state"].connect (decide_on_progress_tracking);
+        notify["state"].connect (decide_on_progress_tracking);
+
+        notify["target-state"].connect (target_state_cb);
     }
 
     public void reset () {
-        set_state (NULL);
+        target_state = STOPPED;
         track_info.reset ();
         current_record = null;
         filename = null;
@@ -67,7 +96,7 @@ public class Daikhan.PlaybinProxy : Object {
         duration = -1;
     }
 
-    public bool open_file (File file, Gst.State desired_state) {
+    public bool open_file (File file, bool play) {
         try {
             var info = file.query_info ("standard::display-name", NONE);
             filename = info.get_display_name ();
@@ -76,10 +105,11 @@ public class Daikhan.PlaybinProxy : Object {
         }
 
         pipeline["uri"] = file.get_uri ();
+        target_state = play ? TargetState.PLAYING : TargetState.PAUSED;
 
         ulong handler_id = 0;
-        handler_id = notify["current-state"].connect (() => {
-            if (current_state == desired_state) {
+        handler_id = notify["state"].connect (() => {
+            if (pipeline.current_state == target_state.to_gst_state ()) {
                 update_duration ();
                 update_progress ();
                 SignalHandler.disconnect (this, handler_id);
@@ -87,11 +117,6 @@ public class Daikhan.PlaybinProxy : Object {
         });
 
         current_record = new Daikhan.HistoryRecord.with_uri (file.get_uri ());
-
-        if (!set_state (desired_state)) {
-            critical ("Cannot load track!");
-            return false;
-        }
 
         if (!(AUDIO in flags)) {
             current_record.audio_track = -1;
@@ -106,18 +131,11 @@ public class Daikhan.PlaybinProxy : Object {
         return true;
     }
 
-    public bool set_state (Gst.State new_state) {
-        if (pipeline.target_state == new_state) {
-            return true;
-        }
-
+    public void target_state_cb () {
+        var new_state = target_state.to_gst_state ();
         if (pipeline.set_state (new_state) == FAILURE) {
             critical (@"Failed to set pipeline state to $(new_state)!");
-            return false;
         }
-
-        target_state = new_state;
-        return true;
     }
 
     public bool seek (int64 seconds) {
@@ -201,7 +219,7 @@ public class Daikhan.PlaybinProxy : Object {
     }
 
     public void decide_on_progress_tracking () {
-        if (current_state == target_state == Gst.State.PLAYING) {
+        if (target_state == PLAYING && state == PLAYING) {
             ensure_progress_tracking ();
         } else {
             stop_progress_tracking ();
@@ -209,7 +227,30 @@ public class Daikhan.PlaybinProxy : Object {
     }
 
     void pipeline_state_changed_cb () {
-        current_state = pipeline.current_state;
+        switch (pipeline.current_state) {
+            case Gst.State.NULL:
+            case Gst.State.READY: {
+                if (target_state == STOPPED) {
+                    state = STOPPED;
+                } else {
+                    state = INITIALIZING;
+                }
+                break;
+            }
+            case Gst.State.PLAYING: state = PLAYING; break;
+            case Gst.State.PAUSED: {
+                if (target_state == PLAYING) {
+                    state = BUFFERING;
+                } else {
+                    state = PAUSED;
+                }
+                break;
+            }
+            case Gst.State.VOID_PENDING: {
+                state = target_state.to_state ();
+                return_if_reached ();
+            }
+        }
     }
 
     void pipeline_error_cb (Gst.Bus bus, Gst.Message msg) {
@@ -226,7 +267,7 @@ public class Daikhan.PlaybinProxy : Object {
             pipeline_error (msg.src, err, debug_info);
         }
 
-        set_state (NULL);
+        target_state = STOPPED;
     }
 
     void pipeline_eos_cb () {
