@@ -50,13 +50,11 @@ public class Daikhan.PlayerView : Adw.Bin {
 
     construct {
         var playback = Daikhan.Playback.get_default ();
-        dynamic Object pipeline = playback.playbin_proxy.pipeline;
-
-        playback.playbin_proxy.track_info.notify["image"].connect (content_cb);
-        playback.playbin_proxy.notify["flags"].connect (content_cb);
-        playback.playbin_proxy.notify["target-state"].connect (content_cb);
-        pipeline.audio_changed.connect (content_cb);
-        pipeline.video_changed.connect (content_cb);
+        playback.track_info.notify["image"].connect (content_cb);
+        playback.notify["n-audio"].connect (content_cb);
+        playback.notify["n-video"].connect (content_cb);
+        playback.notify["current-video"].connect (content_cb);
+        playback.notify["target-state"].connect (content_cb);
         content_cb ();
 
         bind_property ("fullscreened", headerbar, "halign", SYNC_CREATE,
@@ -227,12 +225,8 @@ public class Daikhan.PlayerView : Adw.Bin {
 
     private void content_cb () {
         var playback = Daikhan.Playback.get_default ();
-        var pipeline = playback.playbin_proxy.pipeline;
 
-        int n_audio = pipeline.n_audio;
-        int n_video = pipeline.n_video;
-
-        var image = playback.playbin_proxy.track_info.image;
+        var image = playback.track_info.image;
         Gdk.Paintable? image_paintable = null;
         if (image != null) {
             try {
@@ -242,19 +236,21 @@ public class Daikhan.PlayerView : Adw.Bin {
             }
         }
 
-        if (VIDEO in playback.playbin_proxy.flags && n_video > 0) {
-            video.paintable = playback.playbin_proxy.paintable;
+        if (playback.n_video > 0 && playback.current_video >= 0) {
+            video.paintable = playback.paintable;
             video.remove_css_class ("album_art");
             video.add_css_class ("video");
             content.visible_child = video;
-        } else if (image_paintable != null) {
-            video.paintable = image_paintable;
-            video.remove_css_class ("video");
-            video.add_css_class ("album_art");
-            content.visible_child = video;
-        } else if (n_audio > 0) {
-            content.visible_child = icon;
-        } else if (playback.playbin_proxy.target_state > playback.playbin_proxy.current_state) {
+        } else if (playback.n_audio > 0 && playback.current_audio >= 0) {
+            if (image_paintable != null) {
+                video.paintable = image_paintable;
+                video.remove_css_class ("video");
+                video.add_css_class ("album_art");
+                content.visible_child = video;
+            } else {
+                content.visible_child = icon;
+            }
+        } else if (playback.target_state > playback.current_state) {
             content.visible_child = spinner;
         } else {
             content.visible_child = empty;

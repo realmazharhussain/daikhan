@@ -9,15 +9,22 @@ public class Daikhan.PlaybinProxy : Object {
     public string? filename { get; private set; default = null; }
     public int64 progress { get; private set; default = -1; }
     public int64 duration { get; private set; default = -1; }
-    public Daikhan.PlayFlags flags { get; set; }
     public double volume { get; set; }
+
+    public int n_audio { get; set; default = 0; }
+    public int n_video { get; set; default = 0; }
+    public int n_text { get; set; default = 0; }
+
+    public int current_audio { get; set; default = 0; }
+    public int current_video { get; set; default = 0; }
+    public int current_text { get; set; default = 0; }
 
     public signal void unsupported_file ();
     public virtual signal void end_of_stream () {}
     public signal void unsupported_codec (string debug_info);
     public signal void pipeline_error (Gst.Object source, Error error, string debug_info);
 
-    Settings settings;
+    private Settings settings;
 
     construct {
         settings = new Settings (Conf.APP_ID);
@@ -41,8 +48,6 @@ public class Daikhan.PlaybinProxy : Object {
         pipeline.bus.message["error"].connect (pipeline_error_cb);
         pipeline.bus.message["state-changed"].connect (pipeline_state_changed_cb);
 
-        pipeline.bind_property ("flags", this, "flags", SYNC_CREATE | BIDIRECTIONAL);
-
         pipeline.bind_property ("volume", this, "volume", SYNC_CREATE | BIDIRECTIONAL,
             (binding, linear, ref cubic) => {
                 cubic = Gst.Audio.StreamVolume.convert_volume (LINEAR, CUBIC, (double) linear);
@@ -54,8 +59,105 @@ public class Daikhan.PlaybinProxy : Object {
             }
         );
 
+        pipeline.audio_changed.connect (audio_changed_cb);
+        pipeline.video_changed.connect (video_changed_cb);
+        pipeline.text_changed.connect (text_changed_cb);
+
+        notify["current-audio"].connect (current_audio_set_cb);
+        pipeline.notify["current-audio"].connect (current_audio_get_cb);
+        pipeline.notify["flags"].connect (current_audio_get_cb);
+        pipeline.audio_changed.connect (current_audio_get_cb);
+        current_audio_get_cb ();
+
+        notify["current-video"].connect (current_video_set_cb);
+        pipeline.notify["current-video"].connect (current_video_get_cb);
+        pipeline.notify["flags"].connect (current_video_get_cb);
+        pipeline.video_changed.connect (current_video_get_cb);
+        current_video_get_cb ();
+
+        notify["current-text"].connect (current_text_set_cb);
+        pipeline.notify["current-text"].connect (current_text_get_cb);
+        pipeline.notify["flags"].connect (current_text_get_cb);
+        pipeline.text_changed.connect (current_text_get_cb);
+        current_text_get_cb ();
+
         notify["target-state"].connect (decide_on_progress_tracking);
         notify["current-state"].connect (decide_on_progress_tracking);
+    }
+
+    void audio_changed_cb () {
+        n_audio = pipeline.n_audio;
+    }
+
+    void video_changed_cb () {
+        n_video = pipeline.n_video;
+    }
+
+    void text_changed_cb () {
+        n_text = pipeline.n_text;
+    }
+
+    void current_audio_get_cb () {
+        if (!(AUDIO in (Daikhan.PlayFlags) pipeline.flags)) {
+            current_audio = -1;
+        } else if ((int) pipeline.current_audio < 0) {
+            current_audio = 0;
+        } else {
+            current_audio = pipeline.current_audio;
+        }
+    }
+
+    void current_audio_set_cb () {
+        if (current_audio == -1) {
+            pipeline.flags &= ~Daikhan.PlayFlags.AUDIO;
+        } else {
+            pipeline.flags |= Daikhan.PlayFlags.AUDIO;
+            pipeline.current_audio = current_audio;
+        }
+
+        current_audio_get_cb ();
+    }
+
+    void current_video_get_cb () {
+        if (!(VIDEO in (Daikhan.PlayFlags) pipeline.flags)) {
+            current_video = -1;
+        } else if ((int) pipeline.current_video < 0) {
+            current_video = 0;
+        } else {
+            current_video = pipeline.current_video;
+        }
+    }
+
+    void current_video_set_cb () {
+        if (current_video == -1) {
+            pipeline.flags &= ~Daikhan.PlayFlags.VIDEO;
+        } else {
+            pipeline.flags |= Daikhan.PlayFlags.VIDEO;
+            pipeline.current_video = current_video;
+        }
+
+        current_video_get_cb ();
+    }
+
+    void current_text_get_cb () {
+        if (!(SUBTITLES in (Daikhan.PlayFlags) pipeline.flags)) {
+            current_text = -1;
+        } else if ((int) pipeline.current_text < 0) {
+            current_text = 0;
+        } else {
+            current_text = pipeline.current_text;
+        }
+    }
+
+    void current_text_set_cb () {
+        if (current_text == -1) {
+            pipeline.flags &= ~Daikhan.PlayFlags.SUBTITLES;
+        } else {
+            pipeline.flags |= Daikhan.PlayFlags.SUBTITLES;
+            pipeline.current_text = current_text;
+        }
+
+        current_text_get_cb ();
     }
 
     public void reset () {
@@ -93,13 +195,13 @@ public class Daikhan.PlaybinProxy : Object {
             return false;
         }
 
-        if (!(AUDIO in flags)) {
+        if (!(AUDIO in (Daikhan.PlayFlags) pipeline.flags)) {
             current_record.audio_track = -1;
         }
-        if (!(SUBTITLES in flags)) {
+        if (!(SUBTITLES in (Daikhan.PlayFlags) pipeline.flags)) {
             current_record.text_track = -1;
         }
-        if (!(VIDEO in flags)) {
+        if (!(VIDEO in (Daikhan.PlayFlags) pipeline.flags)) {
             current_record.video_track = -1;
         }
 

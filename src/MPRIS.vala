@@ -103,7 +103,7 @@ public class Daikhan.MPRIS.Player: Daikhan.MPRIS.ServerBase {
     public override void constructed () {
         base.constructed ();
 
-        playback.playbin_proxy.bind_property ("current-state", this, "playback-status", SYNC_CREATE,
+        playback.bind_property ("current-state", this, "playback-status", SYNC_CREATE,
             (binding, current_state, ref playback_status) => {
                 switch ((Gst.State) current_state) {
                     case Gst.State.PLAYING: playback_status = "Playing"; break;
@@ -114,8 +114,8 @@ public class Daikhan.MPRIS.Player: Daikhan.MPRIS.ServerBase {
             }
         );
 
-        playback.playbin_proxy.track_info.notify.connect (update_metadata);
-        playback.playbin_proxy.notify["duration"].connect (update_metadata);
+        playback.track_info.notify.connect (update_metadata);
+        playback.notify["duration"].connect (update_metadata);
         playback.notify["current-track"].connect (update_metadata);
 
         playback.bind_property ("repeat", this, "loop-status", SYNC_CREATE|BIDIRECTIONAL,
@@ -137,9 +137,9 @@ public class Daikhan.MPRIS.Player: Daikhan.MPRIS.ServerBase {
             }
         );
 
-        playback.playbin_proxy.bind_property ("volume", this, "volume", SYNC_CREATE | BIDIRECTIONAL);
+        playback.bind_property ("volume", this, "volume", SYNC_CREATE | BIDIRECTIONAL);
 
-        playback.playbin_proxy.bind_property ("progress", this, "position", SYNC_CREATE,
+        playback.bind_property ("progress", this, "position", SYNC_CREATE,
         (binding, progress, ref position) => {
             position = (int64) progress / 1000;
             return true;
@@ -160,8 +160,8 @@ public class Daikhan.MPRIS.Player: Daikhan.MPRIS.ServerBase {
     public void play_pause () throws DBusError, IOError { playback.toggle_playing (); }
     public void stop () throws DBusError, IOError { playback.stop (); }
     public void play () throws DBusError, IOError { playback.play (); }
-    public void seek (int64 offset) throws DBusError, IOError { playback.playbin_proxy.seek (offset / 1000000); }
-    public void SetPosition (ObjectPath track_id, int64 position) throws DBusError, IOError { playback.playbin_proxy.seek_absolute (position * 1000); }
+    public void seek (int64 offset) throws DBusError, IOError { playback.seek (offset / 1000000); }
+    public void SetPosition (ObjectPath track_id, int64 position) throws DBusError, IOError { playback.seek_absolute (position * 1000); }
 
     /* Mock */
     public double minimum_rate { get; default = 1.0; }
@@ -181,13 +181,13 @@ public class Daikhan.MPRIS.Player: Daikhan.MPRIS.ServerBase {
     private void update_metadata() {
         var new_metadata = new HashTable<string, Variant>(str_hash, str_equal);
 
-        unowned var filename = playback.playbin_proxy.filename;
-        unowned var title = playback.playbin_proxy.track_info.title;
-        unowned var album = playback.playbin_proxy.track_info.album;
-        unowned var artist = playback.playbin_proxy.track_info.artist;
-        unowned var image = playback.playbin_proxy.track_info.image_square;
+        unowned var filename = playback.filename;
+        unowned var title = playback.track_info.title;
+        unowned var album = playback.track_info.album;
+        unowned var artist = playback.track_info.artist;
+        unowned var image = playback.track_info.image_square;
 
-        new_metadata["mpris:length"] = playback.playbin_proxy.duration / 1000;
+        new_metadata["mpris:length"] = playback.duration / 1000;
         new_metadata["xesam:trackNumber"] = playback.current_track;
 
         if (title.length > 0) {
