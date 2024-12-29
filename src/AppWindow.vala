@@ -3,21 +3,21 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     [GtkChild] unowned Gtk.Stack stack;
     [GtkChild] unowned Daikhan.PlayerView player_view;
     [GtkChild] unowned Daikhan.WelcomeView welcome_view;
-    public Daikhan.Playback playback { get; private set; }
+    public Daikhan.Player player { get; private set; }
     public Settings state_mem { get; private construct; }
     Daikhan.History playback_history;
     bool restoring_state = false;
 
     construct {
-        playback = Daikhan.Playback.get_default ();
+        player = Daikhan.Player.get_default ();
         state_mem = new Settings (Conf.APP_ID + ".state");
         playback_history = Daikhan.History.get_default ();
 
-        playback.notify["target-state"].connect (notify_target_state_cb);
-        playback.notify["current-track"].connect (notify_current_track_cb);
-        playback.unsupported_file.connect (unsupported_file_cb);
-        playback.unsupported_codec.connect (unsupported_codec_cb);
-        playback.pipeline_error.connect (pipeline_error_cb);
+        player.notify["target-state"].connect (notify_target_state_cb);
+        player.notify["current-track"].connect (notify_current_track_cb);
+        player.unsupported_file.connect (unsupported_file_cb);
+        player.unsupported_codec.connect (unsupported_codec_cb);
+        player.pipeline_error.connect (pipeline_error_cb);
 
         state_mem.bind ("width", this, "default-width", DEFAULT);
         state_mem.bind ("height", this, "default-height", DEFAULT);
@@ -36,7 +36,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
         add_action_entries (entries, this);
 
-        var repeat_act = new PropertyAction ("repeat", playback, "repeat");
+        var repeat_act = new PropertyAction ("repeat", player, "repeat");
         add_action (repeat_act);
     }
 
@@ -45,7 +45,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     }
 
     public void open (File[] files) {
-        playback.open (files);
+        player.open (files);
     }
 
     unowned Binding _binding;
@@ -56,7 +56,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
             _binding = player_view.bind_property ("fullscreened", this, "fullscreened", SYNC_CREATE | BIDIRECTIONAL);
         } else {
             save_state ();
-            playback.stop ();
+            player.stop ();
             _binding.unbind ();
             unfullscreen ();
         }
@@ -64,7 +64,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
     uint inhibit_id = 0;
     void notify_target_state_cb () {
-        if (playback.target_state == PLAYING) {
+        if (player.target_state == PLAYING) {
             inhibit_id = application.inhibit (this, IDLE, "Media is playing");
         } else if (inhibit_id > 0) {
             application.uninhibit (inhibit_id);
@@ -73,14 +73,14 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     }
 
     void notify_current_track_cb () {
-        if (playback.current_track < 0) {
+        if (player.current_track < 0) {
             stack.visible_child = welcome_view;
             return;
         }
 
         stack.visible_child = player_view;
 
-        var record = playback_history.find (playback.queue[playback.current_track].get_uri ());
+        var record = playback_history.find (player.queue[player.current_track].get_uri ());
 
         if (record == null) {
             return;
@@ -105,9 +105,9 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
     void unsupported_file_cb () {
         var dialog = new Adw.AlertDialog (_("Unsupported File Type"), null);
-        dialog.body = _("The file '%s' is not an audio or a video file.").printf (playback.filename);
+        dialog.body = _("The file '%s' is not an audio or a video file.").printf (player.filename);
         dialog.add_response ("ok", _("OK"));
-        dialog.response.connect (() => { playback.next (); });
+        dialog.response.connect (() => { player.next (); });
         dialog.present (this);
     }
 
@@ -116,11 +116,11 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
             heading = _("Unsupported Codec"),
             additional_message = _(
                 "Encoding of one or more streams in '%s' is not supported."
-                ).printf (playback.filename),
+                ).printf (player.filename),
             debug_info = debug_info.strip (),
         };
 
-        dialog.response.connect (() => { playback.next (); });
+        dialog.response.connect (() => { player.next (); });
         dialog.present (this);
     }
 
@@ -135,66 +135,66 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
                     );
 
         var dialog = new Daikhan.ErrorDialog () { debug_info = info };
-        dialog.response.connect (() => { playback.next (); });
+        dialog.response.connect (() => { player.next (); });
         dialog.present (this);
     }
 
     void perform_seek (int64 position) {
-        if (playback.current_state < Gst.State.PAUSED) {
+        if (player.current_state < Gst.State.PAUSED) {
             ulong handler_id = 0;
-            handler_id = playback.notify["current-state"].connect (()=> {
-                if (playback.current_state < Gst.State.PAUSED) {
+            handler_id = player.notify["current-state"].connect (()=> {
+                if (player.current_state < Gst.State.PAUSED) {
                     return;
                 }
 
-                playback.seek_absolute (position);
-                SignalHandler.disconnect (playback, handler_id);
+                player.seek_absolute (position);
+                SignalHandler.disconnect (player, handler_id);
             });
         } else {
-            playback.seek_absolute (position);
+            player.seek_absolute (position);
         }
     }
 
     void seek_cb (SimpleAction action, Variant? step) {
-        playback.seek (step.get_int32 ());
+        player.seek (step.get_int32 ());
     }
 
     void volume_step_cb (SimpleAction action, Variant? step) {
-        playback.volume += step.get_double ();
+        player.volume += step.get_double ();
     }
 
     void select_audio_cb (SimpleAction action, Variant? stream_index) {
-        playback.current_audio = stream_index.get_int32 ();
+        player.current_audio = stream_index.get_int32 ();
 
-        if (playback.current_record != null) {
-            playback.current_record.audio_track = stream_index.get_int32 ();
+        if (player.current_record != null) {
+            player.current_record.audio_track = stream_index.get_int32 ();
         }
 
         action.set_state (stream_index);
     }
 
     void select_text_cb (SimpleAction action, Variant? stream_index) {
-        playback.current_text = stream_index.get_int32 ();
+        player.current_text = stream_index.get_int32 ();
 
-        if (playback.current_record != null) {
-            playback.current_record.text_track = stream_index.get_int32 ();
+        if (player.current_record != null) {
+            player.current_record.text_track = stream_index.get_int32 ();
         }
 
         action.set_state (stream_index);
     }
 
     void select_video_cb (SimpleAction action, Variant? stream_index) {
-        playback.current_video = stream_index.get_int32 ();
+        player.current_video = stream_index.get_int32 ();
 
-        if (playback.current_record != null) {
-            playback.current_record.video_track = stream_index.get_int32 ();
+        if (player.current_record != null) {
+            player.current_record.video_track = stream_index.get_int32 ();
         }
 
         action.set_state (stream_index);
     }
 
     void play_pause_cb () {
-        playback.toggle_playing ();
+        player.toggle_playing ();
     }
 
     void toggle_fullscreen_cb () {
@@ -202,14 +202,14 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     }
 
     public void save_state () {
-        if (playback.current_track < 0) {
+        if (player.current_track < 0) {
             state_mem.set_strv ("queue", null);
             return;
         }
 
-        state_mem.set_strv ("queue", playback.queue.to_uri_array ());
-        state_mem.set_int ("track", playback.current_track);
-        state_mem.set_boolean ("paused", playback.target_state == PAUSED);
+        state_mem.set_strv ("queue", player.queue.to_uri_array ());
+        state_mem.set_int ("track", player.current_track);
+        state_mem.set_boolean ("paused", player.target_state == PAUSED);
     }
 
     public void restore_state () {
@@ -217,11 +217,11 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
         var uri_array = state_mem.get_strv ("queue");
 
-        playback.queue = new Daikhan.Queue.from_uri_array (uri_array);
-        playback.load_track (state_mem.get_int ("track"));
+        player.queue = new Daikhan.Queue.from_uri_array (uri_array);
+        player.load_track (state_mem.get_int ("track"));
 
         if (state_mem.get_boolean ("paused")) {
-            playback.pause ();
+            player.pause ();
         }
 
         restoring_state = false;

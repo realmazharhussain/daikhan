@@ -6,7 +6,7 @@ class Daikhan.StreamMenuBuilder : Object {
     Menu audio_menu;
     Menu subtitle_menu;
     Menu video_menu;
-    Daikhan.Playback playback;
+    Daikhan.Player player;
 
     construct {
         menu = new Menu ();
@@ -19,10 +19,10 @@ class Daikhan.StreamMenuBuilder : Object {
         menu.append_submenu (_("Subtitles"), subtitle_menu);
         menu.append_submenu (_("Video"), video_menu);
 
-        playback = Daikhan.Playback.get_default ();
-        Signal.connect_swapped (playback.pipeline, "audio-changed", (Callback) update_audio_cb, this);
-        Signal.connect_swapped (playback.pipeline, "text-changed", (Callback) update_text_cb, this);
-        Signal.connect_swapped (playback.pipeline, "video-changed", (Callback) update_video_cb, this);
+        player = Daikhan.Player.get_default ();
+        Signal.connect_swapped (player.pipeline, "audio-changed", (Callback) update_audio_cb, this);
+        Signal.connect_swapped (player.pipeline, "text-changed", (Callback) update_text_cb, this);
+        Signal.connect_swapped (player.pipeline, "video-changed", (Callback) update_video_cb, this);
 
         var repeat_menu = new Menu ();
         menu.append_submenu (_("Repeat"), repeat_menu);
@@ -78,7 +78,7 @@ class Daikhan.StreamMenuBuilder : Object {
         string language_code = null, language_name = null;
 
         int total_streams;
-        playback.get (@"n-$type", out total_streams);
+        player.get (@"n-$type", out total_streams);
 
 
         if (total_streams == 0) {
@@ -88,7 +88,7 @@ class Daikhan.StreamMenuBuilder : Object {
         model.append (_("Off"), @"win.$type(-1)");
 
         for (int stream = 0; stream < total_streams; stream++) {
-            Signal.emit_by_name (playback.pipeline, @"get-$type-tags", stream, out tags);
+            Signal.emit_by_name (player.pipeline, @"get-$type-tags", stream, out tags);
 
             if (tags == null) {
                 // Nothing to do here
@@ -109,7 +109,7 @@ class Daikhan.StreamMenuBuilder : Object {
     void update_video_model () {
         video_menu.remove_all ();
 
-        var total_streams = playback.n_video;
+        var total_streams = player.n_video;
 
         if (total_streams == 0) {
             return;

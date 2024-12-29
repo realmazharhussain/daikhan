@@ -49,12 +49,12 @@ public class Daikhan.PlayerView : Adw.Bin {
     }
 
     construct {
-        var playback = Daikhan.Playback.get_default ();
-        playback.track_info.notify["image"].connect (content_cb);
-        playback.notify["n-audio"].connect (content_cb);
-        playback.notify["n-video"].connect (content_cb);
-        playback.notify["current-video"].connect (content_cb);
-        playback.notify["target-state"].connect (content_cb);
+        var player = Daikhan.Player.get_default ();
+        player.track_info.notify["image"].connect (content_cb);
+        player.notify["n-audio"].connect (content_cb);
+        player.notify["n-video"].connect (content_cb);
+        player.notify["current-video"].connect (content_cb);
+        player.notify["target-state"].connect (content_cb);
         content_cb ();
 
         bind_property ("fullscreened", headerbar, "halign", SYNC_CREATE,
@@ -224,9 +224,9 @@ public class Daikhan.PlayerView : Adw.Bin {
     }
 
     private void content_cb () {
-        var playback = Daikhan.Playback.get_default ();
+        var player = Daikhan.Player.get_default ();
 
-        var image = playback.track_info.image;
+        var image = player.track_info.image;
         Gdk.Paintable? image_paintable = null;
         if (image != null) {
             try {
@@ -236,12 +236,12 @@ public class Daikhan.PlayerView : Adw.Bin {
             }
         }
 
-        if (playback.n_video > 0 && playback.current_video >= 0) {
-            video.paintable = playback.paintable;
+        if (player.n_video > 0 && player.current_video >= 0) {
+            video.paintable = player.paintable;
             video.remove_css_class ("album_art");
             video.add_css_class ("video");
             content.visible_child = video;
-        } else if (playback.n_audio > 0 && playback.current_audio >= 0) {
+        } else if (player.n_audio > 0 && player.current_audio >= 0) {
             if (image_paintable != null) {
                 video.paintable = image_paintable;
                 video.remove_css_class ("video");
@@ -250,7 +250,7 @@ public class Daikhan.PlayerView : Adw.Bin {
             } else {
                 content.visible_child = icon;
             }
-        } else if (playback.target_state > playback.current_state) {
+        } else if (player.target_state > player.current_state) {
             content.visible_child = spinner;
         } else {
             content.visible_child = empty;

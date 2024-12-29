@@ -98,12 +98,12 @@ public class Daikhan.MPRIS.Player: Daikhan.MPRIS.ServerBase {
         base (conn, "org.mpris.MediaPlayer2.Player");
     }
 
-    Playback playback = Playback.get_default ();
+    Daikhan.Player player = Daikhan.Player.get_default ();
 
     public override void constructed () {
         base.constructed ();
 
-        playback.bind_property ("current-state", this, "playback-status", SYNC_CREATE,
+        player.bind_property ("current-state", this, "playback-status", SYNC_CREATE,
             (binding, current_state, ref playback_status) => {
                 switch ((Gst.State) current_state) {
                     case Gst.State.PLAYING: playback_status = "Playing"; break;
@@ -114,11 +114,11 @@ public class Daikhan.MPRIS.Player: Daikhan.MPRIS.ServerBase {
             }
         );
 
-        playback.track_info.notify.connect (update_metadata);
-        playback.notify["duration"].connect (update_metadata);
-        playback.notify["current-track"].connect (update_metadata);
+        player.track_info.notify.connect (update_metadata);
+        player.notify["duration"].connect (update_metadata);
+        player.notify["current-track"].connect (update_metadata);
 
-        playback.bind_property ("repeat", this, "loop-status", SYNC_CREATE|BIDIRECTIONAL,
+        player.bind_property ("repeat", this, "loop-status", SYNC_CREATE|BIDIRECTIONAL,
             (binding, repeat, ref loop_status) => {
                 switch ((RepeatMode) repeat) {
                     case RepeatMode.TRACK: loop_status = "Track"; break;
@@ -137,9 +137,9 @@ public class Daikhan.MPRIS.Player: Daikhan.MPRIS.ServerBase {
             }
         );
 
-        playback.bind_property ("volume", this, "volume", SYNC_CREATE | BIDIRECTIONAL);
+        player.bind_property ("volume", this, "volume", SYNC_CREATE | BIDIRECTIONAL);
 
-        playback.bind_property ("progress", this, "position", SYNC_CREATE,
+        player.bind_property ("progress", this, "position", SYNC_CREATE,
         (binding, progress, ref position) => {
             position = (int64) progress / 1000;
             return true;
@@ -154,14 +154,14 @@ public class Daikhan.MPRIS.Player: Daikhan.MPRIS.ServerBase {
     public double volume { get; set; }
     public int64 position { get; set; }
 
-    public void next () throws DBusError, IOError { playback.next (); }
-    public void previous () throws DBusError, IOError { playback.prev (); }
-    public void pause () throws DBusError, IOError { playback.pause (); }
-    public void play_pause () throws DBusError, IOError { playback.toggle_playing (); }
-    public void stop () throws DBusError, IOError { playback.stop (); }
-    public void play () throws DBusError, IOError { playback.play (); }
-    public void seek (int64 offset) throws DBusError, IOError { playback.seek (offset / 1000000); }
-    public void SetPosition (ObjectPath track_id, int64 position) throws DBusError, IOError { playback.seek_absolute (position * 1000); }
+    public void next () throws DBusError, IOError { player.next (); }
+    public void previous () throws DBusError, IOError { player.prev (); }
+    public void pause () throws DBusError, IOError { player.pause (); }
+    public void play_pause () throws DBusError, IOError { player.toggle_playing (); }
+    public void stop () throws DBusError, IOError { player.stop (); }
+    public void play () throws DBusError, IOError { player.play (); }
+    public void seek (int64 offset) throws DBusError, IOError { player.seek (offset / 1000000); }
+    public void SetPosition (ObjectPath track_id, int64 position) throws DBusError, IOError { player.seek_absolute (position * 1000); }
 
     /* Mock */
     public double minimum_rate { get; default = 1.0; }
@@ -181,14 +181,14 @@ public class Daikhan.MPRIS.Player: Daikhan.MPRIS.ServerBase {
     private void update_metadata() {
         var new_metadata = new HashTable<string, Variant>(str_hash, str_equal);
 
-        unowned var filename = playback.filename;
-        unowned var title = playback.track_info.title;
-        unowned var album = playback.track_info.album;
-        unowned var artist = playback.track_info.artist;
-        unowned var image = playback.track_info.image_square;
+        unowned var filename = player.filename;
+        unowned var title = player.track_info.title;
+        unowned var album = player.track_info.album;
+        unowned var artist = player.track_info.artist;
+        unowned var image = player.track_info.image_square;
 
-        new_metadata["mpris:length"] = playback.duration / 1000;
-        new_metadata["xesam:trackNumber"] = playback.current_track;
+        new_metadata["mpris:length"] = player.duration / 1000;
+        new_metadata["xesam:trackNumber"] = player.current_track;
 
         if (title.length > 0) {
             new_metadata["xesam:title"] = title;
