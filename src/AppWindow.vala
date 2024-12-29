@@ -15,9 +15,9 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
         playback.notify["target-state"].connect (notify_target_state_cb);
         playback.notify["current-track"].connect (notify_current_track_cb);
-        playback.unsupported_file.connect (unsupported_file_cb);
-        playback.unsupported_codec.connect (unsupported_codec_cb);
-        playback.pipeline_error.connect (pipeline_error_cb);
+        playback.playbin_proxy.unsupported_file.connect (unsupported_file_cb);
+        playback.playbin_proxy.unsupported_codec.connect (unsupported_codec_cb);
+        playback.playbin_proxy.pipeline_error.connect (pipeline_error_cb);
 
         state_mem.bind ("width", this, "default-width", DEFAULT);
         state_mem.bind ("height", this, "default-height", DEFAULT);
@@ -64,7 +64,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
     uint inhibit_id = 0;
     void notify_target_state_cb () {
-        if (playback.target_state == PLAYING) {
+        if (playback.playbin_proxy.target_state == PLAYING) {
             inhibit_id = application.inhibit (this, IDLE, "Media is playing");
         } else if (inhibit_id > 0) {
             application.uninhibit (inhibit_id);
@@ -105,7 +105,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
     void unsupported_file_cb () {
         var dialog = new Adw.AlertDialog (_("Unsupported File Type"), null);
-        dialog.body = _("The file '%s' is not an audio or a video file.").printf (playback.filename);
+        dialog.body = _("The file '%s' is not an audio or a video file.").printf (playback.playbin_proxy.filename);
         dialog.add_response ("ok", _("OK"));
         dialog.response.connect (() => { playback.next (); });
         dialog.present (this);
@@ -116,7 +116,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
             heading = _("Unsupported Codec"),
             additional_message = _(
                 "Encoding of one or more streams in '%s' is not supported."
-                ).printf (playback.filename),
+                ).printf (playback.playbin_proxy.filename),
             debug_info = debug_info.strip (),
         };
 
@@ -140,39 +140,39 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     }
 
     void perform_seek (int64 position) {
-        if (playback.current_state < Gst.State.PAUSED) {
+        if (playback.playbin_proxy.current_state < Gst.State.PAUSED) {
             ulong handler_id = 0;
             handler_id = playback.notify["current-state"].connect (()=> {
-                if (playback.current_state < Gst.State.PAUSED) {
+                if (playback.playbin_proxy.current_state < Gst.State.PAUSED) {
                     return;
                 }
 
-                playback.seek_absolute (position);
+                playback.playbin_proxy.seek_absolute (position);
                 SignalHandler.disconnect (playback, handler_id);
             });
         } else {
-            playback.seek_absolute (position);
+            playback.playbin_proxy.seek_absolute (position);
         }
     }
 
     void seek_cb (SimpleAction action, Variant? step) {
-        playback.seek (step.get_int32 ());
+        playback.playbin_proxy.seek (step.get_int32 ());
     }
 
     void volume_step_cb (SimpleAction action, Variant? step) {
-        playback.volume += step.get_double ();
+        playback.playbin_proxy.volume += step.get_double ();
     }
 
     void select_audio_cb (SimpleAction action, Variant? stream_index) {
         if (stream_index.get_int32 () < 0) {
-            playback.flags &= ~Daikhan.PlayFlags.AUDIO;
+            playback.playbin_proxy.flags &= ~Daikhan.PlayFlags.AUDIO;
         } else {
-            playback.flags |= AUDIO;
-            playback.pipeline["current-audio"] = stream_index.get_int32 ();
+            playback.playbin_proxy.flags |= AUDIO;
+            playback.playbin_proxy.pipeline["current-audio"] = stream_index.get_int32 ();
         }
 
-        if (playback.current_record != null) {
-            playback.current_record.audio_track = stream_index.get_int32 ();
+        if (playback.playbin_proxy.current_record != null) {
+            playback.playbin_proxy.current_record.audio_track = stream_index.get_int32 ();
         }
 
         action.set_state (stream_index);
@@ -180,14 +180,14 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
     void select_text_cb (SimpleAction action, Variant? stream_index) {
         if (stream_index.get_int32 () < 0) {
-            playback.flags &= ~Daikhan.PlayFlags.SUBTITLES;
+            playback.playbin_proxy.flags &= ~Daikhan.PlayFlags.SUBTITLES;
         } else {
-            playback.flags |= SUBTITLES;
-            playback.pipeline["current-text"] = stream_index.get_int32 ();
+            playback.playbin_proxy.flags |= SUBTITLES;
+            playback.playbin_proxy.pipeline["current-text"] = stream_index.get_int32 ();
         }
 
-        if (playback.current_record != null) {
-            playback.current_record.text_track = stream_index.get_int32 ();
+        if (playback.playbin_proxy.current_record != null) {
+            playback.playbin_proxy.current_record.text_track = stream_index.get_int32 ();
         }
 
         action.set_state (stream_index);
@@ -195,14 +195,14 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
     void select_video_cb (SimpleAction action, Variant? stream_index) {
         if (stream_index.get_int32 () < 0) {
-            playback.flags &= ~Daikhan.PlayFlags.VIDEO;
+            playback.playbin_proxy.flags &= ~Daikhan.PlayFlags.VIDEO;
         } else {
-            playback.flags |= VIDEO;
-            playback.pipeline["current-video"] = stream_index.get_int32 ();
+            playback.playbin_proxy.flags |= VIDEO;
+            playback.playbin_proxy.pipeline["current-video"] = stream_index.get_int32 ();
         }
 
-        if (playback.current_record != null) {
-            playback.current_record.video_track = stream_index.get_int32 ();
+        if (playback.playbin_proxy.current_record != null) {
+            playback.playbin_proxy.current_record.video_track = stream_index.get_int32 ();
         }
 
         action.set_state (stream_index);
@@ -224,7 +224,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
         state_mem.set_strv ("queue", playback.queue.to_uri_array ());
         state_mem.set_int ("track", playback.current_track);
-        state_mem.set_boolean ("paused", playback.target_state == PAUSED);
+        state_mem.set_boolean ("paused", playback.playbin_proxy.target_state == PAUSED);
     }
 
     public void restore_state () {

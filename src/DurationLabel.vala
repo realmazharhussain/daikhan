@@ -3,6 +3,6 @@ public class Daikhan.DurationLabel : Daikhan.TimeLabel {
         add_css_class ("durationlabel");
 
         var playback = Daikhan.Playback.get_default ();
-        playback.bind_property ("duration", this, "time", SYNC_CREATE);
+        playback.playbin_proxy.bind_property ("duration", this, "time", SYNC_CREATE);
     }
 }

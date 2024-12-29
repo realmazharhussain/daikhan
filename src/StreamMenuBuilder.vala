@@ -20,9 +20,9 @@ class Daikhan.StreamMenuBuilder : Object {
         menu.append_submenu (_("Video"), video_menu);
 
         playback = Daikhan.Playback.get_default ();
-        Signal.connect_swapped (playback.pipeline, "audio-changed", (Callback) update_audio_cb, this);
-        Signal.connect_swapped (playback.pipeline, "text-changed", (Callback) update_text_cb, this);
-        Signal.connect_swapped (playback.pipeline, "video-changed", (Callback) update_video_cb, this);
+        Signal.connect_swapped (playback.playbin_proxy.pipeline, "audio-changed", (Callback) update_audio_cb, this);
+        Signal.connect_swapped (playback.playbin_proxy.pipeline, "text-changed", (Callback) update_text_cb, this);
+        Signal.connect_swapped (playback.playbin_proxy.pipeline, "video-changed", (Callback) update_video_cb, this);
 
         var repeat_menu = new Menu ();
         menu.append_submenu (_("Repeat"), repeat_menu);
@@ -76,7 +76,7 @@ class Daikhan.StreamMenuBuilder : Object {
 
         Gst.TagList tags;
         string language_code = null, language_name = null;
-        Object pipeline = playback.pipeline;
+        Object pipeline = playback.playbin_proxy.pipeline;
 
         int total_streams;
         pipeline.get (@"n-$type", out total_streams);
@@ -111,7 +111,7 @@ class Daikhan.StreamMenuBuilder : Object {
         video_menu.remove_all ();
 
         int total_streams;
-        Object pipeline = playback.pipeline;
+        Object pipeline = playback.playbin_proxy.pipeline;
         pipeline.get ("n-video", out total_streams);
 
         if (total_streams == 0) {

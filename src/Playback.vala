@@ -1,6 +1,6 @@
 internal unowned Daikhan.Playback? default_playback;
 
-public class Daikhan.Playback : Daikhan.PlaybinProxy {
+public class Daikhan.Playback : Object {
     /* Read-Write properties */
     public Daikhan.Queue queue { get; set; default = new Daikhan.Queue (); }
     public Daikhan.RepeatMode repeat { get; set; default = OFF; }
@@ -11,12 +11,16 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
 
     /* Private fields */
     Settings state_mem;
+    public Daikhan.PlaybinProxy playbin_proxy;
 
     construct {
+        playbin_proxy = new Daikhan.PlaybinProxy ();
         history = Daikhan.History.get_default ();
 
+        playbin_proxy.end_of_stream.connect (end_of_stream_cb);
+
         state_mem = new Settings (Conf.APP_ID + ".state");
-        state_mem.bind ("volume", this, "volume", DEFAULT);
+        state_mem.bind ("volume", playbin_proxy, "volume", DEFAULT);
         state_mem.bind ("repeat", this, "repeat", DEFAULT);
     }
 
@@ -35,31 +39,31 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
             return false;
         } else if (track_index == current_track == -1) {
             return true;
-        } else if (track_index >= 0 && queue[track_index].get_uri () == (string) pipeline.current_uri) {
+        } else if (track_index >= 0 && queue[track_index].get_uri () == (string) playbin_proxy.pipeline.current_uri) {
             current_track = track_index;
             return true;
         }
 
         /* Save information of previous track */
 
-        var desired_state = (target_state == PAUSED) ? Gst.State.PAUSED : Gst.State.PLAYING;
+        var desired_state = (playbin_proxy.target_state == PAUSED) ? Gst.State.PAUSED : Gst.State.PLAYING;
 
-        if (current_record != null) {
-            history.update (current_record);
+        if (playbin_proxy.current_record != null) {
+            history.update (playbin_proxy.current_record);
         }
 
         /* Set current track */
         current_track = track_index;
 
         /* Clear information */
-        reset ();
+        playbin_proxy.reset ();
 
         if (current_track == -1) {
             return true;
         }
 
         /* Load track & information */
-        return open_file (queue[track_index], desired_state);
+        return playbin_proxy.open_file (queue[track_index], desired_state);
     }
 
     /* Loads the next track expected to be played in the list. In case
@@ -86,7 +90,7 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
     }
 
     public bool toggle_playing () {
-        if (target_state == PLAYING) {
+        if (playbin_proxy.target_state == PLAYING) {
             return pause ();
         }
 
@@ -94,8 +98,8 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
     }
 
     public bool play () {
-        if (target_state >= Gst.State.PAUSED) {
-            return set_state (PLAYING);
+        if (playbin_proxy.target_state >= Gst.State.PAUSED) {
+            return playbin_proxy.set_state (PLAYING);
         } else if (current_track == -1 && queue.length > 0) {
             return load_track (0);
         }
@@ -103,22 +107,22 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
     }
 
     public bool pause () {
-        if (target_state < Gst.State.PAUSED) {
+        if (playbin_proxy.target_state < Gst.State.PAUSED) {
             return false;
         }
 
-        return set_state (PAUSED);
+        return playbin_proxy.set_state (PAUSED);
     }
 
     public void stop () {
         load_track (-1);
     }
 
-    public override void end_of_stream () {
-        current_record.progress = -1;
+    void end_of_stream_cb () {
+        playbin_proxy.current_record.progress = -1;
 
         if (repeat == TRACK) {
-            seek_absolute (0);
+            playbin_proxy.seek_absolute (0);
         } else {
             next ();
         }

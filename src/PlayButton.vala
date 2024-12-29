@@ -5,7 +5,7 @@ public class Daikhan.PlayButton : Gtk.Button {
         add_css_class ("playbutton");
 
         playback = Daikhan.Playback.get_default ();
-        playback.notify["target-state"].connect (update_icon);
+        playback.playbin_proxy.notify["target-state"].connect (update_icon);
         playback.notify["queue"].connect (update_sensitivity);
 
         update_icon ();
@@ -14,7 +14,7 @@ public class Daikhan.PlayButton : Gtk.Button {
     }
 
     void update_icon () {
-        if (playback.target_state == PLAYING) {
+        if (playback.playbin_proxy.target_state == PLAYING) {
             icon_name = "media-playback-pause-symbolic";
         } else {
             icon_name = "media-playback-start-symbolic";

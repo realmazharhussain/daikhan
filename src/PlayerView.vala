@@ -50,11 +50,11 @@ public class Daikhan.PlayerView : Adw.Bin {
 
     construct {
         var playback = Daikhan.Playback.get_default ();
-        dynamic Object pipeline = playback.pipeline;
+        dynamic Object pipeline = playback.playbin_proxy.pipeline;
 
-        playback.track_info.notify["image"].connect (content_cb);
-        playback.notify["flags"].connect (content_cb);
-        playback.notify["target-state"].connect (content_cb);
+        playback.playbin_proxy.track_info.notify["image"].connect (content_cb);
+        playback.playbin_proxy.notify["flags"].connect (content_cb);
+        playback.playbin_proxy.notify["target-state"].connect (content_cb);
         pipeline.audio_changed.connect (content_cb);
         pipeline.video_changed.connect (content_cb);
         content_cb ();
@@ -227,12 +227,12 @@ public class Daikhan.PlayerView : Adw.Bin {
 
     private void content_cb () {
         var playback = Daikhan.Playback.get_default ();
-        var pipeline = playback.pipeline;
+        var pipeline = playback.playbin_proxy.pipeline;
 
         int n_audio = pipeline.n_audio;
         int n_video = pipeline.n_video;
 
-        var image = playback.track_info.image;
+        var image = playback.playbin_proxy.track_info.image;
         Gdk.Paintable? image_paintable = null;
         if (image != null) {
             try {
@@ -242,8 +242,8 @@ public class Daikhan.PlayerView : Adw.Bin {
             }
         }
 
-        if (VIDEO in playback.flags && n_video > 0) {
-            video.paintable = playback.paintable;
+        if (VIDEO in playback.playbin_proxy.flags && n_video > 0) {
+            video.paintable = playback.playbin_proxy.paintable;
             video.remove_css_class ("album_art");
             video.add_css_class ("video");
             content.visible_child = video;
@@ -254,7 +254,7 @@ public class Daikhan.PlayerView : Adw.Bin {
             content.visible_child = video;
         } else if (n_audio > 0) {
             content.visible_child = icon;
-        } else if (playback.target_state > playback.current_state) {
+        } else if (playback.playbin_proxy.target_state > playback.playbin_proxy.current_state) {
             content.visible_child = spinner;
         } else {
             content.visible_child = empty;
