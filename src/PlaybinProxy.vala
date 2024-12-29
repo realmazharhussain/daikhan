@@ -5,12 +5,7 @@ public class Daikhan.PlaybinProxy : Object {
     public Gst.State target_state { get; private set; default = NULL; }
     public Gst.State current_state { get; private set; default = NULL; }
     public Daikhan.PlayFlags flags { get; set; }
-
-    [CCode (notify = false)]
-    public double volume {
-        get { return Gst.Audio.StreamVolume.convert_volume (LINEAR, CUBIC, pipeline.volume); }
-        set { pipeline.volume = Gst.Audio.StreamVolume.convert_volume (CUBIC, LINEAR, value); }
-    }
+    public double volume { get; set; }
 
     public signal void unsupported_file ();
     public virtual signal void end_of_stream () {}
@@ -37,7 +32,17 @@ public class Daikhan.PlaybinProxy : Object {
         pipeline.bus.message["state-changed"].connect (pipeline_state_changed_cb);
 
         pipeline.bind_property ("flags", this, "flags", SYNC_CREATE | BIDIRECTIONAL);
-        pipeline.notify["volume"].connect (() => { notify_property ("volume"); });
+
+        pipeline.bind_property ("volume", this, "volume", SYNC_CREATE | BIDIRECTIONAL,
+            (binding, linear, ref cubic) => {
+                cubic = Gst.Audio.StreamVolume.convert_volume (LINEAR, CUBIC, (double) linear);
+                return true;
+            },
+            (binding, cubic, ref linear) => {
+                linear = Gst.Audio.StreamVolume.convert_volume (CUBIC, LINEAR, (double) cubic);
+                return true;
+            }
+        );
     }
 
     public bool set_state (Gst.State new_state) {
