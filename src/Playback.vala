@@ -1,5 +1,5 @@
 /* A helper class to make using GstPlayBin easier */
-public class Daikhan.PlaybinProxy : Object {
+public class Daikhan.Playback : Object {
     public dynamic Gst.Pipeline pipeline { get; private construct; }
     public dynamic Gdk.Paintable paintable { get; private construct; }
     public Daikhan.TrackInfo track_info { get; private construct; }

@@ -49,7 +49,7 @@ sources = [config_file] + blueprints + resources + files(
   'MPRIS.vala',
   'PillButton.vala',
   'Player.vala',
-  'PlaybinProxy.vala',
+  'Playback.vala',
   'PlayButton.vala',
   'PlayerView.vala',
   'PlayFlags.vala',

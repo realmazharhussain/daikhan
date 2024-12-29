@@ -10,22 +10,22 @@ public class Daikhan.Player : Object {
     public int current_track { get; private set; default = -1; }
 
     /* Playback properties */
-    public Daikhan.HistoryRecord? current_record { get { return playbin_proxy.current_record; } }
-    public Daikhan.TrackInfo track_info { get { return playbin_proxy.track_info; }}
+    public Daikhan.HistoryRecord? current_record { get { return playback.current_record; } }
+    public Daikhan.TrackInfo track_info { get { return playback.track_info; }}
     public double volume { get; set; }
-    public int64 progress { get { return playbin_proxy.progress; } }
-    public int64 duration { get { return playbin_proxy.duration; } }
-    public int n_audio { get { return playbin_proxy.n_audio; } }
-    public int n_video { get { return playbin_proxy.n_video; } }
-    public int n_text { get { return playbin_proxy.n_text; } }
+    public int64 progress { get { return playback.progress; } }
+    public int64 duration { get { return playback.duration; } }
+    public int n_audio { get { return playback.n_audio; } }
+    public int n_video { get { return playback.n_video; } }
+    public int n_text { get { return playback.n_text; } }
     public int current_audio { get; set; }
     public int current_video { get; set; }
     public int current_text { get; set; }
-    public string filename { get { return playbin_proxy.filename; } }
-    public Gst.State current_state { get { return playbin_proxy.current_state; } }
-    public Gst.State target_state { get { return playbin_proxy.target_state; } }
-    public Gdk.Paintable paintable { get { return playbin_proxy.paintable; } }
-    public Gst.Element pipeline { get { return playbin_proxy.pipeline; } }
+    public string filename { get { return playback.filename; } }
+    public Gst.State current_state { get { return playback.current_state; } }
+    public Gst.State target_state { get { return playback.target_state; } }
+    public Gdk.Paintable paintable { get { return playback.paintable; } }
+    public Gst.Element pipeline { get { return playback.pipeline; } }
 
     /* Signals */
     public signal void unsupported_file ();
@@ -34,31 +34,31 @@ public class Daikhan.Player : Object {
 
     /* Private fields */
     Settings state_mem;
-    Daikhan.PlaybinProxy playbin_proxy;
+    Daikhan.Playback playback;
 
     construct {
-        playbin_proxy = new Daikhan.PlaybinProxy ();
+        playback = new Daikhan.Playback ();
         history = Daikhan.History.get_default ();
 
-        playbin_proxy.bind_property ("volume", this, "volume", SYNC_CREATE | BIDIRECTIONAL);
-        playbin_proxy.bind_property ("current-audio", this, "current-audio", SYNC_CREATE | BIDIRECTIONAL);
-        playbin_proxy.bind_property ("current-video", this, "current-video", SYNC_CREATE | BIDIRECTIONAL);
-        playbin_proxy.bind_property ("current-text", this, "current-text", SYNC_CREATE | BIDIRECTIONAL);
+        playback.bind_property ("volume", this, "volume", SYNC_CREATE | BIDIRECTIONAL);
+        playback.bind_property ("current-audio", this, "current-audio", SYNC_CREATE | BIDIRECTIONAL);
+        playback.bind_property ("current-video", this, "current-video", SYNC_CREATE | BIDIRECTIONAL);
+        playback.bind_property ("current-text", this, "current-text", SYNC_CREATE | BIDIRECTIONAL);
 
-        playbin_proxy.notify["current-record"].connect (() => { notify_property ("current-record"); });
-        playbin_proxy.notify["duration"].connect (() => { notify_property ("duration"); });
-        playbin_proxy.notify["progress"].connect (() => { notify_property ("progress"); });
-        playbin_proxy.notify["n-audio"].connect (() => { notify_property ("n-audio"); });
-        playbin_proxy.notify["n-video"].connect (() => { notify_property ("n-video"); });
-        playbin_proxy.notify["n-text"].connect (() => { notify_property ("n-text"); });
-        playbin_proxy.notify["filename"].connect (() => { notify_property ("filename"); });
-        playbin_proxy.notify["current-state"].connect (() => { notify_property ("current-state"); });
-        playbin_proxy.notify["target-state"].connect (() => { notify_property ("target-state"); });
+        playback.notify["current-record"].connect (() => { notify_property ("current-record"); });
+        playback.notify["duration"].connect (() => { notify_property ("duration"); });
+        playback.notify["progress"].connect (() => { notify_property ("progress"); });
+        playback.notify["n-audio"].connect (() => { notify_property ("n-audio"); });
+        playback.notify["n-video"].connect (() => { notify_property ("n-video"); });
+        playback.notify["n-text"].connect (() => { notify_property ("n-text"); });
+        playback.notify["filename"].connect (() => { notify_property ("filename"); });
+        playback.notify["current-state"].connect (() => { notify_property ("current-state"); });
+        playback.notify["target-state"].connect (() => { notify_property ("target-state"); });
 
-        playbin_proxy.unsupported_file.connect (() => { unsupported_file.emit (); });
-        playbin_proxy.unsupported_codec.connect ((debug_info) => { unsupported_codec.emit (debug_info); });
-        playbin_proxy.pipeline_error.connect ((src, err, dbg_info) => { pipeline_error.emit (src, err, dbg_info); });
-        playbin_proxy.end_of_stream.connect (end_of_stream_cb);
+        playback.unsupported_file.connect (() => { unsupported_file.emit (); });
+        playback.unsupported_codec.connect ((debug_info) => { unsupported_codec.emit (debug_info); });
+        playback.pipeline_error.connect ((src, err, dbg_info) => { pipeline_error.emit (src, err, dbg_info); });
+        playback.end_of_stream.connect (end_of_stream_cb);
 
         state_mem = new Settings (Conf.APP_ID + ".state");
         state_mem.bind ("volume", this, "volume", DEFAULT);
@@ -80,31 +80,31 @@ public class Daikhan.Player : Object {
             return false;
         } else if (track_index == current_track == -1) {
             return true;
-        } else if (track_index >= 0 && queue[track_index].get_uri () == (string) playbin_proxy.pipeline.current_uri) {
+        } else if (track_index >= 0 && queue[track_index].get_uri () == (string) playback.pipeline.current_uri) {
             current_track = track_index;
             return true;
         }
 
         /* Save information of previous track */
 
-        var desired_state = (playbin_proxy.target_state == PAUSED) ? Gst.State.PAUSED : Gst.State.PLAYING;
+        var desired_state = (playback.target_state == PAUSED) ? Gst.State.PAUSED : Gst.State.PLAYING;
 
-        if (playbin_proxy.current_record != null) {
-            history.update (playbin_proxy.current_record);
+        if (playback.current_record != null) {
+            history.update (playback.current_record);
         }
 
         /* Set current track */
         current_track = track_index;
 
         /* Clear information */
-        playbin_proxy.reset ();
+        playback.reset ();
 
         if (current_track == -1) {
             return true;
         }
 
         /* Load track & information */
-        return playbin_proxy.open_file (queue[track_index], desired_state);
+        return playback.open_file (queue[track_index], desired_state);
     }
 
     /* Loads the next track expected to be played in the list. In case
@@ -131,7 +131,7 @@ public class Daikhan.Player : Object {
     }
 
     public bool toggle_playing () {
-        if (playbin_proxy.target_state == PLAYING) {
+        if (playback.target_state == PLAYING) {
             return pause ();
         }
 
@@ -139,8 +139,8 @@ public class Daikhan.Player : Object {
     }
 
     public bool play () {
-        if (playbin_proxy.target_state >= Gst.State.PAUSED) {
-            return playbin_proxy.set_state (PLAYING);
+        if (playback.target_state >= Gst.State.PAUSED) {
+            return playback.set_state (PLAYING);
         } else if (current_track == -1 && queue.length > 0) {
             return load_track (0);
         }
@@ -148,19 +148,19 @@ public class Daikhan.Player : Object {
     }
 
     public bool pause () {
-        if (playbin_proxy.target_state < Gst.State.PAUSED) {
+        if (playback.target_state < Gst.State.PAUSED) {
             return false;
         }
 
-        return playbin_proxy.set_state (PAUSED);
+        return playback.set_state (PAUSED);
     }
 
     public bool seek (int64 seconds) {
-        return playbin_proxy.seek (seconds);
+        return playback.seek (seconds);
     }
 
     public bool seek_absolute (int64 seek_pos) {
-        return playbin_proxy.seek_absolute (seek_pos);
+        return playback.seek_absolute (seek_pos);
     }
 
     public void stop () {
@@ -168,10 +168,10 @@ public class Daikhan.Player : Object {
     }
 
     void end_of_stream_cb () {
-        playbin_proxy.current_record.progress = -1;
+        playback.current_record.progress = -1;
 
         if (repeat == TRACK) {
-            playbin_proxy.seek_absolute (0);
+            playback.seek_absolute (0);
         } else {
             next ();
         }
