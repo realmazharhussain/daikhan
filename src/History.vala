@@ -19,7 +19,7 @@ public class Daikhan.HistoryRecord {
     }
 }
 
-internal unowned Daikhan.History? default_instance;
+internal unowned Daikhan.History? default_history;
 
 public class Daikhan.History {
     SList<Daikhan.HistoryRecord> data;
@@ -32,8 +32,8 @@ public class Daikhan.History {
     }
 
     public static History get_default () {
-        default_instance = default_instance ?? new History ();
-        return default_instance;
+        default_history = default_history ?? new History ();
+        return default_history;
     }
 
     public void load () throws Error {

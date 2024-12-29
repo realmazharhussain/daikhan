@@ -1,6 +1,6 @@
-internal unowned Daikhan.Playback? default_playback;
+internal unowned Daikhan.Player? default_player;
 
-public class Daikhan.Playback : Daikhan.PlaybinProxy {
+public class Daikhan.Player : Daikhan.PlaybinProxy {
     /* Read-Write properties */
     public Daikhan.Queue queue { get; set; default = new Daikhan.Queue (); }
     public Daikhan.RepeatMode repeat { get; set; default = OFF; }
@@ -20,9 +20,9 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
         state_mem.bind ("repeat", this, "repeat", DEFAULT);
     }
 
-    public static Playback get_default () {
-        default_playback = default_playback ?? new Playback ();
-        return default_playback;
+    public static Player get_default () {
+        default_player = default_player ?? new Player ();
+        return default_player;
     }
 
     public void open (File[] files) {
@@ -124,7 +124,7 @@ public class Daikhan.Playback : Daikhan.PlaybinProxy {
         }
     }
 
-    ~Playback () {
+    ~Player () {
         stop ();
     }
 }

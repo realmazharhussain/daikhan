@@ -48,7 +48,7 @@ sources = [config_file] + blueprints + resources + files(
   'MediaControls.vala',
   'MPRIS.vala',
   'PillButton.vala',
-  'Playback.vala',
+  'Player.vala',
   'PlaybinProxy.vala',
   'PlayButton.vala',
   'PlayerView.vala',
