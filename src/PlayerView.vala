@@ -245,14 +245,12 @@ public class Daikhan.PlayerView : Adw.Bin {
 
         if (VIDEO in player.flags && n_video > 0) {
             video.paintable = player.paintable;
-            video.remove_css_class ("album_art");
-            video.add_css_class ("video");
+            video_offload["black-background"] = true;
             content.visible_child = video_offload;
         } else if (n_audio > 0) {
             if (image_paintable != null) {
                 video.paintable = image_paintable;
-                video.remove_css_class ("video");
-                video.add_css_class ("album_art");
+                video_offload["black-background"] = false;
                 content.visible_child = video_offload;
             } else {
                 content.visible_child = icon;
