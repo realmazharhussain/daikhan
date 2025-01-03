@@ -35,9 +35,11 @@ template $DaikhanPlayerView : Adw.Bin {
         pixel-size: 96;
       }
 
-      Picture video {
-        hexpand: true;
-        vexpand: true;
+      GraphicsOffload video_offload {
+        child: Picture video {
+          hexpand: true;
+          vexpand: true;
+        };
       }
     }
 

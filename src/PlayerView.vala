@@ -24,6 +24,7 @@ public class Daikhan.PlayerView : Adw.Bin {
     [GtkChild] unowned Adw.Spinner spinner;
     [GtkChild] unowned Gtk.Image icon;
     [GtkChild] unowned Gtk.Picture video;
+    [GtkChild] unowned Gtk.GraphicsOffload video_offload;
 
     [GtkChild] unowned Gtk.Revealer top;
     [GtkChild] unowned Gtk.Stack content;
@@ -246,13 +247,13 @@ public class Daikhan.PlayerView : Adw.Bin {
             video.paintable = player.paintable;
             video.remove_css_class ("album_art");
             video.add_css_class ("video");
-            content.visible_child = video;
+            content.visible_child = video_offload;
         } else if (n_audio > 0) {
             if (image_paintable != null) {
                 video.paintable = image_paintable;
                 video.remove_css_class ("video");
                 video.add_css_class ("album_art");
-                content.visible_child = video;
+                content.visible_child = video_offload;
             } else {
                 content.visible_child = icon;
             }
