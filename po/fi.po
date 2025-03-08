@@ -8,29 +8,32 @@ msgstr ""
 "Project-Id-Version: daikhan 0.1-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2025-03-09 00:44+0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-03-08 21:03+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"Language-Team: Finnish <https://hosted.weblate.org/projects/daikhan/"
+"translations/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:9
 msgid "Daikhan"
-msgstr ""
+msgstr "Daikhan"
 
 #: data/daikhan.desktop.in:4
 msgid "Media player"
-msgstr ""
+msgstr "Mediasoitin"
 
 #: data/daikhan.desktop.in:5 data/daikhan.metainfo.xml.in:10
 msgid "Play Videos/Music with style"
-msgstr ""
+msgstr "Toista videoita ja musiikkia tyylillä"
 
 #: data/daikhan.metainfo.xml.in:11 src/Application.vala:106
 msgid "Mazhar Hussain"
-msgstr ""
+msgstr "Mazhar Hussain"
 
 #: data/daikhan.metainfo.xml.in:16
 msgid ""
@@ -46,27 +49,27 @@ msgstr ""
 
 #: data/daikhan.metainfo.xml.in:39
 msgid "Playing a video"
-msgstr ""
+msgstr "Videon toisto"
 
 #: data/daikhan.metainfo.xml.in:43
 msgid "Playing a video (fullscreen)"
-msgstr ""
+msgstr "Videon toisto (koko näyttö)"
 
 #: data/daikhan.metainfo.xml.in:47
 msgid "Playing a video (dark mode)"
-msgstr ""
+msgstr "Videon toisto (tumma tila)"
 
 #: data/daikhan.metainfo.xml.in:51
 msgid "Playing a video (dark mode, fullscreen)"
-msgstr ""
+msgstr "Videon toisto (tumma tila, koko näyttö)"
 
 #: src/ActionDialog.vala:13
 msgid "No"
-msgstr ""
+msgstr "Ei"
 
 #: src/ActionDialog.vala:14
 msgid "Yes"
-msgstr ""
+msgstr "Kyllä"
 
 #: src/Application.vala:103 src/Title.vala:20 src/WelcomeView.blp:17
 msgid "Daikhan (Early Access)"
@@ -74,40 +77,40 @@ msgstr ""
 
 #: src/Application.vala:104
 msgid "Copyright 2022-2023 Mazhar Hussain"
-msgstr ""
+msgstr "Tekijänoikeus 2022-2023 Mazhar Hussain"
 
 #: src/AppMenuButton.blp:6
 msgid "Preferences"
-msgstr ""
+msgstr "Asetukset"
 
 #: src/AppMenuButton.blp:7
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Pikanäppäimet"
 
 #: src/AppMenuButton.blp:8
 msgid "About Daikhan"
-msgstr ""
+msgstr "Tietoja - Daikhan"
 
 #: src/AppWindow.vala:100
 msgid "Resume playback?"
-msgstr ""
+msgstr "Palautetaanko toisto?"
 
 #: src/AppWindow.vala:107
 msgid "Unsupported File Type"
-msgstr ""
+msgstr "Tiedostotyyppi ei ole tuettu"
 
 #: src/AppWindow.vala:108
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
-msgstr ""
+msgstr "Tiedosto '%s' ei ole ääni- tai videotiedosto."
 
 #: src/AppWindow.vala:109 src/ErrorDialog.blp:22
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/AppWindow.vala:116
 msgid "Unsupported Codec"
-msgstr ""
+msgstr "Koodekki ei ole tuettu"
 
 #: src/AppWindow.vala:118
 #, c-format
@@ -116,11 +119,11 @@ msgstr ""
 
 #: src/ErrorDialog.blp:21
 msgid "Report Bug"
-msgstr ""
+msgstr "Ilmoita ongelmasta"
 
 #: src/ErrorDialog.vala:10
 msgid "Error"
-msgstr ""
+msgstr "Virhe"
 
 #: src/ErrorDialog.vala:11
 msgid ""
@@ -130,191 +133,191 @@ msgstr ""
 
 #: src/PreferencesWindow.blp:7
 msgid "Appearance"
-msgstr ""
+msgstr "Ulkoasu"
 
 #: src/PreferencesWindow.blp:10
 msgid "Color Scheme"
-msgstr ""
+msgstr "Väriteema"
 
 #: src/PreferencesWindow.blp:14
 msgid "Overlay UI"
-msgstr ""
+msgstr "Peittävä käyttöliittymä"
 
 #: src/PreferencesWindow.blp:15
 msgid "Show controls/UI elements on top of the video"
-msgstr ""
+msgstr "Näytä ohjaimet ja käyttöliittymäelementit videon päällä"
 
 #: src/PreferencesWindow.blp:20
 msgid "Behavior"
-msgstr ""
+msgstr "Toiminta"
 
 #: src/PreferencesWindow.blp:24
 msgid "Seeking Method"
-msgstr ""
+msgstr "Liikkumistapa"
 
 #: src/PreferencesWindow.vala:17
 msgid "Follow System"
-msgstr ""
+msgstr "Seuraa järjestelmää"
 
 #: src/PreferencesWindow.vala:18
 msgid "Light"
-msgstr ""
+msgstr "Vaalea"
 
 #: src/PreferencesWindow.vala:19
 msgid "Dark"
-msgstr ""
+msgstr "Tumma"
 
 #: src/PreferencesWindow.vala:22
 msgid "Fast"
-msgstr ""
+msgstr "Nopea"
 
 #: src/PreferencesWindow.vala:23
 msgid "Balanced"
-msgstr ""
+msgstr "Tasapainotettu"
 
 #: src/PreferencesWindow.vala:24
 msgid "Accurate"
-msgstr ""
+msgstr "Tarkka"
 
 #: src/Shortcuts.blp:8
 msgid "Application"
-msgstr ""
+msgstr "Sovellus"
 
 #: src/Shortcuts.blp:11
 msgid "Open Preferences"
-msgstr ""
+msgstr "Avaa asetukset"
 
 #: src/Shortcuts.blp:16
 msgid "Show Keyboard Shortcuts"
-msgstr ""
+msgstr "Näytä pikanäppäimet"
 
 #: src/Shortcuts.blp:21
 msgid "Quit"
-msgstr ""
+msgstr "Lopeta"
 
 #: src/Shortcuts.blp:27
 msgid "Playback"
-msgstr ""
+msgstr "Toisto"
 
 #: src/Shortcuts.blp:30
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "Koko näyttö päällä/pois"
 
 #: src/Shortcuts.blp:35
 msgid "Play/Pause"
-msgstr ""
+msgstr "Toista/keskeytä"
 
 #: src/Shortcuts.blp:40
 msgid "Seek Forward (10s)"
-msgstr ""
+msgstr "Kelaa eteenpäin (10 s)"
 
 #: src/Shortcuts.blp:45
 msgid "Seek Backwards (10s)"
-msgstr ""
+msgstr "Kelaa taaksepäin (10 s)"
 
 #: src/Shortcuts.blp:50
 msgid "Increase Volume (5%)"
-msgstr ""
+msgstr "Suurenna äänenvoimakkuutta (5 %)"
 
 #: src/Shortcuts.blp:55
 msgid "Decrease Volume (5%)"
-msgstr ""
+msgstr "Pienennä äänenvoimakkuutta (5 %)"
 
 #: src/Shortcuts.blp:60
 msgid "Seek Forward (3s)"
-msgstr ""
+msgstr "Kelaa eteenpäin (3 s)"
 
 #: src/Shortcuts.blp:65
 msgid "Seek Backwards (3s)"
-msgstr ""
+msgstr "Kelaa taaksepäin (3 s)"
 
 #: src/Shortcuts.blp:70
 msgid "Increase Volume (2%)"
-msgstr ""
+msgstr "Suurenna äänenvoimakkuutta (2 %)"
 
 #: src/Shortcuts.blp:75
 msgid "Decrease Volume (2%)"
-msgstr ""
+msgstr "Pienennä äänenvoimakkuutta (2 %)"
 
 #: src/Shortcuts.blp:80
 msgid "Seek Forward (1 min)"
-msgstr ""
+msgstr "Kelaa eteenpäin (1 min)"
 
 #: src/Shortcuts.blp:85
 msgid "Seek Backwards (1 min)"
-msgstr ""
+msgstr "Kelaa taaksepäin (1 min)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
-msgstr ""
+msgstr "Ääni"
 
 #: src/StreamMenuBuilder.vala:19
 msgid "Subtitles"
-msgstr ""
+msgstr "Tekstitykset"
 
 #: src/StreamMenuBuilder.vala:20
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: src/StreamMenuBuilder.vala:28
 msgid "Repeat"
-msgstr ""
+msgstr "Kertaus"
 
 #: src/StreamMenuBuilder.vala:29 src/StreamMenuBuilder.vala:89
 #: src/StreamMenuBuilder.vala:121
 msgid "Off"
-msgstr ""
+msgstr "Pois"
 
 #: src/StreamMenuBuilder.vala:30
 msgid "Single File"
-msgstr ""
+msgstr "Yksittäinen tiedosto"
 
 #: src/StreamMenuBuilder.vala:31
 msgid "Whole Queue"
-msgstr ""
+msgstr "Koko jono"
 
 #: src/StreamMenuBuilder.vala:103
 msgid "Unknown Language"
-msgstr ""
+msgstr "Tuntematon kieli"
 
 #: src/StreamMenuBuilder.vala:124
 msgid "On"
-msgstr ""
+msgstr "Päällä"
 
 #. Translators: Keep %i as is. It will be replaced by the track number for each track.
 #: src/StreamMenuBuilder.vala:127
 #, c-format
 msgid "Track %i"
-msgstr ""
+msgstr "Kappale %i"
 
 #: src/WelcomeView.blp:18
 msgid "You can drop files here to play"
-msgstr ""
+msgstr "Pudota tiedostot tähän toistaaksesi ne"
 
 #: src/WelcomeView.blp:26
 msgid "Open Files"
-msgstr ""
+msgstr "Avaa tiedostot"
 
 #: src/WelcomeView.blp:33
 msgid "Play Again"
-msgstr ""
+msgstr "Toista uudelleen"
 
 #: src/WelcomeView.blp:41
 msgid "Continue where you left off"
-msgstr ""
+msgstr "Jatka siitä mihin jäit"
 
 #: src/WelcomeView.blp:56
 msgid "All Files"
-msgstr ""
+msgstr "Kaikki tiedostot"
 
 #: src/WelcomeView.blp:61
 msgid "Video & Audio Files"
-msgstr ""
+msgstr "Video- ja äänitiedostot"
 
 #: src/WelcomeView.blp:66
 msgid "Video Files"
-msgstr ""
+msgstr "Videotiedostot"
 
 #: src/WelcomeView.blp:71
 msgid "Audio Files"
-msgstr ""
+msgstr "Äänitiedostot"
