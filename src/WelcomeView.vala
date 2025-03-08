@@ -3,7 +3,7 @@ public class Daikhan.WelcomeView : Adw.Bin {
     [GtkChild] unowned Gtk.FileDialog file_dialog;
     [GtkChild] unowned Daikhan.PillButton replay_btn;
     [GtkChild] unowned Daikhan.PillButton restore_btn;
-    Daikhan.Playback playback;
+    Daikhan.Player player;
     Settings state_mem;
 
     static construct {
@@ -12,10 +12,10 @@ public class Daikhan.WelcomeView : Adw.Bin {
     }
 
     construct {
-        playback = Daikhan.Playback.get_default ();
+        player = Daikhan.Player.get_default ();
         state_mem = new Settings (Conf.APP_ID + ".state");
 
-        playback.notify["queue"].connect (update_replay_btn_visibility);
+        player.notify["queue"].connect (update_replay_btn_visibility);
         state_mem.changed["queue"].connect (update_restore_btn_visibility);
 
         update_replay_btn_visibility ();
@@ -32,7 +32,7 @@ public class Daikhan.WelcomeView : Adw.Bin {
             try {
                 var model = file_dialog.open_multiple.end (res);
                 var files = Daikhan.Utils.list_model_to_array<File> (model);
-                ((Daikhan.AppWindow) root).playback.open (files);
+                ((Daikhan.AppWindow) root).player.open (files);
             } catch (Gtk.DialogError.DISMISSED err) {
                 // Nothing to do here
             } catch (Error err) {
@@ -43,7 +43,7 @@ public class Daikhan.WelcomeView : Adw.Bin {
 
     [GtkCallback]
     void replay_clicked () {
-        playback.load_track (0);
+        player.load_track (0);
     }
 
     [GtkCallback]
@@ -52,7 +52,7 @@ public class Daikhan.WelcomeView : Adw.Bin {
     }
 
     void update_replay_btn_visibility () {
-        replay_btn.visible = playback.queue.length > 0;
+        replay_btn.visible = player.queue.length > 0;
     }
 
     void update_restore_btn_visibility () {

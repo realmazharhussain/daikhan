@@ -8,11 +8,6 @@ ShortcutsWindow shortcuts_window {
       title: _("Application");
 
       ShortcutsShortcut{
-        title: _("Toggle Fullscreen");
-        accelerator: "F";
-      }
-
-      ShortcutsShortcut{
         title: _("Open Preferences");
         accelerator: "<Ctrl>comma";
       }
@@ -24,12 +19,17 @@ ShortcutsWindow shortcuts_window {
 
       ShortcutsShortcut{
         title: _("Quit");
-        accelerator: "Q <Ctrl>Q";
+        accelerator: "<Ctrl>Q Q";
       }
     }
 
     ShortcutsGroup {
       title: _("Playback");
+
+      ShortcutsShortcut{
+        title: _("Toggle Fullscreen");
+        accelerator: "F";
+      }
 
       ShortcutsShortcut{
         title: _("Play/Pause");
@@ -74,6 +74,16 @@ ShortcutsWindow shortcuts_window {
       ShortcutsShortcut{
         title: _("Decrease Volume (2%)");
         accelerator: "<Shift>Down <Shift>J";
+      }
+
+      ShortcutsShortcut{
+        title: _("Seek Forward (1 min)");
+        accelerator: "<Ctrl>Right <Ctrl>H";
+      }
+
+      ShortcutsShortcut{
+        title: _("Seek Backwards (1 min)");
+        accelerator: "<Ctrl>Left <Ctrl>L";
       }
     }
   }

@@ -2,7 +2,7 @@ using Gtk 4.0;
 using Adw 1;
 
 template $DaikhanVolumeButton : Adw.Bin {
-  child: Gtk.VolumeButton {
+  child: Gtk.VolumeButton volume_button {
     adjustment: Adjustment adjustment {
       lower: 0;
       upper: 1;

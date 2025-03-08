@@ -46,8 +46,9 @@ sources = [config_file] + blueprints + resources + files(
   'GestureDragWindow.vala',
   'History.vala',
   'MediaControls.vala',
+  'MPRIS.vala',
   'PillButton.vala',
-  'Playback.vala',
+  'Player.vala',
   'PlaybinProxy.vala',
   'PlayButton.vala',
   'PlayerView.vala',
@@ -70,11 +71,23 @@ if host_machine.system() == 'windows'
   sources += ico_src
 endif
 
+deps = [
+  dep_adw,
+  dep_gdk_pixbuf,
+  dep_gst,
+  dep_gst_audio,
+  dep_gst_tag,
+  dep_xxhash
+]
+
 executable(meson.project_name(), sources,
            dependencies: deps,
-           c_args: ['-DGETTEXT_PACKAGE="daikhan"'],
-           vala_args: ['--gresourcesdir', meson.current_build_dir(),
-                       '--vapidir', meson.source_root() / 'vapi',
-                       ],
+           vala_args: ['--gresourcesdir', meson.current_build_dir()],
            win_subsystem: 'windows',
            install: true)
+
+content_id_file = files(
+  'ContentId.vala'
+)
+
+subdir('daikhan-content-id')

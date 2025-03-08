@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
+  <metadata_license>CC0-1.0</metadata_license>
+
   <id>@app_id@</id>
   <launchable type="desktop-id">@app_id@.desktop</launchable>
+  <translation type="gettext">daikhan</translation>
 
-  <name>Daikhan (Early Access)</name>
+  <name>Daikhan</name>
   <summary>Play Videos/Music with style</summary>
-  <developer_name>Mazhar Hussain</developer_name>
+  <developer id="realmazharhussain.github.io"><name>Mazhar Hussain</name></developer>developer>
+  <update_contact>realmazharhussain_at_gmail.com</update_contact>
+  <project_license>AGPL-3.0-or-later</project_license>
+  <content_rating type="oars-1.1"/>
   <description>
-    <p>A simple media player with beautiful interface.</p>
+    <p>A simple yet powerful media player with a beautiful interface. It has nice keyboard shortcuts,
+      session restore capabilities, and much more.</p>
 
     <p>
       NOTE: The app is in early stages of development and bound to change significantly
@@ -15,18 +22,33 @@
     </p>
   </description>
 
+  <branding>
+    <color type="primary" scheme_preference="light">#62a0ea</color>
+    <color type="primary" scheme_preference="dark">#1a5fb4</color>
+  </branding>
+
+  <url type="homepage">https://gitlab.com/daikhan/daikhan</url>
+  <url type="vcs-browser">https://gitlab.com/daikhan/daikhan</url>
+  <url type="bugtracker">https://gitlab.com/daikhan/daikhan/-/issues</url>
+  <url type="translate">https://hosted.weblate.org/projects/daikhan</url>
+  <url type="donation">https://realmazharhussain.github.io/donate</url>
+
   <screenshots>
-    <screenshot type="default">
-      <image>https://gitlab.com/daikhan/screenshots/-/raw/eaedbec/light.png</image>
+    <screenshot environment="gnome" type="default">
+      <image>https://gitlab.com/daikhan/screenshots/-/raw/0.1-alpha/light.png</image>
+      <caption>Playing a video</caption>
     </screenshot>
-    <screenshot>
-      <image>https://gitlab.com/daikhan/screenshots/-/raw/eaedbec/light-fullscreen.png</image>
+    <screenshot environment="gnome">
+      <image>https://gitlab.com/daikhan/screenshots/-/raw/0.1-alpha/light-fullscreen.png</image>
+      <caption>Playing a video (fullscreen)</caption>
     </screenshot>
-    <screenshot>
-      <image>https://gitlab.com/daikhan/screenshots/-/raw/eaedbec/dark.png</image>
+    <screenshot environment="gnome:dark">
+      <image>https://gitlab.com/daikhan/screenshots/-/raw/0.1-alpha/dark.png</image>
+      <caption>Playing a video (dark mode)</caption>
     </screenshot>
-    <screenshot>
-      <image>https://gitlab.com/daikhan/screenshots/-/raw/eaedbec/dark-fullscreen.png</image>
+    <screenshot environment="gnome:dark">
+      <image>https://gitlab.com/daikhan/screenshots/-/raw/0.1-alpha/dark-fullscreen.png</image>
+      <caption>Playing a video (dark mode, fullscreen)</caption>
     </screenshot>
   </screenshots>
 
@@ -50,24 +72,13 @@
     <control>touch</control>
   </supports>
 
-  <content_rating type="oars-1.1"/>
-
   <releases>
-    <release version="pre-alpha" date="2023-03-07">
-      <description>
-        <p>Not released yet.</p>
+    <release version="0.1~alpha" date="2025-03-08" type="development">
+      <url>https://gitlab.com/daikhan/daikhan/-/releases/0.1-alpha</url>
+      <description translatable="no" translate="no">
+        <p>The first alpha release</p>
       </description>
     </release>
   </releases>
 
-  <metadata_license>CC0-1.0</metadata_license>
-  <project_license>AGPL-3.0-or-later</project_license>
-
-  <url type="homepage">https://gitlab.com/daikhan/daikhan</url>
-  <url type="vcs-browser">https://gitlab.com/daikhan/daikhan</url>
-  <url type="bugtracker">https://gitlab.com/daikhan/daikhan/-/issues</url>
-  <url type="translate">https://hosted.weblate.org/projects/daikhan</url>
-  <url type="donation">https://realmazharhussain.github.io/donate</url>
-
-  <update_contact>realmazharhussain_at_gmail.com</update_contact>
 </component>

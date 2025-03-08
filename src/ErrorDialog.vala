@@ -1,12 +1,8 @@
 [GtkTemplate (ui = "/app/ErrorDialog.ui")]
-class Daikhan.ErrorDialog : Adw.MessageDialog {
+class Daikhan.ErrorDialog : Adw.AlertDialog {
     public string additional_message { get; set; default = ""; }
     public string debug_info { get; set; default = ""; }
     private string default_message;
-
-    public ErrorDialog (Gtk.Window? parent) {
-        Object (transient_for: parent);
-    }
 
     construct {
         add_css_class ("errordialog");
@@ -29,6 +25,6 @@ class Daikhan.ErrorDialog : Adw.MessageDialog {
     [GtkCallback]
     void report_bug_cb () {
         new Gtk.UriLauncher ("https://gitlab.com/daikhan/daikhan/-/issues")
-            .launch.begin (this, null);
+            .launch.begin (root as Gtk.Window, null);
     }
 }

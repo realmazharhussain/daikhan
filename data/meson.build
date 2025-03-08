@@ -31,7 +31,7 @@ if host_machine.system() != 'windows'
              type: 'desktop',
             input: desktop_file_in,
            output: app_id + '.desktop',
-           po_dir: meson.source_root() / 'po',
+           po_dir: meson.project_source_root() / 'po',
           install: true,
       install_dir: get_option('datadir') / 'applications',
   )
@@ -46,7 +46,7 @@ if host_machine.system() != 'windows'
   metainfo_file = i18n.merge_file(
             input: metainfo_file_in,
            output: app_id + '.metainfo.xml',
-           po_dir: meson.source_root() / 'po',
+           po_dir: meson.project_source_root() / 'po',
           install: true,
       install_dir: get_option('datadir') / 'metainfo',
   )

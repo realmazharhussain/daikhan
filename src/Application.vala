@@ -47,6 +47,8 @@ class Daikhan.Application : Adw.Application {
         set_accels_for_action ("win.play_pause", {"space"});
         set_accels_for_action ("win.seek(+10)", {"Right", "l"});
         set_accels_for_action ("win.seek(-10)", {"Left", "h"});
+        set_accels_for_action ("win.seek(+60)", {"<Ctrl>Right", "<Ctrl>l"});
+        set_accels_for_action ("win.seek(-60)", {"<Ctrl>Left", "<Ctrl>h"});
         set_accels_for_action ("win.seek(+3)", {"<Shift>Right", "<Shift>l"});
         set_accels_for_action ("win.seek(-3)", {"<Shift>Left", "<Shift>h"});
         set_accels_for_action ("win.volume_step(+0.05)", {"Up", "k"});
@@ -62,13 +64,26 @@ class Daikhan.Application : Adw.Application {
         } catch (Error e) {
             warning ("Error occured while loading history: %s", e.message);
         }
+
+        Bus.own_name (SESSION, "org.mpris.MediaPlayer2.daikhan", ALLOW_REPLACEMENT | REPLACE,
+            (conn) => {
+                try {
+                    conn.register_object("/org/mpris/MediaPlayer2", new MPRIS.App (conn));
+                    conn.register_object("/org/mpris/MediaPlayer2", new MPRIS.Player (conn));
+                } catch (IOError e) {
+                    stderr.printf ("Could not register service\n");
+                }
+            },
+            () => {},
+            () => { stderr.printf ("Could not aquire name\n"); }
+        );
     }
 
     Daikhan.PreferencesWindow pref_win;
 
     void preferences_cb () {
-      pref_win = new Daikhan.PreferencesWindow () { transient_for = get_active_window () };
-      pref_win.present ();
+      pref_win = new Daikhan.PreferencesWindow ();
+      pref_win.present (active_window);
     }
 
     Gtk.Window shortcuts_win;
@@ -82,8 +97,7 @@ class Daikhan.Application : Adw.Application {
     }
 
     void about_cb () {
-        var win = new Adw.AboutWindow () {
-            transient_for = get_active_window (),
+        var win = new Adw.AboutDialog () {
             issue_url = "https://gitlab.com/daikhan/daikhan/-/issues/new",
             application_icon = Conf.APP_ID,
             application_name = _("Daikhan (Early Access)"),
@@ -93,7 +107,7 @@ class Daikhan.Application : Adw.Application {
             version = "pre-alpha"
         };
 
-        win.present ();
+        win.present (active_window);
     }
 
     public override void shutdown () {

@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Daikhan (Early Access)
+Name=Daikhan
 GenericName=Media player
 Comment=Play Videos/Music with style
 Exec=daikhan %U
