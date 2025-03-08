@@ -3,7 +3,10 @@ public class Daikhan.MediaControls : Adw.Bin {
     [GtkChild] unowned Gtk.Button prev_btn;
     [GtkChild] unowned Gtk.Button next_btn;
     [GtkChild] unowned Gtk.MenuButton streams_btn;
+    [GtkChild] unowned Daikhan.VolumeButton volume_button;
     Daikhan.Player player;
+
+    public bool popover_active { get; private set; default = false; }
 
     static construct {
         set_css_name ("mediacontrols");
@@ -23,6 +26,9 @@ public class Daikhan.MediaControls : Adw.Bin {
         player.notify["current-track"].connect (update_prev_next_sensitivity);
 
         streams_btn.menu_model = Daikhan.StreamMenuBuilder.get_menu ();
+
+        volume_button.notify["active"].connect(update_overlay_visible);
+        streams_btn.notify["active"].connect(update_overlay_visible);
     }
 
     [GtkCallback]
@@ -33,6 +39,10 @@ public class Daikhan.MediaControls : Adw.Bin {
     [GtkCallback]
     void next_cb () {
         player.next ();
+    }
+
+    void update_overlay_visible() {
+        popover_active = volume_button.active || streams_btn.active;
     }
 
     void update_prev_next_visibility () {

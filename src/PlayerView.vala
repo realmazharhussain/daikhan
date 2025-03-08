@@ -35,8 +35,6 @@ public class Daikhan.PlayerView : Adw.Bin {
 
     Settings settings = new Settings (Conf.APP_ID);
     Gdk.Cursor none_cursor = new Gdk.Cursor.from_name ("none", null);
-    Gtk.EventControllerMotion headerbar_ctrlr;
-    Gtk.EventControllerMotion controls_ctrlr;
     Daikhan.CursorTimeout[] timeouts = null;
     Source[] timeout_sources = null;
     double cursor_x_cached;
@@ -71,7 +69,7 @@ public class Daikhan.PlayerView : Adw.Bin {
             top.transition_type = NONE;
             bottom.transition_type = NONE;
 
-            do_motion_stuff ();
+            do_motion_stuff (-1, -1);
 
             top.transition_type = SLIDE_DOWN;
             bottom.transition_type = SLIDE_UP;
@@ -88,15 +86,11 @@ public class Daikhan.PlayerView : Adw.Bin {
             }
         });
 
+        controls.notify["popover-active"].connect(popover_cb);
+
         var ctrlr = new Gtk.EventControllerMotion ();
         ctrlr.motion.connect (cursor_motion_cb);
         this.add_controller (ctrlr);
-
-        headerbar_ctrlr = new Gtk.EventControllerMotion ();
-        headerbar.add_controller (headerbar_ctrlr);
-
-        controls_ctrlr = new Gtk.EventControllerMotion ();
-        controls.add_controller (controls_ctrlr);
 
         this.cursor = none_cursor;
 
@@ -146,6 +140,12 @@ public class Daikhan.PlayerView : Adw.Bin {
         return timeout;
     }
 
+    void popover_cb() {
+        if (!controls.popover_active) {
+            do_motion_stuff (-1, -1);
+        }
+    }
+
     void cursor_motion_cb (Gtk.EventControllerMotion ctrlr,
                            double x, double y)
     {
@@ -160,10 +160,28 @@ public class Daikhan.PlayerView : Adw.Bin {
         cursor_x_cached = x;
         cursor_y_cached = y;
 
-        do_motion_stuff ();
+        do_motion_stuff (x, y);
     }
 
-    void do_motion_stuff () {
+    bool interface_widget_contains (double x, double y) {
+        if (x < 0 || y < 0) {
+            return false;
+        }
+
+        Graphene.Point click_point = { (float) x, (float) y };
+        Gtk.Widget[] interface_widgets = {headerbar, controls};
+        foreach (var widget in interface_widgets) {
+            Graphene.Rect bounds;
+            widget.compute_bounds (this, out bounds);
+            if (bounds.contains_point (click_point)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    void do_motion_stuff (double x, double y) {
 
         // Run motion callbacks
         foreach (var timeout in timeouts)
@@ -179,7 +197,7 @@ public class Daikhan.PlayerView : Adw.Bin {
         timeout_sources = null;
 
         // No need to set up timeouts if the cursor is on an interface widget
-        if (headerbar_ctrlr.contains_pointer || controls_ctrlr.contains_pointer) {
+        if (interface_widget_contains (x, y)) {
             return;
         }
 
@@ -204,7 +222,8 @@ public class Daikhan.PlayerView : Adw.Bin {
             click_timeout_source.destroy ();
         }
 
-        if (headerbar_ctrlr.contains_pointer || controls_ctrlr.contains_pointer) {
+        if (interface_widget_contains (x, y)) {
+            do_motion_stuff (x, y);
             return;
         }
 
@@ -238,6 +257,8 @@ public class Daikhan.PlayerView : Adw.Bin {
         if (image != null) {
             try {
                 image_paintable = Gdk.Texture.from_file (image);
+            } catch (IOError.NOT_FOUND err) {
+                debug ("%s:%s:%s", err.domain.to_string (), err.code.to_string (), err.message);
             } catch (Error err) {
                 critical ("%s:%s:%s", err.domain.to_string (), err.code.to_string (), err.message);
             }
