@@ -8,94 +8,94 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2023-08-29 17:17+0500\n"
-"PO-Revision-Date: 2024-05-07 18:07+0000\n"
-"Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
-"Language-Team: Hindi <https://hosted.weblate.org/projects/daikhan/"
-"translations/hi/>\n"
-"Language: hi\n"
+"PO-Revision-Date: 2025-02-25 11:37+0000\n"
+"Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
+"Language-Team: Estonian <https://hosted.weblate.org/projects/daikhan/"
+"translations/et/>\n"
+"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.5.4-rc\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.2-dev\n"
 
 #: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
 #: src/Application.vala:89 src/Title.vala:16 src/WelcomeView.blp:17
 msgid "Daikhan (Early Access)"
-msgstr "Daikhan (प्रारंभिक पहुंच)"
+msgstr "Daikhan (Eelversioon)"
 
 #: data/daikhan.desktop.in:5
 msgid "Media player"
-msgstr "मीडिया प्लेयर"
+msgstr "Meediamängija"
 
 #: data/daikhan.desktop.in:6 data/daikhan.metainfo.xml.in:7
 msgid "Play Videos/Music with style"
-msgstr "अंदाज़ के साथ वीडियो/संगीत चलाएं"
+msgstr "Esita videoid ja muusikat stiilselt"
 
 #: data/daikhan.metainfo.xml.in:8 src/Application.vala:92
 msgid "Mazhar Hussain"
-msgstr "मजहर हुसैन"
+msgstr "Mazhar Hussain"
 
 #: data/daikhan.metainfo.xml.in:10
 msgid "A simple media player with beautiful interface."
-msgstr "सुंदर इंटरफ़ेस वाला एक सरल मीडिया प्लेयर।"
+msgstr "Ilusa kasutajaliidesega lihtne meediamesitaja."
 
 #: data/daikhan.metainfo.xml.in:12
 msgid ""
 "NOTE: The app is in early stages of development and bound to change "
 "significantly in the future."
 msgstr ""
-"ध्यान दें: ऐप विकास के प्रारंभिक चरण में है और भविष्य में इसमें महत्वपूर्ण "
-"बदलाव होने की संभावना है।"
+"MÄRKUS: See rakendus on veel varases arendusjärgus ning muutub tulevikus "
+"märgatavalt."
 
 #: data/daikhan.metainfo.xml.in:58
 msgid "Not released yet."
-msgstr "अभी तक जारी नहीं।"
+msgstr "Veel avaldamata."
 
 #: src/ActionDialog.vala:10
 msgid "No"
-msgstr "नहीं"
+msgstr "Ei"
 
 #: src/ActionDialog.vala:11
 msgid "Yes"
-msgstr "हाँ"
+msgstr "Jah"
 
 #: src/Application.vala:90
 msgid "Copyright 2022-2023 Mazhar Hussain"
-msgstr "कॉपीराइट 2022-2023 मजहर हुसैन"
+msgstr "Autoriõigused 2022-2023 Mazhar Hussain"
 
 #: src/AppMenuButton.blp:6
 msgid "Preferences"
-msgstr "प्राथमिकताएं"
+msgstr "Eelistused"
 
 #: src/AppMenuButton.blp:7
 msgid "Keyboard Shortcuts"
-msgstr "कीबोर्ड शॉर्टकट"
+msgstr "Klaviatuuri kiirklahvid"
 
 #: src/AppMenuButton.blp:8
 msgid "About Daikhan"
-msgstr "Daikhan के बारे में"
+msgstr "Rakenduse teave: Daikhan"
 
 #: src/AppWindow.vala:99
 msgid "Resume playback?"
-msgstr "प्लेबैक वापस चालू करें?"
+msgstr "Kas jätkame taasesitust?"
 
 #: src/AppWindow.vala:106
 msgid "Unsupported File Type"
-msgstr "असमर्थित फाइल प्रकार"
+msgstr "Failitüüp pole toetatud"
 
 #: src/AppWindow.vala:107
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
-msgstr "फाइल '%s' कोई ऑडियो या वीडियो फाइल नहीं है।"
+msgstr "„%s“ pole ei heli- ega videofail."
 
 #: src/AppWindow.vala:108 src/AppWindow.vala:135
 msgid "OK"
-msgstr "ठीक है"
+msgstr "Sobib"
 
 #: src/AppWindow.vala:114
 msgid "Unsupported Codec"
-msgstr "असमर्थित कोडेक"
+msgstr "Mittetoetatud koodek"
 
 #: src/AppWindow.vala:115
 #, c-format
@@ -105,186 +105,186 @@ msgid ""
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
-"'%s' में एक या अधिक स्ट्रीम का एन्कोडिंग समर्थित नहीं है।\n"
+"Ühe või enama „%s“ failis leiduva meediavoo dekodeerimine pole toetatud.\n"
 "\n"
-"यदि यह अप्रत्याशित है, तो कृपया निम्नलिखित डिबग जानकारी के साथ एक बग रिपोर्ट "
-"दर्ज करें।\n"
+"Kui see ei peaks nii olema, siis palun teata meile veast alljärgneva teabe "
+"alusel.\n"
 
 #: src/AppWindow.vala:134
 msgid "Report Bug"
-msgstr "बग रिपोर्ट करें"
+msgstr "Teata veast"
 
 #: src/PreferencesWindow.blp:7
 msgid "Appearance"
-msgstr "दिखावट"
+msgstr "Välimus"
 
 #: src/PreferencesWindow.blp:10
 msgid "Color Scheme"
-msgstr "रंग योजना"
+msgstr "Kasutatavad värvid"
 
 #: src/PreferencesWindow.blp:15
 msgid "Behavior"
-msgstr "व्यवहार"
+msgstr "Käitumine"
 
 #: src/PreferencesWindow.blp:19
 msgid "Seeking Method"
-msgstr "खोज विधि"
+msgstr "Kerimise meetod"
 
 #: src/PreferencesWindow.vala:14
 msgid "Follow System"
-msgstr "सिस्टम की पालना"
+msgstr "Järgi süsteemi kujundust"
 
 #: src/PreferencesWindow.vala:15
 msgid "Light"
-msgstr "हल्की"
+msgstr "Hele kujundus"
 
 #: src/PreferencesWindow.vala:16
 msgid "Dark"
-msgstr "गहरी"
+msgstr "Tume kujundus"
 
 #: src/PreferencesWindow.vala:19
 msgid "Fast"
-msgstr "तेज"
+msgstr "Kiire"
 
 #: src/PreferencesWindow.vala:20
 msgid "Balanced"
-msgstr "संतुलित"
+msgstr "Tasakaalustatud"
 
 #: src/PreferencesWindow.vala:21
 msgid "Accurate"
-msgstr "सटीक"
+msgstr "Täpne"
 
 #: src/Shortcuts.blp:8
 msgid "Application"
-msgstr "अनुप्रयोग"
+msgstr "Rakendus"
 
 #: src/Shortcuts.blp:11
 msgid "Toggle Fullscreen"
-msgstr "पूर्णस्क्रीन टॉगल करें"
+msgstr "Lülita täisekraan sisse/välja"
 
 #: src/Shortcuts.blp:16
 msgid "Open Preferences"
-msgstr "प्राथमिकताएं खोलें"
+msgstr "Ava eelistused"
 
 #: src/Shortcuts.blp:21
 msgid "Show Keyboard Shortcuts"
-msgstr "कीबोर्ड शॉर्टकट दिखाएं"
+msgstr "Näita kiirklahve"
 
 #: src/Shortcuts.blp:26
 msgid "Quit"
-msgstr "छोड़ें"
+msgstr "Välju"
 
 #: src/Shortcuts.blp:32
 msgid "Playback"
-msgstr "प्लेबैक"
+msgstr "Taasesitus"
 
 #: src/Shortcuts.blp:35
 msgid "Play/Pause"
-msgstr "चलाएं/रोकें"
+msgstr "Esita/Peata esitus"
 
 #: src/Shortcuts.blp:40
 msgid "Seek Forward (10s)"
-msgstr "आगे खोजें (10s)"
+msgstr "Keri edasi (10 sekundit)"
 
 #: src/Shortcuts.blp:45
 msgid "Seek Backwards (10s)"
-msgstr "पीछे खोजें (10s)"
+msgstr "Keri tagasi (10 sekundit)"
 
 #: src/Shortcuts.blp:50
 msgid "Increase Volume (5%)"
-msgstr "आवाज़ बढ़ाएं (5%)"
+msgstr "Keera heli valjemaks (5%)"
 
 #: src/Shortcuts.blp:55
 msgid "Decrease Volume (5%)"
-msgstr "आवाज़ घटाएं (5%)"
+msgstr "Keera heli vaiksemaks (5%)"
 
 #: src/Shortcuts.blp:60
 msgid "Seek Forward (3s)"
-msgstr "आगे खोजें (3s)"
+msgstr "Keri edasi (3 sekundit)"
 
 #: src/Shortcuts.blp:65
 msgid "Seek Backwards (3s)"
-msgstr "पीछे खोजें (3s)"
+msgstr "Keri tagasi (3 sekundit)"
 
 #: src/Shortcuts.blp:70
 msgid "Increase Volume (2%)"
-msgstr "आवाज़ बढ़ाएं (2%)"
+msgstr "Keera heli valjemaks (2%)"
 
 #: src/Shortcuts.blp:75
 msgid "Decrease Volume (2%)"
-msgstr "आवाज़ घटाएं (2%)"
+msgstr "Keera heli vaiksemaks (2%)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
-msgstr "ऑडियो"
+msgstr "Heli"
 
 #: src/StreamMenuBuilder.vala:19
 msgid "Subtitles"
-msgstr "उपशीर्षक"
+msgstr "Subtiitrid"
 
 #: src/StreamMenuBuilder.vala:20
 msgid "Video"
-msgstr "वीडियो"
+msgstr "Video"
 
 #: src/StreamMenuBuilder.vala:28
 msgid "Repeat"
-msgstr "दोहराएं"
+msgstr "Korda"
 
 #: src/StreamMenuBuilder.vala:29 src/StreamMenuBuilder.vala:89
 #: src/StreamMenuBuilder.vala:121
 msgid "Off"
-msgstr "बंद"
+msgstr "Pole kasutusel"
 
 #: src/StreamMenuBuilder.vala:30
 msgid "Single File"
-msgstr "एकल फाइल"
+msgstr "Üht faili"
 
 #: src/StreamMenuBuilder.vala:31
 msgid "Whole Queue"
-msgstr "पूरी कतार"
+msgstr "Kogu esitusjärjekorda"
 
 #: src/StreamMenuBuilder.vala:103
 msgid "Unknown Language"
-msgstr "अज्ञात भाषा"
+msgstr "Tundmatu keel"
 
 #: src/StreamMenuBuilder.vala:124
 msgid "On"
-msgstr "चालू"
+msgstr "Kasutusel"
 
 #. Translators: Keep %i as is. It will be replaced by the track number for each track.
 #: src/StreamMenuBuilder.vala:127
 #, c-format
 msgid "Track %i"
-msgstr "ट्रैक %i"
+msgstr "Lugu %i"
 
 #: src/WelcomeView.blp:18
 msgid "You can drop files here to play"
-msgstr "आप चलाने के लिए फाइलें यहां छोड़ सकते हैं"
+msgstr "Esitamiseks lohista failid siia"
 
 #: src/WelcomeView.blp:26
 msgid "Open Files"
-msgstr "फाइल खोलें"
+msgstr "Ava faile"
 
 #: src/WelcomeView.blp:33
 msgid "Play Again"
-msgstr "फिर से चालू करें"
+msgstr "Esita uuesti"
 
 #: src/WelcomeView.blp:41
 msgid "Continue where you left off"
-msgstr "जहां छोड़ा था वहीं से जारी रखें"
+msgstr "Jätka sealt, kus viimati pooleli jäi"
 
 #: src/WelcomeView.blp:56
 msgid "All Files"
-msgstr "सभी फाइलें"
+msgstr "Kõik failid"
 
 #: src/WelcomeView.blp:61
 msgid "Video & Audio Files"
-msgstr "वीडियो और ऑडियो फाइलें"
+msgstr "Video- ja helifailid"
 
 #: src/WelcomeView.blp:66
 msgid "Video Files"
-msgstr "वीडियो फाइलें"
+msgstr "Videofailid"
 
 #: src/WelcomeView.blp:71
 msgid "Audio Files"
-msgstr "ऑडियो फाइलें"
+msgstr "Helifailid"
