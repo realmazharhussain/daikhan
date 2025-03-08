@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
-"POT-Creation-Date: 2023-08-29 17:17+0500\n"
+"POT-Creation-Date: 2025-03-09 00:44+0500\n"
 "PO-Revision-Date: 2025-02-25 11:37+0000\n"
 "Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/daikhan/"
@@ -19,28 +19,31 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.10.2-dev\n"
 
-#: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
-#: src/Application.vala:89 src/Title.vala:16 src/WelcomeView.blp:17
-msgid "Daikhan (Early Access)"
-msgstr "Daikhan (Eelversioon)"
+#: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:9
+#, fuzzy
+#| msgid "About Daikhan"
+msgid "Daikhan"
+msgstr "Rakenduse teave: Daikhan"
 
-#: data/daikhan.desktop.in:5
+#: data/daikhan.desktop.in:4
 msgid "Media player"
 msgstr "Meediamängija"
 
-#: data/daikhan.desktop.in:6 data/daikhan.metainfo.xml.in:7
+#: data/daikhan.desktop.in:5 data/daikhan.metainfo.xml.in:10
 msgid "Play Videos/Music with style"
 msgstr "Esita videoid ja muusikat stiilselt"
 
-#: data/daikhan.metainfo.xml.in:8 src/Application.vala:92
+#: data/daikhan.metainfo.xml.in:11 src/Application.vala:106
 msgid "Mazhar Hussain"
 msgstr "Mazhar Hussain"
 
-#: data/daikhan.metainfo.xml.in:10
-msgid "A simple media player with beautiful interface."
-msgstr "Ilusa kasutajaliidesega lihtne meediamesitaja."
+#: data/daikhan.metainfo.xml.in:16
+msgid ""
+"A simple yet powerful media player with a beautiful interface. It has nice "
+"keyboard shortcuts, session restore capabilities, and much more."
+msgstr ""
 
-#: data/daikhan.metainfo.xml.in:12
+#: data/daikhan.metainfo.xml.in:19
 msgid ""
 "NOTE: The app is in early stages of development and bound to change "
 "significantly in the future."
@@ -48,19 +51,35 @@ msgstr ""
 "MÄRKUS: See rakendus on veel varases arendusjärgus ning muutub tulevikus "
 "märgatavalt."
 
-#: data/daikhan.metainfo.xml.in:58
-msgid "Not released yet."
-msgstr "Veel avaldamata."
+#: data/daikhan.metainfo.xml.in:39
+msgid "Playing a video"
+msgstr ""
 
-#: src/ActionDialog.vala:10
+#: data/daikhan.metainfo.xml.in:43
+msgid "Playing a video (fullscreen)"
+msgstr ""
+
+#: data/daikhan.metainfo.xml.in:47
+msgid "Playing a video (dark mode)"
+msgstr ""
+
+#: data/daikhan.metainfo.xml.in:51
+msgid "Playing a video (dark mode, fullscreen)"
+msgstr ""
+
+#: src/ActionDialog.vala:13
 msgid "No"
 msgstr "Ei"
 
-#: src/ActionDialog.vala:11
+#: src/ActionDialog.vala:14
 msgid "Yes"
 msgstr "Jah"
 
-#: src/Application.vala:90
+#: src/Application.vala:103 src/Title.vala:20 src/WelcomeView.blp:17
+msgid "Daikhan (Early Access)"
+msgstr "Daikhan (Eelversioon)"
+
+#: src/Application.vala:104
 msgid "Copyright 2022-2023 Mazhar Hussain"
 msgstr "Autoriõigused 2022-2023 Mazhar Hussain"
 
@@ -76,32 +95,48 @@ msgstr "Klaviatuuri kiirklahvid"
 msgid "About Daikhan"
 msgstr "Rakenduse teave: Daikhan"
 
-#: src/AppWindow.vala:99
+#: src/AppWindow.vala:100
 msgid "Resume playback?"
 msgstr "Kas jätkame taasesitust?"
 
-#: src/AppWindow.vala:106
+#: src/AppWindow.vala:107
 msgid "Unsupported File Type"
 msgstr "Failitüüp pole toetatud"
 
-#: src/AppWindow.vala:107
+#: src/AppWindow.vala:108
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
 msgstr "„%s“ pole ei heli- ega videofail."
 
-#: src/AppWindow.vala:108 src/AppWindow.vala:135
+#: src/AppWindow.vala:109 src/ErrorDialog.blp:22
 msgid "OK"
 msgstr "Sobib"
 
-#: src/AppWindow.vala:114
+#: src/AppWindow.vala:116
 msgid "Unsupported Codec"
 msgstr "Mittetoetatud koodek"
 
-#: src/AppWindow.vala:115
+#: src/AppWindow.vala:118
 #, c-format
+msgid "Encoding of one or more streams in '%s' is not supported."
+msgstr ""
+
+#: src/ErrorDialog.blp:21
+msgid "Report Bug"
+msgstr "Teata veast"
+
+#: src/ErrorDialog.vala:10
+msgid "Error"
+msgstr ""
+
+#: src/ErrorDialog.vala:11
+#, fuzzy
+#| msgid ""
+#| "Encoding of one or more streams in '%s' is not supported.\n"
+#| "\n"
+#| "If this is unexpected, please, file a bug report with the following debug "
+#| "information.\n"
 msgid ""
-"Encoding of one or more streams in '%s' is not supported.\n"
-"\n"
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
@@ -109,10 +144,6 @@ msgstr ""
 "\n"
 "Kui see ei peaks nii olema, siis palun teata meile veast alljärgneva teabe "
 "alusel.\n"
-
-#: src/AppWindow.vala:134
-msgid "Report Bug"
-msgstr "Teata veast"
 
 #: src/PreferencesWindow.blp:7
 msgid "Appearance"
@@ -122,35 +153,43 @@ msgstr "Välimus"
 msgid "Color Scheme"
 msgstr "Kasutatavad värvid"
 
+#: src/PreferencesWindow.blp:14
+msgid "Overlay UI"
+msgstr ""
+
 #: src/PreferencesWindow.blp:15
+msgid "Show controls/UI elements on top of the video"
+msgstr ""
+
+#: src/PreferencesWindow.blp:20
 msgid "Behavior"
 msgstr "Käitumine"
 
-#: src/PreferencesWindow.blp:19
+#: src/PreferencesWindow.blp:24
 msgid "Seeking Method"
 msgstr "Kerimise meetod"
 
-#: src/PreferencesWindow.vala:14
+#: src/PreferencesWindow.vala:17
 msgid "Follow System"
 msgstr "Järgi süsteemi kujundust"
 
-#: src/PreferencesWindow.vala:15
+#: src/PreferencesWindow.vala:18
 msgid "Light"
 msgstr "Hele kujundus"
 
-#: src/PreferencesWindow.vala:16
+#: src/PreferencesWindow.vala:19
 msgid "Dark"
 msgstr "Tume kujundus"
 
-#: src/PreferencesWindow.vala:19
+#: src/PreferencesWindow.vala:22
 msgid "Fast"
 msgstr "Kiire"
 
-#: src/PreferencesWindow.vala:20
+#: src/PreferencesWindow.vala:23
 msgid "Balanced"
 msgstr "Tasakaalustatud"
 
-#: src/PreferencesWindow.vala:21
+#: src/PreferencesWindow.vala:24
 msgid "Accurate"
 msgstr "Täpne"
 
@@ -159,24 +198,24 @@ msgid "Application"
 msgstr "Rakendus"
 
 #: src/Shortcuts.blp:11
-msgid "Toggle Fullscreen"
-msgstr "Lülita täisekraan sisse/välja"
-
-#: src/Shortcuts.blp:16
 msgid "Open Preferences"
 msgstr "Ava eelistused"
 
-#: src/Shortcuts.blp:21
+#: src/Shortcuts.blp:16
 msgid "Show Keyboard Shortcuts"
 msgstr "Näita kiirklahve"
 
-#: src/Shortcuts.blp:26
+#: src/Shortcuts.blp:21
 msgid "Quit"
 msgstr "Välju"
 
-#: src/Shortcuts.blp:32
+#: src/Shortcuts.blp:27
 msgid "Playback"
 msgstr "Taasesitus"
+
+#: src/Shortcuts.blp:30
+msgid "Toggle Fullscreen"
+msgstr "Lülita täisekraan sisse/välja"
 
 #: src/Shortcuts.blp:35
 msgid "Play/Pause"
@@ -213,6 +252,18 @@ msgstr "Keera heli valjemaks (2%)"
 #: src/Shortcuts.blp:75
 msgid "Decrease Volume (2%)"
 msgstr "Keera heli vaiksemaks (2%)"
+
+#: src/Shortcuts.blp:80
+#, fuzzy
+#| msgid "Seek Forward (10s)"
+msgid "Seek Forward (1 min)"
+msgstr "Keri edasi (10 sekundit)"
+
+#: src/Shortcuts.blp:85
+#, fuzzy
+#| msgid "Seek Backwards (10s)"
+msgid "Seek Backwards (1 min)"
+msgstr "Keri tagasi (10 sekundit)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
@@ -288,3 +339,9 @@ msgstr "Videofailid"
 #: src/WelcomeView.blp:71
 msgid "Audio Files"
 msgstr "Helifailid"
+
+#~ msgid "A simple media player with beautiful interface."
+#~ msgstr "Ilusa kasutajaliidesega lihtne meediamesitaja."
+
+#~ msgid "Not released yet."
+#~ msgstr "Veel avaldamata."

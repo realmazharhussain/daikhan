@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
-"POT-Creation-Date: 2023-08-29 17:17+0500\n"
+"POT-Creation-Date: 2025-03-09 00:44+0500\n"
 "PO-Revision-Date: 2023-09-22 17:03+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/daikhan/"
@@ -19,46 +19,66 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 5.1-dev\n"
 
-#: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
-#: src/Application.vala:89 src/Title.vala:16 src/WelcomeView.blp:17
-msgid "Daikhan (Early Access)"
-msgstr "Daikhan (Accès anticipat)"
+#: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:9
+#, fuzzy
+#| msgid "About Daikhan"
+msgid "Daikhan"
+msgstr "A prepaus de Daikhan"
 
-#: data/daikhan.desktop.in:5
+#: data/daikhan.desktop.in:4
 msgid "Media player"
 msgstr "Lector multimèdia"
 
-#: data/daikhan.desktop.in:6 data/daikhan.metainfo.xml.in:7
+#: data/daikhan.desktop.in:5 data/daikhan.metainfo.xml.in:10
 msgid "Play Videos/Music with style"
 msgstr "Legissètz las vidèos e musicas amb estil"
 
-#: data/daikhan.metainfo.xml.in:8 src/Application.vala:92
+#: data/daikhan.metainfo.xml.in:11 src/Application.vala:106
 msgid "Mazhar Hussain"
 msgstr "Mazhar Hussain"
 
-#: data/daikhan.metainfo.xml.in:10
-msgid "A simple media player with beautiful interface."
-msgstr "Un lector multimèdia simple amb una polida interfàcia."
+#: data/daikhan.metainfo.xml.in:16
+msgid ""
+"A simple yet powerful media player with a beautiful interface. It has nice "
+"keyboard shortcuts, session restore capabilities, and much more."
+msgstr ""
 
-#: data/daikhan.metainfo.xml.in:12
+#: data/daikhan.metainfo.xml.in:19
 msgid ""
 "NOTE: The app is in early stages of development and bound to change "
 "significantly in the future."
-msgstr "NÒTA : l’aplicacion es en fasa de desvolopament e pòt cambiar al futur."
+msgstr ""
+"NÒTA : l’aplicacion es en fasa de desvolopament e pòt cambiar al futur."
 
-#: data/daikhan.metainfo.xml.in:58
-msgid "Not released yet."
-msgstr "Pas encara sortit."
+#: data/daikhan.metainfo.xml.in:39
+msgid "Playing a video"
+msgstr ""
 
-#: src/ActionDialog.vala:10
+#: data/daikhan.metainfo.xml.in:43
+msgid "Playing a video (fullscreen)"
+msgstr ""
+
+#: data/daikhan.metainfo.xml.in:47
+msgid "Playing a video (dark mode)"
+msgstr ""
+
+#: data/daikhan.metainfo.xml.in:51
+msgid "Playing a video (dark mode, fullscreen)"
+msgstr ""
+
+#: src/ActionDialog.vala:13
 msgid "No"
 msgstr "Non"
 
-#: src/ActionDialog.vala:11
+#: src/ActionDialog.vala:14
 msgid "Yes"
 msgstr "Òc"
 
-#: src/Application.vala:90
+#: src/Application.vala:103 src/Title.vala:20 src/WelcomeView.blp:17
+msgid "Daikhan (Early Access)"
+msgstr "Daikhan (Accès anticipat)"
+
+#: src/Application.vala:104
 msgid "Copyright 2022-2023 Mazhar Hussain"
 msgstr "Copyright 2022-2023 Mazhar Hussain"
 
@@ -74,32 +94,48 @@ msgstr "Acorchis de clavièr"
 msgid "About Daikhan"
 msgstr "A prepaus de Daikhan"
 
-#: src/AppWindow.vala:99
+#: src/AppWindow.vala:100
 msgid "Resume playback?"
 msgstr "Reprendre la lectura ?"
 
-#: src/AppWindow.vala:106
+#: src/AppWindow.vala:107
 msgid "Unsupported File Type"
 msgstr "Tipe de fichièr pas pres en carga"
 
-#: src/AppWindow.vala:107
+#: src/AppWindow.vala:108
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
 msgstr "Lo fichièr « %s » es pas un fichièr àudio o vidèo."
 
-#: src/AppWindow.vala:108 src/AppWindow.vala:135
+#: src/AppWindow.vala:109 src/ErrorDialog.blp:22
 msgid "OK"
 msgstr "D’acòrdi"
 
-#: src/AppWindow.vala:114
+#: src/AppWindow.vala:116
 msgid "Unsupported Codec"
 msgstr "Codèc pas pres en carga"
 
-#: src/AppWindow.vala:115
+#: src/AppWindow.vala:118
 #, c-format
+msgid "Encoding of one or more streams in '%s' is not supported."
+msgstr ""
+
+#: src/ErrorDialog.blp:21
+msgid "Report Bug"
+msgstr "Senhalar una avaria"
+
+#: src/ErrorDialog.vala:10
+msgid "Error"
+msgstr ""
+
+#: src/ErrorDialog.vala:11
+#, fuzzy
+#| msgid ""
+#| "Encoding of one or more streams in '%s' is not supported.\n"
+#| "\n"
+#| "If this is unexpected, please, file a bug report with the following debug "
+#| "information.\n"
 msgid ""
-"Encoding of one or more streams in '%s' is not supported.\n"
-"\n"
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
@@ -107,10 +143,6 @@ msgstr ""
 "\n"
 "Se vos plau, s’aquò es pas previst, enviatz un senhalament d’avaria amb las "
 "entresenhas de desbugatge.\n"
-
-#: src/AppWindow.vala:134
-msgid "Report Bug"
-msgstr "Senhalar una avaria"
 
 #: src/PreferencesWindow.blp:7
 msgid "Appearance"
@@ -120,35 +152,43 @@ msgstr "Aparéncia"
 msgid "Color Scheme"
 msgstr "Jòc de colors"
 
+#: src/PreferencesWindow.blp:14
+msgid "Overlay UI"
+msgstr ""
+
 #: src/PreferencesWindow.blp:15
+msgid "Show controls/UI elements on top of the video"
+msgstr ""
+
+#: src/PreferencesWindow.blp:20
 msgid "Behavior"
 msgstr "Compòrtament"
 
-#: src/PreferencesWindow.blp:19
+#: src/PreferencesWindow.blp:24
 msgid "Seeking Method"
 msgstr "Metòde d’avançar"
 
-#: src/PreferencesWindow.vala:14
+#: src/PreferencesWindow.vala:17
 msgid "Follow System"
 msgstr "Seguir lo sistèma"
 
-#: src/PreferencesWindow.vala:15
+#: src/PreferencesWindow.vala:18
 msgid "Light"
 msgstr "Clar"
 
-#: src/PreferencesWindow.vala:16
+#: src/PreferencesWindow.vala:19
 msgid "Dark"
 msgstr "Escur"
 
-#: src/PreferencesWindow.vala:19
+#: src/PreferencesWindow.vala:22
 msgid "Fast"
 msgstr "Rapid"
 
-#: src/PreferencesWindow.vala:20
+#: src/PreferencesWindow.vala:23
 msgid "Balanced"
 msgstr "Equilibrat"
 
-#: src/PreferencesWindow.vala:21
+#: src/PreferencesWindow.vala:24
 msgid "Accurate"
 msgstr "Precís"
 
@@ -157,24 +197,24 @@ msgid "Application"
 msgstr "Aplicacion"
 
 #: src/Shortcuts.blp:11
-msgid "Toggle Fullscreen"
-msgstr "Passar en ecran complèt"
-
-#: src/Shortcuts.blp:16
 msgid "Open Preferences"
 msgstr "Dobrir las preferéncias"
 
-#: src/Shortcuts.blp:21
+#: src/Shortcuts.blp:16
 msgid "Show Keyboard Shortcuts"
 msgstr "Mostrar los acorchis clavièr"
 
-#: src/Shortcuts.blp:26
+#: src/Shortcuts.blp:21
 msgid "Quit"
 msgstr "Sortir"
 
-#: src/Shortcuts.blp:32
+#: src/Shortcuts.blp:27
 msgid "Playback"
 msgstr "Lectura"
+
+#: src/Shortcuts.blp:30
+msgid "Toggle Fullscreen"
+msgstr "Passar en ecran complèt"
 
 #: src/Shortcuts.blp:35
 msgid "Play/Pause"
@@ -211,6 +251,18 @@ msgstr "Aumentar lo volum (2%)"
 #: src/Shortcuts.blp:75
 msgid "Decrease Volume (2%)"
 msgstr "Reduire lo volum (2%)"
+
+#: src/Shortcuts.blp:80
+#, fuzzy
+#| msgid "Seek Forward (10s)"
+msgid "Seek Forward (1 min)"
+msgstr "Avançar (10 seg.)"
+
+#: src/Shortcuts.blp:85
+#, fuzzy
+#| msgid "Seek Backwards (10s)"
+msgid "Seek Backwards (1 min)"
+msgstr "Recular (10 seg.)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
@@ -286,3 +338,9 @@ msgstr "Fichièrs vidèo"
 #: src/WelcomeView.blp:71
 msgid "Audio Files"
 msgstr "Fichièrs àudio"
+
+#~ msgid "A simple media player with beautiful interface."
+#~ msgstr "Un lector multimèdia simple amb una polida interfàcia."
+
+#~ msgid "Not released yet."
+#~ msgstr "Pas encara sortit."

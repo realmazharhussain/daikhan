@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
-"POT-Creation-Date: 2023-08-29 17:17+0500\n"
+"POT-Creation-Date: 2025-03-09 00:44+0500\n"
 "PO-Revision-Date: 2024-05-07 18:07+0000\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/daikhan/"
@@ -19,48 +19,67 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 5.5.4-rc\n"
 
-#: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
-#: src/Application.vala:89 src/Title.vala:16 src/WelcomeView.blp:17
-msgid "Daikhan (Early Access)"
-msgstr "Daikhan (प्रारंभिक पहुंच)"
+#: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:9
+#, fuzzy
+#| msgid "About Daikhan"
+msgid "Daikhan"
+msgstr "Daikhan के बारे में"
 
-#: data/daikhan.desktop.in:5
+#: data/daikhan.desktop.in:4
 msgid "Media player"
 msgstr "मीडिया प्लेयर"
 
-#: data/daikhan.desktop.in:6 data/daikhan.metainfo.xml.in:7
+#: data/daikhan.desktop.in:5 data/daikhan.metainfo.xml.in:10
 msgid "Play Videos/Music with style"
 msgstr "अंदाज़ के साथ वीडियो/संगीत चलाएं"
 
-#: data/daikhan.metainfo.xml.in:8 src/Application.vala:92
+#: data/daikhan.metainfo.xml.in:11 src/Application.vala:106
 msgid "Mazhar Hussain"
 msgstr "मजहर हुसैन"
 
-#: data/daikhan.metainfo.xml.in:10
-msgid "A simple media player with beautiful interface."
-msgstr "सुंदर इंटरफ़ेस वाला एक सरल मीडिया प्लेयर।"
+#: data/daikhan.metainfo.xml.in:16
+msgid ""
+"A simple yet powerful media player with a beautiful interface. It has nice "
+"keyboard shortcuts, session restore capabilities, and much more."
+msgstr ""
 
-#: data/daikhan.metainfo.xml.in:12
+#: data/daikhan.metainfo.xml.in:19
 msgid ""
 "NOTE: The app is in early stages of development and bound to change "
 "significantly in the future."
 msgstr ""
-"ध्यान दें: ऐप विकास के प्रारंभिक चरण में है और भविष्य में इसमें महत्वपूर्ण "
-"बदलाव होने की संभावना है।"
+"ध्यान दें: ऐप विकास के प्रारंभिक चरण में है और भविष्य में इसमें महत्वपूर्ण बदलाव होने की "
+"संभावना है।"
 
-#: data/daikhan.metainfo.xml.in:58
-msgid "Not released yet."
-msgstr "अभी तक जारी नहीं।"
+#: data/daikhan.metainfo.xml.in:39
+msgid "Playing a video"
+msgstr ""
 
-#: src/ActionDialog.vala:10
+#: data/daikhan.metainfo.xml.in:43
+msgid "Playing a video (fullscreen)"
+msgstr ""
+
+#: data/daikhan.metainfo.xml.in:47
+msgid "Playing a video (dark mode)"
+msgstr ""
+
+#: data/daikhan.metainfo.xml.in:51
+msgid "Playing a video (dark mode, fullscreen)"
+msgstr ""
+
+#: src/ActionDialog.vala:13
 msgid "No"
 msgstr "नहीं"
 
-#: src/ActionDialog.vala:11
+#: src/ActionDialog.vala:14
 msgid "Yes"
 msgstr "हाँ"
 
-#: src/Application.vala:90
+#: src/Application.vala:103 src/Title.vala:20 src/WelcomeView.blp:17
+msgid "Daikhan (Early Access)"
+msgstr "Daikhan (प्रारंभिक पहुंच)"
+
+#: src/Application.vala:104
 msgid "Copyright 2022-2023 Mazhar Hussain"
 msgstr "कॉपीराइट 2022-2023 मजहर हुसैन"
 
@@ -76,43 +95,55 @@ msgstr "कीबोर्ड शॉर्टकट"
 msgid "About Daikhan"
 msgstr "Daikhan के बारे में"
 
-#: src/AppWindow.vala:99
+#: src/AppWindow.vala:100
 msgid "Resume playback?"
 msgstr "प्लेबैक वापस चालू करें?"
 
-#: src/AppWindow.vala:106
+#: src/AppWindow.vala:107
 msgid "Unsupported File Type"
 msgstr "असमर्थित फाइल प्रकार"
 
-#: src/AppWindow.vala:107
+#: src/AppWindow.vala:108
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
 msgstr "फाइल '%s' कोई ऑडियो या वीडियो फाइल नहीं है।"
 
-#: src/AppWindow.vala:108 src/AppWindow.vala:135
+#: src/AppWindow.vala:109 src/ErrorDialog.blp:22
 msgid "OK"
 msgstr "ठीक है"
 
-#: src/AppWindow.vala:114
+#: src/AppWindow.vala:116
 msgid "Unsupported Codec"
 msgstr "असमर्थित कोडेक"
 
-#: src/AppWindow.vala:115
+#: src/AppWindow.vala:118
 #, c-format
+msgid "Encoding of one or more streams in '%s' is not supported."
+msgstr ""
+
+#: src/ErrorDialog.blp:21
+msgid "Report Bug"
+msgstr "बग रिपोर्ट करें"
+
+#: src/ErrorDialog.vala:10
+msgid "Error"
+msgstr ""
+
+#: src/ErrorDialog.vala:11
+#, fuzzy
+#| msgid ""
+#| "Encoding of one or more streams in '%s' is not supported.\n"
+#| "\n"
+#| "If this is unexpected, please, file a bug report with the following debug "
+#| "information.\n"
 msgid ""
-"Encoding of one or more streams in '%s' is not supported.\n"
-"\n"
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
 "'%s' में एक या अधिक स्ट्रीम का एन्कोडिंग समर्थित नहीं है।\n"
 "\n"
-"यदि यह अप्रत्याशित है, तो कृपया निम्नलिखित डिबग जानकारी के साथ एक बग रिपोर्ट "
-"दर्ज करें।\n"
-
-#: src/AppWindow.vala:134
-msgid "Report Bug"
-msgstr "बग रिपोर्ट करें"
+"यदि यह अप्रत्याशित है, तो कृपया निम्नलिखित डिबग जानकारी के साथ एक बग रिपोर्ट दर्ज "
+"करें।\n"
 
 #: src/PreferencesWindow.blp:7
 msgid "Appearance"
@@ -122,35 +153,43 @@ msgstr "दिखावट"
 msgid "Color Scheme"
 msgstr "रंग योजना"
 
+#: src/PreferencesWindow.blp:14
+msgid "Overlay UI"
+msgstr ""
+
 #: src/PreferencesWindow.blp:15
+msgid "Show controls/UI elements on top of the video"
+msgstr ""
+
+#: src/PreferencesWindow.blp:20
 msgid "Behavior"
 msgstr "व्यवहार"
 
-#: src/PreferencesWindow.blp:19
+#: src/PreferencesWindow.blp:24
 msgid "Seeking Method"
 msgstr "खोज विधि"
 
-#: src/PreferencesWindow.vala:14
+#: src/PreferencesWindow.vala:17
 msgid "Follow System"
 msgstr "सिस्टम की पालना"
 
-#: src/PreferencesWindow.vala:15
+#: src/PreferencesWindow.vala:18
 msgid "Light"
 msgstr "हल्की"
 
-#: src/PreferencesWindow.vala:16
+#: src/PreferencesWindow.vala:19
 msgid "Dark"
 msgstr "गहरी"
 
-#: src/PreferencesWindow.vala:19
+#: src/PreferencesWindow.vala:22
 msgid "Fast"
 msgstr "तेज"
 
-#: src/PreferencesWindow.vala:20
+#: src/PreferencesWindow.vala:23
 msgid "Balanced"
 msgstr "संतुलित"
 
-#: src/PreferencesWindow.vala:21
+#: src/PreferencesWindow.vala:24
 msgid "Accurate"
 msgstr "सटीक"
 
@@ -159,24 +198,24 @@ msgid "Application"
 msgstr "अनुप्रयोग"
 
 #: src/Shortcuts.blp:11
-msgid "Toggle Fullscreen"
-msgstr "पूर्णस्क्रीन टॉगल करें"
-
-#: src/Shortcuts.blp:16
 msgid "Open Preferences"
 msgstr "प्राथमिकताएं खोलें"
 
-#: src/Shortcuts.blp:21
+#: src/Shortcuts.blp:16
 msgid "Show Keyboard Shortcuts"
 msgstr "कीबोर्ड शॉर्टकट दिखाएं"
 
-#: src/Shortcuts.blp:26
+#: src/Shortcuts.blp:21
 msgid "Quit"
 msgstr "छोड़ें"
 
-#: src/Shortcuts.blp:32
+#: src/Shortcuts.blp:27
 msgid "Playback"
 msgstr "प्लेबैक"
+
+#: src/Shortcuts.blp:30
+msgid "Toggle Fullscreen"
+msgstr "पूर्णस्क्रीन टॉगल करें"
 
 #: src/Shortcuts.blp:35
 msgid "Play/Pause"
@@ -213,6 +252,18 @@ msgstr "आवाज़ बढ़ाएं (2%)"
 #: src/Shortcuts.blp:75
 msgid "Decrease Volume (2%)"
 msgstr "आवाज़ घटाएं (2%)"
+
+#: src/Shortcuts.blp:80
+#, fuzzy
+#| msgid "Seek Forward (10s)"
+msgid "Seek Forward (1 min)"
+msgstr "आगे खोजें (10s)"
+
+#: src/Shortcuts.blp:85
+#, fuzzy
+#| msgid "Seek Backwards (10s)"
+msgid "Seek Backwards (1 min)"
+msgstr "पीछे खोजें (10s)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
@@ -288,3 +339,9 @@ msgstr "वीडियो फाइलें"
 #: src/WelcomeView.blp:71
 msgid "Audio Files"
 msgstr "ऑडियो फाइलें"
+
+#~ msgid "A simple media player with beautiful interface."
+#~ msgstr "सुंदर इंटरफ़ेस वाला एक सरल मीडिया प्लेयर।"
+
+#~ msgid "Not released yet."
+#~ msgstr "अभी तक जारी नहीं।"
