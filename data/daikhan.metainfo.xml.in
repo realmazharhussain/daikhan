@@ -35,19 +35,19 @@
 
   <screenshots>
     <screenshot environment="gnome" type="default">
-      <image>https://gitlab.com/daikhan/screenshots/-/raw/eaedbec/light.png</image>
+      <image>https://gitlab.com/daikhan/screenshots/-/raw/0.1-alpha/light.png</image>
       <caption>Playing a video</caption>
     </screenshot>
     <screenshot environment="gnome">
-      <image>https://gitlab.com/daikhan/screenshots/-/raw/eaedbec/light-fullscreen.png</image>
+      <image>https://gitlab.com/daikhan/screenshots/-/raw/0.1-alpha/light-fullscreen.png</image>
       <caption>Playing a video (fullscreen)</caption>
     </screenshot>
     <screenshot environment="gnome:dark">
-      <image>https://gitlab.com/daikhan/screenshots/-/raw/eaedbec/dark.png</image>
+      <image>https://gitlab.com/daikhan/screenshots/-/raw/0.1-alpha/dark.png</image>
       <caption>Playing a video (dark mode)</caption>
     </screenshot>
     <screenshot environment="gnome:dark">
-      <image>https://gitlab.com/daikhan/screenshots/-/raw/eaedbec/dark-fullscreen.png</image>
+      <image>https://gitlab.com/daikhan/screenshots/-/raw/0.1-alpha/dark-fullscreen.png</image>
       <caption>Playing a video (dark mode, fullscreen)</caption>
     </screenshot>
   </screenshots>
