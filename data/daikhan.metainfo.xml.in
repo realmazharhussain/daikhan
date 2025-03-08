@@ -53,9 +53,10 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
-    <release version="pre-alpha" date="2023-03-07">
-      <description>
-        <p>Not released yet.</p>
+    <release version="0.1~alpha" date="2025-03-08" type="development">
+      <url>https://gitlab.com/daikhan/daikhan/-/releases/0.1-alpha</url>
+      <description translatable="no" translate="no">
+        <p>The first alpha release</p>
       </description>
     </release>
   </releases>
