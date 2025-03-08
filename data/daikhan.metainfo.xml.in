@@ -4,21 +4,28 @@
 
   <id>@app_id@</id>
   <launchable type="desktop-id">@app_id@.desktop</launchable>
+  <translation type="gettext">daikhan</translation>
 
   <name>Daikhan</name>
   <summary>Play Videos/Music with style</summary>
-  <developer_name>Mazhar Hussain</developer_name>
+  <developer id="realmazharhussain.github.io"><name>Mazhar Hussain</name></developer>developer>
   <update_contact>realmazharhussain_at_gmail.com</update_contact>
   <project_license>AGPL-3.0-or-later</project_license>
   <content_rating type="oars-1.1"/>
   <description>
-    <p>A simple media player with beautiful interface.</p>
+    <p>A simple yet powerful media player with a beautiful interface. It has nice keyboard shortcuts,
+      session restore capabilities, and much more.</p>
 
     <p>
       NOTE: The app is in early stages of development and bound to change significantly
       in the future.
     </p>
   </description>
+
+  <branding>
+    <color type="primary" scheme_preference="light">#62a0ea</color>
+    <color type="primary" scheme_preference="dark">#1a5fb4</color>
+  </branding>
 
   <url type="homepage">https://gitlab.com/daikhan/daikhan</url>
   <url type="vcs-browser">https://gitlab.com/daikhan/daikhan</url>
@@ -27,17 +34,21 @@
   <url type="donation">https://realmazharhussain.github.io/donate</url>
 
   <screenshots>
-    <screenshot type="default">
+    <screenshot environment="gnome" type="default">
       <image>https://gitlab.com/daikhan/screenshots/-/raw/eaedbec/light.png</image>
+      <caption>Playing a video</caption>
     </screenshot>
-    <screenshot>
+    <screenshot environment="gnome">
       <image>https://gitlab.com/daikhan/screenshots/-/raw/eaedbec/light-fullscreen.png</image>
+      <caption>Playing a video (fullscreen)</caption>
     </screenshot>
-    <screenshot>
+    <screenshot environment="gnome:dark">
       <image>https://gitlab.com/daikhan/screenshots/-/raw/eaedbec/dark.png</image>
+      <caption>Playing a video (dark mode)</caption>
     </screenshot>
-    <screenshot>
+    <screenshot environment="gnome:dark">
       <image>https://gitlab.com/daikhan/screenshots/-/raw/eaedbec/dark-fullscreen.png</image>
+      <caption>Playing a video (dark mode, fullscreen)</caption>
     </screenshot>
   </screenshots>
 
