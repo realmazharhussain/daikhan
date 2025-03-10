@@ -1,5 +1,6 @@
 [GtkTemplate (ui = "/app/WelcomeView.ui")]
 public class Daikhan.WelcomeView : Adw.Bin {
+    [GtkChild] unowned Adw.StatusPage status;
     [GtkChild] unowned Gtk.FileDialog file_dialog;
     [GtkChild] unowned Daikhan.PillButton replay_btn;
     [GtkChild] unowned Daikhan.PillButton restore_btn;
@@ -12,6 +13,8 @@ public class Daikhan.WelcomeView : Adw.Bin {
     }
 
     construct {
+        status.title = Conf.APP_NAME;
+
         player = Daikhan.Player.get_default ();
         state_mem = new Settings (Conf.APP_ID + ".state");
 

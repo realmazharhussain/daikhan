@@ -17,7 +17,7 @@ class Daikhan.Title: Adw.Bin {
 
     void update_title () {
         if (player.track_info.title == "") {
-            title = player.filename ?? _("Daikhan (Early Access)");
+            title = player.filename ?? Conf.APP_NAME;
             child["title"] = player.filename ?? "";
             child["subtitle"] = "";
             return;

@@ -59,7 +59,7 @@ public class Daikhan.MPRIS.App: Daikhan.MPRIS.ServerBase {
 
     /* Real */
     public string desktop_entry { owned get; default = Conf.APP_ID; }
-    public string identity { owned get; default = _("Daikhan (Early Access)"); }
+    public string identity { owned get; default = Conf.APP_NAME; }
     public bool can_quit { get; default = true; }
 
     public void quit () throws DBusError, IOError { GLib.Application.get_default ().quit (); }
