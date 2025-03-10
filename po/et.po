@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2025-03-09 00:44+0500\n"
-"PO-Revision-Date: 2025-02-25 11:37+0000\n"
+"PO-Revision-Date: 2025-03-10 13:02+0000\n"
 "Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/daikhan/"
 "translations/et/>\n"
@@ -17,13 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.2-dev\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:9
-#, fuzzy
-#| msgid "About Daikhan"
 msgid "Daikhan"
-msgstr "Rakenduse teave: Daikhan"
+msgstr "Daikhan"
 
 #: data/daikhan.desktop.in:4
 msgid "Media player"
@@ -42,6 +40,9 @@ msgid ""
 "A simple yet powerful media player with a beautiful interface. It has nice "
 "keyboard shortcuts, session restore capabilities, and much more."
 msgstr ""
+"Lihtne, aga võimas meediamängija, millel on ilus kasutajaliides. Võimaluste "
+"hulka kuuluvad mugavad kiirklahvid, sessiooni taastamise võimalus ja palju "
+"muud."
 
 #: data/daikhan.metainfo.xml.in:19
 msgid ""
@@ -53,19 +54,19 @@ msgstr ""
 
 #: data/daikhan.metainfo.xml.in:39
 msgid "Playing a video"
-msgstr ""
+msgstr "Esitame videot"
 
 #: data/daikhan.metainfo.xml.in:43
 msgid "Playing a video (fullscreen)"
-msgstr ""
+msgstr "Esitame videot (täisekraanivaates)"
 
 #: data/daikhan.metainfo.xml.in:47
 msgid "Playing a video (dark mode)"
-msgstr ""
+msgstr "Esitame videot (tumedas kujunduses)"
 
 #: data/daikhan.metainfo.xml.in:51
 msgid "Playing a video (dark mode, fullscreen)"
-msgstr ""
+msgstr "Esitame videot (tumedas kujunduses ja täisekraanivaates)"
 
 #: src/ActionDialog.vala:13
 msgid "No"
@@ -119,7 +120,7 @@ msgstr "Mittetoetatud koodek"
 #: src/AppWindow.vala:118
 #, c-format
 msgid "Encoding of one or more streams in '%s' is not supported."
-msgstr ""
+msgstr "Ühe või enama „%s“ meediavoo kodeering pole toetatud."
 
 #: src/ErrorDialog.blp:21
 msgid "Report Bug"
@@ -127,21 +128,13 @@ msgstr "Teata veast"
 
 #: src/ErrorDialog.vala:10
 msgid "Error"
-msgstr ""
+msgstr "Viga"
 
 #: src/ErrorDialog.vala:11
-#, fuzzy
-#| msgid ""
-#| "Encoding of one or more streams in '%s' is not supported.\n"
-#| "\n"
-#| "If this is unexpected, please, file a bug report with the following debug "
-#| "information.\n"
 msgid ""
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
-"Ühe või enama „%s“ failis leiduva meediavoo dekodeerimine pole toetatud.\n"
-"\n"
 "Kui see ei peaks nii olema, siis palun teata meile veast alljärgneva teabe "
 "alusel.\n"
 
@@ -155,11 +148,11 @@ msgstr "Kasutatavad värvid"
 
 #: src/PreferencesWindow.blp:14
 msgid "Overlay UI"
-msgstr ""
+msgstr "Kattev kasutajaliides"
 
 #: src/PreferencesWindow.blp:15
 msgid "Show controls/UI elements on top of the video"
-msgstr ""
+msgstr "Näita juhtnuppe ja kasutajaliidese elemente video peal"
 
 #: src/PreferencesWindow.blp:20
 msgid "Behavior"
@@ -254,16 +247,12 @@ msgid "Decrease Volume (2%)"
 msgstr "Keera heli vaiksemaks (2%)"
 
 #: src/Shortcuts.blp:80
-#, fuzzy
-#| msgid "Seek Forward (10s)"
 msgid "Seek Forward (1 min)"
-msgstr "Keri edasi (10 sekundit)"
+msgstr "Keri edasi (1 minut)"
 
 #: src/Shortcuts.blp:85
-#, fuzzy
-#| msgid "Seek Backwards (10s)"
 msgid "Seek Backwards (1 min)"
-msgstr "Keri tagasi (10 sekundit)"
+msgstr "Keri tagasi (1 minutit)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
