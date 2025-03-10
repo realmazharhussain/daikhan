@@ -1,6 +1,7 @@
 namespace Conf {
     public const string APP_ID = "@app_id@";
     public const string APP_NAME = _("Daikhan");
+    public const string VERSION = "@version@";
     public const string LOCALE_DIR = "@locale_dir@";
     public const string GSCHEMA_PATH = "@gschema_path@";
 }

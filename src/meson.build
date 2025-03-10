@@ -2,6 +2,7 @@ conf_data = {
   'app_id': app_id,
   'locale_dir': get_option('prefix') / get_option('localedir'),
   'gschema_path': gschema_path,
+  'version': meson.project_version(),
 }
 
 config_file = configure_file(
@@ -28,7 +29,15 @@ blueprints = custom_target('blueprints',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
 )
 
-resources = gnome.compile_resources('daikhan-ui', 'daikhan.gresource.xml',
+gresource_xml = configure_file(
+  input: 'daikhan.gresource.xml.in',
+  output: 'daikhan.gresource.xml',
+  configuration: {
+    'app_id': app_id,
+  },
+)
+
+resources = gnome.compile_resources('daikhan-ui', gresource_xml,
   dependencies: blueprints,
 )
 
