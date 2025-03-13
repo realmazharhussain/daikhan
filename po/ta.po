@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
-"POT-Creation-Date: 2023-08-29 17:17+0500\n"
+"POT-Creation-Date: 2025-03-09 00:44+0500\n"
 "PO-Revision-Date: 2024-12-16 08:00+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/daikhan/"
@@ -19,28 +19,31 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.9-rc\n"
 
-#: data/daikhan.desktop.in:4 data/daikhan.metainfo.xml.in:6
-#: src/Application.vala:89 src/Title.vala:16 src/WelcomeView.blp:17
-msgid "Daikhan (Early Access)"
-msgstr "டைக்கான் (ஆரம்ப அணுகல்)"
+#: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:9
+#, fuzzy
+#| msgid "About Daikhan"
+msgid "Daikhan"
+msgstr "டைக்கான் பற்றி"
 
-#: data/daikhan.desktop.in:5
+#: data/daikhan.desktop.in:4
 msgid "Media player"
 msgstr "மீடியா பிளேயர்"
 
-#: data/daikhan.desktop.in:6 data/daikhan.metainfo.xml.in:7
+#: data/daikhan.desktop.in:5 data/daikhan.metainfo.xml.in:10
 msgid "Play Videos/Music with style"
 msgstr "பாணியுடன் வீடியோக்கள்/இசையை இயக்கவும்"
 
-#: data/daikhan.metainfo.xml.in:8 src/Application.vala:92
+#: data/daikhan.metainfo.xml.in:11 src/Application.vala:106
 msgid "Mazhar Hussain"
 msgstr "மசர் உசேன்"
 
-#: data/daikhan.metainfo.xml.in:10
-msgid "A simple media player with beautiful interface."
-msgstr "அழகான இடைமுகத்துடன் கூடிய எளிய மீடியா பிளேயர்."
+#: data/daikhan.metainfo.xml.in:16
+msgid ""
+"A simple yet powerful media player with a beautiful interface. It has nice "
+"keyboard shortcuts, session restore capabilities, and much more."
+msgstr ""
 
-#: data/daikhan.metainfo.xml.in:12
+#: data/daikhan.metainfo.xml.in:19
 msgid ""
 "NOTE: The app is in early stages of development and bound to change "
 "significantly in the future."
@@ -48,19 +51,35 @@ msgstr ""
 "குறிப்பு: பயன்பாடு வளர்ச்சியின் ஆரம்ப கட்டத்தில் உள்ளது மற்றும் எதிர்காலத்தில் கணிசமாக "
 "மாற்றப்படும்."
 
-#: data/daikhan.metainfo.xml.in:58
-msgid "Not released yet."
-msgstr "இன்னும் வெளியிடப்படவில்லை."
+#: data/daikhan.metainfo.xml.in:39
+msgid "Playing a video"
+msgstr ""
 
-#: src/ActionDialog.vala:10
+#: data/daikhan.metainfo.xml.in:43
+msgid "Playing a video (fullscreen)"
+msgstr ""
+
+#: data/daikhan.metainfo.xml.in:47
+msgid "Playing a video (dark mode)"
+msgstr ""
+
+#: data/daikhan.metainfo.xml.in:51
+msgid "Playing a video (dark mode, fullscreen)"
+msgstr ""
+
+#: src/ActionDialog.vala:13
 msgid "No"
 msgstr "இல்லை"
 
-#: src/ActionDialog.vala:11
+#: src/ActionDialog.vala:14
 msgid "Yes"
 msgstr "ஆம்"
 
-#: src/Application.vala:90
+#: src/Application.vala:103 src/Title.vala:20 src/WelcomeView.blp:17
+msgid "Daikhan (Early Access)"
+msgstr "டைக்கான் (ஆரம்ப அணுகல்)"
+
+#: src/Application.vala:104
 msgid "Copyright 2022-2023 Mazhar Hussain"
 msgstr "பதிப்புரிமை 2022-2023 மசர் உசேன்"
 
@@ -76,32 +95,48 @@ msgstr "விசைப்பலகை குறுக்குவழிகள�
 msgid "About Daikhan"
 msgstr "டைக்கான் பற்றி"
 
-#: src/AppWindow.vala:99
+#: src/AppWindow.vala:100
 msgid "Resume playback?"
 msgstr "பிளேபேக்கை மீண்டும் தொடங்கவா?"
 
-#: src/AppWindow.vala:106
+#: src/AppWindow.vala:107
 msgid "Unsupported File Type"
 msgstr "ஆதரிக்கப்படாத கோப்பு வகை"
 
-#: src/AppWindow.vala:107
+#: src/AppWindow.vala:108
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
 msgstr "'%s' கோப்பு ஆடியோ அல்லது வீடியோ கோப்பு அல்ல."
 
-#: src/AppWindow.vala:108 src/AppWindow.vala:135
+#: src/AppWindow.vala:109 src/ErrorDialog.blp:22
 msgid "OK"
 msgstr "சரி"
 
-#: src/AppWindow.vala:114
+#: src/AppWindow.vala:116
 msgid "Unsupported Codec"
 msgstr "ஆதரிக்கப்படாத கோடெக்"
 
-#: src/AppWindow.vala:115
+#: src/AppWindow.vala:118
 #, c-format
+msgid "Encoding of one or more streams in '%s' is not supported."
+msgstr ""
+
+#: src/ErrorDialog.blp:21
+msgid "Report Bug"
+msgstr "பிழையைப் புகாரளிக்கவும்"
+
+#: src/ErrorDialog.vala:10
+msgid "Error"
+msgstr ""
+
+#: src/ErrorDialog.vala:11
+#, fuzzy
+#| msgid ""
+#| "Encoding of one or more streams in '%s' is not supported.\n"
+#| "\n"
+#| "If this is unexpected, please, file a bug report with the following debug "
+#| "information.\n"
 msgid ""
-"Encoding of one or more streams in '%s' is not supported.\n"
-"\n"
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
@@ -109,10 +144,6 @@ msgstr ""
 "\n"
 " இது எதிர்பாராதது என்றால், தயவுசெய்து, பின்வரும் பிழைத்திருத்த தகவலுடன் பிழை அறிக்கையை "
 "தாக்கல் செய்யுங்கள்.\n"
-
-#: src/AppWindow.vala:134
-msgid "Report Bug"
-msgstr "பிழையைப் புகாரளிக்கவும்"
 
 #: src/PreferencesWindow.blp:7
 msgid "Appearance"
@@ -122,35 +153,43 @@ msgstr "தோற்றம்"
 msgid "Color Scheme"
 msgstr "வண்ணத் திட்டம்"
 
+#: src/PreferencesWindow.blp:14
+msgid "Overlay UI"
+msgstr ""
+
 #: src/PreferencesWindow.blp:15
+msgid "Show controls/UI elements on top of the video"
+msgstr ""
+
+#: src/PreferencesWindow.blp:20
 msgid "Behavior"
 msgstr "நடத்தை"
 
-#: src/PreferencesWindow.blp:19
+#: src/PreferencesWindow.blp:24
 msgid "Seeking Method"
 msgstr "முறையைத் தேடும் முறை"
 
-#: src/PreferencesWindow.vala:14
+#: src/PreferencesWindow.vala:17
 msgid "Follow System"
 msgstr "அமைப்பைப் பின்தொடரவும்"
 
-#: src/PreferencesWindow.vala:15
+#: src/PreferencesWindow.vala:18
 msgid "Light"
 msgstr "ஒளி"
 
-#: src/PreferencesWindow.vala:16
+#: src/PreferencesWindow.vala:19
 msgid "Dark"
 msgstr "இருண்ட"
 
-#: src/PreferencesWindow.vala:19
+#: src/PreferencesWindow.vala:22
 msgid "Fast"
 msgstr "வேகமாக"
 
-#: src/PreferencesWindow.vala:20
+#: src/PreferencesWindow.vala:23
 msgid "Balanced"
 msgstr "சமநிலையானது"
 
-#: src/PreferencesWindow.vala:21
+#: src/PreferencesWindow.vala:24
 msgid "Accurate"
 msgstr "துல்லியமான"
 
@@ -159,24 +198,24 @@ msgid "Application"
 msgstr "பயன்பாடு"
 
 #: src/Shortcuts.blp:11
-msgid "Toggle Fullscreen"
-msgstr "மாற்று முழுத்திரை"
-
-#: src/Shortcuts.blp:16
 msgid "Open Preferences"
 msgstr "திறந்த விருப்பத்தேர்வுகள்"
 
-#: src/Shortcuts.blp:21
+#: src/Shortcuts.blp:16
 msgid "Show Keyboard Shortcuts"
 msgstr "விசைப்பலகை குறுக்குவழிகளைக் காட்டு"
 
-#: src/Shortcuts.blp:26
+#: src/Shortcuts.blp:21
 msgid "Quit"
 msgstr "வெளியேறு"
 
-#: src/Shortcuts.blp:32
+#: src/Shortcuts.blp:27
 msgid "Playback"
 msgstr "பின்னணி"
+
+#: src/Shortcuts.blp:30
+msgid "Toggle Fullscreen"
+msgstr "மாற்று முழுத்திரை"
 
 #: src/Shortcuts.blp:35
 msgid "Play/Pause"
@@ -213,6 +252,18 @@ msgstr "அளவை அதிகரிக்கவும் (2%)"
 #: src/Shortcuts.blp:75
 msgid "Decrease Volume (2%)"
 msgstr "அளவைக் குறைக்கவும் (2%)"
+
+#: src/Shortcuts.blp:80
+#, fuzzy
+#| msgid "Seek Forward (10s)"
+msgid "Seek Forward (1 min)"
+msgstr "முன்னோக்கி தேடுங்கள் (10 கள்)"
+
+#: src/Shortcuts.blp:85
+#, fuzzy
+#| msgid "Seek Backwards (10s)"
+msgid "Seek Backwards (1 min)"
+msgstr "பின்னோக்கி தேடுங்கள் (10 கள்)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
@@ -288,3 +339,9 @@ msgstr "வீடியோ கோப்புகள்"
 #: src/WelcomeView.blp:71
 msgid "Audio Files"
 msgstr "ஆடியோ கோப்புகள்"
+
+#~ msgid "A simple media player with beautiful interface."
+#~ msgstr "அழகான இடைமுகத்துடன் கூடிய எளிய மீடியா பிளேயர்."
+
+#~ msgid "Not released yet."
+#~ msgstr "இன்னும் வெளியிடப்படவில்லை."

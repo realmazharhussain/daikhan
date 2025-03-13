@@ -22,9 +22,9 @@ src/MediaControls.blp
 src/MediaControls.vala
 src/PillButton.blp
 src/PillButton.vala
-src/Playback.vala
 src/PlaybinProxy.vala
 src/PlayButton.vala
+src/Player.vala
 src/PlayerView.blp
 src/PlayerView.vala
 src/PlayFlags.vala

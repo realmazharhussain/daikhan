@@ -5,33 +5,31 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: daikhan pre-alpha\n"
+"Project-Id-Version: daikhan 0.1-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2025-03-09 00:44+0500\n"
-"PO-Revision-Date: 2023-09-22 17:03+0000\n"
-"Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
-"Language-Team: Occitan <https://hosted.weblate.org/projects/daikhan/"
-"translations/oc/>\n"
-"Language: oc\n"
+"PO-Revision-Date: 2025-03-11 12:02+0000\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
+"Language-Team: Finnish <https://hosted.weblate.org/projects/daikhan/"
+"translations/fi/>\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:9
-#, fuzzy
-#| msgid "About Daikhan"
 msgid "Daikhan"
-msgstr "A prepaus de Daikhan"
+msgstr "Daikhan"
 
 #: data/daikhan.desktop.in:4
 msgid "Media player"
-msgstr "Lector multimèdia"
+msgstr "Mediasoitin"
 
 #: data/daikhan.desktop.in:5 data/daikhan.metainfo.xml.in:10
 msgid "Play Videos/Music with style"
-msgstr "Legissètz las vidèos e musicas amb estil"
+msgstr "Toista videoita ja musiikkia tyylillä"
 
 #: data/daikhan.metainfo.xml.in:11 src/Application.vala:106
 msgid "Mazhar Hussain"
@@ -42,305 +40,290 @@ msgid ""
 "A simple yet powerful media player with a beautiful interface. It has nice "
 "keyboard shortcuts, session restore capabilities, and much more."
 msgstr ""
+"Yksinkertainen mutta tehokas mediasoitin kauniilla käyttöliittymällä. Siinä "
+"on mukavia pikanäppäimiä, istunnon palautusominaisuudet ja paljon muuta."
 
 #: data/daikhan.metainfo.xml.in:19
 msgid ""
 "NOTE: The app is in early stages of development and bound to change "
 "significantly in the future."
 msgstr ""
-"NÒTA : l’aplicacion es en fasa de desvolopament e pòt cambiar al futur."
+"Huomautus: Sovellus on kehitysvaiheessa ja muuttuu merkittävästi "
+"tulevaisuudessa."
 
 #: data/daikhan.metainfo.xml.in:39
 msgid "Playing a video"
-msgstr ""
+msgstr "Videon toisto"
 
 #: data/daikhan.metainfo.xml.in:43
 msgid "Playing a video (fullscreen)"
-msgstr ""
+msgstr "Videon toisto (koko näyttö)"
 
 #: data/daikhan.metainfo.xml.in:47
 msgid "Playing a video (dark mode)"
-msgstr ""
+msgstr "Videon toisto (tumma tila)"
 
 #: data/daikhan.metainfo.xml.in:51
 msgid "Playing a video (dark mode, fullscreen)"
-msgstr ""
+msgstr "Videon toisto (tumma tila, koko näyttö)"
 
 #: src/ActionDialog.vala:13
 msgid "No"
-msgstr "Non"
+msgstr "Ei"
 
 #: src/ActionDialog.vala:14
 msgid "Yes"
-msgstr "Òc"
+msgstr "Kyllä"
 
 #: src/Application.vala:103 src/Title.vala:20 src/WelcomeView.blp:17
 msgid "Daikhan (Early Access)"
-msgstr "Daikhan (Accès anticipat)"
+msgstr "Daikhan (varhainen pääsy)"
 
 #: src/Application.vala:104
 msgid "Copyright 2022-2023 Mazhar Hussain"
-msgstr "Copyright 2022-2023 Mazhar Hussain"
+msgstr "Tekijänoikeus 2022-2023 Mazhar Hussain"
 
 #: src/AppMenuButton.blp:6
 msgid "Preferences"
-msgstr "Preferéncias"
+msgstr "Asetukset"
 
 #: src/AppMenuButton.blp:7
 msgid "Keyboard Shortcuts"
-msgstr "Acorchis de clavièr"
+msgstr "Pikanäppäimet"
 
 #: src/AppMenuButton.blp:8
 msgid "About Daikhan"
-msgstr "A prepaus de Daikhan"
+msgstr "Tietoja - Daikhan"
 
 #: src/AppWindow.vala:100
 msgid "Resume playback?"
-msgstr "Reprendre la lectura ?"
+msgstr "Palautetaanko toisto?"
 
 #: src/AppWindow.vala:107
 msgid "Unsupported File Type"
-msgstr "Tipe de fichièr pas pres en carga"
+msgstr "Tiedostotyyppi ei ole tuettu"
 
 #: src/AppWindow.vala:108
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
-msgstr "Lo fichièr « %s » es pas un fichièr àudio o vidèo."
+msgstr "Tiedosto '%s' ei ole ääni- tai videotiedosto."
 
 #: src/AppWindow.vala:109 src/ErrorDialog.blp:22
 msgid "OK"
-msgstr "D’acòrdi"
+msgstr "OK"
 
 #: src/AppWindow.vala:116
 msgid "Unsupported Codec"
-msgstr "Codèc pas pres en carga"
+msgstr "Koodekki ei ole tuettu"
 
 #: src/AppWindow.vala:118
 #, c-format
 msgid "Encoding of one or more streams in '%s' is not supported."
-msgstr ""
+msgstr "Yhden tai useamman virran koodausta '%s':ssa ei tueta."
 
 #: src/ErrorDialog.blp:21
 msgid "Report Bug"
-msgstr "Senhalar una avaria"
+msgstr "Ilmoita ongelmasta"
 
 #: src/ErrorDialog.vala:10
 msgid "Error"
-msgstr ""
+msgstr "Virhe"
 
 #: src/ErrorDialog.vala:11
-#, fuzzy
-#| msgid ""
-#| "Encoding of one or more streams in '%s' is not supported.\n"
-#| "\n"
-#| "If this is unexpected, please, file a bug report with the following debug "
-#| "information.\n"
 msgid ""
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
-"L’encodatge d’un o mai d’un flux dins « %s » es pas pres en carga.\n"
-"\n"
-"Se vos plau, s’aquò es pas previst, enviatz un senhalament d’avaria amb las "
-"entresenhas de desbugatge.\n"
+"Jos tämä on odottamatonta, lähetä vikaraportti seuraavilla "
+"viankorjaustiedoilla.\n"
 
 #: src/PreferencesWindow.blp:7
 msgid "Appearance"
-msgstr "Aparéncia"
+msgstr "Ulkoasu"
 
 #: src/PreferencesWindow.blp:10
 msgid "Color Scheme"
-msgstr "Jòc de colors"
+msgstr "Väriteema"
 
 #: src/PreferencesWindow.blp:14
 msgid "Overlay UI"
-msgstr ""
+msgstr "Peittävä käyttöliittymä"
 
 #: src/PreferencesWindow.blp:15
 msgid "Show controls/UI elements on top of the video"
-msgstr ""
+msgstr "Näytä ohjaimet ja käyttöliittymäelementit videon päällä"
 
 #: src/PreferencesWindow.blp:20
 msgid "Behavior"
-msgstr "Compòrtament"
+msgstr "Toiminta"
 
 #: src/PreferencesWindow.blp:24
 msgid "Seeking Method"
-msgstr "Metòde d’avançar"
+msgstr "Liikkumistapa"
 
 #: src/PreferencesWindow.vala:17
 msgid "Follow System"
-msgstr "Seguir lo sistèma"
+msgstr "Seuraa järjestelmää"
 
 #: src/PreferencesWindow.vala:18
 msgid "Light"
-msgstr "Clar"
+msgstr "Vaalea"
 
 #: src/PreferencesWindow.vala:19
 msgid "Dark"
-msgstr "Escur"
+msgstr "Tumma"
 
 #: src/PreferencesWindow.vala:22
 msgid "Fast"
-msgstr "Rapid"
+msgstr "Nopea"
 
 #: src/PreferencesWindow.vala:23
 msgid "Balanced"
-msgstr "Equilibrat"
+msgstr "Tasapainotettu"
 
 #: src/PreferencesWindow.vala:24
 msgid "Accurate"
-msgstr "Precís"
+msgstr "Tarkka"
 
 #: src/Shortcuts.blp:8
 msgid "Application"
-msgstr "Aplicacion"
+msgstr "Sovellus"
 
 #: src/Shortcuts.blp:11
 msgid "Open Preferences"
-msgstr "Dobrir las preferéncias"
+msgstr "Avaa asetukset"
 
 #: src/Shortcuts.blp:16
 msgid "Show Keyboard Shortcuts"
-msgstr "Mostrar los acorchis clavièr"
+msgstr "Näytä pikanäppäimet"
 
 #: src/Shortcuts.blp:21
 msgid "Quit"
-msgstr "Sortir"
+msgstr "Lopeta"
 
 #: src/Shortcuts.blp:27
 msgid "Playback"
-msgstr "Lectura"
+msgstr "Toisto"
 
 #: src/Shortcuts.blp:30
 msgid "Toggle Fullscreen"
-msgstr "Passar en ecran complèt"
+msgstr "Koko näyttö päällä/pois"
 
 #: src/Shortcuts.blp:35
 msgid "Play/Pause"
-msgstr "Lectura/Pausa"
+msgstr "Toista/keskeytä"
 
 #: src/Shortcuts.blp:40
 msgid "Seek Forward (10s)"
-msgstr "Avançar (10 seg.)"
+msgstr "Kelaa eteenpäin (10 s)"
 
 #: src/Shortcuts.blp:45
 msgid "Seek Backwards (10s)"
-msgstr "Recular (10 seg.)"
+msgstr "Kelaa taaksepäin (10 s)"
 
 #: src/Shortcuts.blp:50
 msgid "Increase Volume (5%)"
-msgstr "Aumentar lo volum (5%)"
+msgstr "Suurenna äänenvoimakkuutta (5 %)"
 
 #: src/Shortcuts.blp:55
 msgid "Decrease Volume (5%)"
-msgstr "Reduire lo volum (5%)"
+msgstr "Pienennä äänenvoimakkuutta (5 %)"
 
 #: src/Shortcuts.blp:60
 msgid "Seek Forward (3s)"
-msgstr "Avançar (3 seg.)"
+msgstr "Kelaa eteenpäin (3 s)"
 
 #: src/Shortcuts.blp:65
 msgid "Seek Backwards (3s)"
-msgstr "Recular (3 seg.)"
+msgstr "Kelaa taaksepäin (3 s)"
 
 #: src/Shortcuts.blp:70
 msgid "Increase Volume (2%)"
-msgstr "Aumentar lo volum (2%)"
+msgstr "Suurenna äänenvoimakkuutta (2 %)"
 
 #: src/Shortcuts.blp:75
 msgid "Decrease Volume (2%)"
-msgstr "Reduire lo volum (2%)"
+msgstr "Pienennä äänenvoimakkuutta (2 %)"
 
 #: src/Shortcuts.blp:80
-#, fuzzy
-#| msgid "Seek Forward (10s)"
 msgid "Seek Forward (1 min)"
-msgstr "Avançar (10 seg.)"
+msgstr "Kelaa eteenpäin (1 min)"
 
 #: src/Shortcuts.blp:85
-#, fuzzy
-#| msgid "Seek Backwards (10s)"
 msgid "Seek Backwards (1 min)"
-msgstr "Recular (10 seg.)"
+msgstr "Kelaa taaksepäin (1 min)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
-msgstr "Àudio"
+msgstr "Ääni"
 
 #: src/StreamMenuBuilder.vala:19
 msgid "Subtitles"
-msgstr "Sostítols"
+msgstr "Tekstitykset"
 
 #: src/StreamMenuBuilder.vala:20
 msgid "Video"
-msgstr "Vidèos"
+msgstr "Video"
 
 #: src/StreamMenuBuilder.vala:28
 msgid "Repeat"
-msgstr "Repetir"
+msgstr "Kertaus"
 
 #: src/StreamMenuBuilder.vala:29 src/StreamMenuBuilder.vala:89
 #: src/StreamMenuBuilder.vala:121
 msgid "Off"
-msgstr "Desactivat"
+msgstr "Pois"
 
 #: src/StreamMenuBuilder.vala:30
 msgid "Single File"
-msgstr "Fichièr sol"
+msgstr "Yksittäinen tiedosto"
 
 #: src/StreamMenuBuilder.vala:31
 msgid "Whole Queue"
-msgstr "Tota la fila d’espèra"
+msgstr "Koko jono"
 
 #: src/StreamMenuBuilder.vala:103
 msgid "Unknown Language"
-msgstr "Lenga desconeguda"
+msgstr "Tuntematon kieli"
 
 #: src/StreamMenuBuilder.vala:124
 msgid "On"
-msgstr "Activat"
+msgstr "Päällä"
 
 #. Translators: Keep %i as is. It will be replaced by the track number for each track.
 #: src/StreamMenuBuilder.vala:127
 #, c-format
 msgid "Track %i"
-msgstr "Pista %i"
+msgstr "Kappale %i"
 
 #: src/WelcomeView.blp:18
 msgid "You can drop files here to play"
-msgstr "Podètz depausar de fichièrs aicí per los legir"
+msgstr "Pudota tiedostot tähän toistaaksesi ne"
 
 #: src/WelcomeView.blp:26
 msgid "Open Files"
-msgstr "Dobrir de fichièrs"
+msgstr "Avaa tiedostot"
 
 #: src/WelcomeView.blp:33
 msgid "Play Again"
-msgstr "Tornar legir"
+msgstr "Toista uudelleen"
 
 #: src/WelcomeView.blp:41
 msgid "Continue where you left off"
-msgstr "Contunhar ont èretz"
+msgstr "Jatka siitä mihin jäit"
 
 #: src/WelcomeView.blp:56
 msgid "All Files"
-msgstr "Totes los fichièrs"
+msgstr "Kaikki tiedostot"
 
 #: src/WelcomeView.blp:61
 msgid "Video & Audio Files"
-msgstr "Fichièrs vidèo e àudio"
+msgstr "Video- ja äänitiedostot"
 
 #: src/WelcomeView.blp:66
 msgid "Video Files"
-msgstr "Fichièrs vidèo"
+msgstr "Videotiedostot"
 
 #: src/WelcomeView.blp:71
 msgid "Audio Files"
-msgstr "Fichièrs àudio"
-
-#~ msgid "A simple media player with beautiful interface."
-#~ msgstr "Un lector multimèdia simple amb una polida interfàcia."
-
-#~ msgid "Not released yet."
-#~ msgstr "Pas encara sortit."
+msgstr "Äänitiedostot"
