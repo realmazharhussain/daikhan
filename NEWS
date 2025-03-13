@@ -1,3 +1,8 @@
+0.1-alpha2
+==========
+* Fix wrong app name on Welcome screen
+* Load AboutDialog from metainfo (appdata)
+
 0.1-alpha
 =========
 * The first alpha release
