@@ -1,5 +1,5 @@
 project('daikhan', 'vala',
-        version: '0.1-alpha')
+        version: '0.1-alpha2')
 
 profile = get_option('profile')
 
