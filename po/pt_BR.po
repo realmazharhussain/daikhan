@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2025-03-09 00:44+0500\n"
-"PO-Revision-Date: 2024-08-20 23:09+0000\n"
-"Last-Translator: Cirnos <cirnos@tuta.io>\n"
+"PO-Revision-Date: 2025-03-28 14:01+0000\n"
+"Last-Translator: burns <ahoradocafezinho@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "daikhan/translations/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,13 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.7\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:9
-#, fuzzy
-#| msgid "About Daikhan"
 msgid "Daikhan"
-msgstr "Sobre Daikhan"
+msgstr "Daikhan"
 
 #: data/daikhan.desktop.in:4
 msgid "Media player"
@@ -42,6 +40,8 @@ msgid ""
 "A simple yet powerful media player with a beautiful interface. It has nice "
 "keyboard shortcuts, session restore capabilities, and much more."
 msgstr ""
+"Um reprodutor de mídia simples, mas poderoso com uma bela interface. Ele tem "
+"atalhos de teclado, restauração de sessão e muito mais."
 
 #: data/daikhan.metainfo.xml.in:19
 msgid ""
@@ -53,19 +53,19 @@ msgstr ""
 
 #: data/daikhan.metainfo.xml.in:39
 msgid "Playing a video"
-msgstr ""
+msgstr "Reproduzindo um vídeo"
 
 #: data/daikhan.metainfo.xml.in:43
 msgid "Playing a video (fullscreen)"
-msgstr ""
+msgstr "Reproduzindo um vídeo (tela cheia)"
 
 #: data/daikhan.metainfo.xml.in:47
 msgid "Playing a video (dark mode)"
-msgstr ""
+msgstr "Reproduzindo um vídeo (modo escuro)"
 
 #: data/daikhan.metainfo.xml.in:51
 msgid "Playing a video (dark mode, fullscreen)"
-msgstr ""
+msgstr "Reproduzindo um vídeo (modo escuro, tela cheia)"
 
 #: src/ActionDialog.vala:13
 msgid "No"
@@ -119,7 +119,7 @@ msgstr "Decodificador não suportado"
 #: src/AppWindow.vala:118
 #, c-format
 msgid "Encoding of one or more streams in '%s' is not supported."
-msgstr ""
+msgstr "Conversão de um ou mais streams em '%s' não é suportada."
 
 #: src/ErrorDialog.blp:21
 msgid "Report Bug"
@@ -127,22 +127,14 @@ msgstr "Denunciar erro"
 
 #: src/ErrorDialog.vala:10
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 #: src/ErrorDialog.vala:11
-#, fuzzy
-#| msgid ""
-#| "Encoding of one or more streams in '%s' is not supported.\n"
-#| "\n"
-#| "If this is unexpected, please, file a bug report with the following debug "
-#| "information.\n"
 msgid ""
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
-"Codificação de um ou mais fluxos em '%s' não é suportado.\n"
-"\n"
-"Se isso não for esperado, por favor denuncie um erro com as seguintes "
+"Se isso não for esperado, por favor reporte um erro com as seguintes "
 "informações de depuração.\n"
 
 #: src/PreferencesWindow.blp:7
@@ -155,11 +147,11 @@ msgstr "Esquema de cor"
 
 #: src/PreferencesWindow.blp:14
 msgid "Overlay UI"
-msgstr ""
+msgstr "Sobreposição de interface do usuário"
 
 #: src/PreferencesWindow.blp:15
 msgid "Show controls/UI elements on top of the video"
-msgstr ""
+msgstr "Mostra controles e elementos da interface sobre o vídeo"
 
 #: src/PreferencesWindow.blp:20
 msgid "Behavior"
@@ -254,16 +246,12 @@ msgid "Decrease Volume (2%)"
 msgstr "Diminuir volume (2%)"
 
 #: src/Shortcuts.blp:80
-#, fuzzy
-#| msgid "Seek Forward (10s)"
 msgid "Seek Forward (1 min)"
-msgstr "Pular para frente (10s)"
+msgstr "Pular para frente (1 min)"
 
 #: src/Shortcuts.blp:85
-#, fuzzy
-#| msgid "Seek Backwards (10s)"
 msgid "Seek Backwards (1 min)"
-msgstr "Pular para trás (10s)"
+msgstr "Retroceder (1 min)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
