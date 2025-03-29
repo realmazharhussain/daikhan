@@ -37,8 +37,9 @@ public class Daikhan.PlayerView : Adw.Bin {
     Gdk.Cursor none_cursor = new Gdk.Cursor.from_name ("none", null);
     Daikhan.CursorTimeout[] timeouts = null;
     Source[] timeout_sources = null;
-    double cursor_x_cached;
-    double cursor_y_cached;
+    double cursor_x_cached = 0;
+    double cursor_y_cached = 0;
+    uint32 cursor_t_cached = 0;
 
     static construct {
         set_css_name ("playerview");
@@ -66,13 +67,12 @@ public class Daikhan.PlayerView : Adw.Bin {
         );
 
         notify["fullscreened"].connect (() => {
-            top.transition_type = NONE;
-            bottom.transition_type = NONE;
+            if (settings.get_boolean ("overlay-ui")) {
+                return;
+            }
 
-            do_motion_stuff (-1, -1);
-
-            top.transition_type = SLIDE_DOWN;
-            bottom.transition_type = SLIDE_UP;
+            top.reveal_child = !fullscreened;
+            bottom.reveal_child = !fullscreened;
         });
 
         notify["fullscreened"].connect (update_layout);
@@ -157,10 +157,14 @@ public class Daikhan.PlayerView : Adw.Bin {
             return;
         }
 
+        var time_diff = ctrlr.get_current_event_time () - cursor_t_cached;
+        if (time_diff > 0 && time_diff < 100) {
+            do_motion_stuff (x, y);
+        }
+
         cursor_x_cached = x;
         cursor_y_cached = y;
-
-        do_motion_stuff (x, y);
+        cursor_t_cached = ctrlr.get_current_event_time ();
     }
 
     bool interface_widget_contains (double x, double y) {
