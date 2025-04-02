@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2025-04-03 01:25+0500\n"
-"PO-Revision-Date: 2025-03-10 13:02+0000\n"
+"PO-Revision-Date: 2025-04-02 22:08+0000\n"
 "Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/daikhan/"
 "translations/et/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #. Translators: Please, ignore this!
 #: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:10
@@ -120,16 +120,12 @@ msgid "Daikhan"
 msgstr "Daikhan"
 
 #: src/Conf.vala.in:17
-#, fuzzy
-#| msgid "Daikhan"
 msgid "Daikhan (Dev)"
-msgstr "Daikhan"
+msgstr "Daikhan (arendusversioon)"
 
 #: src/Conf.vala.in:19
-#, fuzzy
-#| msgid "Daikhan"
 msgid "Daikhan (Beta)"
-msgstr "Daikhan"
+msgstr "Daikhan (beeta)"
 
 #: src/ErrorDialog.blp:21
 msgid "Report Bug"
