@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
-"POT-Creation-Date: 2025-03-09 00:44+0500\n"
+"POT-Creation-Date: 2025-03-29 16:59+0500\n"
 "PO-Revision-Date: 2024-12-16 08:00+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/daikhan/"
@@ -33,7 +33,7 @@ msgstr "மீடியா பிளேயர்"
 msgid "Play Videos/Music with style"
 msgstr "பாணியுடன் வீடியோக்கள்/இசையை இயக்கவும்"
 
-#: data/daikhan.metainfo.xml.in:11 src/Application.vala:106
+#: data/daikhan.metainfo.xml.in:11
 msgid "Mazhar Hussain"
 msgstr "மசர் உசேன்"
 
@@ -74,14 +74,6 @@ msgstr "இல்லை"
 #: src/ActionDialog.vala:14
 msgid "Yes"
 msgstr "ஆம்"
-
-#: src/Application.vala:103 src/Title.vala:20 src/WelcomeView.blp:17
-msgid "Daikhan (Early Access)"
-msgstr "டைக்கான் (ஆரம்ப அணுகல்)"
-
-#: src/Application.vala:104
-msgid "Copyright 2022-2023 Mazhar Hussain"
-msgstr "பதிப்புரிமை 2022-2023 மசர் உசேன்"
 
 #: src/AppMenuButton.blp:6
 msgid "Preferences"
@@ -308,37 +300,43 @@ msgstr "ஆன்"
 msgid "Track %i"
 msgstr "ட்ராக் %i"
 
-#: src/WelcomeView.blp:18
+#: src/WelcomeView.blp:17
 msgid "You can drop files here to play"
 msgstr "விளையாட நீங்கள் இங்கே கோப்புகளை கைவிடலாம்"
 
-#: src/WelcomeView.blp:26
+#: src/WelcomeView.blp:25
 msgid "Open Files"
 msgstr "கோப்புகளைத் திறக்கவும்"
 
-#: src/WelcomeView.blp:33
+#: src/WelcomeView.blp:32
 msgid "Play Again"
 msgstr "மீண்டும் விளையாடுங்கள்"
 
-#: src/WelcomeView.blp:41
+#: src/WelcomeView.blp:40
 msgid "Continue where you left off"
 msgstr "நீங்கள் விட்டுச்சென்ற இடத்தைத் தொடரவும்"
 
-#: src/WelcomeView.blp:56
+#: src/WelcomeView.blp:55
 msgid "All Files"
 msgstr "அனைத்து கோப்புகள்"
 
-#: src/WelcomeView.blp:61
+#: src/WelcomeView.blp:60
 msgid "Video & Audio Files"
 msgstr "வீடியோ மற்றும் ஆடியோ கோப்புகள்"
 
-#: src/WelcomeView.blp:66
+#: src/WelcomeView.blp:65
 msgid "Video Files"
 msgstr "வீடியோ கோப்புகள்"
 
-#: src/WelcomeView.blp:71
+#: src/WelcomeView.blp:70
 msgid "Audio Files"
 msgstr "ஆடியோ கோப்புகள்"
+
+#~ msgid "Daikhan (Early Access)"
+#~ msgstr "டைக்கான் (ஆரம்ப அணுகல்)"
+
+#~ msgid "Copyright 2022-2023 Mazhar Hussain"
+#~ msgstr "பதிப்புரிமை 2022-2023 மசர் உசேன்"
 
 #~ msgid "A simple media player with beautiful interface."
 #~ msgstr "அழகான இடைமுகத்துடன் கூடிய எளிய மீடியா பிளேயர்."
