@@ -11,6 +11,7 @@ src/AppWindow.blp
 src/AppWindow.vala
 src/ComboRow.vala
 src/ContentId.vala
+src/Conf.vala.in
 src/DropTarget.vala
 src/DurationLabel.vala
 src/ErrorDialog.blp
