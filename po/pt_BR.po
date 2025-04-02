@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
-"POT-Creation-Date: 2025-03-29 16:59+0500\n"
+"POT-Creation-Date: 2025-04-03 01:25+0500\n"
 "PO-Revision-Date: 2025-03-28 14:01+0000\n"
 "Last-Translator: burns <ahoradocafezinho@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
@@ -19,23 +19,24 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 5.11-dev\n"
 
-#: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:9
-msgid "Daikhan"
-msgstr "Daikhan"
+#. Translators: Please, ignore this!
+#: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:10
+msgid "@app_name@"
+msgstr ""
 
 #: data/daikhan.desktop.in:4
 msgid "Media player"
 msgstr "Reprodutor de mídia"
 
-#: data/daikhan.desktop.in:5 data/daikhan.metainfo.xml.in:10
+#: data/daikhan.desktop.in:5 data/daikhan.metainfo.xml.in:11
 msgid "Play Videos/Music with style"
 msgstr "Reproduza vídeos/música com estilo"
 
-#: data/daikhan.metainfo.xml.in:11
+#: data/daikhan.metainfo.xml.in:12
 msgid "Mazhar Hussain"
 msgstr "Mazhar Hussain"
 
-#: data/daikhan.metainfo.xml.in:16
+#: data/daikhan.metainfo.xml.in:17
 msgid ""
 "A simple yet powerful media player with a beautiful interface. It has nice "
 "keyboard shortcuts, session restore capabilities, and much more."
@@ -43,7 +44,7 @@ msgstr ""
 "Um reprodutor de mídia simples, mas poderoso com uma bela interface. Ele tem "
 "atalhos de teclado, restauração de sessão e muito mais."
 
-#: data/daikhan.metainfo.xml.in:19
+#: data/daikhan.metainfo.xml.in:20
 msgid ""
 "NOTE: The app is in early stages of development and bound to change "
 "significantly in the future."
@@ -51,19 +52,19 @@ msgstr ""
 "NOTA: O programa está em fases iniciais de desenvolvimento e pode mudar "
 "significativamente no futuro."
 
-#: data/daikhan.metainfo.xml.in:39
+#: data/daikhan.metainfo.xml.in:40
 msgid "Playing a video"
 msgstr "Reproduzindo um vídeo"
 
-#: data/daikhan.metainfo.xml.in:43
+#: data/daikhan.metainfo.xml.in:44
 msgid "Playing a video (fullscreen)"
 msgstr "Reproduzindo um vídeo (tela cheia)"
 
-#: data/daikhan.metainfo.xml.in:47
+#: data/daikhan.metainfo.xml.in:48
 msgid "Playing a video (dark mode)"
 msgstr "Reproduzindo um vídeo (modo escuro)"
 
-#: data/daikhan.metainfo.xml.in:51
+#: data/daikhan.metainfo.xml.in:52
 msgid "Playing a video (dark mode, fullscreen)"
 msgstr "Reproduzindo um vídeo (modo escuro, tela cheia)"
 
@@ -87,31 +88,47 @@ msgstr "Atalhos de teclado"
 msgid "About Daikhan"
 msgstr "Sobre Daikhan"
 
-#: src/AppWindow.vala:100
+#: src/AppWindow.vala:104
 msgid "Resume playback?"
 msgstr "Continuar reprodução?"
 
-#: src/AppWindow.vala:107
+#: src/AppWindow.vala:111
 msgid "Unsupported File Type"
 msgstr "Tipo de arquivo não suportado"
 
-#: src/AppWindow.vala:108
+#: src/AppWindow.vala:112
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
 msgstr "O arquivo '%s' não é um arquivo de áudio ou vídeo."
 
-#: src/AppWindow.vala:109 src/ErrorDialog.blp:22
+#: src/AppWindow.vala:113 src/ErrorDialog.blp:22
 msgid "OK"
 msgstr "OK"
 
-#: src/AppWindow.vala:116
+#: src/AppWindow.vala:120
 msgid "Unsupported Codec"
 msgstr "Decodificador não suportado"
 
-#: src/AppWindow.vala:118
+#: src/AppWindow.vala:122
 #, c-format
 msgid "Encoding of one or more streams in '%s' is not supported."
 msgstr "Conversão de um ou mais streams em '%s' não é suportada."
+
+#: src/Conf.vala.in:15
+msgid "Daikhan"
+msgstr "Daikhan"
+
+#: src/Conf.vala.in:17
+#, fuzzy
+#| msgid "Daikhan"
+msgid "Daikhan (Dev)"
+msgstr "Daikhan"
+
+#: src/Conf.vala.in:19
+#, fuzzy
+#| msgid "Daikhan"
+msgid "Daikhan (Beta)"
+msgstr "Daikhan"
 
 #: src/ErrorDialog.blp:21
 msgid "Report Bug"
