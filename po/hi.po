@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
-"POT-Creation-Date: 2025-03-09 00:44+0500\n"
+"POT-Creation-Date: 2025-03-29 16:59+0500\n"
 "PO-Revision-Date: 2024-05-07 18:07+0000\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/daikhan/"
@@ -33,7 +33,7 @@ msgstr "मीडिया प्लेयर"
 msgid "Play Videos/Music with style"
 msgstr "अंदाज़ के साथ वीडियो/संगीत चलाएं"
 
-#: data/daikhan.metainfo.xml.in:11 src/Application.vala:106
+#: data/daikhan.metainfo.xml.in:11
 msgid "Mazhar Hussain"
 msgstr "मजहर हुसैन"
 
@@ -74,14 +74,6 @@ msgstr "नहीं"
 #: src/ActionDialog.vala:14
 msgid "Yes"
 msgstr "हाँ"
-
-#: src/Application.vala:103 src/Title.vala:20 src/WelcomeView.blp:17
-msgid "Daikhan (Early Access)"
-msgstr "Daikhan (प्रारंभिक पहुंच)"
-
-#: src/Application.vala:104
-msgid "Copyright 2022-2023 Mazhar Hussain"
-msgstr "कॉपीराइट 2022-2023 मजहर हुसैन"
 
 #: src/AppMenuButton.blp:6
 msgid "Preferences"
@@ -308,37 +300,43 @@ msgstr "चालू"
 msgid "Track %i"
 msgstr "ट्रैक %i"
 
-#: src/WelcomeView.blp:18
+#: src/WelcomeView.blp:17
 msgid "You can drop files here to play"
 msgstr "आप चलाने के लिए फाइलें यहां छोड़ सकते हैं"
 
-#: src/WelcomeView.blp:26
+#: src/WelcomeView.blp:25
 msgid "Open Files"
 msgstr "फाइल खोलें"
 
-#: src/WelcomeView.blp:33
+#: src/WelcomeView.blp:32
 msgid "Play Again"
 msgstr "फिर से चालू करें"
 
-#: src/WelcomeView.blp:41
+#: src/WelcomeView.blp:40
 msgid "Continue where you left off"
 msgstr "जहां छोड़ा था वहीं से जारी रखें"
 
-#: src/WelcomeView.blp:56
+#: src/WelcomeView.blp:55
 msgid "All Files"
 msgstr "सभी फाइलें"
 
-#: src/WelcomeView.blp:61
+#: src/WelcomeView.blp:60
 msgid "Video & Audio Files"
 msgstr "वीडियो और ऑडियो फाइलें"
 
-#: src/WelcomeView.blp:66
+#: src/WelcomeView.blp:65
 msgid "Video Files"
 msgstr "वीडियो फाइलें"
 
-#: src/WelcomeView.blp:71
+#: src/WelcomeView.blp:70
 msgid "Audio Files"
 msgstr "ऑडियो फाइलें"
+
+#~ msgid "Daikhan (Early Access)"
+#~ msgstr "Daikhan (प्रारंभिक पहुंच)"
+
+#~ msgid "Copyright 2022-2023 Mazhar Hussain"
+#~ msgstr "कॉपीराइट 2022-2023 मजहर हुसैन"
 
 #~ msgid "A simple media player with beautiful interface."
 #~ msgstr "सुंदर इंटरफ़ेस वाला एक सरल मीडिया प्लेयर।"
