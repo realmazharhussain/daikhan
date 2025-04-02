@@ -1,3 +1,7 @@
+0.1-alpha3
+==========
+* Fix unintended cursor motion actions
+
 0.1-alpha2
 ==========
 * Fix wrong app name on Welcome screen
