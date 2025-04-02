@@ -35,6 +35,13 @@ dep_xxhash = dependency('libxxhash')
 
 dependency('gstgtk4')   # Has no header or vaapi file
 
+profile_suffix = ''
+if profile != 'stable'
+  profile_suffix = '-' + profile
+endif
+
+exe_name = meson.project_name() + profile_suffix
+
 subdir('po')
 subdir('data')
 subdir('src')

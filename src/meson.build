@@ -3,6 +3,8 @@ conf_data = {
   'locale_dir': get_option('prefix') / get_option('localedir'),
   'gschema_path': gschema_path,
   'version': meson.project_version(),
+  'gettext_domain': exe_name,
+  'profile': profile,
 }
 
 config_file = configure_file(
@@ -89,7 +91,7 @@ deps = [
   dep_xxhash
 ]
 
-executable(meson.project_name(), sources,
+executable(exe_name, sources,
            dependencies: deps,
            vala_args: ['--gresourcesdir', meson.current_build_dir()],
            win_subsystem: 'windows',

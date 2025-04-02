@@ -1,4 +1,4 @@
-i18n.gettext(meson.project_name())
+i18n.gettext(exe_name)
 
 custom_target('pot_file',
   output: 'daikhan.pot',

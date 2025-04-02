@@ -1,6 +1,17 @@
+app_name = 'Daikhan'
+if profile == 'devel'
+  app_name += ' (Dev)'
+elif profile == 'beta'
+  app_name += ' (Beta)'
+elif profile != 'stable'
+  app_name = app_name + ' (' + profile + ')'
+endif
+
 conf_data = {
   'app_id': app_id,
+  'app_name': app_name,
   'bindir': get_option('prefix') / get_option('bindir'),
+  'exe_name': exe_name,
   'gschema_path': gschema_path,
 }
 

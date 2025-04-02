@@ -9,6 +9,10 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     bool restoring_state = false;
 
     construct {
+        if (Conf.DEV_PROFILE != "stable") {
+            add_css_class ("devel");
+        }
+
         player = Daikhan.Player.get_default ();
         state_mem = new Settings (Conf.APP_ID + ".state");
         playback_history = Daikhan.History.get_default ();

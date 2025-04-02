@@ -1,6 +1,6 @@
 int main (string[] args) {
-    Intl.bindtextdomain ("daikhan", Conf.LOCALE_DIR);
-    Intl.textdomain ("daikhan");
+    Intl.bindtextdomain (Conf.GETTEXT_DOMAIN, Conf.LOCALE_DIR);
+    Intl.textdomain (Conf.GETTEXT_DOMAIN);
     Intl.setlocale ();
 
     Gst.init (ref args);

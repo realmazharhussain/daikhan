@@ -1,7 +1,26 @@
 namespace Conf {
     public const string APP_ID = "@app_id@";
-    public const string APP_NAME = _("Daikhan");
     public const string VERSION = "@version@";
     public const string LOCALE_DIR = "@locale_dir@";
     public const string GSCHEMA_PATH = "@gschema_path@";
+    public const string GETTEXT_DOMAIN = "@gettext_domain@";
+    public const string DEV_PROFILE = "@profile@";
+
+    private string? _app_name = null;
+    public string app_name() {
+        if (_app_name != null) {
+            return _app_name;
+        }
+
+        _app_name = _("Daikhan");
+        if (DEV_PROFILE == "devel") {
+            _app_name = _("Daikhan (Dev)");
+        } else if (DEV_PROFILE == "beta") {
+            _app_name = _("Daikhan (Beta)");
+        } else if (DEV_PROFILE != "stable") {
+            _app_name += @" ($DEV_PROFILE)";
+        }
+
+        return _app_name;
+    }
 }

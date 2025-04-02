@@ -13,7 +13,7 @@ public class Daikhan.WelcomeView : Adw.Bin {
     }
 
     construct {
-        status.title = Conf.APP_NAME;
+        status.title = Conf.app_name ();
 
         player = Daikhan.Player.get_default ();
         state_mem = new Settings (Conf.APP_ID + ".state");

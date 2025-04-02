@@ -8,7 +8,7 @@ deps = [
   dep_xxhash,
 ]
 
-executable('daikhan-content-id', sources,
+executable(exe_name + '-content-id', sources,
            dependencies: deps,
            win_subsystem: 'windows',
            install: true)

@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Name=Daikhan
+Name=@app_name@
 GenericName=Media player
 Comment=Play Videos/Music with style
-Exec=daikhan %U
+Exec=@exe_name@ %U
 Terminal=false
 Icon=@app_id@
 Categories=AudioVideo;Player;
