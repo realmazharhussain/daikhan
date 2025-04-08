@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2025-04-03 01:25+0500\n"
-"PO-Revision-Date: 2023-08-31 07:52+0000\n"
-"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
+"PO-Revision-Date: 2025-04-08 12:01+0000\n"
+"Last-Translator: polarwood <polarwood@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/daikhan/"
 "translations/tr/>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0.1-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #. Translators: Please, ignore this!
 #: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:10
@@ -41,6 +41,8 @@ msgid ""
 "A simple yet powerful media player with a beautiful interface. It has nice "
 "keyboard shortcuts, session restore capabilities, and much more."
 msgstr ""
+"Güzel bir arayüze sahip, basit fakat güçlü bir medya oynatıcı. Hoş klavye "
+"kısayolları, oturumu geri getirme kabiliyeti, ve çok daha fazlasına sahip."
 
 #: data/daikhan.metainfo.xml.in:20
 msgid ""
@@ -52,19 +54,19 @@ msgstr ""
 
 #: data/daikhan.metainfo.xml.in:40
 msgid "Playing a video"
-msgstr ""
+msgstr "Video oynatılıyor"
 
 #: data/daikhan.metainfo.xml.in:44
 msgid "Playing a video (fullscreen)"
-msgstr ""
+msgstr "Video oynatılıyor (tam ekran)"
 
 #: data/daikhan.metainfo.xml.in:48
 msgid "Playing a video (dark mode)"
-msgstr ""
+msgstr "Video oynatılıyor (karanlık mod)"
 
 #: data/daikhan.metainfo.xml.in:52
 msgid "Playing a video (dark mode, fullscreen)"
-msgstr ""
+msgstr "Video oynatılıyor (karanlık mod, tam ekran)"
 
 #: src/ActionDialog.vala:13
 msgid "No"
@@ -110,25 +112,19 @@ msgstr "Desteklenmeyen Kod Çözücü"
 #: src/AppWindow.vala:122
 #, c-format
 msgid "Encoding of one or more streams in '%s' is not supported."
-msgstr ""
+msgstr "'%s' içindeki bir ya da daha fazla akışın kodlanması destekli değil."
 
 #: src/Conf.vala.in:15
-#, fuzzy
-#| msgid "About Daikhan"
 msgid "Daikhan"
-msgstr "Daikhan Hakkında"
+msgstr "Daikhan"
 
 #: src/Conf.vala.in:17
-#, fuzzy
-#| msgid "About Daikhan"
 msgid "Daikhan (Dev)"
-msgstr "Daikhan Hakkında"
+msgstr "Daikhan (Geliştirici)"
 
 #: src/Conf.vala.in:19
-#, fuzzy
-#| msgid "About Daikhan"
 msgid "Daikhan (Beta)"
-msgstr "Daikhan Hakkında"
+msgstr "Daikhan (Beta)"
 
 #: src/ErrorDialog.blp:21
 msgid "Report Bug"
@@ -136,21 +132,13 @@ msgstr "Hata Bildir"
 
 #: src/ErrorDialog.vala:10
 msgid "Error"
-msgstr ""
+msgstr "Hata"
 
 #: src/ErrorDialog.vala:11
-#, fuzzy
-#| msgid ""
-#| "Encoding of one or more streams in '%s' is not supported.\n"
-#| "\n"
-#| "If this is unexpected, please, file a bug report with the following debug "
-#| "information.\n"
 msgid ""
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
-"'%s' bir ya da daha fazla akışın kodlanması desteklemiyor.\n"
-"\n"
 "Beklenmedik bir durumda aşağıdaki hata ayıklama bilgilerini içeren bir hata "
 "bildirin.\n"
 
@@ -168,7 +156,7 @@ msgstr ""
 
 #: src/PreferencesWindow.blp:15
 msgid "Show controls/UI elements on top of the video"
-msgstr ""
+msgstr "Videonun üstünde kontroller/UI öğeleri göster"
 
 #: src/PreferencesWindow.blp:20
 msgid "Behavior"
@@ -263,16 +251,12 @@ msgid "Decrease Volume (2%)"
 msgstr "Sesi Azalt (%2)"
 
 #: src/Shortcuts.blp:80
-#, fuzzy
-#| msgid "Seek Forward (10s)"
 msgid "Seek Forward (1 min)"
-msgstr "İleri Sar (10sn)"
+msgstr "İleri Sar (1 dk)"
 
 #: src/Shortcuts.blp:85
-#, fuzzy
-#| msgid "Seek Backwards (10s)"
 msgid "Seek Backwards (1 min)"
-msgstr "Geri Sar (10sn)"
+msgstr "Geri Sar (1 dk)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
