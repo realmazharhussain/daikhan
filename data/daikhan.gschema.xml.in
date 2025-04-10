@@ -1,4 +1,4 @@
-<schemalist gettext-domain="daikhan">
+<schemalist gettext-domain="@exe_name@">
   <schema id="@app_id@" path="@gschema_path@">
 
      <key name="color-scheme" type="s">
