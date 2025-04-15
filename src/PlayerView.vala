@@ -73,6 +73,7 @@ public class Daikhan.PlayerView : Adw.Bin {
 
             top.reveal_child = !fullscreened;
             bottom.reveal_child = !fullscreened;
+            this.cursor = none_cursor;
         });
 
         notify["fullscreened"].connect (update_layout);
@@ -91,8 +92,6 @@ public class Daikhan.PlayerView : Adw.Bin {
         var ctrlr = new Gtk.EventControllerMotion ();
         ctrlr.motion.connect (cursor_motion_cb);
         this.add_controller (ctrlr);
-
-        this.cursor = none_cursor;
 
         add_motion_timeout (500,
             () => { // Callback for when the cursor stops moving
