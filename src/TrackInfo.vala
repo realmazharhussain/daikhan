@@ -5,7 +5,7 @@ public class Daikhan.TrackInfo : Object {
     public File? image { get; private set; }
     public File? image_square { get; private set; }
 
-    public weak Gst.Pipeline pipeline { get; construct; }
+    public dynamic weak Gst.Pipeline pipeline { get; construct; }
 
     construct {
         reset ();
@@ -142,9 +142,17 @@ public class Daikhan.TrackInfo : Object {
     }
 
     private async File save_pixbuf_to_tmp (Gdk.Pixbuf pixbuf) throws Error {
-        FileIOStream file_io;
-        var file = yield File.new_tmp_async (null, Priority.DEFAULT, null, out file_io);
-        yield pixbuf.save_to_stream_async (file_io.output_stream, "jpeg", null, "quality", "80", null);
+        var app_runtime_dir = File.new_for_path (Environment.get_user_runtime_dir () + "/app/" + Conf.APP_ID);
+        if (!app_runtime_dir.query_exists (null)) {
+            app_runtime_dir.make_directory_with_parents (null);
+        }
+
+        var current_uri = (string) pipeline.current_uri;
+        var filename = XXH.v3_128bits (current_uri.data).to_string ();
+        var file = app_runtime_dir.get_child (filename);
+        var stream = yield file.replace_async (null, false, FileCreateFlags.NONE, Priority.DEFAULT, null);
+        yield pixbuf.save_to_stream_async (stream, "jpeg", null, "quality", "80", null);
+
         return file;
     }
 
