@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2025-04-03 01:25+0500\n"
-"PO-Revision-Date: 2025-04-02 21:04+0000\n"
-"Last-Translator: Mazhar Hussain <realmazharhussain@gmail.com>\n"
+"PO-Revision-Date: 2025-04-20 10:01+0000\n"
+"Last-Translator: burns <ahoradocafezinho@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "daikhan/translations/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 #. Translators: Please, ignore this!
 #: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:10
@@ -41,15 +41,15 @@ msgid ""
 "A simple yet powerful media player with a beautiful interface. It has nice "
 "keyboard shortcuts, session restore capabilities, and much more."
 msgstr ""
-"Um reprodutor de mídia simples, mas poderoso com uma bela interface. Ele tem "
-"atalhos de teclado, restauração de sessão e muito mais."
+"Um reprodutor de mídia simples, mas poderoso, com uma bela interface. Ele "
+"tem atalhos de teclado, restauração de sessão e muito mais."
 
 #: data/daikhan.metainfo.xml.in:20
 msgid ""
 "NOTE: The app is in early stages of development and bound to change "
 "significantly in the future."
 msgstr ""
-"NOTA: O programa está em fases iniciais de desenvolvimento e pode mudar "
+"NOTA: O aplicativo está em fases iniciais de desenvolvimento e pode mudar "
 "significativamente no futuro."
 
 #: data/daikhan.metainfo.xml.in:40
