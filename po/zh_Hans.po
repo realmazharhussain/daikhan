@@ -8,13 +8,16 @@ msgstr ""
 "Project-Id-Version: daikhan 0.1-alpha3\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2025-04-03 01:25+0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-04-20 04:04+0000\n"
+"Last-Translator: Nanling Zheng <neithern@outlook.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
+"projects/daikhan/translations/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 #. Translators: Please, ignore this!
 #: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:10
@@ -23,89 +26,90 @@ msgstr ""
 
 #: data/daikhan.desktop.in:4
 msgid "Media player"
-msgstr ""
+msgstr "媒体播放器"
 
 #: data/daikhan.desktop.in:5 data/daikhan.metainfo.xml.in:11
 msgid "Play Videos/Music with style"
-msgstr ""
+msgstr "播放视频/音乐时尽显风格"
 
 #: data/daikhan.metainfo.xml.in:12
 msgid "Mazhar Hussain"
-msgstr ""
+msgstr "Mazhar Hussain"
 
 #: data/daikhan.metainfo.xml.in:17
 msgid ""
 "A simple yet powerful media player with a beautiful interface. It has nice "
 "keyboard shortcuts, session restore capabilities, and much more."
-msgstr ""
+msgstr "这是一款界面美观、功能强大、操作简单的媒体播放器。它有漂亮的键盘快捷键、会话"
+"恢复功能等。"
 
 #: data/daikhan.metainfo.xml.in:20
 msgid ""
 "NOTE: The app is in early stages of development and bound to change "
 "significantly in the future."
-msgstr ""
+msgstr "注意：该应用程序正处于早期开发阶段，将来一定会有很大变化。"
 
 #: data/daikhan.metainfo.xml.in:40
 msgid "Playing a video"
-msgstr ""
+msgstr "播放视频"
 
 #: data/daikhan.metainfo.xml.in:44
 msgid "Playing a video (fullscreen)"
-msgstr ""
+msgstr "播放视频（全屏）"
 
 #: data/daikhan.metainfo.xml.in:48
 msgid "Playing a video (dark mode)"
-msgstr ""
+msgstr "播放视频（暗色模式）"
 
 #: data/daikhan.metainfo.xml.in:52
 msgid "Playing a video (dark mode, fullscreen)"
-msgstr ""
+msgstr "播放视频（暗色模式、全屏）"
 
 #: src/ActionDialog.vala:13
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: src/ActionDialog.vala:14
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: src/AppMenuButton.blp:6
 msgid "Preferences"
-msgstr ""
+msgstr "首选项"
 
 #: src/AppMenuButton.blp:7
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "键盘快捷键"
 
 #: src/AppMenuButton.blp:8
 msgid "About Daikhan"
-msgstr ""
+msgstr "关于 Daikhan"
 
 #: src/AppWindow.vala:104
 msgid "Resume playback?"
-msgstr ""
+msgstr "恢复播放？"
 
 #: src/AppWindow.vala:111
 msgid "Unsupported File Type"
-msgstr ""
+msgstr "不支持的文件类型"
 
 #: src/AppWindow.vala:112
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
-msgstr ""
+msgstr "文件'%s'不是音频或视频文件。"
 
 #: src/AppWindow.vala:113 src/ErrorDialog.blp:22
 msgid "OK"
-msgstr ""
+msgstr "确定"
 
 #: src/AppWindow.vala:120
 msgid "Unsupported Codec"
-msgstr ""
+msgstr "不支持的编解码器"
 
 #: src/AppWindow.vala:122
 #, c-format
 msgid "Encoding of one or more streams in '%s' is not supported."
-msgstr ""
+msgstr "不支持'%s'中一个或多个数据流的编码。"
 
 #: src/Conf.vala.in:15
 msgid "Daikhan"
@@ -121,205 +125,205 @@ msgstr ""
 
 #: src/ErrorDialog.blp:21
 msgid "Report Bug"
-msgstr ""
+msgstr "报告缺陷"
 
 #: src/ErrorDialog.vala:10
 msgid "Error"
-msgstr ""
+msgstr "错误"
 
 #: src/ErrorDialog.vala:11
 msgid ""
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
-msgstr ""
+msgstr "如果出现意外情况，请提交错误报告，并提供以下调试信息。\n"
 
 #: src/PreferencesWindow.blp:7
 msgid "Appearance"
-msgstr ""
+msgstr "外观"
 
 #: src/PreferencesWindow.blp:10
 msgid "Color Scheme"
-msgstr ""
+msgstr "配色方案"
 
 #: src/PreferencesWindow.blp:14
 msgid "Overlay UI"
-msgstr ""
+msgstr "覆盖式用户界面"
 
 #: src/PreferencesWindow.blp:15
 msgid "Show controls/UI elements on top of the video"
-msgstr ""
+msgstr "在视频顶部显示控件/用户界面元素"
 
 #: src/PreferencesWindow.blp:20
 msgid "Behavior"
-msgstr ""
+msgstr "行为"
 
 #: src/PreferencesWindow.blp:24
 msgid "Seeking Method"
-msgstr ""
+msgstr "定位方法"
 
 #: src/PreferencesWindow.vala:17
 msgid "Follow System"
-msgstr ""
+msgstr "跟随系统"
 
 #: src/PreferencesWindow.vala:18
 msgid "Light"
-msgstr ""
+msgstr "亮色"
 
 #: src/PreferencesWindow.vala:19
 msgid "Dark"
-msgstr ""
+msgstr "暗色"
 
 #: src/PreferencesWindow.vala:22
 msgid "Fast"
-msgstr ""
+msgstr "快速"
 
 #: src/PreferencesWindow.vala:23
 msgid "Balanced"
-msgstr ""
+msgstr "均衡"
 
 #: src/PreferencesWindow.vala:24
 msgid "Accurate"
-msgstr ""
+msgstr "精确"
 
 #: src/Shortcuts.blp:8
 msgid "Application"
-msgstr ""
+msgstr "应用程序"
 
 #: src/Shortcuts.blp:11
 msgid "Open Preferences"
-msgstr ""
+msgstr "打开首选项"
 
 #: src/Shortcuts.blp:16
 msgid "Show Keyboard Shortcuts"
-msgstr ""
+msgstr "显示键盘快捷键"
 
 #: src/Shortcuts.blp:21
 msgid "Quit"
-msgstr ""
+msgstr "退出"
 
 #: src/Shortcuts.blp:27
 msgid "Playback"
-msgstr ""
+msgstr "播放"
 
 #: src/Shortcuts.blp:30
 msgid "Toggle Fullscreen"
-msgstr ""
+msgstr "切换全屏"
 
 #: src/Shortcuts.blp:35
 msgid "Play/Pause"
-msgstr ""
+msgstr "播放/暂停"
 
 #: src/Shortcuts.blp:40
 msgid "Seek Forward (10s)"
-msgstr ""
+msgstr "快进（10秒）"
 
 #: src/Shortcuts.blp:45
 msgid "Seek Backwards (10s)"
-msgstr ""
+msgstr "快退（10秒）"
 
 #: src/Shortcuts.blp:50
 msgid "Increase Volume (5%)"
-msgstr ""
+msgstr "音量加（5%）"
 
 #: src/Shortcuts.blp:55
 msgid "Decrease Volume (5%)"
-msgstr ""
+msgstr "音量减（5%）"
 
 #: src/Shortcuts.blp:60
 msgid "Seek Forward (3s)"
-msgstr ""
+msgstr "快进（3秒）"
 
 #: src/Shortcuts.blp:65
 msgid "Seek Backwards (3s)"
-msgstr ""
+msgstr "快退（3秒）"
 
 #: src/Shortcuts.blp:70
 msgid "Increase Volume (2%)"
-msgstr ""
+msgstr "音量加（2%）"
 
 #: src/Shortcuts.blp:75
 msgid "Decrease Volume (2%)"
-msgstr ""
+msgstr "音量减（2%）"
 
 #: src/Shortcuts.blp:80
 msgid "Seek Forward (1 min)"
-msgstr ""
+msgstr "快进（1分钟）"
 
 #: src/Shortcuts.blp:85
 msgid "Seek Backwards (1 min)"
-msgstr ""
+msgstr "快退（1分钟）"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
-msgstr ""
+msgstr "音频"
 
 #: src/StreamMenuBuilder.vala:19
 msgid "Subtitles"
-msgstr ""
+msgstr "字幕"
 
 #: src/StreamMenuBuilder.vala:20
 msgid "Video"
-msgstr ""
+msgstr "视频"
 
 #: src/StreamMenuBuilder.vala:28
 msgid "Repeat"
-msgstr ""
+msgstr "重复"
 
 #: src/StreamMenuBuilder.vala:29 src/StreamMenuBuilder.vala:89
 #: src/StreamMenuBuilder.vala:121
 msgid "Off"
-msgstr ""
+msgstr "关闭"
 
 #: src/StreamMenuBuilder.vala:30
 msgid "Single File"
-msgstr ""
+msgstr "单个文件"
 
 #: src/StreamMenuBuilder.vala:31
 msgid "Whole Queue"
-msgstr ""
+msgstr "整个队列"
 
 #: src/StreamMenuBuilder.vala:103
 msgid "Unknown Language"
-msgstr ""
+msgstr "未知语言"
 
 #: src/StreamMenuBuilder.vala:124
 msgid "On"
-msgstr ""
+msgstr "开启"
 
 #. Translators: Keep %i as is. It will be replaced by the track number for each track.
 #: src/StreamMenuBuilder.vala:127
 #, c-format
 msgid "Track %i"
-msgstr ""
+msgstr "轨道%i"
 
 #: src/WelcomeView.blp:17
 msgid "You can drop files here to play"
-msgstr ""
+msgstr "您可以将文件放在这里播放"
 
 #: src/WelcomeView.blp:25
 msgid "Open Files"
-msgstr ""
+msgstr "打开文件"
 
 #: src/WelcomeView.blp:32
 msgid "Play Again"
-msgstr ""
+msgstr "再次播放"
 
 #: src/WelcomeView.blp:40
 msgid "Continue where you left off"
-msgstr ""
+msgstr "继续之前的活动"
 
 #: src/WelcomeView.blp:55
 msgid "All Files"
-msgstr ""
+msgstr "所有文件"
 
 #: src/WelcomeView.blp:60
 msgid "Video & Audio Files"
-msgstr ""
+msgstr "视频和音频文件"
 
 #: src/WelcomeView.blp:65
 msgid "Video Files"
-msgstr ""
+msgstr "视频文件"
 
 #: src/WelcomeView.blp:70
 msgid "Audio Files"
-msgstr ""
+msgstr "音频文件"
