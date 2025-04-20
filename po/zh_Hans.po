@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan 0.1-alpha3\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2025-04-03 01:25+0500\n"
-"PO-Revision-Date: 2025-04-20 04:04+0000\n"
+"PO-Revision-Date: 2025-04-20 05:02+0000\n"
 "Last-Translator: Nanling Zheng <neithern@outlook.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/daikhan/translations/zh_Hans/>\n"
@@ -120,8 +120,9 @@ msgid "Daikhan (Dev)"
 msgstr ""
 
 #: src/Conf.vala.in:19
+#, fuzzy
 msgid "Daikhan (Beta)"
-msgstr ""
+msgstr "Daikhan (Beta)"
 
 #: src/ErrorDialog.blp:21
 msgid "Report Bug"
