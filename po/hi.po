@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
-"POT-Creation-Date: 2025-03-09 00:44+0500\n"
+"POT-Creation-Date: 2025-04-03 01:25+0500\n"
 "PO-Revision-Date: 2024-05-07 18:07+0000\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/daikhan/"
@@ -19,31 +19,30 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 5.5.4-rc\n"
 
-#: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:9
-#, fuzzy
-#| msgid "About Daikhan"
-msgid "Daikhan"
-msgstr "Daikhan के बारे में"
+#. Translators: Please, ignore this!
+#: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:10
+msgid "@app_name@"
+msgstr ""
 
 #: data/daikhan.desktop.in:4
 msgid "Media player"
 msgstr "मीडिया प्लेयर"
 
-#: data/daikhan.desktop.in:5 data/daikhan.metainfo.xml.in:10
+#: data/daikhan.desktop.in:5 data/daikhan.metainfo.xml.in:11
 msgid "Play Videos/Music with style"
 msgstr "अंदाज़ के साथ वीडियो/संगीत चलाएं"
 
-#: data/daikhan.metainfo.xml.in:11 src/Application.vala:106
+#: data/daikhan.metainfo.xml.in:12
 msgid "Mazhar Hussain"
 msgstr "मजहर हुसैन"
 
-#: data/daikhan.metainfo.xml.in:16
+#: data/daikhan.metainfo.xml.in:17
 msgid ""
 "A simple yet powerful media player with a beautiful interface. It has nice "
 "keyboard shortcuts, session restore capabilities, and much more."
 msgstr ""
 
-#: data/daikhan.metainfo.xml.in:19
+#: data/daikhan.metainfo.xml.in:20
 msgid ""
 "NOTE: The app is in early stages of development and bound to change "
 "significantly in the future."
@@ -51,19 +50,19 @@ msgstr ""
 "ध्यान दें: ऐप विकास के प्रारंभिक चरण में है और भविष्य में इसमें महत्वपूर्ण बदलाव होने की "
 "संभावना है।"
 
-#: data/daikhan.metainfo.xml.in:39
+#: data/daikhan.metainfo.xml.in:40
 msgid "Playing a video"
 msgstr ""
 
-#: data/daikhan.metainfo.xml.in:43
+#: data/daikhan.metainfo.xml.in:44
 msgid "Playing a video (fullscreen)"
 msgstr ""
 
-#: data/daikhan.metainfo.xml.in:47
+#: data/daikhan.metainfo.xml.in:48
 msgid "Playing a video (dark mode)"
 msgstr ""
 
-#: data/daikhan.metainfo.xml.in:51
+#: data/daikhan.metainfo.xml.in:52
 msgid "Playing a video (dark mode, fullscreen)"
 msgstr ""
 
@@ -74,14 +73,6 @@ msgstr "नहीं"
 #: src/ActionDialog.vala:14
 msgid "Yes"
 msgstr "हाँ"
-
-#: src/Application.vala:103 src/Title.vala:20 src/WelcomeView.blp:17
-msgid "Daikhan (Early Access)"
-msgstr "Daikhan (प्रारंभिक पहुंच)"
-
-#: src/Application.vala:104
-msgid "Copyright 2022-2023 Mazhar Hussain"
-msgstr "कॉपीराइट 2022-2023 मजहर हुसैन"
 
 #: src/AppMenuButton.blp:6
 msgid "Preferences"
@@ -95,31 +86,49 @@ msgstr "कीबोर्ड शॉर्टकट"
 msgid "About Daikhan"
 msgstr "Daikhan के बारे में"
 
-#: src/AppWindow.vala:100
+#: src/AppWindow.vala:104
 msgid "Resume playback?"
 msgstr "प्लेबैक वापस चालू करें?"
 
-#: src/AppWindow.vala:107
+#: src/AppWindow.vala:111
 msgid "Unsupported File Type"
 msgstr "असमर्थित फाइल प्रकार"
 
-#: src/AppWindow.vala:108
+#: src/AppWindow.vala:112
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
 msgstr "फाइल '%s' कोई ऑडियो या वीडियो फाइल नहीं है।"
 
-#: src/AppWindow.vala:109 src/ErrorDialog.blp:22
+#: src/AppWindow.vala:113 src/ErrorDialog.blp:22
 msgid "OK"
 msgstr "ठीक है"
 
-#: src/AppWindow.vala:116
+#: src/AppWindow.vala:120
 msgid "Unsupported Codec"
 msgstr "असमर्थित कोडेक"
 
-#: src/AppWindow.vala:118
+#: src/AppWindow.vala:122
 #, c-format
 msgid "Encoding of one or more streams in '%s' is not supported."
 msgstr ""
+
+#: src/Conf.vala.in:15
+#, fuzzy
+#| msgid "About Daikhan"
+msgid "Daikhan"
+msgstr "Daikhan के बारे में"
+
+#: src/Conf.vala.in:17
+#, fuzzy
+#| msgid "About Daikhan"
+msgid "Daikhan (Dev)"
+msgstr "Daikhan के बारे में"
+
+#: src/Conf.vala.in:19
+#, fuzzy
+#| msgid "About Daikhan"
+msgid "Daikhan (Beta)"
+msgstr "Daikhan के बारे में"
 
 #: src/ErrorDialog.blp:21
 msgid "Report Bug"
@@ -308,37 +317,43 @@ msgstr "चालू"
 msgid "Track %i"
 msgstr "ट्रैक %i"
 
-#: src/WelcomeView.blp:18
+#: src/WelcomeView.blp:17
 msgid "You can drop files here to play"
 msgstr "आप चलाने के लिए फाइलें यहां छोड़ सकते हैं"
 
-#: src/WelcomeView.blp:26
+#: src/WelcomeView.blp:25
 msgid "Open Files"
 msgstr "फाइल खोलें"
 
-#: src/WelcomeView.blp:33
+#: src/WelcomeView.blp:32
 msgid "Play Again"
 msgstr "फिर से चालू करें"
 
-#: src/WelcomeView.blp:41
+#: src/WelcomeView.blp:40
 msgid "Continue where you left off"
 msgstr "जहां छोड़ा था वहीं से जारी रखें"
 
-#: src/WelcomeView.blp:56
+#: src/WelcomeView.blp:55
 msgid "All Files"
 msgstr "सभी फाइलें"
 
-#: src/WelcomeView.blp:61
+#: src/WelcomeView.blp:60
 msgid "Video & Audio Files"
 msgstr "वीडियो और ऑडियो फाइलें"
 
-#: src/WelcomeView.blp:66
+#: src/WelcomeView.blp:65
 msgid "Video Files"
 msgstr "वीडियो फाइलें"
 
-#: src/WelcomeView.blp:71
+#: src/WelcomeView.blp:70
 msgid "Audio Files"
 msgstr "ऑडियो फाइलें"
+
+#~ msgid "Daikhan (Early Access)"
+#~ msgstr "Daikhan (प्रारंभिक पहुंच)"
+
+#~ msgid "Copyright 2022-2023 Mazhar Hussain"
+#~ msgstr "कॉपीराइट 2022-2023 मजहर हुसैन"
 
 #~ msgid "A simple media player with beautiful interface."
 #~ msgstr "सुंदर इंटरफ़ेस वाला एक सरल मीडिया प्लेयर।"

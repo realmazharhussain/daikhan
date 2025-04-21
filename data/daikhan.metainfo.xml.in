@@ -6,6 +6,7 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
   <translation type="gettext">@exe_name@</translation>
 
+  <!-- Translators: Please, ignore this! -->
   <name>@app_name@</name>
   <summary>Play Videos/Music with style</summary>
   <developer id="realmazharhussain.github.io"><name>Mazhar Hussain</name></developer>developer>

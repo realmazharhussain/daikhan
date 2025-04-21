@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
-"POT-Creation-Date: 2025-03-09 00:44+0500\n"
-"PO-Revision-Date: 2023-08-31 07:52+0000\n"
-"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
+"POT-Creation-Date: 2025-04-03 01:25+0500\n"
+"PO-Revision-Date: 2025-04-08 12:01+0000\n"
+"Last-Translator: polarwood <polarwood@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/daikhan/"
 "translations/tr/>\n"
 "Language: tr\n"
@@ -17,33 +17,34 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0.1-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
-#: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:9
-#, fuzzy
-#| msgid "About Daikhan"
-msgid "Daikhan"
-msgstr "Daikhan Hakkında"
+#. Translators: Please, ignore this!
+#: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:10
+msgid "@app_name@"
+msgstr ""
 
 #: data/daikhan.desktop.in:4
 msgid "Media player"
 msgstr "Ortam oynatıcı"
 
-#: data/daikhan.desktop.in:5 data/daikhan.metainfo.xml.in:10
+#: data/daikhan.desktop.in:5 data/daikhan.metainfo.xml.in:11
 msgid "Play Videos/Music with style"
 msgstr "Video/Müzik oynatırken stiliniz olsun"
 
-#: data/daikhan.metainfo.xml.in:11 src/Application.vala:106
+#: data/daikhan.metainfo.xml.in:12
 msgid "Mazhar Hussain"
 msgstr "Mazhar Hussain"
 
-#: data/daikhan.metainfo.xml.in:16
+#: data/daikhan.metainfo.xml.in:17
 msgid ""
 "A simple yet powerful media player with a beautiful interface. It has nice "
 "keyboard shortcuts, session restore capabilities, and much more."
 msgstr ""
+"Güzel bir arayüze sahip, basit fakat güçlü bir medya oynatıcı. Hoş klavye "
+"kısayolları, oturumu geri getirme kabiliyeti, ve çok daha fazlasına sahip."
 
-#: data/daikhan.metainfo.xml.in:19
+#: data/daikhan.metainfo.xml.in:20
 msgid ""
 "NOTE: The app is in early stages of development and bound to change "
 "significantly in the future."
@@ -51,21 +52,21 @@ msgstr ""
 "NOT: Bu uygulama henüz geliştirme aşamasının başında olup gelecekte büyük "
 "değişiklikler geçirmesi mümkündür."
 
-#: data/daikhan.metainfo.xml.in:39
+#: data/daikhan.metainfo.xml.in:40
 msgid "Playing a video"
-msgstr ""
+msgstr "Video oynatılıyor"
 
-#: data/daikhan.metainfo.xml.in:43
+#: data/daikhan.metainfo.xml.in:44
 msgid "Playing a video (fullscreen)"
-msgstr ""
+msgstr "Video oynatılıyor (tam ekran)"
 
-#: data/daikhan.metainfo.xml.in:47
+#: data/daikhan.metainfo.xml.in:48
 msgid "Playing a video (dark mode)"
-msgstr ""
+msgstr "Video oynatılıyor (karanlık mod)"
 
-#: data/daikhan.metainfo.xml.in:51
+#: data/daikhan.metainfo.xml.in:52
 msgid "Playing a video (dark mode, fullscreen)"
-msgstr ""
+msgstr "Video oynatılıyor (karanlık mod, tam ekran)"
 
 #: src/ActionDialog.vala:13
 msgid "No"
@@ -74,14 +75,6 @@ msgstr "Hayır"
 #: src/ActionDialog.vala:14
 msgid "Yes"
 msgstr "Evet"
-
-#: src/Application.vala:103 src/Title.vala:20 src/WelcomeView.blp:17
-msgid "Daikhan (Early Access)"
-msgstr "Daikhan (Erken Erişim)"
-
-#: src/Application.vala:104
-msgid "Copyright 2022-2023 Mazhar Hussain"
-msgstr "Telif Hakkı 2022-2023 Mazhar Hussain"
 
 #: src/AppMenuButton.blp:6
 msgid "Preferences"
@@ -95,31 +88,43 @@ msgstr "Klavye Kısayolları"
 msgid "About Daikhan"
 msgstr "Daikhan Hakkında"
 
-#: src/AppWindow.vala:100
+#: src/AppWindow.vala:104
 msgid "Resume playback?"
 msgstr "Oynatma sürdürülsün mü?"
 
-#: src/AppWindow.vala:107
+#: src/AppWindow.vala:111
 msgid "Unsupported File Type"
 msgstr "Desteklenmeyen Dosya Türü"
 
-#: src/AppWindow.vala:108
+#: src/AppWindow.vala:112
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
 msgstr "'%s' ses ya da video dosyası değil."
 
-#: src/AppWindow.vala:109 src/ErrorDialog.blp:22
+#: src/AppWindow.vala:113 src/ErrorDialog.blp:22
 msgid "OK"
 msgstr "Tamam"
 
-#: src/AppWindow.vala:116
+#: src/AppWindow.vala:120
 msgid "Unsupported Codec"
 msgstr "Desteklenmeyen Kod Çözücü"
 
-#: src/AppWindow.vala:118
+#: src/AppWindow.vala:122
 #, c-format
 msgid "Encoding of one or more streams in '%s' is not supported."
-msgstr ""
+msgstr "'%s' içindeki bir ya da daha fazla akışın kodlanması destekli değil."
+
+#: src/Conf.vala.in:15
+msgid "Daikhan"
+msgstr "Daikhan"
+
+#: src/Conf.vala.in:17
+msgid "Daikhan (Dev)"
+msgstr "Daikhan (Geliştirici)"
+
+#: src/Conf.vala.in:19
+msgid "Daikhan (Beta)"
+msgstr "Daikhan (Beta)"
 
 #: src/ErrorDialog.blp:21
 msgid "Report Bug"
@@ -127,21 +132,13 @@ msgstr "Hata Bildir"
 
 #: src/ErrorDialog.vala:10
 msgid "Error"
-msgstr ""
+msgstr "Hata"
 
 #: src/ErrorDialog.vala:11
-#, fuzzy
-#| msgid ""
-#| "Encoding of one or more streams in '%s' is not supported.\n"
-#| "\n"
-#| "If this is unexpected, please, file a bug report with the following debug "
-#| "information.\n"
 msgid ""
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
-"'%s' bir ya da daha fazla akışın kodlanması desteklemiyor.\n"
-"\n"
 "Beklenmedik bir durumda aşağıdaki hata ayıklama bilgilerini içeren bir hata "
 "bildirin.\n"
 
@@ -159,7 +156,7 @@ msgstr ""
 
 #: src/PreferencesWindow.blp:15
 msgid "Show controls/UI elements on top of the video"
-msgstr ""
+msgstr "Videonun üstünde kontroller/UI öğeleri göster"
 
 #: src/PreferencesWindow.blp:20
 msgid "Behavior"
@@ -254,16 +251,12 @@ msgid "Decrease Volume (2%)"
 msgstr "Sesi Azalt (%2)"
 
 #: src/Shortcuts.blp:80
-#, fuzzy
-#| msgid "Seek Forward (10s)"
 msgid "Seek Forward (1 min)"
-msgstr "İleri Sar (10sn)"
+msgstr "İleri Sar (1 dk)"
 
 #: src/Shortcuts.blp:85
-#, fuzzy
-#| msgid "Seek Backwards (10s)"
 msgid "Seek Backwards (1 min)"
-msgstr "Geri Sar (10sn)"
+msgstr "Geri Sar (1 dk)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
@@ -308,37 +301,43 @@ msgstr "Açık"
 msgid "Track %i"
 msgstr "Parça %i"
 
-#: src/WelcomeView.blp:18
+#: src/WelcomeView.blp:17
 msgid "You can drop files here to play"
 msgstr "Oynatılacak dosyaları buraya bırakabilirsiniz"
 
-#: src/WelcomeView.blp:26
+#: src/WelcomeView.blp:25
 msgid "Open Files"
 msgstr "Dosya Aç"
 
-#: src/WelcomeView.blp:33
+#: src/WelcomeView.blp:32
 msgid "Play Again"
 msgstr "Yeniden Oynat"
 
-#: src/WelcomeView.blp:41
+#: src/WelcomeView.blp:40
 msgid "Continue where you left off"
 msgstr "Kaldığı yerden devam et"
 
-#: src/WelcomeView.blp:56
+#: src/WelcomeView.blp:55
 msgid "All Files"
 msgstr "Tüm Dosyalar"
 
-#: src/WelcomeView.blp:61
+#: src/WelcomeView.blp:60
 msgid "Video & Audio Files"
 msgstr "Video ve Ses Dosyaları"
 
-#: src/WelcomeView.blp:66
+#: src/WelcomeView.blp:65
 msgid "Video Files"
 msgstr "Video Dosyaları"
 
-#: src/WelcomeView.blp:71
+#: src/WelcomeView.blp:70
 msgid "Audio Files"
 msgstr "Ses Dosyaları"
+
+#~ msgid "Daikhan (Early Access)"
+#~ msgstr "Daikhan (Erken Erişim)"
+
+#~ msgid "Copyright 2022-2023 Mazhar Hussain"
+#~ msgstr "Telif Hakkı 2022-2023 Mazhar Hussain"
 
 #~ msgid "A simple media player with beautiful interface."
 #~ msgstr "Güzel arayüze sahip basit bir ortam oynatıcı."
