@@ -1,3 +1,10 @@
+0.1-alpha4
+==========
+* Hide cursor on fullscreen
+* Flatpak: Fix cover image not working in system player controls
+* Allow side-by-side installations of Dev, Beta, Stable
+* Update dev flatpak manifest
+
 0.1-alpha3
 ==========
 * Fix unintended cursor motion actions
