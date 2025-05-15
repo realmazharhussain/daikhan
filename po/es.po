@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2025-04-03 01:25+0500\n"
-"PO-Revision-Date: 2025-05-15 09:01+0000\n"
+"PO-Revision-Date: 2025-05-15 10:02+0000\n"
 "Last-Translator: LordTenebrous <danielmorenoperez836@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/daikhan/"
 "translations/es/>\n"
@@ -41,6 +41,9 @@ msgid ""
 "A simple yet powerful media player with a beautiful interface. It has nice "
 "keyboard shortcuts, session restore capabilities, and much more."
 msgstr ""
+"Un reproductor multimedia simple pero potente con una hermosa interfaz. "
+"Tiene atajos de teclado agradable, capacidades de restauración de sesión, y "
+"mucho más."
 
 #: data/daikhan.metainfo.xml.in:20
 msgid ""
@@ -110,7 +113,7 @@ msgstr "Códec no soportado"
 #: src/AppWindow.vala:122
 #, c-format
 msgid "Encoding of one or more streams in '%s' is not supported."
-msgstr ""
+msgstr "No se admite la codificación de uno o más flujos en '%s."
 
 #: src/Conf.vala.in:15
 msgid "Daikhan"
