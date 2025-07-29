@@ -36,6 +36,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
             {"text", null, "i", "0", select_text_cb},
             {"video", null, "i", "0", select_video_cb},
             {"toggle_fullscreen", toggle_fullscreen_cb},
+            {"exit_fullscreen", exit_fullscreen_cb},
         };
 
         add_action_entries (entries, this);
@@ -218,6 +219,10 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
     void toggle_fullscreen_cb () {
         fullscreened = (stack.visible_child == welcome_view) ? false : !fullscreened;
+    }
+
+    void exit_fullscreen_cb () {
+        fullscreened = false;
     }
 
     public void save_state () {
