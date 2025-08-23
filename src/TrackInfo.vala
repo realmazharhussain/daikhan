@@ -71,7 +71,7 @@ public class Daikhan.TrackInfo : Object {
             image = yield save_pixbuf_to_tmp (rotated_pixbuf);
 
             var cropped_pixbuf = get_cropped_image (rotated_pixbuf);
-            image_square = yield save_pixbuf_to_tmp (cropped_pixbuf);
+            image_square = yield save_pixbuf_to_tmp (cropped_pixbuf, "-cropped");
 
             yield delete_file (file);
             foreach (var item in old_files) { yield delete_file (item); }
@@ -141,14 +141,14 @@ public class Daikhan.TrackInfo : Object {
         return new Gdk.Pixbuf.subpixbuf (pixbuf, x_offset, y_offset, min_side, min_side);
     }
 
-    private async File save_pixbuf_to_tmp (Gdk.Pixbuf pixbuf) throws Error {
+    private async File save_pixbuf_to_tmp (Gdk.Pixbuf pixbuf, string suffix = "") throws Error {
         var app_runtime_dir = File.new_for_path (Environment.get_user_runtime_dir () + "/app/" + Conf.APP_ID);
         if (!app_runtime_dir.query_exists (null)) {
             app_runtime_dir.make_directory_with_parents (null);
         }
 
         var current_uri = (string) pipeline.current_uri;
-        var filename = XXH.v3_128bits (current_uri.data).to_string ();
+        var filename = XXH.v3_128bits (current_uri.data).to_string () + suffix;
         var file = app_runtime_dir.get_child (filename);
         var stream = yield file.replace_async (null, false, FileCreateFlags.NONE, Priority.DEFAULT, null);
         yield pixbuf.save_to_stream_async (stream, "jpeg", null, "quality", "80", null);
