@@ -27,10 +27,12 @@ add_project_dependencies(
 
 dep_adw = dependency('libadwaita-1', version: '>=1.6.0')
 dep_gdk_pixbuf = dependency('gdk-pixbuf-2.0')
+dep_gee = dependency('gee-0.8')
 dep_gio = dependency('gio-2.0')
 dep_gst = dependency('gstreamer-1.0')
 dep_gst_audio = dependency('gstreamer-audio-1.0')
 dep_gst_tag = dependency('gstreamer-tag-1.0')
+dep_sqlte3 = dependency('sqlite3')
 dep_xxhash = dependency('libxxhash')
 
 dependency('gstgtk4')   # Has no header or vaapi file

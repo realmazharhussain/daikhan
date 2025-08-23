@@ -29,6 +29,12 @@ public class Daikhan.History {
         var statedir = Environment.get_user_state_dir () + "/daikhan";
         var path = statedir + "/history";
         file = File.new_for_path (path);
+        try {
+            var db = new Database ();
+            db.get_version ();
+        } catch (Error err) {
+            warning(err.message);
+        }
     }
 
     public static History get_default () {

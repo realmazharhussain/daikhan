@@ -51,11 +51,13 @@ sources = [config_file] + blueprints + resources + files(
   'AppWindow.vala',
   'ComboRow.vala',
   'ContentId.vala',
+  'Database.vala',
   'DurationLabel.vala',
   'DropTarget.vala',
   'ErrorDialog.vala',
   'GestureDragWindow.vala',
   'History.vala',
+  'LibDB.vala',
   'MediaControls.vala',
   'MPRIS.vala',
   'PillButton.vala',
@@ -85,9 +87,11 @@ endif
 deps = [
   dep_adw,
   dep_gdk_pixbuf,
+  dep_gee,
   dep_gst,
   dep_gst_audio,
   dep_gst_tag,
+  dep_sqlte3,
   dep_xxhash
 ]
 
