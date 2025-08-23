@@ -1,3 +1,4 @@
+
 public class Daikhan.HistoryRecord {
     public string uri_hash;
     public string content_id;
@@ -22,13 +23,14 @@ public class Daikhan.HistoryRecord {
 internal unowned Daikhan.History? default_history;
 
 public class Daikhan.History {
-    SList<Daikhan.HistoryRecord> data;
-    File file;
+    Database db;
 
     private History () {
-        var statedir = Environment.get_user_state_dir () + "/daikhan";
-        var path = statedir + "/history";
-        file = File.new_for_path (path);
+        try {
+            db = new Database ();
+        } catch (Error err) {
+            warning(err.message);
+        }
     }
 
     public static History get_default () {
@@ -37,9 +39,19 @@ public class Daikhan.History {
     }
 
     public void load () throws Error {
+        if (db.db_version_previous == 0) {
+            migrate_from_text_file_to_db ();
+        }
+    }
+
+    public void migrate_from_text_file_to_db () throws Error {
         const int LENGTH_OF_HASH_STRING = 32;
-        data = new SList<Daikhan.HistoryRecord> ();
         DataInputStream istream;
+
+        var data = new SList<Daikhan.HistoryRecord> ();
+        var statedir = Environment.get_user_state_dir () + "/daikhan";
+        var path = statedir + "/history";
+        var file = File.new_for_path (path);
 
         try {
             var base_stream = file.read ();
@@ -77,6 +89,12 @@ public class Daikhan.History {
         }
 
         data.reverse ();
+
+        foreach (var record in data) {
+            db.save_record (record);
+        }
+
+        file.delete ();
     }
 
     public Daikhan.HistoryRecord? find (string uri) {
@@ -92,72 +110,20 @@ public class Daikhan.History {
         }
 
         if (content_id != null) {
-            record = find_by_content_id (content_id);
+            record = db.find_record_by_content_id (content_id);
         }
 
         if (record == null) {
             var uri_hash = XXH.v3_128bits (uri.data).to_string ();
-            record = find_by_uri_hash (uri_hash);
+            record = db.find_record_by_uri_hash (uri_hash);
         }
 
         return record;
     }
 
-    private Daikhan.HistoryRecord? find_by_content_id (string content_id) {
-        foreach (var record in data) {
-            if (record.content_id == content_id) {
-                return record;
-            }
-        }
-
-        return null;
-    }
-
-    private Daikhan.HistoryRecord? find_by_uri_hash (string uri_hash) {
-        foreach (var record in data) {
-            if (record.uri_hash == uri_hash) {
-                return record;
-            }
-        }
-
-        return null;
-    }
-
     public void update (Daikhan.HistoryRecord current) {
-        var previous = find_by_content_id (current.content_id)
-                       ?? find_by_uri_hash (current.uri_hash);
-
-        if (previous != null && previous.uri_hash == current.uri_hash &&
-            (previous.content_id == "" || previous.content_id == current.content_id))
-        {
-            data.remove (previous);
-        }
-
-        data.prepend (current);
-    }
-
-    public void save () throws Error {
-        FileOutputStream ostream;
-
-        try {
-            ostream = file.replace (null, false, NONE);
-        } catch (IOError.NOT_FOUND err) {
-            file.get_parent ().make_directory_with_parents ();
-            ostream = file.replace (null, false, NONE);
-        }
-
-        foreach (var record in data) {
-            var id = record.uri_hash + ":" + record.content_id;
-            var progress = record.progress.to_string ();
-            var audio_track = record.audio_track.to_string ();
-            var text_track = record.text_track.to_string ();
-            var video_track = record.video_track.to_string ();
-
-            var line = string.join (",", id, progress, audio_track, text_track, video_track) + "\n";
-            ostream.write (line.data);
-        }
-
-        ostream.close ();
+        db.remove_records (current.content_id, current.uri_hash);
+        db.save_record (current);
     }
 
     string unescape_str (string input) {

@@ -17,6 +17,25 @@ class Daikhan.Application : Adw.Application {
         return get_active_window () as Daikhan.AppWindow ?? new Daikhan.AppWindow (this);
     }
 
+    public static File? get_data_dir() {
+        var path = Environment.get_user_data_dir ();
+        var file = File.new_for_path (path);
+        if (!(Conf.APP_ID in path)) {
+            file = file.get_child (Conf.APP_ID) ;
+        }
+
+        try {
+            file.make_directory_with_parents ();
+        } catch (IOError.EXISTS err) {
+            // Nothing to do
+        } catch (Error err) {
+            critical ("Failed to create app data dir: %s", path);
+            return null;
+        }
+
+        return file;
+    }
+
     public override void activate () {
         var win = get_main_window ();
         win.present ();
@@ -104,13 +123,6 @@ class Daikhan.Application : Adw.Application {
 
     public override void shutdown () {
         get_main_window ().close ();
-
-        try {
-            playback_history.save ();
-        } catch (Error e) {
-            warning ("Error occured while saving history: %s", e.message);
-        }
-
         base.shutdown ();
     }
 }
