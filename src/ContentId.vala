@@ -2,6 +2,20 @@ internal const int SEGMENT_SIZE = 16 * 1024;    // 16 KiB
 internal const int SIZE_OF_FILE_SIZE = (int) sizeof (int64);
 
 namespace Daikhan.ContentId {
+    public string? for_file_or_warning(File file) {
+        if (!file.has_uri_scheme ("file")) {
+            return null;
+        }
+
+        try {
+            return for_file (file);
+        } catch (Error err) {
+            warning ("%s", err.message);
+        }
+
+        return null;
+    }
+
     public string for_path (string path) throws Error {
         var file = File.new_for_path (path);
         return for_file (file);

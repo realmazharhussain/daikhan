@@ -30,12 +30,28 @@ public class Daikhan.Player : Daikhan.PlaybinProxy {
         load_track (0);
     }
 
+    private bool content_matches_current_item(int track_index) {
+        if (current_record == null) {
+            // nothing is playing
+             return false;
+        }
+
+        var new_item = queue[track_index];
+
+        if (new_item.get_uri () == (string) pipeline.current_uri) {
+            return true;
+        }
+
+        var new_content_id = ContentId.for_file_or_warning (new_item);
+        return new_content_id == current_record.content_id != null;
+    }
+
     public bool load_track (int track_index) {
         if (track_index < -1 || track_index >= queue.length) {
             return false;
         } else if (track_index == current_track == -1) {
             return true;
-        } else if (track_index >= 0 && queue[track_index].get_uri () == (string) pipeline.current_uri) {
+        } else if (track_index >= 0 && content_matches_current_item (track_index)) {
             current_track = track_index;
             return true;
         }
