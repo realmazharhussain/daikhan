@@ -52,7 +52,6 @@ class Daikhan.Application : Adw.Application {
 
         ActionEntry[] entries = {
             {"preferences", preferences_cb},
-            {"show_shortcuts", show_shortcuts_cb},
             {"about", about_cb},
             {"quit", quit},
         };
@@ -60,7 +59,6 @@ class Daikhan.Application : Adw.Application {
         add_action_entries (entries, this);
 
         set_accels_for_action ("app.preferences", {"<Ctrl>comma"});
-        set_accels_for_action ("app.show_shortcuts", {"<Ctrl>question"});
         set_accels_for_action ("app.quit", {"<Ctrl>q", "q"});
         set_accels_for_action ("win.exit_fullscreen", {"Escape"});
         set_accels_for_action ("win.toggle_fullscreen", {"f"});
@@ -104,14 +102,6 @@ class Daikhan.Application : Adw.Application {
     void preferences_cb () {
       pref_win = new Daikhan.PreferencesWindow ();
       pref_win.present (active_window);
-    }
-
-    Adw.Dialog shortcuts_dialog;
-
-    void show_shortcuts_cb () {
-      var builder = new Gtk.Builder.from_resource ("/app/Shortcuts.ui");
-      shortcuts_dialog = (Adw.Dialog) builder.get_object ("shortcuts_dialog");
-      shortcuts_dialog.present (get_active_window ());
     }
 
     void about_cb () {

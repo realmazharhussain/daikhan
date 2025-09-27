@@ -11,7 +11,7 @@
     <file preprocess="xml-stripblanks">PillButton.ui</file>
     <file preprocess="xml-stripblanks">PlayerView.ui</file>
     <file preprocess="xml-stripblanks">PreferencesWindow.ui</file>
-    <file preprocess="xml-stripblanks">Shortcuts.ui</file>
+    <file preprocess="xml-stripblanks">shortcuts-dialog.ui</file>
     <file preprocess="xml-stripblanks">VolumeButton.ui</file>
     <file preprocess="xml-stripblanks">WelcomeView.ui</file>
     <file preprocess="xml-stripblanks" alias="metainfo.xml">../data/@app_id@.metainfo.xml</file>

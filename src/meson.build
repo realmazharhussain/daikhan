@@ -20,7 +20,7 @@ blp_sources = files('AppWindow.blp',
                     'PillButton.blp',
                     'PlayerView.blp',
                     'PreferencesWindow.blp',
-                    'Shortcuts.blp',
+                    'shortcuts-dialog.blp',
                     'VolumeButton.blp',
                     'WelcomeView.blp',
                     )
