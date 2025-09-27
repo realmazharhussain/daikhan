@@ -1,95 +1,93 @@
 using Gtk 4.0;
+using Adw 1;
 
-ShortcutsWindow shortcuts_window {
-  modal: true;
+Adw.ShortcutsDialog shortcuts_dialog {
 
-  ShortcutsSection {
-    ShortcutsGroup {
-      title: _("Application");
+  Adw.ShortcutsSection {
+    title: _("Application");
 
-      ShortcutsShortcut{
-        title: _("Open Preferences");
-        accelerator: "<Ctrl>comma";
-      }
-
-      ShortcutsShortcut{
-        title: _("Show Keyboard Shortcuts");
-        accelerator: "<Ctrl>question";
-      }
-
-      ShortcutsShortcut{
-        title: _("Quit");
-        accelerator: "<Ctrl>Q Q";
-      }
+    Adw.ShortcutsItem {
+      title: _("Open Preferences");
+      accelerator: "<Ctrl>comma";
     }
 
-    ShortcutsGroup {
-      title: _("Playback");
+    Adw.ShortcutsItem {
+      title: _("Show Keyboard Shortcuts");
+      accelerator: "<Ctrl>question";
+    }
 
-      ShortcutsShortcut{
-        title: _("Exit Fullscreen");
-        accelerator: "Escape";
-      }
+    Adw.ShortcutsItem {
+      title: _("Quit");
+      accelerator: "<Ctrl>Q Q";
+    }
+  }
 
-      ShortcutsShortcut{
-        title: _("Toggle Fullscreen");
-        accelerator: "F";
-      }
+  Adw.ShortcutsSection {
+    title: _("Playback");
 
-      ShortcutsShortcut{
-        title: _("Play/Pause");
-        accelerator: "space";
-      }
+    Adw.ShortcutsItem {
+      title: _("Exit Fullscreen");
+      accelerator: "Escape";
+    }
 
-      ShortcutsShortcut{
-        title: _("Seek Forward (10s)");
-        accelerator: "Right H";
-      }
+    Adw.ShortcutsItem {
+      title: _("Toggle Fullscreen");
+      accelerator: "F";
+    }
 
-      ShortcutsShortcut{
-        title: _("Seek Backwards (10s)");
-        accelerator: "Left L";
-      }
+    Adw.ShortcutsItem {
+      title: _("Play/Pause");
+      accelerator: "space";
+    }
 
-      ShortcutsShortcut{
-        title: _("Increase Volume (5%)");
-        accelerator: "Up K";
-      }
+    Adw.ShortcutsItem {
+      title: _("Seek Forward (10s)");
+      accelerator: "Right H";
+    }
 
-      ShortcutsShortcut{
-        title: _("Decrease Volume (5%)");
-        accelerator: "Down J";
-      }
+    Adw.ShortcutsItem {
+      title: _("Seek Backwards (10s)");
+      accelerator: "Left L";
+    }
 
-      ShortcutsShortcut{
-        title: _("Seek Forward (3s)");
-        accelerator: "<Shift>Right <Shift>H";
-      }
+    Adw.ShortcutsItem {
+      title: _("Increase Volume (5%)");
+      accelerator: "Up K";
+    }
 
-      ShortcutsShortcut{
-        title: _("Seek Backwards (3s)");
-        accelerator: "<Shift>Left <Shift>L";
-      }
+    Adw.ShortcutsItem {
+      title: _("Decrease Volume (5%)");
+      accelerator: "Down J";
+    }
 
-      ShortcutsShortcut{
-        title: _("Increase Volume (2%)");
-        accelerator: "<Shift>Up <Shift>K";
-      }
+    Adw.ShortcutsItem {
+      title: _("Seek Forward (3s)");
+      accelerator: "<Shift>Right <Shift>H";
+    }
 
-      ShortcutsShortcut{
-        title: _("Decrease Volume (2%)");
-        accelerator: "<Shift>Down <Shift>J";
-      }
+    Adw.ShortcutsItem {
+      title: _("Seek Backwards (3s)");
+      accelerator: "<Shift>Left <Shift>L";
+    }
 
-      ShortcutsShortcut{
-        title: _("Seek Forward (1 min)");
-        accelerator: "<Ctrl>Right <Ctrl>H";
-      }
+    Adw.ShortcutsItem {
+      title: _("Increase Volume (2%)");
+      accelerator: "<Shift>Up <Shift>K";
+    }
 
-      ShortcutsShortcut{
-        title: _("Seek Backwards (1 min)");
-        accelerator: "<Ctrl>Left <Ctrl>L";
-      }
+    Adw.ShortcutsItem {
+      title: _("Decrease Volume (2%)");
+      accelerator: "<Shift>Down <Shift>J";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Seek Forward (1 min)");
+      accelerator: "<Ctrl>Right <Ctrl>H";
+    }
+
+    Adw.ShortcutsItem {
+      title: _("Seek Backwards (1 min)");
+      accelerator: "<Ctrl>Left <Ctrl>L";
     }
   }
 }
