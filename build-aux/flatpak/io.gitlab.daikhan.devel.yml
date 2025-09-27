@@ -1,12 +1,12 @@
 app-id: io.gitlab.daikhan.devel
 command: daikhan-devel
 runtime: org.gnome.Platform
-runtime-version: "48"
+runtime-version: "49"
 sdk: org.gnome.Sdk
 
 add-extensions:
   org.freedesktop.Platform.ffmpeg-full:
-    version: '24.08'
+    version: '25.08'
     directory: lib/ffmpeg
     add-ld-path: "."
     no-autodownload: false
@@ -48,16 +48,6 @@ cleanup-commands:
   - mkdir -p /app/lib/ffmpeg
 
 modules:
-  - name: blueprint-compiler
-    builddir: true
-    buildsystem: meson
-    sources:
-      - type: archive
-        url: https://gitlab.gnome.org/jwestman/blueprint-compiler/-/archive/v0.16.0/blueprint-compiler-v0.16.0.tar.bz2
-        sha256: 77a5d593f433c8ca70a05390532cd186c60944cfa6bcd39296c1c2597a7a50fc
-    cleanup:
-      - "*"
-
   - name: xxHash
     buildsystem: simple
     sources:
