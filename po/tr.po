@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2025-04-03 01:25+0500\n"
-"PO-Revision-Date: 2025-04-08 12:01+0000\n"
-"Last-Translator: polarwood <polarwood@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2025-08-29 16:01+0000\n"
+"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/daikhan/"
 "translations/tr/>\n"
 "Language: tr\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.13.1-dev\n"
 
 #. Translators: Please, ignore this!
 #: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:10
 msgid "@app_name@"
-msgstr ""
+msgstr "@app_name@"
 
 #: data/daikhan.desktop.in:4
 msgid "Media player"
@@ -152,7 +152,7 @@ msgstr "Renk Şeması"
 
 #: src/PreferencesWindow.blp:14
 msgid "Overlay UI"
-msgstr ""
+msgstr "Üst Katman Kullanıcı Arayüzü"
 
 #: src/PreferencesWindow.blp:15
 msgid "Show controls/UI elements on top of the video"

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2025-04-03 01:25+0500\n"
-"PO-Revision-Date: 2025-04-02 22:08+0000\n"
-"Last-Translator: Priit Jõerüüt <hwlate@joeruut.com>\n"
+"PO-Revision-Date: 2025-09-07 12:01+0000\n"
+"Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/daikhan/"
 "translations/et/>\n"
 "Language: et\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #. Translators: Please, ignore this!
 #: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:10
 msgid "@app_name@"
-msgstr ""
+msgstr "@app_name@"
 
 #: data/daikhan.desktop.in:4
 msgid "Media player"
@@ -59,7 +59,7 @@ msgstr "Esitame videot"
 
 #: data/daikhan.metainfo.xml.in:44
 msgid "Playing a video (fullscreen)"
-msgstr "Esitame videot (täisekraanivaates)"
+msgstr "Esitame videot (täisekraanvaates)"
 
 #: data/daikhan.metainfo.xml.in:48
 msgid "Playing a video (dark mode)"
