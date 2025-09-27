@@ -1,3 +1,11 @@
+0.1-alpha5
+==========
+* Press Escape to exit fullscreen
+* Update keyboard shortcuts dialog to the new adaptive design
+* Fix album art cropped on pausing playback
+* Flatpak: Fix re-opening the same file not working as intended
+* Migrate playback history from custom CSV file to an Sqlite database
+
 0.1-alpha4
 ==========
 * Hide cursor on fullscreen
