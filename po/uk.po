@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: daikhan 0.1-alpha3\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2025-04-03 01:25+0500\n"
-"PO-Revision-Date: 2025-10-20 04:52+0000\n"
-"Last-Translator: Данило Юдченко <yudchenko.dania@gmail.com>\n"
+"PO-Revision-Date: 2025-10-30 06:02+0000\n"
+"Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/daikhan/"
 "translations/uk/>\n"
 "Language: uk\n"
@@ -19,12 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural="
 "(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? "
 "1 : 2);\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #. Translators: Please, ignore this!
 #: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:10
 msgid "@app_name@"
-msgstr ""
+msgstr "@app_name@"
 
 #: data/daikhan.desktop.in:4
 msgid "Media player"
@@ -165,9 +165,8 @@ msgid "Behavior"
 msgstr "Поведінка"
 
 #: src/PreferencesWindow.blp:24
-#, fuzzy
 msgid "Seeking Method"
-msgstr "Пошукова Метода"
+msgstr "Метод пошуку"
 
 #: src/PreferencesWindow.vala:17
 msgid "Follow System"
@@ -283,12 +282,10 @@ msgid "Off"
 msgstr "Вимк."
 
 #: src/StreamMenuBuilder.vala:30
-#, fuzzy
 msgid "Single File"
-msgstr "Один Файл"
+msgstr "Один файл"
 
 #: src/StreamMenuBuilder.vala:31
-#, fuzzy
 msgid "Whole Queue"
 msgstr "Уся Черга"
 
@@ -311,7 +308,6 @@ msgid "You can drop files here to play"
 msgstr "Скидуйте сюди ваші файли для відтворення"
 
 #: src/WelcomeView.blp:25
-#, fuzzy
 msgid "Open Files"
 msgstr "Відкрити Файли"
 
