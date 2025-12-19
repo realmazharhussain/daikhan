@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2025-04-03 01:25+0500\n"
-"PO-Revision-Date: 2023-09-22 17:03+0000\n"
+"PO-Revision-Date: 2025-12-19 15:00+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/daikhan/"
 "translations/oc/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.15.1\n"
 
 #. Translators: Please, ignore this!
 #: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:10
@@ -41,6 +41,8 @@ msgid ""
 "A simple yet powerful media player with a beautiful interface. It has nice "
 "keyboard shortcuts, session restore capabilities, and much more."
 msgstr ""
+"Un lector multimèdia simple mas potent amb una interfàcia bèla. A de bons "
+"acorchis de clavièr, la capacitat de restaurar la session, e fòrça mai."
 
 #: data/daikhan.metainfo.xml.in:20
 msgid ""
@@ -51,19 +53,19 @@ msgstr ""
 
 #: data/daikhan.metainfo.xml.in:40
 msgid "Playing a video"
-msgstr ""
+msgstr "Lectura d'una vidèo"
 
 #: data/daikhan.metainfo.xml.in:44
 msgid "Playing a video (fullscreen)"
-msgstr ""
+msgstr "Lectura d'una vidèo (ecran complèt)"
 
 #: data/daikhan.metainfo.xml.in:48
 msgid "Playing a video (dark mode)"
-msgstr ""
+msgstr "Lectura d'una vidèo (mòde escur)"
 
 #: data/daikhan.metainfo.xml.in:52
 msgid "Playing a video (dark mode, fullscreen)"
-msgstr ""
+msgstr "Lectura d'una vidèo (mode escur en mòde ecran complèt)"
 
 #: src/ActionDialog.vala:13
 msgid "No"
@@ -109,25 +111,19 @@ msgstr "Codèc pas pres en carga"
 #: src/AppWindow.vala:122
 #, c-format
 msgid "Encoding of one or more streams in '%s' is not supported."
-msgstr ""
+msgstr "L'encodatge d'un o mai d'un flux de « %s » es pas pres en carga."
 
 #: src/Conf.vala.in:15
-#, fuzzy
-#| msgid "About Daikhan"
 msgid "Daikhan"
-msgstr "A prepaus de Daikhan"
+msgstr "Daikhan"
 
 #: src/Conf.vala.in:17
-#, fuzzy
-#| msgid "About Daikhan"
 msgid "Daikhan (Dev)"
-msgstr "A prepaus de Daikhan"
+msgstr "Daikhan (Dev)"
 
 #: src/Conf.vala.in:19
-#, fuzzy
-#| msgid "About Daikhan"
 msgid "Daikhan (Beta)"
-msgstr "A prepaus de Daikhan"
+msgstr "Daikhan (Beta)"
 
 #: src/ErrorDialog.blp:21
 msgid "Report Bug"
@@ -135,21 +131,13 @@ msgstr "Senhalar una avaria"
 
 #: src/ErrorDialog.vala:10
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: src/ErrorDialog.vala:11
-#, fuzzy
-#| msgid ""
-#| "Encoding of one or more streams in '%s' is not supported.\n"
-#| "\n"
-#| "If this is unexpected, please, file a bug report with the following debug "
-#| "information.\n"
 msgid ""
 "If this is unexpected, please, file a bug report with the following debug "
 "information.\n"
 msgstr ""
-"L’encodatge d’un o mai d’un flux dins « %s » es pas pres en carga.\n"
-"\n"
 "Se vos plau, s’aquò es pas previst, enviatz un senhalament d’avaria amb las "
 "entresenhas de desbugatge.\n"
 
@@ -163,11 +151,11 @@ msgstr "Jòc de colors"
 
 #: src/PreferencesWindow.blp:14
 msgid "Overlay UI"
-msgstr ""
+msgstr "Interfàcia utilizaire en subreimpression"
 
 #: src/PreferencesWindow.blp:15
 msgid "Show controls/UI elements on top of the video"
-msgstr ""
+msgstr "Afichar las comandas/los elements d'interfàcia dessús la vidèo"
 
 #: src/PreferencesWindow.blp:20
 msgid "Behavior"
@@ -262,16 +250,12 @@ msgid "Decrease Volume (2%)"
 msgstr "Reduire lo volum (2%)"
 
 #: src/Shortcuts.blp:80
-#, fuzzy
-#| msgid "Seek Forward (10s)"
 msgid "Seek Forward (1 min)"
-msgstr "Avançar (10 seg.)"
+msgstr "Avançar (1 min)"
 
 #: src/Shortcuts.blp:85
-#, fuzzy
-#| msgid "Seek Backwards (10s)"
 msgid "Seek Backwards (1 min)"
-msgstr "Recular (10 seg.)"
+msgstr "Recular (1 min)"
 
 #: src/StreamMenuBuilder.vala:18
 msgid "Audio"
