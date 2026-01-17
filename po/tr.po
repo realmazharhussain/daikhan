@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daikhan pre-alpha\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2025-04-03 01:25+0500\n"
-"PO-Revision-Date: 2025-08-29 16:01+0000\n"
+"PO-Revision-Date: 2026-01-17 20:01+0000\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/daikhan/"
 "translations/tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13.1-dev\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. Translators: Please, ignore this!
 #: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:10
@@ -268,7 +268,7 @@ msgstr "Alt Yazılar"
 
 #: src/StreamMenuBuilder.vala:20
 msgid "Video"
-msgstr "Vidyo"
+msgstr "Video"
 
 #: src/StreamMenuBuilder.vala:28
 msgid "Repeat"
