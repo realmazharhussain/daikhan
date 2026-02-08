@@ -43,7 +43,7 @@ public class Daikhan.Player : Daikhan.PlaybinProxy {
         }
 
         var new_content_id = ContentId.for_file_or_warning (new_item);
-        return new_content_id == current_record.content_id != null;
+        return new_content_id  != null && new_content_id == current_record.content_id;
     }
 
     public bool load_track (int track_index) {
