@@ -4,14 +4,6 @@ runtime: org.gnome.Platform
 runtime-version: "49"
 sdk: org.gnome.Sdk
 
-add-extensions:
-  org.freedesktop.Platform.ffmpeg-full:
-    version: '25.08'
-    directory: lib/ffmpeg
-    add-ld-path: "."
-    no-autodownload: false
-    autodelete: false
-
 finish-args:
   - --share=ipc
   - --share=network
@@ -32,7 +24,6 @@ cleanup:
   - /man
   - /share/aclocal
   - /share/doc
-  - /share/ffmpeg/examples
   - /share/gir-1.0
   - /share/gstreamer-1.0
   - /share/gst-plugins-base
@@ -43,9 +34,6 @@ cleanup:
   - /share/vpl/examples
   - '*.la'
   - '*.a'
-
-cleanup-commands:
-  - mkdir -p /app/lib/ffmpeg
 
 modules:
   - name: xxHash
