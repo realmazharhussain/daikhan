@@ -61,7 +61,7 @@ class Daikhan.Application : Adw.Application {
         set_accels_for_action ("app.preferences", {"<Ctrl>comma"});
         set_accels_for_action ("app.quit", {"<Ctrl>q", "q"});
         set_accels_for_action ("win.exit_fullscreen", {"Escape"});
-        set_accels_for_action ("win.toggle_fullscreen", {"f"});
+        set_accels_for_action ("win.toggle_fullscreen", {"f", "F11"});
         set_accels_for_action ("win.play_pause", {"space"});
         set_accels_for_action ("win.seek(+10)", {"Right", "l"});
         set_accels_for_action ("win.seek(-10)", {"Left", "h"});
