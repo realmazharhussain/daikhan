@@ -74,6 +74,12 @@
   </supports>
 
   <releases>
+    <release version="0.1~alpha6" date="2026-02-08" type="development">
+      <url>https://gitlab.com/daikhan/daikhan/-/releases/0.1-alpha6</url>
+      <description translatable="no" translate="no">
+        <p>Added an additional F11 shortcut to toggle fullscreen, and opening multiple files works again.</p>
+      </description>
+    </release>
     <release version="0.1~alpha5" date="2025-09-27" type="development">
       <url>https://gitlab.com/daikhan/daikhan/-/releases/0.1-alpha5</url>
       <description translatable="no" translate="no">
