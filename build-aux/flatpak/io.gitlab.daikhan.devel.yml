@@ -13,39 +13,7 @@ finish-args:
   - --socket=pulseaudio
   - --own-name=org.mpris.MediaPlayer2.daikhan
 
-cleanup:
-  - /etc
-  - /include
-  - /libexec
-  - /lib/cmake
-  - /lib/girepository-1.0
-  - /lib/gstreamer-1.0/include
-  - /lib/pkgconfig
-  - /man
-  - /share/aclocal
-  - /share/doc
-  - /share/gir-1.0
-  - /share/gstreamer-1.0
-  - /share/gst-plugins-base
-  - /share/gtk-doc
-  - /share/info
-  - /share/man
-  - /share/pkgconfig
-  - /share/vpl/examples
-  - '*.la'
-  - '*.a'
-
 modules:
-  - name: xxHash
-    buildsystem: simple
-    sources:
-      - type: archive
-        url: https://github.com/Cyan4973/xxHash/archive/refs/tags/v0.8.3.tar.gz
-        sha256: aae608dfe8213dfd05d909a57718ef82f30722c392344583d3f39050c7f29a80
-    build-commands:
-      - make PREFIX=/app
-      - make PREFIX=/app install
-
   - name: daikhan
     builddir: true
     buildsystem: meson
