@@ -184,6 +184,14 @@ public class Daikhan.PlayerView : Adw.Bin {
         return false;
     }
 
+    void destroy_motion_timeouts () {
+        foreach (var src in timeout_sources) {
+            if (!src.is_destroyed ()) {
+                src.destroy ();
+            }
+        }
+    }
+
     void do_motion_stuff (double x, double y) {
 
         // Run motion callbacks
@@ -191,11 +199,7 @@ public class Daikhan.PlayerView : Adw.Bin {
             timeout.motion_callback ();
 
         // Destroy any pending timeouts
-        foreach (var src in timeout_sources) {
-            if (!src.is_destroyed ()) {
-                src.destroy ();
-            }
-        }
+        destroy_motion_timeouts ();
 
         timeout_sources = null;
 
@@ -236,6 +240,7 @@ public class Daikhan.PlayerView : Adw.Bin {
             gesture.set_state (CLAIMED);
             gesture.reset ();
         } else if (n_press == 1 && (fullscreened || settings.get_boolean ("overlay-ui"))) {
+            destroy_motion_timeouts ();
             click_timeout_source = new TimeoutSource (250);
             click_timeout_source.set_callback (() => {
                 top.reveal_child = !top.reveal_child;
