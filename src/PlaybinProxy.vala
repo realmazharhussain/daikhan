@@ -28,7 +28,7 @@ public class Daikhan.PlaybinProxy : Object {
     }
 
     public dynamic Gst.Pipeline pipeline { get; private construct; }
-    public dynamic Gdk.Paintable paintable { get; private construct; }
+    public dynamic Gtk.Widget video { get; private set; }
     public Daikhan.TrackInfo track_info { get; private construct; }
     public Daikhan.HistoryRecord? current_record { get; private set; default = null; }
     public TargetState target_state { get; set; default = STOPPED; }
@@ -46,20 +46,16 @@ public class Daikhan.PlaybinProxy : Object {
 
     Settings settings;
 
+    static construct {
+        typeof (Clapper.GtkVideo).ensure ();
+    }
+
     construct {
         settings = new Settings (Conf.APP_ID);
-        dynamic var gtksink = Gst.ElementFactory.make ("gtk4paintablesink", null);
-
         pipeline = Gst.ElementFactory.make ("playbin", null) as Gst.Pipeline;
-        paintable = gtksink.paintable;
 
-        if (paintable.gl_context != null) {
-            dynamic var glsink = Gst.ElementFactory.make ("glsinkbin", null);
-            glsink.sink = gtksink;
-            pipeline.video_sink = glsink;
-        } else {
-            pipeline.video_sink = gtksink;
-        }
+        settings.changed["clapper-sink"].connect (sink_changed_cb);
+        sink_changed_cb ();
 
         track_info = new Daikhan.TrackInfo (pipeline);
 
@@ -223,6 +219,27 @@ public class Daikhan.PlaybinProxy : Object {
             ensure_progress_tracking ();
         } else {
             stop_progress_tracking ();
+        }
+    }
+
+    void sink_changed_cb () {
+        var use_clapper_sink = settings.get_boolean ("clapper-sink");
+
+        dynamic Gst.Element? gtksink;
+        if (use_clapper_sink && Gst.ElementFactory.find ("clappersink") != null) {
+            gtksink = Gst.ElementFactory.make ("clappersink", null);
+            video = gtksink.widget;
+        } else {
+            gtksink = Gst.ElementFactory.make ("gtk4paintablesink", null);
+            video = new Gtk.Picture.for_paintable (gtksink.paintable);
+        }
+
+        if (use_clapper_sink || video.paintable.gl_context != null) {
+            dynamic var glsink = Gst.ElementFactory.make ("glsinkbin", null);
+            glsink.sink = gtksink;
+            pipeline.video_sink = glsink;
+        } else {
+            pipeline.video_sink = gtksink;
         }
     }
 

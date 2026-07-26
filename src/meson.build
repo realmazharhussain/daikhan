@@ -49,6 +49,7 @@ sources = [config_file] + blueprints + resources + files(
   'Application.vala',
   'AppMenuButton.vala',
   'AppWindow.vala',
+  'ClapperGtkVideo.vala',
   'ComboRow.vala',
   'ContentId.vala',
   'Database.vala',

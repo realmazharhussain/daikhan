@@ -23,6 +23,10 @@
        </choices>
      </key>
 
+     <key name="clapper-sink" type="b">
+       <default>true</default>
+     </key>
+
   </schema>
 
 

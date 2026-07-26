@@ -14,6 +14,17 @@ finish-args:
   - --own-name=org.mpris.MediaPlayer2.daikhan
 
 modules:
+  - name: clapper
+    builddir: true
+    buildsystem: meson
+    config-opts:
+      - -Dclapper=disabled
+      - -Dintrospection=disabled
+    sources:
+      - type: archive
+        url: https://github.com/Rafostar/clapper/archive/refs/tags/0.10.0.tar.gz
+        sha256: 344c0f20e540a63c6fb44cdd5de88c168ed145bb66c1307e79b2b08124780118
+
   - name: daikhan
     builddir: true
     buildsystem: meson

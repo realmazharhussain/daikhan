@@ -19,9 +19,17 @@ template $DaikhanPreferencesWindow : Adw.PreferencesDialog {
     Adw.PreferencesGroup {
       title: _("Behavior");
 
-
       $DaikhanComboRow seeking_combo {
         title: _("Seeking Method");
+      }
+    }
+
+    Adw.PreferencesGroup experimental_group {
+      title: _("Experimental");
+
+      Adw.SwitchRow clapper_sink_switch {
+        title: _("Use Clapper's Video Sink");
+        subtitle: _("Clapper has more accurate colors");
       }
     }
   }

@@ -23,7 +23,6 @@ public class Daikhan.PlayerView : Adw.Bin {
     [GtkChild] unowned Gtk.Widget empty;
     [GtkChild] unowned Adw.Spinner spinner;
     [GtkChild] unowned Gtk.Image icon;
-    [GtkChild] unowned Gtk.Picture video;
     [GtkChild] unowned Gtk.GraphicsOffload video_offload;
 
     [GtkChild] unowned Gtk.Revealer top;
@@ -53,6 +52,7 @@ public class Daikhan.PlayerView : Adw.Bin {
         dynamic Object pipeline = player.pipeline;
 
         player.track_info.notify["image"].connect (content_cb);
+        player.notify["video"].connect (content_cb);
         player.notify["flags"].connect (content_cb);
         player.notify["state"].connect (content_cb);
         pipeline.audio_changed.connect (content_cb);
@@ -273,12 +273,12 @@ public class Daikhan.PlayerView : Adw.Bin {
         }
 
         if (VIDEO in player.flags && n_video > 0) {
-            video.paintable = player.paintable;
+            video_offload.child = player.video;
             video_offload["black-background"] = true;
             content.visible_child = video_offload;
         } else if (n_audio > 0) {
             if (image_paintable != null) {
-                video.paintable = image_paintable;
+                video_offload.child = new Gtk.Picture.for_paintable (image_paintable);
                 video_offload["black-background"] = false;
                 content.visible_child = video_offload;
             } else {
