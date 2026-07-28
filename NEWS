@@ -1,3 +1,10 @@
+0.1-alpha7
+==========
+* Add clapper video sink as default (has more accurate colors)
+* Add preference to disable clapper video sink
+  (which falls back to the official gtk4paintablesink)
+* Fix: Overlay hide/show issues
+
 0.1-alpha6
 ==========
 * F11 shortcut to toggle fullscreen
