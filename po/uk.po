@@ -8,18 +8,17 @@ msgstr ""
 "Project-Id-Version: daikhan 0.1-alpha3\n"
 "Report-Msgid-Bugs-To: realmazharhussain@gmail.com\n"
 "POT-Creation-Date: 2025-04-03 01:25+0500\n"
-"PO-Revision-Date: 2025-10-30 06:02+0000\n"
-"Last-Translator: Максим Горпиніч <gorpinicmaksim0@gmail.com>\n"
+"PO-Revision-Date: 2026-08-05 19:03+0000\n"
+"Last-Translator: Димко <Dymkovych@proton.me>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/daikhan/"
 "translations/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural="
-"(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? "
-"1 : 2);\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 2026.8.1.dev0\n"
 
 #. Translators: Please, ignore this!
 #: data/daikhan.desktop.in:3 data/daikhan.metainfo.xml.in:10
@@ -32,7 +31,7 @@ msgstr "Програвач медія"
 
 #: data/daikhan.desktop.in:5 data/daikhan.metainfo.xml.in:11
 msgid "Play Videos/Music with style"
-msgstr "Відтворюйте Видева\\Музику зі стилем"
+msgstr "Переглядайте видиво й слухайте музику зі стилем"
 
 #: data/daikhan.metainfo.xml.in:12
 msgid "Mazhar Hussain"
@@ -43,7 +42,7 @@ msgid ""
 "A simple yet powerful media player with a beautiful interface. It has nice "
 "keyboard shortcuts, session restore capabilities, and much more."
 msgstr ""
-"Простенький, але потужний програвач медія з гарною Користувацькою Оболонкою: "
+"Простенький, але потужний програвач із гарною користувацькою оболонкою: "
 "зручні поєднання клавіш, можливість відновлення сесії та ще багато чого."
 
 #: data/daikhan.metainfo.xml.in:20
@@ -56,19 +55,19 @@ msgstr ""
 
 #: data/daikhan.metainfo.xml.in:40
 msgid "Playing a video"
-msgstr "Відтворює видево"
+msgstr "Перегляд видива"
 
 #: data/daikhan.metainfo.xml.in:44
 msgid "Playing a video (fullscreen)"
-msgstr "Відтворює видево (повноекранне)"
+msgstr "Перегляд видива (повноекранне)"
 
 #: data/daikhan.metainfo.xml.in:48
 msgid "Playing a video (dark mode)"
-msgstr "Відтворює видево (темний режим)"
+msgstr "Перегляд видива (темний режим)"
 
 #: data/daikhan.metainfo.xml.in:52
 msgid "Playing a video (dark mode, fullscreen)"
-msgstr "Відтворює видево (темний режим, повноекранне)"
+msgstr "Перегляд видива (темний режим, повноекранне)"
 
 #: src/ActionDialog.vala:13
 msgid "No"
@@ -84,7 +83,7 @@ msgstr "Уподобання"
 
 #: src/AppMenuButton.blp:7
 msgid "Keyboard Shortcuts"
-msgstr "Поєднання Клавіш"
+msgstr "Клавіатурні скорочення"
 
 #: src/AppMenuButton.blp:8
 msgid "About Daikhan"
@@ -96,12 +95,12 @@ msgstr "Продовжити відтворення?"
 
 #: src/AppWindow.vala:111
 msgid "Unsupported File Type"
-msgstr "Непідтримуваний Тип Файлу"
+msgstr "Непідтримуваний тип файлу"
 
 #: src/AppWindow.vala:112
 #, c-format
 msgid "The file '%s' is not an audio or a video file."
-msgstr "Файл '%s' не є авдіо чи видево файлом."
+msgstr "'%s' — це не авдіо і не видиво."
 
 #: src/AppWindow.vala:113 src/ErrorDialog.blp:22
 msgid "OK"
@@ -150,7 +149,7 @@ msgstr "Вигляд"
 
 #: src/PreferencesWindow.blp:10
 msgid "Color Scheme"
-msgstr "Кольорова Схема"
+msgstr "Кольорова схема"
 
 #: src/PreferencesWindow.blp:14
 msgid "Overlay UI"
@@ -170,7 +169,7 @@ msgstr "Метод пошуку"
 
 #: src/PreferencesWindow.vala:17
 msgid "Follow System"
-msgstr "Використовувати Системну"
+msgstr "Системна"
 
 #: src/PreferencesWindow.vala:18
 msgid "Light"
@@ -198,15 +197,15 @@ msgstr "Навіґація в Застосунку"
 
 #: src/Shortcuts.blp:11
 msgid "Open Preferences"
-msgstr "Відкрити Вподобання"
+msgstr "Відкрити вподобання"
 
 #: src/Shortcuts.blp:16
 msgid "Show Keyboard Shortcuts"
-msgstr "Показати Сполучення Клавіш"
+msgstr "Скорочення клавіш"
 
 #: src/Shortcuts.blp:21
 msgid "Quit"
-msgstr "Закрити"
+msgstr "Вийти"
 
 #: src/Shortcuts.blp:27
 msgid "Playback"
@@ -270,7 +269,7 @@ msgstr "Написи"
 
 #: src/StreamMenuBuilder.vala:20
 msgid "Video"
-msgstr "Видево"
+msgstr "Видиво"
 
 #: src/StreamMenuBuilder.vala:28
 msgid "Repeat"
@@ -321,16 +320,16 @@ msgstr "Продовжити на тому же місці"
 
 #: src/WelcomeView.blp:55
 msgid "All Files"
-msgstr "Усі Файли"
+msgstr "Усі файли"
 
 #: src/WelcomeView.blp:60
 msgid "Video & Audio Files"
-msgstr "Видево & Авдіо Файли"
+msgstr "Видиво й Авдіо"
 
 #: src/WelcomeView.blp:65
 msgid "Video Files"
-msgstr "Видево Файли"
+msgstr "Видиво"
 
 #: src/WelcomeView.blp:70
 msgid "Audio Files"
-msgstr "Авдіо Файли"
+msgstr "Авдіо"
