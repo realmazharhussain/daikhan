@@ -22,6 +22,10 @@ class Daikhan.ErrorDialog : Adw.AlertDialog {
         });
     }
 
+    public ErrorDialog.with_info (string debug_info) {
+        Object (debug_info : debug_info);
+    }
+
     [GtkCallback]
     void report_bug_cb () {
         new Gtk.UriLauncher ("https://gitlab.com/daikhan/daikhan/-/issues")

@@ -39,9 +39,7 @@ public class Daikhan.PlaybinProxy : Object {
     public Daikhan.PlayFlags flags { get; set; }
     public double volume { get; set; }
 
-    public signal void unsupported_file ();
     public virtual signal void end_of_stream () {}
-    public signal void unsupported_codec (string debug_info);
     public signal void pipeline_error (Gst.Object source, Error error, string debug_info);
 
     Settings settings;
@@ -96,6 +94,10 @@ public class Daikhan.PlaybinProxy : Object {
         try {
             var info = file.query_info ("standard::display-name", NONE);
             filename = info.get_display_name ();
+        } catch (IOError err) {
+            filename = file.get_basename ();
+            pipeline_error (pipeline, err, "src/PlaybinProxy.vala: PlaybinProxy.open_file()");
+            return false;
         } catch (Error err) {
             filename = file.get_basename ();
         }
@@ -275,15 +277,7 @@ public class Daikhan.PlaybinProxy : Object {
         string debug_info;
 
         msg.parse_error (out err, out debug_info);
-
-        if (err is Gst.CoreError.MISSING_PLUGIN) {
-            unsupported_codec (debug_info);
-        } else if (err is Gst.StreamError.TYPE_NOT_FOUND) {
-            unsupported_file ();
-        } else {
-            pipeline_error (msg.src, err, debug_info);
-        }
-
+        pipeline_error (msg.src, err, debug_info);
         target_state = STOPPED;
     }
 

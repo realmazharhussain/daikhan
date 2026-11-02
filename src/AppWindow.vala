@@ -7,6 +7,7 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
     public Settings state_mem { get; private construct; }
     Daikhan.History playback_history;
     bool restoring_state = false;
+    uint n_playback_error_dialogs = 0;
 
     construct {
         if (Conf.DEV_PROFILE != "stable") {
@@ -19,8 +20,6 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
 
         player.notify["target-state"].connect (notify_target_state_cb);
         player.notify["current-track"].connect (notify_current_track_cb);
-        player.unsupported_file.connect (unsupported_file_cb);
-        player.unsupported_codec.connect (unsupported_codec_cb);
         player.pipeline_error.connect (pipeline_error_cb);
 
         state_mem.bind ("width", this, "default-width", DEFAULT);
@@ -108,40 +107,47 @@ class Daikhan.AppWindow : Adw.ApplicationWindow {
         }
     }
 
-    void unsupported_file_cb () {
-        var dialog = new Adw.AlertDialog (_("Unsupported File Type"), null);
-        dialog.body = _("The file '%s' is not an audio or a video file.").printf (player.filename);
-        dialog.add_response ("ok", _("OK"));
-        dialog.response.connect (() => { player.next (); });
-        dialog.present (this);
-    }
-
-    void unsupported_codec_cb (string debug_info) {
-        var dialog = new Daikhan.ErrorDialog () {
-            heading = _("Unsupported Codec"),
-            additional_message = _(
-                "Encoding of one or more streams in '%s' is not supported."
-                ).printf (player.filename),
-            debug_info = debug_info.strip (),
-        };
-
-        dialog.response.connect (() => { player.next (); });
-        dialog.present (this);
-    }
-
     void pipeline_error_cb (Gst.Object source, Error error, string debug_info) {
-        var dbg_info = debug_info.strip ().replace ("\n", "\n\t");
-        var info = (@"Source: $(source.name)\n"
-                    + @"Domain: $(error.domain)\n"
-                    + @"Code:   $(error.code)\n"
-                    + @"Message: $(error.message)\n"
-                    + "Debug info:\n"
-                    + @"\t$(dbg_info)"
-                    );
+        Adw.AlertDialog dialog;
 
-        var dialog = new Daikhan.ErrorDialog () { debug_info = info };
-        dialog.response.connect (() => { player.next (); });
+        if (error is Gst.CoreError.MISSING_PLUGIN) {
+            dialog = new Daikhan.ErrorDialog () {
+                heading = _("Unsupported Codec"),
+                additional_message = _(
+                    "Encoding of one or more streams in '%s' is not supported."
+                    ).printf (player.filename),
+                debug_info = debug_info.strip (),
+            };
+        } else if (error is Gst.StreamError.TYPE_NOT_FOUND || error is Gst.StreamError.WRONG_TYPE) {
+            dialog = new Adw.AlertDialog (_("Unsupported File Type"), null);
+            dialog.body = _("The file '%s' is not an audio or a video file.").printf (player.filename);
+            dialog.add_response ("ok", _("OK"));
+        } else if (error is IOError.NOT_FOUND) {
+            var file_path = player.queue[player.current_track].get_path ();
+            dialog = new Adw.AlertDialog (_("File Not Found"), null);
+            dialog.body = _("The file “%s” does not exist").printf (file_path);
+            dialog.add_response ("ok", _("OK"));
+        } else {
+            var dbg_info = debug_info.strip ().replace ("\n", "\n\t");
+            var info = (@"Source: $(source.name)\n"
+                        + @"Domain: $(error.domain)\n"
+                        + @"Code:   $(error.code)\n"
+                        + @"Message: $(error.message)\n"
+                        + "Debug info:\n"
+                        + @"\t$(dbg_info)"
+                        );
+
+            dialog = new Daikhan.ErrorDialog.with_info (info);
+        }
+
+        dialog.closed.connect (() => {
+            n_playback_error_dialogs--;
+            if (n_playback_error_dialogs <= 0) {
+                player.next ();
+            }
+        });
         dialog.present (this);
+        n_playback_error_dialogs++;
     }
 
     void perform_seek (int64 position) {
