@@ -83,7 +83,7 @@ class Daikhan.Application : Adw.Application {
             warning ("Error occured while loading history: %s", e.message);
         }
 
-        Bus.own_name (SESSION, "org.mpris.MediaPlayer2.daikhan", ALLOW_REPLACEMENT | REPLACE,
+        Bus.own_name (SESSION, @"org.mpris.MediaPlayer2.$(Conf.APP_ID)", ALLOW_REPLACEMENT | REPLACE,
             (conn) => {
                 try {
                     conn.register_object("/org/mpris/MediaPlayer2", new MPRIS.App (conn));
